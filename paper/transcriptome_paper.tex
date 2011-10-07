@@ -625,34 +625,6 @@ Figure (annotataionVenn.tiff) gives an overview of the
 10274 TUGs annotations were found for with
 different methods.
 
-\begin{Schunk}
-\begin{Sinput}
-> Bm.sum.annot.C <- read.delim("/home/ele/Data/454/annotation/annot8r/output_Bm/piedata_C", skip = 1)
-> Bm.sum.annot.C$species <- "Brugia malayi"
-> Ac.sum.annot.C <- read.delim("/home/ele/Data/454/annotation/annot8r/output/piedata_C", skip = 1)
-> Ac.sum.annot.C$species <- "Anguillicola crassus"
-> sum.annot.C <- rbind(Bm.sum.annot.C, Ac.sum.annot.C)
-> sum.annot.C$ontology <- "Cellular compartment"
-> Bm.sum.annot.F <- read.delim("/home/ele/Data/454/annotation/annot8r/output_Bm/piedata_F", skip = 1)
-> Bm.sum.annot.F$species <- "Brugia malayi"
-> Ac.sum.annot.F <- read.delim("/home/ele/Data/454/annotation/annot8r/output/piedata_F", skip = 1)
-> Ac.sum.annot.F$species <- "Anguillicola crassus"
-> sum.annot.F <- rbind(Bm.sum.annot.F, Ac.sum.annot.F)
-> sum.annot.F$ontology <- "Molecular Function"
-> Bm.sum.annot.P <- read.delim("/home/ele/Data/454/annotation/annot8r/output_Bm/piedata_P", skip = 1)
-> Bm.sum.annot.P$species <- "Brugia malayi"
-> Ac.sum.annot.P <- read.delim("/home/ele/Data/454/annotation/annot8r/output/piedata_P", skip = 1)
-> Ac.sum.annot.P$species <- "Anguillicola crassus"
-> sum.annot.P <- rbind(Bm.sum.annot.P, Ac.sum.annot.P)
-> sum.annot.P$ontology <- "Biological process"
-> sum.annot <- rbind(sum.annot.C, sum.annot.F, sum.annot.P)
-> GO.bm.com <- ggplot(sum.annot, aes(x = description, fill = species, weight = occurences)) + 
-+     geom_bar(position = "dodge") + scale_x_discrete(breaks = sum.annot$description, label = gsub("and\nnucleic\nacid\nmetabolic\nprocess", 
-+     "and nucleic acid\nmetabolic process", gsub(" ", "\n", sum.annot$description))) + facet_wrap(~ontology, 
-+     ncol = 1, scales = "free") + opts(legend.text = theme_text(face = "italic"))
-> ggsave("/home/ele/thesis/454/figures/go_bm_com.png", GO.bm.com)
-\end{Sinput}
-\end{Schunk}
 
 We compared GO-annotations for high-level GO-slim terms to the
 annotations obtained the same way for all \textit{B. malayi}-proteins:
@@ -1344,7 +1316,7 @@ Volkswagen Foundation, "F\"{o}rderinitiative Evolutionsbiologie".
   \subsection*{Table 1 - Trimming statistics}
 
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Fri Oct  7 18:26:57 2011
+% Fri Oct  7 18:52:30 2011
 \begin{tabular}{rrrrrrr}
   \hline
  & raw\_reads & short & lowq & dust & shortq & valid \\ 
@@ -1360,7 +1332,7 @@ T2 & 116366 &  46 & 24361 &  50 & 3226 & 88683 \\
 \end{tabular}
 \subsection*{Table 2 - Pre-assembly screening statistics}
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Fri Oct  7 18:26:57 2011
+% Fri Oct  7 18:52:30 2011
 \begin{tabular}{rrrrr}
   \hline
  & AcrRNA & eelmRNA & eelrRNA & valid \\ 
@@ -1376,7 +1348,7 @@ E1 & 76403 & 4835 & 13112 & 22231 \\
 \subsection*{Table 3 - \texttt{Blast}-hits to protozoan rRNA in
   pre-assembly screening}
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Fri Oct  7 18:26:57 2011
+% Fri Oct  7 18:52:30 2011
 \begin{tabular}{lll}
   \hline
 sequence.identifier & sequence.identitiy & hsp.length \\ 
@@ -1397,7 +1369,7 @@ gi$|$299836113$|$gb$|$GU290110.1$|$ & 99.67 & 599 \\
 \subsection*{Table 4 - Post-assembly host-screening }
   
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Fri Oct  7 18:26:57 2011
+% Fri Oct  7 18:52:31 2011
 \begin{tabular}{rrrrrr}
   \hline
  & AcrRNA & eelmRNA & eelrRNA & valid\_nempep & valid\_no\_hit \\ 
@@ -1408,7 +1380,7 @@ number & 604 & 1162 & 50 & 1254 & 37117 \\
 \end{tabular}
 \subsection*{Table 5 - Evolutionary conservation }
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Fri Oct  7 18:26:57 2011
+% Fri Oct  7 18:52:31 2011
 \begin{tabular}{rrrrr}
   \hline
  & conserved & novel.in.metazoa & novel.in.nematoda & novel.in.clade3 \\ 
@@ -1420,7 +1392,7 @@ bit.threshold.50 & 7741 & 1720 & 1769 & 1523 \\
 \subsection*{Table 6 - Protein prediction statistics}
 
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Fri Oct  7 18:26:57 2011
+% Fri Oct  7 18:52:31 2011
 \begin{tabular}{rrrrr}
   \hline
  & p4e-$>$BLAST-similarity & p4e-$>$ESTScan & p4e-$>$LongestORF & no-prediction \\ 
@@ -1433,7 +1405,7 @@ plus strand & 9701 & 8005 & 6393 & 562 \\
 \subsection*{Table 7 - SNP summry statistics}
 
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Fri Oct  7 18:26:57 2011
+% Fri Oct  7 18:52:31 2011
 \begin{tabular}{rlllllllll}
   \hline
  &   &   & pos & in & codon &   & ti/tv  &   &   \\ 
@@ -1447,7 +1419,7 @@ raw & 13042 & 8309 & 2713 & 2172 & 3424 & 1.98 & 2.43 & 1.42 & 0.45 \\
 \subsection*{Table 8 - GO-terms in positively selected}
 
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Fri Oct  7 18:26:57 2011
+% Fri Oct  7 18:52:31 2011
 \begin{longtable}{rrll}
  Count & Size & Term & direction \\ 
   \hline
@@ -1599,7 +1571,7 @@ raw & 13042 & 8309 & 2713 & 2172 & 3424 & 1.98 & 2.43 & 1.42 & 0.45 \\
 \subsubsection*{Table 9 a - analysing all TUGs}
 
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Fri Oct  7 18:26:58 2011
+% Fri Oct  7 18:52:31 2011
 \begin{tabular}{rrrrrrrrr}
   \hline
  & solexa.tags & E1 & E2 & L2 & M & T1 & T2 & all.reads \\ 
@@ -1616,7 +1588,7 @@ solexa.tags & 1.000 & 0.257 & 0.356 & -0.165 & 0.320 & 0.233 & 0.127 & 0.315 \\
 \end{tabular}\subsubsection*{Table 9 b - analysing good-category contigs only}
 
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Fri Oct  7 18:26:58 2011
+% Fri Oct  7 18:52:31 2011
 \begin{tabular}{rrrrrrrrr}
   \hline
  & solexa.tags & E1 & E2 & L2 & M & T1 & T2 & all.reads \\ 
@@ -1634,7 +1606,7 @@ solexa.tags & 1.000 & 0.371 & 0.528 & -0.196 & 0.450 & 0.393 & 0.199 & 0.385 \\
 \subsubsection*{Table 9 c - analysing good-category contigs surely from \textit{A. crassus} only}
 
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Fri Oct  7 18:26:58 2011
+% Fri Oct  7 18:52:31 2011
 \begin{tabular}{rrrrrrrrr}
   \hline
  & solexa.tags & E1 & E2 & L2 & M & T1 & T2 & all.reads \\ 

@@ -1,4 +1,4 @@
-<<annot.compare>>=
+<<annot.compare, echo=FALSE>>=
 
 Bm.sum.annot.C <- read.delim("/home/ele/Data/454/annotation/annot8r/output_Bm/piedata_C", skip=1)
 Bm.sum.annot.C$species <- "Brugia malayi"
