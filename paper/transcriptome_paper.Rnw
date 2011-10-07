@@ -115,7 +115,7 @@
 %%                                          %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \title{The transcriptome of the swimmbladder-nematode
+  \title{The transcriptome of the swimbladder-nematode
     Anguillicola crassus: Resources for an alien parasite}
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -221,7 +221,7 @@
 
 \textit{Anguillicola crassus} Kuwahara, Niimi et Itagaki, 1974
 \cite{kuwahara_Niimi_Itagaki_1974} is a nematode feeding on blood in
-the swimmbladder of freshwater eels of the genus
+the swimbladder of freshwater eels of the genus
 \textit{Anguilla}. Originally endemic to East-Asian populations of the
 Japanese Eel (\textit{Anguilla japonica}), \textit{A. crassus} has
 attracted interest due to recent anthropogenic expansion of its
@@ -231,12 +231,12 @@ first time in 1982 in North-West Germany \cite{fischer_teichwirt}, to
 where it was most likely introduced by live-eel trade
 \cite{koops_anguillicola-infestations_1989, koie_swimbladder_1991},
 \textit{A. crassus} rapidly spread throughout populations of its newly
-accquired host (for a review see \cite{kirk_impact_2003}). At the
+acquired host (for a review see \cite{kirk_impact_2003}). At the
 present day it is found in all but the northernmost population of the
 European eel in Iceland \cite{kristmundsson_parasite_2007}.
 
 The impact of \textit{A. crassus} on the European eel has been a major
-focus of research during the past decades. High prevalences of the
+focus of research during the past decades. High prevalence of the
 parasite of above 70\% (e.g. \cite{wrtz_distribution_1998}), as well
 as high intesities of infections were reported, throughout the newly
 colonized area \cite{lefebvre_anguillicolosis:_2004}.  Based on a
@@ -254,7 +254,7 @@ faster \cite{knopf_differences_2004}.  While the Japanese eel is
 capable of killing larvae of the parasite after vaccination
 \cite{knopf_vaccination_2008} or under high infection pressure
 \cite{heitlinger_massive_2009}, only pathological effects such a
-thikening of the swimmbladder wall \cite{wrtz_histopathological_2000}
+thikening of the swimbladder wall \cite{wrtz_histopathological_2000}
 have been found in the European eel. 
 
 The genus \textit{Anguillicola} holds a phylogenetic position basal to
@@ -339,7 +339,7 @@ library(ShortRead)
 source("/home/ele/thesis/454/common_R_functions.R")
 @ 
 
- \subsection*{Sequencing, trimmng and pre-assembly screening}
+ \subsection*{Sequencing, trimming and pre-assembly screening}
 
 <<trim, echo=FALSE, results=hide, cache=TRUE>>=
 trimdat <- readLines("/home/ele/Data/454/trimmed/trimming.stats")
@@ -436,7 +436,7 @@ hit longer than 80\% of the read-length and identity bigger 95\%) to
 rRNA, \Sexpr{nscreened.m} to host-databases (same thresholds). Figure
 (rRNA\_plots.png) and table 2 give an overview of this pre-assebmly
 rRNA and host-screening in different libraries. During annotoation of
-the rRNA-database we constructed for \textit{A.crassus} (assembled
+the rRNA-database we constructed for \textit{A. crassus} (assembled
 from reads screened against general rRNA-databases) we found some
 contigs with high similarity 18S sequences from cercozoan and other
 flaggelate protists over the majority of their length. Table 3 gives
@@ -517,7 +517,7 @@ extensive \texttt{blast}-queries.
 
 In this evalutation we labeled all sequences hitting (e-value
 cut-off of 1e-5) the same databases used for screening prior to
-assembly (eel-mRNA, eelrRNA, \textit{A.crassus}rRNA) with the
+assembly (eel-mRNA, eelrRNA, \textit{A. crassus}rRNA) with the
 respective database-hit, if the sequence did not produce a better hit
 (based on bit-score comparison) against the nucleotide version of
 nempep4 \cite{pmid21550347}.  
@@ -526,7 +526,7 @@ To make this evaluation more spqcific we only sequences hitting whith
 the over 50\% of their length with an identity >70\% to lable the
 TUGs as ``contamination'' accordig to the respective database-hit.
 
-Two kinds sequences were labled ``valid'' \textit{A.crassus}
+Two kinds sequences were labled ``valid'' \textit{A. crassus}
 sequences: Valid due to evidence of nematode origing (hitting
 nempep4), and valid due to missingness of evidence of host-origin.
 
@@ -564,8 +564,8 @@ n_suMN_Ac <- nrow(contig.df[contig.df$AcMN, ])
 
 Table 3 gives the numbers of TUGs labled as possible host or rRNA
 contamination. The \Sexpr{nvalid} TUGs regarded to be of
-\textit{A.crassus}-origin give a positive indication of the origin of
-sequence data. However TUGs hitting \textit{A.crassus}-rRNA still
+\textit{A. crassus}-origin give a positive indication of the origin of
+sequence data. However TUGs hitting \textit{A. crassus}-rRNA still
 have a high coverage, indicating a noticable loss of raw-read data
 (e.g. used in mapping) to additional rRNA-coverage. In contrast
 TUGs labeled to be of host-origin had a slighly lower coverage than
@@ -579,7 +579,7 @@ off-target data) we searched our complete dataset against both NCBI-nt
 and NCBI-nr. Figure (phylum\_plots) gives an overview of the number of
 top-hits to different phyla sorted by kingdom.
 
-For evey study of the biology of \textit{A.crassus} based on the
+For evey study of the biology of \textit{A. crassus} based on the
 presented dataset we advise to use the taxonomic evaluation and
 host-contamination screening at latest at the stage of interpretation
 of results to avoid missleading conclusions based on differences in
@@ -591,7 +591,7 @@ quality-contigs left for analysis, based on choosing only sequence not
 labled ``Chordata'' (from nt- and nr-searches) and labled ``valid'' or
 ``valid-nempep'' (from the evaluation of host-contamination). A second
 analysis aiming to exclude all data suspicious to be not of
-\textit{A.crassus}-origin would choose \Sexpr{n_su_Ac} TUGs or
+\textit{A. crassus}-origin would choose \Sexpr{n_su_Ac} TUGs or
 \Sexpr{n_suMN_Ac} quality-contigs, by using sequence labled
 ``Nematoda'' or ``no hit'' (from nt- and nr-searches) and ``valid'' or
 ``valid-nempep''. We use such restiricted dataset like in the second
@@ -815,7 +815,7 @@ bases and \Sexpr{round(n.per.n.cov8.base, 2)} non-synonymous SNPs per
   It should be noted that the overall dn/ds value of
   \Sexpr{perc.dn.ds} is different from the mean dn/ds value of contigs
   \Sexpr{mean(contig.df$dn.ds, na.rm=TRUE)#$}, as in the first the
-  complete length of the sequence (also frome TUGs without synonymous
+  complete length of the sequence (also from TUGs without synonymous
   SNP predicted) can be included.
 
 \subsection*{Annotation}
@@ -875,25 +875,17 @@ different methods.
 
 \SweaveInput{../annotation/brugia-compare.Rnw}
 
-<<<<<<< HEAD
 We compared GO-annotations for high-level GO-slim terms to the
 annotations obtained the same way for all \textit{B. malayi}-proteins:
 Our transcriptome for \textit{A. crassus} shows a remarkably similar
 distribution of GO-terms to the full set of annotations for the genome
 of the related nematode (see figure go\_bm\_com.png).
 
-=======
->>>>>>> 0f447f595138cc7b21e7f97bd8049cfdf088d62f
-In additon we inferred presence of signal peptide cleavage sites in
+In addition we inferred presence of signal peptide cleavage sites in
 the predicted protein sequence: \texttt{SignalP} \cite{pmid17446895}
 predicted \Sexpr{nSignn} signal peptides using neural networks and
 \Sexpr{nSighmm} and \Sexpr{nAnchmm} signal peptides and signal anchors
-respectively unsing hidden Markov models \cite{pmid9783217}.
-<<<<<<< HEAD
-=======
- 
-
->>>>>>> 0f447f595138cc7b21e7f97bd8049cfdf088d62f
+respectively using hidden Markov models \cite{pmid9783217}.
 
 \subsection*{Consolidated results}
 
@@ -944,7 +936,7 @@ dev.off()
 \subsubsection*{Signal-positives have higher dn/ds}
 
 TUGs predicted to contain signal peptide cleavage sites by the
-neural-netowrks method in \texttt{SignalP} have higher dn.ds values
+neural-networks method in \texttt{SignalP} have higher dn.ds values
 than TUGs without signal peptide cleavage sites (p =
 \Sexpr{round(u.test[["p.value"]], 3)}; two sided U-test; see also
 figure sigp\_dn\_ds.png a). TUGs predicted by the hmm method in
@@ -955,33 +947,32 @@ figure sigp\_dn\_ds.png b). Although the differences were only
 significant for the nn-predicted signal-peptides the results of the
 hmm prediction show that the signal-peptides that are cleaved and
 possibly secreted are making the difference. These differences were
-consistent if only tested against a resticted dataset surely from
-\textit{A.crassus} (see ).
+consistent if only tested against a restricted data-set surely from
+\textit{A. crassus}.
 
+\subsubsection*{Enrichment of GO-categories in high dn/ds}
 
-\subsubsection*{Enrichement of GO-categories in high dn/ds}
-
-In enrichment analyses, where the ``gene-universe'' to test against
+In enrichment analysis, where the ``gene-universe'' to test against
 has to be defined, possible off-target sequences have to be excluded
-prior to analyses. Testing was performed against a universe of only
-TUGs we were sure to be of \textit{A.crassus}-origin. We defined TUGs
-with a dn.ds higher than 0.5 as divergently selected and tested each
-node-term in the ontology for a overrepresentation in this set. Tables
+prior to analysis. Testing was performed against a universe of only
+TUGs we were sure to be of \textit{A. crassus}-origin. We defined TUGs
+with a dn.ds higher than 0.5 as positively selected and tested each
+node-term in the ontology for a over-representation in this set. Tables
 X give an overview of enriched terms for different parts of the
 ontology.
 
 The terms ``amino acid transmembrane transporter activity'' and
 ``peptidase activity'' were among the overrepresented terms for
-``molecular function''. Underreprsented were on the other hand terms
+``molecular function''. Underrepresented were on the other hand terms
 associated with ribosomal proteins and transcription (visible in
 ``molecular function'' and ``cellular compartment'') .
 
-TODO: BP and CC overrepresentation. 
+TODO: BP and CC over-representation. 
 
-To make sure these inferrences were not biased by redundancy in the
-fullest dataset we repeated the analysis using only the good-quality
+To make sure these inferences were not biased by redundancy in the
+fullest data-set we repeated the analysis using only the good-quality
 contigs as gene-universe. The results showed to be consistent with
-those obtained for the fullest datset (data not shown).
+those obtained for the fullest data-set (data not shown).
 
 \subsubsection*{Novel in cladeIII have elevated dn/ds}
 
@@ -1098,9 +1089,9 @@ dev.off()
 
 Figure signal\_novel.png gives the proportions of
 \texttt{SignalP}-predictions for each category of evolutionary
-conservation. Generally - across bitscore thresholds and
+conservation. Generally - across bit-score thresholds and
 \texttt{SignalP} prediction methods - sequences novel in nematodes
-containt the highest proportion of signal-positives followed by
+contained the highest proportion of signal-positives followed by
 sequences novel in clade III or in metazoa. Conserved sequences
 contain the lowest proportion of signal-positives.
 
@@ -1108,52 +1099,52 @@ contain the lowest proportion of signal-positives.
                 
 \SweaveInput{../gene_expression/gene_expression.Rnw}
 
-Using methods developed for sequencing data, we analysed
+Using methods developed for sequencing data, we analyzed
 gene-expression inferred from mapping. Of the \Sexpr{n454.map} reads
 mapping to the fullest assembly \Sexpr{n454.Umap} mapped uniquely
-(with teir best hit) and were counted on a per library base.
+(with their best hit) and were counted on a per library base.
 
-\subsection*{Comparison with tag-sequencing pilot dataset}
+\subsection*{Comparison with tag-sequencing pilot data-set}
 
 \SweaveInput{../solexa_compare/solexa_compare.Rnw}
 
 \Sexpr{nMapped} of \Sexpr{nTags} (\Sexpr{nUniq} unique) NlaIII-tags
 mapped to the fullest assembly. Only \Sexpr{nUMapped}
-(\Sexpr{nUniqUMapped} uniqe) tags did not map to any sequence in the
+(\Sexpr{nUniqUMapped} unique) tags did not map to any sequence in the
 fullest assembly.
 
 Table 9a gives correlations coefficients between tag-counts and
-454-libraries. Perason-correlations-coefficients between 454-libraries
+454-libraries. Pearson-correlations-coefficients between 454-libraries
 were generally low, indicating a high proportion of noise or
 biological differences between samples. Correlation between
 expression-tags and 454-read counts were even lower. However when only
-analysing counts to good-quality contigs, correlation coefficients
+analyzing counts to good-quality contigs, correlation coefficients
 improved both between libraries and between 454-libraries and
 solexa-tags (see table 9b). No further improvements were made, when
-counts were limited to contigs surely \textit{A.crassus} (see table
+counts were limited to contigs surely \textit{A. crassus} (see table
 9c). Correlations between library T2 and other 454-libraries, as well
 as with solexa-tag counts were lower than between other libraries.  
 
 To gain power in statistical analysis we limited the set of
-gene-objects analysed for differential expression to the good-quality
+gene-objects analyzed for differential expression to the good-quality
 contigs.
 
 \subsubsection*{Differential expression between male and female worms}
 
 Despite the lack of replicates for male worms we were able to identify
-\Sexpr{length(sig.mf.contigs)} sequences being significatnly
-over-exprssed im male worms. In fact all these TUGs were nearly
+\Sexpr{length(sig.mf.contigs)} sequences being significantly
+over-expressed in male worms. In fact all these TUGs were nearly
 exclusively expressed in males. 
 
 \subsubsection*{Differential expression between adults and L2-larvae}
 
 For the L2-library we changed our approach and used gene-expression
-analysis rather to highlight the off-target data in this lirary. For
+analysis rather to highlight the off-target data in this library. For
 this reason we used counts for the fullest assembly.
 
 \Sexpr{length(sig.ad.contigs)} sequences being expressed exclusively
-in L2 library were strongly enriched in sequences being labled as
-possible off-target data in taxonimic classification. From these
+in L2 library were strongly enriched in sequences being labeled as
+possible off-target data in taxonomic classification. From these
 sequences only \Sexpr{l2.met.hits} had best hits to metazoa and only
 \Sexpr{l2.nem.hits} to nematoda.
 
@@ -1166,11 +1157,11 @@ Eel. Diagnostic plots provided by \texttt{DESeq} made clear, that both
 depth of sequencing and number of replicates have to be higher
 contrasting these conditions.
 
-However, comparing expression-analysis on the full dataset to analysis
-limited to the high quality of relieable \textit{A.crassus}-contigs it
-was clear that the quality-dataset reduces within-condition variance
+However, comparing expression-analysis on the full data-set to analysis
+limited to the high quality of reliable \textit{A. crassus}-contigs it
+was clear that the quality-data-set reduces within-condition variance
 and results were closer to significance: The lowest adjusted p-values
-for the cleaned dataset were around 0.4, while on the full dataset
+for the cleaned data-set were around 0.4, while on the full data-set
 only adjusted p-values above 0.8 could be obtained.
 
 \subsection*{Secreted immunomodulatory molecules}
@@ -1190,85 +1181,85 @@ write.csv(contig.df[,readable], "../A_crassus_contigs_readable.csv")
 \section*{Discussion}
 
 We are providing transcriptome-data for the parasite
-\textit{A.crassus}, enabeling a broad spectrum of molecuar research on
+\textit{A. crassus}, enabling a broad spectrum of molecular research on
 this ecologically and economically important species.
 
-We emphasise the importance of screening for xenobiotics. We consider
+We emphasize the importance of screening for xenobiotics. We consider
 this aspect important in any deep transcriptome project. First the
 depth of sequencing is leading to the generation of large amounts of
 off-target data from a ``metatranscriptomic community'' associated with a
 target organism. Second due to the abundance of laboratory
-contaminations and the possiblity of cross-contamination if libraries
+contamination and the possibility of cross-contamination if libraries
 are sequenced only on a subset of a picotiter-plate (i.e. without the
 use of barcodes distinguishing between samples \cite{pmid20137071})
 non-biological contamination can be introduced. 
 However, in the context of a parasite (or an infected host) the
-screening for off-target data and contamiation becomes even more
-important: Correct inferrence of biological origin for a given contig
-constitues a prerequesite for most downsteam analysis or the
+screening for off-target data and contamination becomes even more
+important: Correct inference of biological origin for a given contig
+constitutes a prerequisite for most downstream analysis or the
 interpretation of results.
 
-Corss-contamination from different compartments of a picolitre-plate
+Cross-contamination from different compartments of a picolitre-plate
 was ruled out by our sequence provider, using Multiplex Indexes (MID)
-for one library and similarity searches to neighbouring lanes for the
+for one library and similarity searches to neighboring lanes for the
 other libraries.
 
 For the remaining off-target and contamination problem we archived
-seperation of sequences in two steps, one before assembly, one
-afterwards. Both screening-steps had to rely soly on sequence
+separation of sequences in two steps, one before assembly, one
+afterward. Both screening-steps had to rely solely on sequence
 comparison. The screening-step before assembly has to employ lower
-stingency as sequence comparisons on sequence as short as reads are
+stringency as sequence comparisons on sequence as short as reads are
 less informative than on longer contig-sequence. In our case of
 \textit{A. crassus}, neither of the two host species has genomic data
 available for use in similarity searches. A publicly available
-transcriptome-dataset for European eel \cite{pmid21080939} in addition
-to a unpublished dataset for the same species was augmented with a
-dataset generated from the Japanese eel sequenced for the purpose of
-screening \textit{A.crassus}-sequences in the present project. The
-pre-assembly screening had the rationale of faciliating the assembly
+transcriptome-data-set for European eel \cite{pmid21080939} in addition
+to a unpublished data-set for the same species was augmented with a
+data-set generated from the Japanese eel sequenced for the purpose of
+screening \textit{A. crassus}-sequences in the present project. The
+pre-assembly screening had the rationale of facilitating the assembly
 process reducing the amount of divergent sequence from two
 host-species and the amount of extensively covered rRNA sequence. In
 our sequencing we were not able to reproducibly alleviate the rRNA
 coverage. This has probably been due to the fact that extraction of
 total-RNA from worms filled with host blood resulted in low amounts of
 starting material, and amplification using standard kits did not allow
-to reproducabely alleviate rRNA abundance. As the same problems
+to reproducibly alleviate rRNA abundance. As the same problems
 existed in preparation of liver tissue of the host species it seems
 likely that the blood of eels contains substances limiting the success
 of specific amplification protocols. In fact it is known that
-compounds like hemoglogin can inhibit PCR reactions \cite{pmid9327537}
+compounds like hemoglobin can inhibit PCR reactions \cite{pmid9327537}
 and reverse transcription \cite{pmid16109794}.
 
 Although raw reads with rRNA hits were screened out prior to assembly,
 it was still possible to gain insights from these off-target data, as
 we assembled and annotated screening databases. Some of the rRNA data
-especially from the L2 library showed high similarity to flaggelate
+especially from the L2 library showed high similarity to flagellate
 eukaryotes. It could be possibly derived from an unknown protist
 living in the swimbladder of eels (possibly as a commensal of
-\textit{A.crassus}), from where the L2 larvae for RNA-preparation were
+\textit{A. crassus}), from where the L2 larvae for RNA-preparation were
 washed out. This seems worth further investigation, especially as it
-has been controversal wether encapsulated objects in the swimbladder
-of eels could be attributed soly to \textit{A.crassus}
+has been controversial whether encapsulated objects in the swimbladder
+of eels could be attributed solely to \textit{A. crassus}
 \cite{heitlinger_massive_2009} or to opportunist coinfections. 
 
-A second examination of seqeunce origin was obtained after
+A second examination of sequence origin was obtained after
 assembly. It can employ higher stringency do to the longer sequence
-length in an assebled dataset and because we did not discard any
+length in an assembled data-set and because we did not discard any
 off-target data, but marked TUGs for careful selection prior to
-special analyses or differential interpretation afterwards. Such
+special analysis or differential interpretation afterward. Such
 attempts to employ taxonomic screening were used before in a
 transcriptome projects for the garter snake \cite{pmid21138572} and a
 study on lake sturgeon even evaluated horizontal gene-transfer, when
 xenobiotic sequences were found \cite{pmid20386959} (with a negative
-result). A study describing a custom pipline for
+result). A study describing a custom pipeline for
 transcriptome-assembly from pyrosequencing reads \cite{pmid20034392}
-suggested the use of \texttt{EST3} \cite{pmid17218127}, to inferre
+suggested the use of \texttt{EST3} \cite{pmid17218127}, to infer
 sequence-origin based on nucleotide frequency. However, we were not
 able to use this approach successfully, probably due to the fact that
-xenobiotic sequence in our dataset stems from multiple sources with
+xenobiotic sequence in our data-set stems from multiple sources with
 different gc-content and codon-usage.
 
-Data from our L2 larvae library showed its anormaly later in
+Data from our L2 larvae library showed its anomaly later in
 gene-expression analysis, when off-target xenobiotic data was found to
 be responsible for the differences to other libraries. This makes this
 off-target data an interesting starting point for future investigation
@@ -1278,7 +1269,7 @@ Compared to other NGS transcriptome sequencing projects, our assembly
 approach generated a smaller number of contigs. Projects using the
 \texttt{mira} assembler often report substantially more contigs for
 data-sets of similar size (see e.g. \cite{pmid21364769}), comparable
-to the \texttt{mira} sub-assebly in our appoach. We demonstrated that
+to the \texttt{mira} sub-assembly in our approach. We demonstrated that
 our assembly approach generated a set less redundant and more complete
 sequences compared to the two ``out of the box'' approaches tested.
 
@@ -1287,12 +1278,12 @@ coverage on the 3’ end of transcripts, as a result of RNA preparation
 using oligo-dT primers, an effect that seems to be ubiquitous in deep
 transcriptome sequencing projects (e.g. \cite{pmid20331785}). The low
 number of complete ORFs and especially the low number of start-codons
-(and corresponding Methoinin amino acids) in predicted proteins seems
+(and corresponding Methionine amino acids) in predicted proteins seems
 cumbersome but cross-validation in combination with SNP-calling
 demonstrated the overall correctness of predicted proteins.
 
 We were able to demonstrate, that screening of SNPs in or adjacent to
-hompolymer regions ``improved'' overall measurements on SNP-quality:
+homopolymer regions ``improved'' overall measurements on SNP-quality:
 
 First the ratio of transitions to transversions (ti/tv) increased.
 Such an increase is explainable by the removal of ``noise'' associated
@@ -1300,34 +1291,34 @@ with common homopolymer-errors \cite{pmid21685085}. Assuming that
 errors would be independent of transversion-transition bias erroneous
 SNPs would have a ti/tv of 0.5 and thereby lower the overall
 value. Other explanations for these observations are hard to find so
-it can be concluded that removing noise from homoploymer
+it can be concluded that removing noise from homopolymer
 sequencing-error ti/tv increases.  The value of \Sexpr{tsv.perc[,3]}
 (\Sexpr{tsv.perc.orf["FALSE",3]} outside,
-\Sexpr{tsv.perc.orf["TRUE",3]} inside orfs) is in good agreement with
+\Sexpr{tsv.perc.orf["TRUE",3]} inside ORFs) is in good agreement with
 the overall ti/tv of humans (2.16 \cite{pmid21169219}) or
 \textit{Drosophila} (2.07 \cite{pmid21143862}). 
 
-The ratio of non-synonymos SNPs per non-synonymous site to synonymous
+The ratio of non-synonymous SNPs per non-synonymous site to synonymous
 SNPs per synonymous site (dn/ds) decreased with removal of SNPs
-adjacent to homoploymer regions from \Sexpr{read.dn.ds} to
+adjacent to homopolymer regions from \Sexpr{read.dn.ds} to
 \Sexpr{perc.dn.ds} after full screening. Similar to ti/tv it the most
-plausible explantion is the removal of error, as unbiased error would
+plausible explanation is the removal of error, as unbiased error would
 lead to a dn/ds of 1. While dn/ds is not unproblematic to interpret
 within populations \cite{pmid19081788}, assuming negative (purifying)
 selection on most protein-coding genes lower values seem more
 plausible, also in comparison with other studies (see further text).
 
-We used a threshold value for the minorty allesl of 7\% for exclusion
+We used a threshold value for the minority allele of 7\% for exclusion
 of SNPs, this corresponds to the ca. 10 ``haploid equivalents'' (5
-individual worms plus an neglegible amount of L2 larvae - in the L2
+individual worms plus an negligible amount of L2 larvae - in the L2
 library and within the female adult worms - bearing possibly
 additional diversity). It is hard to explain, that ti/tv decreased in
 this filtering step, while dn/ds still further decreased.
 
 The benefit of this screening was mainly a reduction of non-synonymous
-SNPs in high coverage contigs. When it was applyied dn/ds did not
+SNPs in high coverage contigs. When it was applied dn/ds did not
 scale with coverage. Working with an estimate of dn/ds independent of
-coverage, efforts to control for sampling a biased by samling depth
+coverage, efforts to control for sampling a biased by sampling depth
 (i.e. coverage) like developed \cite{pmid18590545} and used
 \cite{pmid20478048} could be avoided.  
 
@@ -1337,22 +1328,22 @@ been suggested as threshold for assuming diversifying selection
 \cite{pmid15579698} instead of the classical threshold of 1
 \cite{pmid6449605}. In the transcripts from the female reproductive
 tract of \textit{Drosophila} dn/ds was 0.15 \cite{pmid15579698} and in
-th 0.21 male reproductive tract \cite{pmid11404480} (although for ESTs
-specific to the male accesory gland were shown to have a higher dn/ds
+the 0.21 male reproductive tract \cite{pmid11404480} (although for ESTs
+specific to the male accessory gland were shown to have a higher dn/ds
 of 0.47). Pyrosequencing studies found dn/ds to be between 0.13 and
-0.27 (depending on tissue type genes were mainly expresse in) in the
+0.27 (depending on tissue type genes were mainly expressed in) in the
 Zebra finch transcriptome \cite{pmid20359325}, 0.12 in the
 transcriptome of \textit{Tigriopus californicus} \cite{pmid21199025}
-and 0.3 in the parasitic nematode \textit{Ancylostoma caninum}
+and 0.3 in the parasitic nematode \textit{Ancylostoma canium}
 \cite{pmid20470405}. In comparison with these results even our
 estimate after screening seems high (although it should be noted, that
-the latter studies report a mean dn/ds over contigs - the
+the latter tree studies report a mean dn/ds over contigs - the
 \textit{A. canium} doesn't make clear what exactly is reported - and
 therefore the value has to be compared to our mean dn/ds over contigs
 of \Sexpr{round(mean(contig.df$dn.ds,na.rm=TRUE),2)#$}) and further
 investigation using deeper sequencing of more individuals on the
-solexa GAII platform will be used to fully exclude the possiblily of
-this reslut being induced by sequencing error. Moreover such an
+solexa GAII platform will be used to fully exclude the possibility of
+this result being induced by sequencing error. Moreover such an
 experiment should try to test that divergence between populations is
 leading to positive selection on only the possibly diverging European
 populations. For such a study the set of SNPs found here are
@@ -1361,36 +1352,36 @@ found with both technologies.
 
 We were able to obtain high-quality annotations for a large set of
 TUGs. Comparison with protein sequence derived from \textit{B. malayi}
-showed a a remarkable degree of agreement regarding the occurence of
-terms. This implies, that our transcriptome-dataset is a
+showed a a remarkable degree of agreement regarding the occurrence of
+terms. This implies, that our transcriptome-data-set is a
 representative subset of a nematode-parasite
 genome. 
 
-Overrepresentation of GO-term in genes under diversifying selection
+Over-representation of GO-term in genes under diversifying selection
 (at a threshold of dn/ds>0.5, as established above) highlighted many
 interesting gene-products:
 
 In the molecular function category two amino acid transmembrane
 transporters (``Contig5699'' and ``Contig866'') - the only contigs
-with this annotation (or anotation, which is an offspring-term of
+with this annotation (or annotation, which is an offspring-term of
 this) and a dn/ds obtained - were found to have a dn/ds>0.5. Such
-transporter are thought to be important in the survival of parsites in
+transporter are thought to be important in the survival of parasites in
 a host \cite{pmid18272295}.
 
 Enrichment in the category ``peptidase activity'' highlighted twelve
 peptidases (from 43 with a dn/ds obtained). All twelve have orthologs
-in \textit{B.malayi} and \textit{C.elgans} and are conserved across
+in \textit{B. malayi} and \textit{C. elgans} and are conserved across
 kingdoms. Despite their conservation peptidases are thought to have
-have accquired new and prominent roles in host-parsite interaction
-compared to free living organisms: In \textit{A.crassus} a
+have acquired new and prominent roles in host-parasite interaction
+compared to free living organisms: In \textit{A. crassus} a
 trypsin-like proteinase has been identified thought to be utilized by
 the tissue-dwelling L3 stage to penetrate host tissue and an aspartyl
 proteinase thought to be a digestive enzyme in adults
 \cite{polzer_identification_1993}.
 
-The under-represetation of ribosomal proteins (term ``structural
-constituent of ribosome'') in disruplingly selected contigs is in good
-agreement with the notion that ribosomas proteins are extremely
+The under-representation of ribosomal proteins (term ``structural
+constituent of ribosome'') in disruptively selected contigs is in good
+agreement with the notion that ribosomal proteins are extremely
 conserved across kingdoms \cite{pmid9664699} and should be under under
 strong negative selection. 
 
@@ -1399,14 +1390,14 @@ interpretation and cross-validation of the results from SNP-calling:
 The detection of signal-peptides secretion using \textit{in silico}
 analysis of ESTs has been used to highlight candidate genes for
 example in \textit{Nippostrongylus brasiliensis}
-\cite{harcus_signal_2004} and in a large scale anaylsis across all
+\cite{harcus_signal_2004} and in a large scale analysis across all
 nematode \cite{nagaraj_needles_2008} ESTs. Proteomic analysis in
-\textit{Brugia malayi} \cite{pmid19352421,pmid18958170} and
+\textit{B. malayi} \cite{pmid19352421,pmid18958170} and
 \textit{Heligmosomoides polygyrus} \cite{pmid21722761} was able to
 find evidence for excretion for some of the protein-products and to
 highlight additional candidate genes.
 
-We found an elevated dn/ds for signal-positves. These result could be
+We found an elevated dn/ds for signal-positives. These result could be
 explained follow the logic of signal-positives being more likely to be
 secreted to the host-parasite interface and proteins involved in
 host-parasite interaction being more likely to be under disruptive
@@ -1414,40 +1405,40 @@ selection. Signal-positive TUGs with high dn/ds constitute another set
 of genes worth further examination in future studies.
 
 TUGs predicted to be novel in the phylum nematoda contained the
-highest proprotion of signal-positives. A interpretation of this
+highest proportion of signal-positives. A interpretation of this
 findings could be a confirmation of a study on \textit{Nippostrongylus
   brasiliensis} \cite{harcus_signal_2004}, where signal positives were
 reported as less conserved. In the present study we did not aim to
-identify ``novelity to \textit{A.crassus}'' as we believe in a deep
+identify ``novelty to \textit{A. crassus}'' as we believe in a deep
 sequencing project he absence of sequence similarity could be
-attributed to erroneous sequence instead of true novelity, and thereby
-blur analysis. However novelity in nematodes and to a lesser extend
-novelity in Spirurina seems to support the notion, that - if not
+attributed to erroneous sequence instead of true novelty, and thereby
+blur analysis. However novelty in nematodes and to a lesser extend
+novelty in Spirurina seems to support the notion, that - if not
 diversified within nematoda to an extend leading to a complete loss of
 similarity, like suggested in the mentioned study - signal positives
-in nematodes could have taken a divergent evlutionary path from their
+in nematodes could have taken a divergent evolutionary path from their
 orthologs in other phyla.
 
 It was within our expectation, that expression analysis failed to give
-conclusive results, as the prestent dataset is not fully adequate for
-this kind of analysis: First we did not include replictes for
+conclusive results, as the present data-set is not fully adequate for
+this kind of analysis: First we did not include replicates for
 libraries of male adults as well as for L2-larvae. Second one of the
 replicates for female worms (library E1) resulted in a low amount of
 sequence mappable to protein-coding (non-rRNA) genes.
-However some of the results are still valueable:
+However some of the results are still valuable:
 
-DESeq was able to report genes significantly differening in expression
-between male and female worms and betweeen the L2 library and the all
+DESeq was able to report genes significantly differing in expression
+between male and female worms and between the L2 library and the all
 other worms. This was possible for male worms as well as for
 L2-larvae, were no replicated samples were obtained, due due the
 special features of this package \cite{pmid20979621}. However only
-over-expression in non-repeated samples can be detected, as obviousely
+over-expression in non-repeated samples can be detected, as obviously
 lack of expression in one sample can't validate
 
 Comparisons were lacking significance, as methods are designed for
 deeper sequencing and more importantly more replicates would be
 needed. Differences between the L2-library and other libraries were
-mainly due to off-target data, and TUGs soly found in the L2 library
+mainly due to off-target data, and TUGs solely found in the L2 library
 are ... 
 
 
@@ -1460,7 +1451,7 @@ are ...
 \section*{Methods}
 \subsection*{Worm samples, RNA extraction, cDNA synthesis and
   Sequencing}
-\textit{A.crassus} from Japanese eels were sampled from Kao-Ping river
+\textit{A. crassus} from Japanese eels were sampled from Kao-Ping river
 and an adjacent aquaculture in Taiwan as described in
 \cite{heitlinger_massive_2009}. Worms from the European eel were
 sampled in Sniardwy Lake, Poland (53.751959N ,21.730957E) and from the
@@ -1483,7 +1474,7 @@ the MINT-cDNA synthesis kit (Evrogen, Moscow, Russia).
 
 For host-contamination screening a liver-sample from an uninfected
 Japanese eel was prepared using the methods as described above for
-\textit{A.crassus} samples.
+\textit{A. crassus} samples.
 
 A emulsion PCR was performed for each cDNA library according to the
 manufacturer's potocol (Roche/454 Life Sciences). For library E1 a
@@ -1513,7 +1504,7 @@ were \texttt{blast}ed (1e-5 -F F) against the following databases:
   availble transcriptome database for the European eel.
 \item a eel-rRNA database from a rRNA screening of the above and
   assembly together with publically available rRNA-sequences.
-\item an \textit{A.crassus} rRNA-database from screening of our
+\item an \textit{A. crassus} rRNA-database from screening of our
   dataset against nematode-rRNA, and assembly of these rRNA
   reads. This database notably also contained xenobiotic rRNA
   sequences.
@@ -1538,7 +1529,7 @@ host-contamination and other xenobiotics:
 
 The contigs were \texttt{blast}ed (with a cut-off 1e-5) against the
 same databases used prior to assembly (Eel-mRNA, Eel-rRNA,
-\textit{A.crassus}-rRNA and additionally against the nucleotide
+\textit{A. crassus}-rRNA and additionally against the nucleotide
 version of nempep4 \cite{parkinson_nembase:resource_2004,
   pmid21550347}, determining the best hit across databases. These best
 hits across databases were screened and only such hits involving more
@@ -1805,7 +1796,7 @@ print(xtable(cor.count.tab.MN, digits=3), floating=FALSE)
 
 @ 
 
-\subsubsection*{Table 9 c - analysing good-category contigs surely from \textit{A.crassus} only}
+\subsubsection*{Table 9 c - analysing good-category contigs surely from \textit{A. crassus} only}
 
 <<echo=FALSE, results=tex>>=
 

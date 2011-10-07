@@ -300,6 +300,11 @@ Barreto FS, Moy GW, Burton RS: \textbf{{{I}nterpopulation patterns of
   divergence and selection across the transcriptome of the copepod {T}igriopus
   californicus}}. \emph{Mol. Ecol.} 2011, \textbf{20}:560--572.
 
+\bibitem{pmid20470405}
+Wang Z, Abubucker S, Martin J, Wilson RK, Hawdon J, Mitreva M:
+  \textbf{{{C}haracterizing {A}ncylostoma caninum transcriptome and exploring
+  nematode parasitic adaptation}}. \emph{BMC Genomics} 2010, \textbf{11}:307.
+
 \bibitem{pmid18272295}
 Camicia F, Paredes R, Chalar C, Galanti N, Kamenetzky L, Gutierrez A, Rosenzvit
   MC: \textbf{{{S}equencing, bioinformatic characterization and expression
@@ -1378,6 +1383,23 @@ l>
 </bibl>
 
 <bibl id="B50">
+  <title><p>{{C}haracterizing {A}ncylostoma caninum transcriptome and exploring
+  nematode parasitic adaptation}</p></title>
+  <aug>
+    <au><snm>Wang</snm><fnm>Z.</fnm></au>
+    <au><snm>Abubucker</snm><fnm>S.</fnm></au>
+    <au><snm>Martin</snm><fnm>J.</fnm></au>
+    <au><snm>Wilson</snm><fnm>R. K.</fnm></au>
+    <au><snm>Hawdon</snm><fnm>J.</fnm></au>
+    <au><snm>Mitreva</snm><fnm>M.</fnm></au>
+  </aug>
+  <source>BMC Genomics</source>
+  <pubdate>2010</pubdate>
+  <volume>11</volume>
+  <fpage>307</fpage>
+</bibl>
+
+<bibl id="B51">
   <title><p>{{S}equencing, bioinformatic characterization and expression
   pattern of a putative amino acid transporter from the parasitic cestode
   {E}chinococcus granulosus}</p></title>
@@ -1397,7 +1419,7 @@ l>
   <lpage>-9</lpage>
 </bibl>
 
-<bibl id="B51">
+<bibl id="B52">
   <title><p>Identification and characterization of the proteolytic enzymes in
   the developmental stages of the eel-pathogenic nematode Anguillicola
   crassus</p></title>
@@ -1414,7 +1436,7 @@ l>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/7682326</url>
 </bibl>
 
-<bibl id="B52">
+<bibl id="B53">
   <title><p>{{P}hylogenetic relationships of fungi, plantae, and animalia
   inferred from homologous comparison of ribosomal proteins}</p></title>
   <aug>
@@ -1428,7 +1450,7 @@ l>
   <lpage>-92</lpage>
 </bibl>
 
-<bibl id="B53">
+<bibl id="B54">
   <title><p>Signal sequence analysis of expressed sequence tags from the
   nematode Nippostrongylus brasiliensis and the evolution of secreted proteins
   in parasites</p></title>
@@ -1449,7 +1471,7 @@ l>
   <url>http://genomebiology.com/2004/5/6/R39</url>
 </bibl>
 
-<bibl id="B54">
+<bibl id="B55">
   <title><p>Needles in the {EST} Haystack: {Large-Scale} Identification and
   Analysis of {Excretory-Secretory} {(ES)} Proteins in Parasitic Nematodes
   Using Expressed Sequence Tags {(ESTs)}</p></title>
@@ -1465,7 +1487,7 @@ l>
   <fpage>e301</fpage>
 </bibl>
 
-<bibl id="B55">
+<bibl id="B56">
   <title><p>{{B}rugia malayi excreted/secreted proteins at the host/parasite
   interface: stage- and gender-specific proteomic profiling}</p></title>
   <aug>
@@ -1482,7 +1504,7 @@ l>
   <fpage>e410</fpage>
 </bibl>
 
-<bibl id="B56">
+<bibl id="B57">
   <title><p>{{S}tage- and gender-specific proteomic analysis of {B}rugia malayi
   excretory-secretory products}</p></title>
   <aug>
@@ -1495,7 +1517,7 @@ l>
   <fpage>e326</fpage>
 </bibl>
 
-<bibl id="B57">
+<bibl id="B58">
   <title><p>{{P}roteomic analysis of secretory products from the model
   gastrointestinal nematode {H}eligmosomoides polygyrus reveals dominance of
   {V}enom {A}llergen-{L}ike ({V}{A}{L}) proteins}</p></title>
@@ -1522,7 +1544,7 @@ l>
   <lpage>-1594</lpage>
 </bibl>
 
-<bibl id="B58">
+<bibl id="B59">
   <title><p>{{D}ifferential expression analysis for sequence count
   data}</p></title>
   <aug>
@@ -1535,7 +1557,7 @@ l>
   <fpage>R106</fpage>
 </bibl>
 
-<bibl id="B59">
+<bibl id="B60">
   <title><p>PHRAP documentation.</p></title>
   <aug>
     <au><snm>Green</snm><fnm>P</fnm></au>
@@ -1544,7 +1566,7 @@ l>
   <url>http://www.phrap.org</url>
 </bibl>
 
-<bibl id="B60">
+<bibl id="B61">
   <title><p>{{T}{I}{G}{R} {G}ene {I}ndices clustering tools ({T}{G}{I}{C}{L}):
   a software system for fast clustering of large {E}{S}{T}
   datasets}</p></title>
@@ -1570,7 +1592,7 @@ l>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/12651724</url>
 </bibl>
 
-<bibl id="B61">
+<bibl id="B62">
   <title><p>{{U}sing the mira{E}{S}{T} assembler for reliable and automated
   m{R}{N}{A} transcript assembly and {S}{N}{P} detection in sequenced
   {E}{S}{T}s}</p></title>
@@ -1591,7 +1613,7 @@ l>
   <url>http://www.ncbi.nlm.nih.gov/pmc/articles/PMC419793</url>
 </bibl>
 
-<bibl id="B62">
+<bibl id="B63">
   <title><p>{{C}{A}{P}3: {A} {D}{N}{A} sequence assembly program}</p></title>
   <aug>
     <au><snm>Huang</snm><fnm>X.</fnm></au>
@@ -1605,7 +1627,7 @@ l>
   <url>http://www.ncbi.nlm.nih.gov/pmc/articles/PMC310812</url>
 </bibl>
 
-<bibl id="B63">
+<bibl id="B64">
   <title><p>{NEMBASE:} a resource for parasitic nematode {ESTs}</p></title>
   <aug>
     <au><snm>Parkinson</snm><fnm>J</fnm></au>
@@ -1623,7 +1645,7 @@ l>
   <url>http://nar.oxfordjournals.org/cgi/content/abstract/32/suppl_1/D427</url>
 </bibl>
 
-<bibl id="B64">
+<bibl id="B65">
   <title><p>{prot4EST:} Translating Expressed Sequence Tags from neglected
   genomes</p></title>
   <aug>
@@ -1638,7 +1660,7 @@ l>
   <url>http://www.biomedcentral.com/1471-2105/5/187</url>
 </bibl>
 
-<bibl id="B65">
+<bibl id="B66">
   <title><p>{{T}he {U}niversal {P}rotein {R}esource ({U}ni{P}rot)
   2009}</p></title>
   <aug>
@@ -1787,7 +1809,7 @@ l>
   <lpage>-174</lpage>
 </bibl>
 
-<bibl id="B66">
+<bibl id="B67">
   <title><p>{ESTScan:} a program for detecting, evaluating, and reconstructing
   potential coding regions in {EST} sequences.</p></title>
   <aug>
@@ -1802,7 +1824,7 @@ l>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/10786296</url>
 </bibl>
 
-<bibl id="B67">
+<bibl id="B68">
   <title><p>annot8r: {GO,} {EC} and {KEGG} annotation of {EST}
   datasets</p></title>
   <aug>
@@ -1816,7 +1838,7 @@ l>
   <url>http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2324097</url>
 </bibl>
 
-<bibl id="B68">
+<bibl id="B69">
   <title><p>The Sequence Alignment/Map format and SAMtools.</p></title>
   <aug>
     <au><snm>Li</snm><fnm>H</fnm></au>
@@ -1837,7 +1859,7 @@ l>
   <lpage>2079</lpage>
 </bibl>
 
-<bibl id="B69">
+<bibl id="B70">
   <title><p>{{V}ar{S}can: variant detection in massively parallel sequencing of
   individual and pooled samples}</p></title>
   <aug>
@@ -1858,7 +1880,7 @@ l>
   <lpage>-2285</lpage>
 </bibl>
 
-<bibl id="B70">
+<bibl id="B71">
   <title><p>{{F}ast and accurate short read alignment with {B}urrows-{W}heeler
   transform}</p></title>
   <aug>
@@ -1872,7 +1894,7 @@ l>
   <lpage>-1760</lpage>
 </bibl>
 
-<bibl id="B71">
+<bibl id="B72">
   <title><p>R: A language and environment for statistical computing</p></title>
   <aug>
     <au><cnm>{R Development Core Team}</cnm></au>
@@ -1882,7 +1904,7 @@ l>
   <url>http://www.R-project.org</url>
 </bibl>
 
-<bibl id="B72">
+<bibl id="B73">
   <title><p>Sweave: Dynamic Generation of Statistical Reports Using Literate
   Data Analysis</p></title>
   <aug>
@@ -1898,7 +1920,7 @@ l>
   <note>ISBN 3-7908-1517-9</note>
 </bibl>
 
-<bibl id="B73">
+<bibl id="B74">
   <title><p>Caching code chunks in dynamic documents</p></title>
   <aug>
     <au><snm>Falcon</snm><fnm>S</fnm></au>
@@ -1912,7 +1934,7 @@ l>
   <url>http://www.springerlink.com/content/55411257n1473414</url>
 </bibl>
 
-<bibl id="B74">
+<bibl id="B75">
   <title><p>Lattice: Multivariate Data Visualization with R</p></title>
   <aug>
     <au><snm>Sarkar</snm><fnm>D</fnm></au>
@@ -1923,7 +1945,7 @@ l>
   <note>ISBN 978-0-387-75968-5</note>
 </bibl>
 
-<bibl id="B75">
+<bibl id="B76">
   <title><p>ggplot2: elegant graphics for data analysis</p></title>
   <aug>
     <au><snm>Wickham</snm><fnm>H</fnm></au>

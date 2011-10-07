@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2009.6.25)  7 OCT 2011 09:39
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2009.6.25)  7 OCT 2011 18:31
 entering extended mode
  %&-line parsing enabled.
 **\input transcriptome_paper.tex
@@ -585,19 +585,15 @@ File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 LaTeX Font Info:    Font shape `T1/aess/m/it' in size <10> not available
 (Font)              Font shape `T1/aess/m/sl' tried instead on input line 401.
  [4] [5] [6] [7] [8]
-[9] [10] [11] [12] [13]
-
-LaTeX Warning: Citation `pmid20470405' on page 14 undefined on input line 971.
-
-[14] [15]
-LaTeX Font Info:    Try loading font information for TS1+aer on input line 1097
+[9] [10] [11] [12] [13] [14] [15]
+LaTeX Font Info:    Try loading font information for TS1+aer on input line 1096
 .
-LaTeX Font Info:    No file TS1aer.fd. on input line 1097.
+LaTeX Font Info:    No file TS1aer.fd. on input line 1096.
 
 
 LaTeX Font Warning: Font shape `TS1/aer/m/n' undefined
 (Font)              using `TS1/cmr/m/n' instead
-(Font)              for symbol `textbullet' on input line 1097.
+(Font)              for symbol `textbullet' on input line 1096.
 
 [16] [17] [18] (./transcriptome_paper.bbl [19]
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -606,23 +602,20 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [25]
 
 LaTeX Font Warning: Font shape `T1/aett/bx/n' undefined
-(Font)              using `T1/aett/m/n' instead on input line 1378.
+(Font)              using `T1/aett/m/n' instead on input line 1377.
 
 [26] [27] [28] [29] [30] [31] (./transcriptome_paper.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
  ) 
 Here is how much of TeX's memory you used:
  2488 strings out of 256217
  31935 string characters out of 1917095
- 120634 words of memory out of 1500000
+ 121095 words of memory out of 1500000
  5723 multiletter control sequences out of 10000+200000
  33902 words of font info for 47 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  35i,7n,21p,274b,410s stack positions out of 5000i,500n,6000p,200000b,15000s
 
-Output written on transcriptome_paper.dvi (31 pages, 101400 bytes).
+Output written on transcriptome_paper.dvi (31 pages, 101700 bytes).
