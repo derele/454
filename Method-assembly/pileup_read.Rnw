@@ -1,0 +1,100 @@
+<<read.pileup, echo=FALSE, results=hide, cache=TRUE>>=
+
+## save memory, only read the colums needed
+## this has to be changed to the right file mapping for coverage and exprssion!!
+con.pile <- read.table(pipe("cut -f1,4 /home/ele/Data/454/mapping/all_vs_full.pileup"))
+names(con.pile) <- c("contig", "coverage")
+
+con.pile.uniq <- read.table(pipe("cut -f1,4 /home/ele/Data/454/mapping/all_vs_full_uniq.pileup"))
+names(con.pile.uniq) <- c("contig", "uniq_coverage")
+
+con.pile$contig <- factor(con.pile$contig, levels= unique(con.pile$contig))
+con.pile.uniq$contig <- factor(con.pile.uniq$contig, levels= unique(con.pile.uniq$contig))
+
+per.con <- data.frame(coverage= tapply(con.pile$coverage, con.pile$contig, mean, rm.na=T))
+
+per.con.uniq <- data.frame(uniq_coverage= tapply(con.pile.uniq$uniq_coverage,
+                             con.pile.uniq$contig, mean, rm.na=T))
+
+contig.df <- merge(contig.df, per.con, by.x="contig", by.y="row.names", all.x=TRUE)
+contig.df <- merge(contig.df, per.con.uniq, by.x="contig", by.y="row.names", all.x=TRUE)
+
+contig.df$coverage[is.na(contig.df$coverage)] <- 0
+contig.df$uniq_coverage[is.na(contig.df$uniq_coverage)] <- 0
+
+per.con.plot <- ggplot(contig.df, aes(coverage, ..count..+1,
+                                    fill=factor(ifelse(
+                                      contig.df$category=="MN", "MN", "other TUGs")))) +
+  scale_x_log10("mean per base coverage of contig") +
+  scale_y_log10("number of contigs") +
+  geom_histogram(color="white", binwidth=0.1) +
+  scale_fill_discrete("category")
+
+
+per.con.uniq.plot <- ggplot(contig.df, aes(uniq_coverage, ..count..+1,
+                                           fill=factor(ifelse(
+                                             contig.df$category=="MN", "MN", "other TUGs")))) +
+  scale_x_log10("mean unique per base coverage of contig") +
+  scale_y_log10("number of contigs") +
+  geom_bar(color="white", binwidth=0.1) +
+  scale_fill_discrete("category")
+
+
+cov.new.plot <- ggplot(contig.df, aes(reads_through_Newbler, coverage)) + 
+                geom_point(alpha=0.5) + 
+                scale_y_log10("mean per base coverage") + 
+                scale_x_log10("reads in the contig through Newbler") +
+                scale_size_continuous("number of Newbler\nfirst-order contigs")
+
+cov.mir.plot <- ggplot(contig.df, aes(reads_through_Mira, coverage)) + 
+                geom_point(alpha=0.5) + 
+                scale_y_log10("mean per base coverage") + 
+                scale_x_log10("reads in the contig through Mira") +
+                scale_size_continuous("number of Mira\nfirst-order contigs", trans="log10")
+
+ucov.new.plot <- ggplot(contig.df, aes(reads_through_Newbler, uniq_coverage)) + 
+                geom_point(alpha=0.5) + 
+                scale_y_log10("mean per base uniqe coverage") + 
+                scale_x_log10("reads in the contig through Newbler") +
+                scale_size_continuous("number of Newbler\nfirst-order contigs")
+
+ucov.mir.plot <- ggplot(contig.df, aes(reads_through_Mira, uniq_coverage)) + 
+                geom_point(alpha=0.5) + 
+                scale_y_log10("mean per base uniqe coverage") + 
+                scale_x_log10("reads in the contig through Mira") +
+                scale_size_continuous("number of Mira\nfirst-order contigs", trans="log10")
+
+@ 
+
+<<plot.coverage, echo=FALSE>>=
+
+png("../figures/coverage_per_contig.png", width=2000, height=1000, res=144)
+
+# Set up the page
+grid.newpage()
+pushViewport(viewport(layout = grid.layout(1, 2)))
+vplayout <- function(x, y)
+    viewport(layout.pos.row = x, layout.pos.col = y)
+
+# Make each plot, in the correct location
+print(per.con.plot, vp = vplayout(1, 1 ))
+print(per.con.uniq.plot, vp = vplayout(1, 2 ))
+
+dev.off() 
+
+
+png("../figures/coverage_plots.png", width=1000, height=1000, res=144)
+# Set up the page
+grid.newpage()
+pushViewport(viewport(layout = grid.layout(2, 2)))
+vplayout <- function(x, y)
+    viewport(layout.pos.row = x, layout.pos.col = y)
+
+# Make each plot, in the correct location
+print(cov.new.plot, vp = vplayout(1, 1 ))
+print(cov.mir.plot, vp = vplayout(2, 1 ))
+print(ucov.new.plot, vp = vplayout(1, 2 ))
+print(ucov.mir.plot, vp = vplayout(2, 2 ))
+
+dev.off() 
+@ 

@@ -1,0 +1,156 @@
+<<conservation, echo=FALSE, cache=TRUE>>=
+nr.all <- read.delim("/home/ele/Data/454/post_assembly_screening/fullest_vs_nr.blt", header=FALSE)
+
+gi.nr.all.blast <- sub("gi\\|(\\d+)\\|.*", "\\1", nr.all$V2)
+nr.all <- cbind(nr.all, gi.nr.all.blast)
+
+gis.nr.all <- unique(gi.nr.all.blast)
+write(as.character(gis.nr.all), "/home/ele/Data/454/post_assembly_screening/tmp-nr.all.acc")
+
+taxa.nr.all <- read.delim( pipe ("/home/ele/thesis/454/tax4gi_nr.pl /home/ele/Data/454/post_assembly_screening/tmp-nr.all.acc"), header=FALSE, sep=",", as.is=TRUE)
+## 1 entry changed from my blast to taxonomy version
+## -> no information available, moved to "no-hit category"
+
+names(taxa.nr.all) <- c("gi.nr.all.blast", "taxid.nr.all", "family.nr.all", "phylum.nr.all", "kingdom.nr.all")
+nr.all <- merge(nr.all, taxa.nr.all, all.x=TRUE)
+
+
+names(nr.all)[2] <- "contig"
+
+nr.all <- nr.all[order(nr.all$contig, nr.all$V12, decreasing=TRUE),]
+
+is.conserved <- function(taxa.blast, level, value, bit.threshold) {
+  B <- taxa.blast[taxa.blast$V12>bit.threshold, ]
+  B <- subset(B, !level%in%"undef")
+  if(nrow(B) ==0){return("No_hit")}
+  if(all(B[, level]%in%value)){return(FALSE)}
+  if(any(B[, level]%in%value) &
+     any(!B[,level]%in%value)){return(TRUE)}
+  if(all(!B[, level]%in%value) &
+     any(!B[,level]%in%value)){return("dubious")}
+  else{stop("Error in consevation function: Unrecognized case")}
+}
+
+## Clade
+spirurina <- c("Anisakidae", "Ascarididae", "Heterocheilidae", "Quimperiidae", "Raphidascarididae", "Toxocaridae", "Cosmocercidae", "Kathlaniidae", "Ascaridiidae", "Aspidoderidae", "Heterakidae", "Cucullanidae", "Acuariidae", "Camallanidae", "Diplotriaenidae", "Anguillicolidae", "Daniconematidae", "Dracunculidae", "Philometridae", "Skyrjabillanidae", "Homungellidae", "Mesidionematidae", "Onchocercidae", "Setariidae", "Ungellidae", "unclassified Filarioidea", "Gnathostomatidae", "Habronematidae", "Hedruridae", "Tetrameridae", "Physalopteridae", "Skrjabillanidae", "Cystidicolidae", "Gongylonematidae", "Rhabdochonidae", "Spirocercidae", "unclassified Spiruroidea", "Thelaziidae")
+
+conserved.clade.50 <- as.data.frame(t(rbind(by(nr.all, nr.all$contig,
+                                               is.conserved, "family.nr.all", spirurina,  50))))
+names(conserved.clade.50) <- "conserved.clade.50"
+
+conserved.clade.80 <- as.data.frame(t(rbind(by(nr.all, nr.all$contig,
+                                               is.conserved, "family.nr.all", spirurina,  80))))
+names(conserved.clade.80) <- "conserved.clade.80"
+
+## Nematodes
+
+conserved.phylum.50 <- as.data.frame(t(rbind(by(nr.all, nr.all$contig,
+                                                is.conserved, "phylum.nr.all", "Nematoda",  50))))
+names(conserved.phylum.50) <- "conserved.phylum.50"
+
+
+conserved.phylum.80 <- as.data.frame(t(rbind(by(nr.all, nr.all$contig,
+                                                is.conserved, "phylum.nr.all", "Nematoda",  80))))
+names(conserved.phylum.80) <- "conserved.phylum.80"
+
+## Animals
+
+conserved.kingdom.50 <- as.data.frame(t(rbind(by(nr.all, nr.all$contig,
+                                                 is.conserved, "kingdom.nr.all", "Metazoa",  50))))
+names(conserved.kingdom.50) <- "conserved.kingdom.50"
+
+conserved.kingdom.80 <- as.data.frame(t(rbind(by(nr.all, nr.all$contig,
+                                                 is.conserved, "kingdom.nr.all", "Metazoa",  80))))
+names(conserved.kingdom.80) <- "conserved.kingdom.80"
+
+
+## merge it
+contig.df <- merge(contig.df, as.data.frame(conserved.clade.50),
+                   by.x="contig", by.y="row.names", all.x=TRUE)
+
+contig.df <- merge(contig.df, as.data.frame(conserved.clade.80),
+                   by.x="contig", by.y="row.names", all.x=TRUE)
+
+contig.df <- merge(contig.df, as.data.frame(conserved.phylum.50),
+                   by.x="contig", by.y="row.names", all.x=TRUE)
+
+contig.df <- merge(contig.df, as.data.frame(conserved.phylum.80),
+                   by.x="contig", by.y="row.names", all.x=TRUE)
+
+contig.df <- merge(contig.df, as.data.frame(conserved.kingdom.50),
+                   by.x="contig", by.y="row.names", all.x=TRUE)
+
+contig.df <- merge(contig.df, as.data.frame(conserved.kingdom.80),
+                   by.x="contig", by.y="row.names", all.x=TRUE)
+
+## Compute novelity from conservation
+
+contig.df$novel.50 <- ifelse(contig.df$conserved.clade.50%in%TRUE &
+                             contig.df$conserved.phylum.50%in%TRUE &
+                             contig.df$conserved.kingdom.50%in%TRUE,
+                             "conserved", 
+                             ifelse(contig.df$conserved.clade.50%in%TRUE &
+                                    contig.df$conserved.phylum.50%in%TRUE &
+                                    contig.df$conserved.kingdom.50%in%FALSE,
+                                    "novel.in.metazoa", 
+                                    ifelse(contig.df$conserved.clade.50%in%TRUE &
+                                           contig.df$conserved.phylum.50%in%FALSE &
+                                           contig.df$conserved.kingdom.50%in%FALSE,
+                                           "novel.in.nematoda",
+                                           ifelse(contig.df$conserved.clade.50%in%FALSE &
+                                                  contig.df$conserved.phylum.50%in%FALSE &
+                                                  contig.df$conserved.kingdom.50%in%FALSE,
+                                                  "novel.in.clade3",
+                                                  NA))))
+
+contig.df$novel.80 <- ifelse(contig.df$conserved.clade.80%in%TRUE &
+                             contig.df$conserved.phylum.80%in%TRUE &
+                             contig.df$conserved.kingdom.80%in%TRUE,
+                             "conserved", 
+                             ifelse(contig.df$conserved.clade.80%in%TRUE &
+                                    contig.df$conserved.phylum.80%in%TRUE &
+                                    contig.df$conserved.kingdom.80%in%FALSE,
+                                    "novel.in.metazoa", 
+                                    ifelse(contig.df$conserved.clade.80%in%TRUE &
+                                           contig.df$conserved.phylum.80%in%FALSE &
+                                           contig.df$conserved.kingdom.80%in%FALSE,
+                                           "novel.in.nematoda",
+                                           ifelse(contig.df$conserved.clade.80%in%FALSE &
+                                                  contig.df$conserved.phylum.80%in%FALSE &
+                                                  contig.df$conserved.kingdom.80%in%FALSE,
+                                                  "novel.in.clade3",
+                                                  NA))))
+
+## ## A venn diagramm for conservation and missingness
+## clade.hit.50 <- contig.df[contig.df$conserved.clade.50%in%c(TRUE, FALSE),
+##                      "contig"]
+## clade.hit.50.l = match(clade.hit.50, contig.df$contig)[!is.na(match(clade.hit.50, contig.df$contig))]
+
+## phylum.hit.50 <- contig.df[contig.df$conserved.phylum.50%in%c(TRUE, FALSE),
+##                      "contig"]
+## phylum.hit.50.l = match(phylum.hit.50, contig.df$contig)[!is.na(match(phylum.hit.50,
+##   contig.df$contig))]
+
+## kingdom.hit.50 <- contig.df[contig.df$conserved.kingdom.50%in%c(TRUE,FALSE),
+##                      "contig"]
+## kingdom.hit.50.l = match(kingdom.hit.50, contig.df$contig)[!is.na(match(kingdom.hit.50, contig.df$contig))]
+
+## ## Bm.hit.50 <- contig.df[!is.na(contig.df$Bm.hit) &
+## ##                        as.numeric(as.character(contig.df$Bm.bit))>50,
+## ##                        "contig"]
+## ## Bm.hit.50.l = match(Bm.hit.50, contig.df$contig)[!is.na(match(Bm.hit.50, contig.df$contig))]
+
+
+## ## Ce.hit.50 <- contig.df[!is.na(contig.df$Ce.hit) &
+## ##                        as.numeric(as.character(contig.df$Ce.bit))>50,
+## ##                        "contig"]
+## ## Ce.hit.50.l = match(Ce.hit.50, contig.df$contig)[!is.na(match(Ce.hit.50, contig.df$contig))]
+
+
+## venn.diagram(list(Kingdom = kingdom.hit.50.l,
+##                   Phylum = phylum.hit.50.l,
+##                   Clade = clade.hit.50.l),
+##              filename = "/home/ele/thesis/454/figures/conservation_venn.tiff")
+
+@ 
+

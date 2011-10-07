@@ -1,0 +1,83 @@
+
+<<echo=FALSE, cache=TRUE>>=
+
+nempep.cystatins <- read.delim("/home/ele/thesis/454/other_nem_compare/cystatins.csv", sep=",")
+## notice difference between cluster identifiers and paptide identifiers
+nempep.cystatins$Pept.ID <- gsub("(\\w)(\\w)C", "\\1\\2P", nempep.cystatins$Cluster.ID)
+nempep.cystatins <- nempep.cystatins[!grepl("^TSP", nempep.cystatins$Pept.ID),]
+
+nempep.serpins <- read.delim("/home/ele/thesis/454/other_nem_compare/serpins.csv", sep=",")
+nempep.serpins$Pept.ID <- gsub("(\\w)(\\w)C", "\\1\\2P", nempep.serpins$Cluster.ID)
+
+nempep.pep <- read.sequences("/home/ele/db/blastdb/nembase4/nembase4_pro.fasta")
+names(nempep.pep) <- substring(names(nempep.pep), 1, 8)
+
+Ac.pep <- read.sequences("/home/ele/Data/454/prot4EST/A.crassus_p4ePro.fsa")
+names(Ac.pep) <- (gsub(" .*|_\\d.*|\t.*|\\s.*" , "", names(Ac.pep)))
+
+BL.nempep <- read.blast.best("/home/ele/Data/454/post_assembly_screening/fullest_vs_nembase_pro.blt")
+BL.nempep$Pept.ID <- substring(BL.nempep$V2, 1, 8)
+## notice difference between cluster identifiers and paptide identifiers
+BL.nempep$Cluster.ID <- gsub("(\\w)(\\w)P", "\\1\\2C", BL.nempep$Pept.ID)
+
+## this would also work with cy.names or sp.names from the annotation of the nuc file
+CY <- merge(BL.nempep, nempep.cystatins)
+SP <- merge(BL.nempep, nempep.serpins)
+
+annot.cy <- GO.annot[grepl("cystein.*inhibitor", GO.annot$descr, ignore.case=TRUE), "pept_id" ]
+Ac.cy.fasta <- Ac.pep[names(Ac.pep)%in%c(as.character(CY$V1), annot.cy)]
+
+nem.cy.fasta <- nempep.pep[names(nempep.pep)%in%nempep.cystatins$Pept.ID]
+
+## after looking at the alignmet these sequences are too divergent
+too.divergent.cy <- c("BMP05811", "LSP01787", "OCP00005", "OVP09801",
+                      "CJP18096", "XIP02173",
+                      "BMP17818", "ASP15515", "OVP03952", "BMP00199", "RSP01191")
+## from the Ac possible also "Contig7873" "GFPMTW202CANF3" "FSIONBI01B15XA"
+
+## manual according to  missingness of conserved residues
+short.missing.cy <- c("AYP00805", "BMP12405", "BMP12402", "BMP12403",
+                      "HCP02131", "DAP00723", "CBP10840", "CBP15736", "RSP02311")
+## from Ac possible also "GKYPR1L01ASQ8N"
+
+short.cy <- names(nem.cy.fasta)[nchar(nem.cy.fasta)<100]
+
+bad.cy <- c(too.divergent.cy, short.missing.cy, short.cy)
+
+## this contig has probably wrong 5' ... but others may also...
+## cy.fasta["Contig2444"] <- substring(cy.fasta["Contig2444"], 122, nchar(cy.fasta["Contig2444"]))
+
+nem.cy.fasta <- nem.cy.fasta[!duplicated(names(nem.cy.fasta))]
+
+cy.print.fasta <- c(nem.cy.fasta[!names(nem.cy.fasta)%in%bad.cy], Ac.cy.fasta)
+write.sequence(cy.print.fasta, "/home/ele/Data/454/biology/phylo/cystatins.fasta")
+
+system("/home/ele/tools/clustalw -INFILE=/home/ele/Data/454/biology/phylo/cystatins.fasta -ALIGN -OUTPUT=NEXUS 1>/dev/null")
+
+## library(ape)
+
+## cy.alignment <- as.alignment(read.nexus.data("/home/ele/Data/454/biology/phylo/cystatins.nxs"))
+## ## remove the first 51 postitons
+
+## cy.alignment$seq <- substring(cy.alignment$seq, 52, nchar(cy.alignment$seq))
+
+## write.nexus.data(cy.alignment, "/home/ele/Data/454/biology/phylo/cystatins.nxs")
+
+
+## system("/home/ele/tools/clustalw -INFILE=/home/ele/Data/454/biology/phylo/cystatins.aln -BOOTSTRAP")
+
+## serpins
+
+sp.fasta <- c(nempep.pep[names(nempep.pep)%in%serpins$Pept.ID], Ac.pep[names(Ac.pep)%in%SP$V1])
+sp.fasta <- sp.fasta[!duplicated(names(sp.fasta))]
+
+write.sequence(sp.fasta, "/home/ele/Data/454/biology/phylo/serpins.fasta")
+
+system("/home/ele/tools/clustalw -INFILE=/home/ele/Data/454/biology/phylo/serpins.fasta -ALIGN -OUTPUT=NEXUS 1>/dev/null")
+
+
+## BM.cystatins <- c("UniRef100_A8P9W7", "UniRef100_A8QH93", "UniRef100_O16159", "UniRef100_P90698")
+
+## BM.serpins <- c("UniRef100_A8NGJ9", "UniRef100_A8NJS8", "UniRef100_A8NTC6", "UniRef100_A8NTC9", "UniRef100_A8NTX7", "UniRef100_A8P7H0", "UniRef100_A8PHV1", "UniRef100_A8PHV3", "UniRef100_A8PHV4", "UniRef100_A8PHV8", "UniRef100_A8PJW0", "UniRef100_A8Q733", "UniRef100_O18656", "UniRef100_Q17158")
+
+@ 

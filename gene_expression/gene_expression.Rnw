@@ -1,0 +1,94 @@
+<<gene.expr, echo=FALSE, cache=TRUE, results=hide>>=
+
+SAM <- read.delim("/home/ele/Data/454/mapping/all_vs_full_imputed.sam", header=FALSE)
+names(SAM)[c(1,3)] <- c("read", "mapped")
+
+## partition the sam in an easy part of reads with single matches and
+## a part with problematic reads with multiple matches
+easy <- !SAM$read%in%SAM$read[duplicated(SAM$read)]
+SAM.easy <- SAM[easy,]
+SAM.multi <- SAM[!easy,]
+
+## get counts for the easy single matches
+SAM.easy <- merge(SAM.easy[,c("read", "mapped")], R[, c("read", "lib")], all.x=TRUE)
+
+## Get additional info from multiple maps but split according to
+## easy.map get the single counts for each of the multiple
+
+##so <- by(SAM.multi, SAM.multi$read , function (x) easy.counts[x$mapped])
+## so <- so[!unlist(lapply(so, is.null))]
+
+## so.diff <- unlist(lapply(so, function (x) x/sum(x)))
+## names(so.diff) <- gsub(".*\\.", "", names(so.diff))
+
+## added <- sapply(1:length(easy.counts), function (x){
+##   sum(easy.counts[x], so.diff[names(easy.counts[x])], na.rm=TRUE)})
+
+## names(added) <- names(easy.counts)
+
+n454.map <- length(unique(SAM$read))
+n454.Umap <- length(unique(SAM.easy$read))
+
+countsTable <- as.data.frame.matrix(table(SAM.easy$mapped, SAM.easy$lib))
+
+## just plain counting the twice hitting
+## countsTable.all <- as.data.frame.matrix(table(SAM$mapped, SAM.all$lib))
+
+## Try to exclude contigs before DESeq
+## countsTable2 <- countsTable[grep("Contig", row.names(countsTable)),]
+
+conds.eel <- factor(c("EU", "EU", "L2", "M", "TW", "TW"))
+
+good.contigs <- contig.df[contig.df$category%in%"MN", "contig"]
+
+cds.eel <- newCountDataSet(countsTable[rownames(countsTable)%in%good.contigs,], conds.eel)
+                           
+cds.eel <- estimateSizeFactors(cds.eel)
+cds.eel <- estimateVarianceFunctions(cds.eel)
+res.eel <- nbinomTest(cds.eel, "TW", "EU")
+
+resSig.eel <- subset(res.eel, padj < .2)
+sig.eel.contigs <- resSig.eel$id
+sig.eel.counts <- countsTable[sig.eel.contigs, ]
+
+### This shows nothing as depth is not big enough to allow
+### detection of significance
+## plot( 
+##      res.eel$baseMean, 
+##      res.eel$log2FoldChange, 
+##      log="x", pch=20, cex=.4, 
+##      col = ifelse( res.eel$padj < .1, "red", "black" ),
+##      main="My data")
+
+conds.mf <- factor(c("F", "F", "L2", "M", "F", "F"))
+cds.mf <- newCountDataSet(countsTable[rownames(countsTable)%in%good.contigs,], conds.mf)
+cds.mf <- estimateSizeFactors(cds.mf)
+cds.mf <- estimateVarianceFunctions(cds.mf)
+res.mf <- nbinomTest(cds.mf, "M", "F")
+
+resSig.mf <- subset(res.mf, padj < .1)
+sig.mf.contigs <- resSig.mf$id
+sig.mf.counts <- countsTable[sig.mf.contigs, ]
+
+male.nem.hits <- nrow(subset(contig.df, contig.df$contig%in%sig.mf.contigs &
+                             phylum.nr%in%"Nematoda"))
+
+conds.ad <- factor(c("Ad", "Ad", "L2", "Ad", "Ad", "Ad"))
+cds.ad <- newCountDataSet(countsTable, conds.ad)
+cds.ad <- estimateSizeFactors(cds.ad)
+cds.ad <- estimateVarianceFunctions(cds.ad)
+res.ad <- nbinomTest(cds.ad, "Ad", "L2")
+
+resSig.ad <- subset(res.ad, padj < .1)
+sig.ad.contigs <- resSig.ad$id
+sig.ad.counts <- countsTable[sig.ad.contigs, ]
+
+l2.met.hits <- nrow(subset(contig.df, contig.df$contig%in%sig.ad.contigs & kingdom.nr%in%"Metazoa"))
+l2.nem.hits <- nrow(subset(contig.df, contig.df$contig%in%sig.ad.contigs & phylum.nr%in%"Nematoda"))
+
+vsd <- getVarianceStabilizedData( cds.mf )
+dists <- dist( t( vsd ) )
+idists <- as.matrix(dists)
+## heatmap (idists , symm=TRUE, margins = c (7,7))
+
+@ 

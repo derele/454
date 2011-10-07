@@ -1,0 +1,191 @@
+<<overrep, echo=FALSE, results=hide, cache=TRUE>>=
+
+## subsets for contig.df and GO-annotation containing only dn.ds contigs
+dn.ds.df <- subset(contig.df, !is.na(dn.ds))
+GO.dn.ds <- subset(GO.annot, pept_id%in%dn.ds.df$contig)
+
+## the category of >.5 dn/ds contigs
+big05 <- dn.ds.df[dn.ds.df$dn.ds>0.5 &
+                  dn.ds.df$contig%in%GO.dn.ds$pept_id, "contig"]
+
+## whole data-frames for these categories
+big05.df <- contig.df[contig.df$dn.ds>0.5 & !is.na(contig.df$dn.ds), ]
+EC.big05.df <- merge(EC.annot, big05.df, by.x="pept_id", by.y="contig")
+
+## now the same for the contigs only absolutely surely  Ac
+dn.ds.df.AC <- dn.ds.df[dn.ds.df$Ac, ]
+
+GO.dn.ds.AC <- subset(GO.annot, pept_id%in%dn.ds.df.AC$contig)
+
+big05.AC <- dn.ds.df.AC[dn.ds.df.AC$dn.ds>0.5 &
+                        dn.ds.df.AC$contig%in%GO.dn.ds.AC$pept_id, "contig"]
+
+
+## ## From the GOstats vignette
+test.over.under.GOstats <- function (annotation, set, ontology="MF") {
+  goframeData <- as.data.frame(cbind(frame.go_id=
+                                     as.character(gsub(" ", "",
+                                                       annotation[annotation$pcf%in%ontology,
+                                                               "go_term"])),
+                                     frame.Evidence="IEA",
+                                     frame.gene_id=annotation[annotation$pcf%in%ontology,
+                                       "pept_id"]))
+  goFrame <- GOFrame(goframeData, organism="Anguillicola crassus")
+  goAllFrame <- GOAllFrame(goFrame)
+  gsc <- GeneSetCollection(goAllFrame, setType = GOCollection())
+  over.params <- GSEAGOHyperGParams(name = "GSEA based annot arameters
+                                             for over-representation",
+                                    geneSetCollection = gsc,
+                                    geneIds = as.character(set),
+                                    universeGeneIds = unique(annotation[annotation$pcf%in%ontology,
+                                      "pept_id"]),
+                                    ontology = ontology,
+                                    pvalueCutoff = 0.05,
+                                    conditional = FALSE,
+                                    testDirection = "over") 
+  OVER <- hyperGTest(over.params)
+  Over <- summary(OVER)
+  if (nrow(Over)>0) Over <- cbind(Over, direction="Over") 
+  under.params <- GSEAGOHyperGParams(name = "GSEA based annot arameters
+                                             for under-representation",
+                                     geneSetCollection = gsc,
+                                     geneIds = as.character(set),
+                                     universeGeneIds = unique(annotation[annotation$pcf%in%ontology,
+                                       "pept_id"]),
+                                     ontology = ontology,
+                                     pvalueCutoff = 0.05,
+                                     conditional = FALSE,
+                                     testDirection = "under")
+  UNDER <- hyperGTest(under.params)
+  Under <- summary(UNDER)
+  if (nrow(Under)>0) Under <- cbind(Under, direction="Under") 
+  rbind(Over, Under)
+}
+
+## using just what is not na in dn ds as universe
+mf.dn.ds <- test.over.under.GOstats(GO.dn.ds, big05, "MF")
+bp.dn.ds <- test.over.under.GOstats(GO.dn.ds, big05, "BP")
+cc.dn.ds <- test.over.under.GOstats(GO.dn.ds, big05, "CC")
+
+## using just what is not na in dn ds as universe BUT
+## only for sure AC this time
+mf.dn.ds.AC <- test.over.under.GOstats(GO.dn.ds.AC, big05.AC, "MF")
+bp.dn.ds.AC <- test.over.under.GOstats(GO.dn.ds.AC, big05.AC, "BP")
+cc.dn.ds.AC <- test.over.under.GOstats(GO.dn.ds.AC, big05.AC, "CC")
+
+## make a list of offspring terms to allow finding of 
+GOMFOFF.list <- as.list(GOMFOFFSPRING)
+GOMFOFF.list <- GOMFOFF.list[!is.na(GOMFOFF.list)]
+
+## which are the amino acid transporter contigs (2) being in dn.ds>0.5
+amino.acid.transporter.go <- mf.dn.ds.AC[grepl("acid transmembrane transporter",
+                                               mf.dn.ds.AC$Term), 1]
+amino.acid.tr.off <- unlist(GOMFOFF.list[amino.acid.transporter.go])
+
+## get the term-contigs plus their boffspring term-contigs
+## consistent with mf.dn.ds.AC results (size)
+amino.acid.tr.contigs <- unique(GO.dn.ds.AC[GO.dn.ds.AC$go_term%in%
+                                            c(amino.acid.transporter.go, amino.acid.tr.off),
+                                            "pept_id"])
+
+peptidase.go <- mf.dn.ds.AC[grepl("peptidase", mf.dn.ds.AC$Term), 1]
+peptidase.off <- unlist(GOMFOFF.list[peptidase.go])
+
+## consistent with mf.dn.ds.AC results
+peptidase.contigs <- unique(GO.dn.ds.AC[GO.dn.ds.AC$go_term%in%
+                                        c(peptidase.go, peptidase.off),
+                                            "pept_id"])
+
+## consistent with mf.dn.ds.AC results (count)
+peptidase.contigs.pos <- contig.df[contig.df$contig%in%peptidase.contigs &
+                                   contig.df$dn.ds>0.5 , "contig"]
+
+
+## just to test that results for quality-contigs only are consistent.
+mf.dn.ds.AC.MN <- test.over.under.GOstats(subset(GO.dn.ds.AC,
+                                                 GO.dn.ds.AC$pept_id%in%
+                                                 contig.df[contig.df$category%in%"MN",
+                                                           "contig"]),
+                                          big05.AC, "MF")
+
+bp.dn.ds.AC.MN <- test.over.under.GOstats(subset(GO.dn.ds.AC,
+                                                 GO.dn.ds.AC$pept_id%in%
+                                                 contig.df[contig.df$category%in%"MN",
+                                                           "contig"]),
+                                          big05.AC, "BP")
+
+cc.dn.ds.AC.MN <- test.over.under.GOstats(subset(GO.dn.ds.AC,
+                                                 GO.dn.ds.AC$pept_id%in%
+                                                 contig.df[contig.df$category%in%"MN",
+                                                           "contig"]),
+                                          big05.AC, "CC")
+
+## The same for KEGG doesn't work as I have not-uniqe annotations to a single contig
+## keggframeData = data.frame(frame.path_id=as.character(gsub("^ K", "", KEGG.annot$ko_id)),
+##   frame.gene_id=as.character(KEGG.annot$pept_id))
+
+## ## HS
+## keggframeData = data.frame(frame$path_id, frame$gene_id)
+## keggFrame = KEGGFrame(keggframeData, organism = "Homo sapiens")
+
+## keggFrame = KEGGFrame(keggframeData, organism = "Anguillicola crassus")
+
+## gsc <- GeneSetCollection(keggFrame, setType = KEGGCollection())
+
+## big05 <- as.character(keggframeData$frame.gene_id[1:500])
+## universe <- as.character(keggframeData$frame.gene_id)
+
+
+## kparams <- GSEAKEGGHyperGParams(name = "My Custom GSEA based annot Params",
+##                                 geneSetCollection = gsc,
+##                                 geneIds = big05, universeGeneIds = universe,
+##                                 pvalueCutoff = 0.05, testDirection = "over")
+
+
+## kOver <- hyperGTest(kparams)
+## head(summary(kOver))
+### WTF!!
+
+
+## this for the easy nn-data
+u.test <- wilcox.test(dn.ds ~ sigp.nn, data=dn.ds.df)
+
+u.test.AC <- wilcox.test(dn.ds ~ sigp.nn, data=dn.ds.df.AC)
+
+## ## kruskal-Wallis tests, but they say nothing about kontrasts
+## ## in group comparisons
+## kw.test <- kruskal.test(dn.ds ~ sigp.hmm, data=dn.ds.df)
+
+## ### Kruskal-Wallis test, approximate exact p-value
+## kw.test2 <- kruskal_test(dn.ds ~ sigp.hmm, data = dn.ds.df, 
+##                    distribution = approximate(B = 9999))
+     
+### Nemenyi-Damico-Wolfe-Dunn test (joint ranking)
+### Hollander & Wolfe (1999), page 244 
+### (where Steel-Dwass results are given)
+get.ndwd <- function(data.df, test.var, fac.var) {
+  NDWD <- oneway_test(test.var ~ fac.var, data = data.df,
+                      ytrafo = function(data) trafo(data, numeric_trafo = rank),
+                      xtrafo = function(data) trafo(data, factor_trafo = function(x)
+                        model.matrix(~x - 1) %*% t(contrMat(table(x), "Tukey"))),
+                      teststat = "max", distribution = approximate(B = 90000))
+  return(NDWD)
+}
+
+ndwd <- get.ndwd(dn.ds.df, dn.ds.df$dn.ds, dn.ds.df$sigp.hmm)
+kw.ph <- pvalue(ndwd, method = "single-step")
+
+
+ndwd.AC <- get.ndwd(dn.ds.df.AC, dn.ds.df.AC$dn.ds, dn.ds.df.AC$sigp.hmm)
+kw.ph.AC <- pvalue(ndwd.AC, method = "single-step")
+
+t.test.hmm <- wilcox.test(dn.ds.df$dn.ds ~ as.logical(dn.ds.df$sigp.hmm%in%"S"))
+t.test.AC.hmm <- wilcox.test(dn.ds.df.AC$dn.ds ~ as.logical(dn.ds.df.AC$sigp.hmm%in%"S"))
+
+
+
+
+
+@   
+
+

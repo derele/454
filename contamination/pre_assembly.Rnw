@@ -1,0 +1,59 @@
+<<load.cobl, echo=FALSE, results=hide, cache=TRUE>>=
+
+source("/home/ele/thesis/454/common_R_functions.R")
+
+eelmRNA <- read.blast.best("/home/ele/Data/454/pre_assembly_screening/trimmed_all_vs_eelmRNA.blt")
+eelmRNA$dbhit <- "eelmRNA"
+
+eelrRNA <- read.blast.best("/home/ele/Data/454/pre_assembly_screening/trimmed_all_vs_eelrRNA.blt")
+eelrRNA$dbhit <- "eelrRNA"
+
+AcrRNA <- read.blast.best("/home/ele/Data/454/pre_assembly_screening/trimmed_all_vs_AcrRNA.blt")
+AcrRNA$dbhit <- "AcrRNA"
+
+B <- rbind(eelmRNA, eelrRNA, AcrRNA)
+
+B <- merge(B[, c(1, 3, 7, 8, 12, 13)], RE[,c(1,3,4)], 
+           by.x="V1", by.y="read")
+
+names(B)[1:5] <- c("read", "iden", "s.hit", "e.hit", "bits")
+
+Br <- reduce.blast.by.length(B, len=0.8, iden=95)
+R <- merge(Br, RE, all.y=TRUE)
+
+## no dbhit means still valid
+R$dbhit[is.na(R$dbhit)] <- "valid"
+
+R$lib <- as.factor(R$lib)
+R$dbhit <- as.factor(R$dbhit)
+
+rRNA.lib.reads <- ggplot(R, aes(lib, ..count.., fill=dbhit)) +
+  geom_bar() +
+  coord_flip() +
+  scale_y_continuous("Number of Reads") +
+  scale_x_discrete("Library")
+
+rRNA.lib.bases <- ggplot(R, aes(lib, ..count.., fill=dbhit, weight=length)) +
+  geom_bar() +
+  coord_flip() +
+  scale_y_continuous("Number of Bases") +
+  scale_x_discrete("Library")
+
+
+@ 
+
+<<plot.rRNA, echo=FALSE, results=hide>>=
+png("../figures/rRNA_plots.png", width=1000, height=1000, res=144)
+
+# Set up the page
+grid.newpage()
+pushViewport(viewport(layout = grid.layout(2, 1)))
+vplayout <- function(x, y)
+    viewport(layout.pos.row = x, layout.pos.col = y)
+
+# Make each plot, in the correct location
+print(rRNA.lib.reads, vp = vplayout(1, 1 ))
+print(rRNA.lib.bases, vp = vplayout(2, 1 ))
+dev.off() 
+
+@ 

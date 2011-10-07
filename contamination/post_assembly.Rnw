@@ -1,0 +1,118 @@
+<<host.screen, echo=FALSE, cache=TRUE>>=
+
+source("/home/ele/thesis/454/common_R_functions.R")
+
+## new style uncompromising screening 
+eelmRNA <- read.blast.best("/home/ele/Data/454/post_assembly_screening/fullest_vs_eelmRNA.blt")
+eelmRNA$dbhit <- "eelmRNA"
+
+eelrRNA <- read.blast.best("/home/ele/Data/454/post_assembly_screening/fullest_vs_eelrRNA.blt")
+eelrRNA$dbhit <- "eelrRNA"
+
+AcrRNA <- read.blast.best("/home/ele/Data/454/post_assembly_screening/fullest_vs_AcrRNA.blt")
+AcrRNA$dbhit <- "AcrRNA"
+
+nempep4.nuc <- read.blast.best("/home/ele/Data/454/post_assembly_screening/fullest_vs_nembase_nuc.blt")
+nempep4.nuc$dbhit <- "nempep4"
+
+## looking at best across dbs using nempep to rescue 
+E <- rbind(eelmRNA, eelrRNA, AcrRNA, nempep4.nuc)
+E <- E[, c(1, 3, 7, 8, 12, 13)]
+names(E) <- c("contig", "iden", "s.hit", "e.hit", "bits", "contamination")
+
+E <- E[order(E$contig,E$bits, decreasing=TRUE), ]
+E <- E[!duplicated(E$contig),]
+
+## get the length of the contigs
+E <- merge(E,
+           contig.df[, names(contig.df)%in%c("contig", "length")])
+## do the reduction based on length
+reduce.blast.by.length <- function (bt, len, iden){
+bt[((bt$length*len) < (bt$e.hit-bt$s.hit) & bt$iden>iden), ]
+}
+ER <- reduce.blast.by.length(E, len=0.5, iden=70)
+
+contig.df <- merge(contig.df, ER[ , c("contig", "contamination")], all.x=TRUE)
+contig.df$contamination[is.na(contig.df$contamination)] <- "valid_no_hit"
+contig.df$contamination[contig.df$contamination=="nempep4"] <- "valid_nempep"
+
+## nt ###################################################################
+nt <- read.blast.best("/home/ele/Data/454/post_assembly_screening/fullest_vs_nt.blt")
+gi.nt.blast <- sub("gi\\|(\\d+)\\|.*", "\\1", nt$V2)
+nt <- cbind(nt, gi.nt.blast)
+
+gis.nt <- unique(gi.nt.blast)
+write(as.character(gis.nt), "/home/ele/Data/454/post_assembly_screening/tmp-nt.acc")
+taxa.nt <- read.delim( pipe ("/home/ele/thesis/454/tax4gi_nt.pl /home/ele/Data/454/post_assembly_screening/tmp-nt.acc"), header=FALSE, sep=",", as.is=TRUE)
+names(taxa.nt) <- c("gi.nt.blast", "taxid.nt", "family.nt", "phylum.nt", "kingdom.nt")
+nt <- merge(nt, taxa.nt, all.x=TRUE)
+
+contig.df <- merge(contig.df, nt[, c(2, 14:17)], by.x="contig", by.y="V1", all.x=TRUE)
+contig.df[is.na(contig.df$taxid.nt) | contig.df$taxid.nt==0,
+          (length(contig.df)-2):length(contig.df)] <- "No_hit"
+
+
+## nr ##########################################################################
+nr <- read.blast.best("/home/ele/Data/454/post_assembly_screening/fullest_vs_nr.blt")
+gi.nr.blast <- sub("gi\\|(\\d+)\\|.*", "\\1", nr$V2)
+nr <- cbind(nr, gi.nr.blast)
+
+gis.nr <- unique(gi.nr.blast)
+write(as.character(gis.nr), "/home/ele/Data/454/post_assembly_screening/tmp-nr.acc")
+
+taxa.nr <- read.delim( pipe ("/home/ele/thesis/454/tax4gi_nr.pl /home/ele/Data/454/post_assembly_screening/tmp-nr.acc"), header=FALSE, sep=",", as.is=TRUE)
+## 1 entry changed from my blast to taxonomy version
+## -> no information available, moved to "no-hit category"
+taxa.nr[taxa.nr$taxid.nr==0, c(3:5)] <- NA
+names(taxa.nr) <- c("gi.nr.blast", "taxid.nr", "family.nr", "phylum.nr", "kingdom.nr")
+nr <- merge(nr, taxa.nr, all.x=TRUE)
+
+contig.df <- merge(contig.df, nr[, c(2, 14:17)], by.x="contig", by.y="V1", all.x=TRUE)
+contig.df[is.na(contig.df$taxid.nr) | contig.df$taxid.nr==0,
+          (length(contig.df)-2):length(contig.df)] <- "No_hit"
+
+##################################################################################
+
+phyl.plot.nt <- ggplot(subset(contig.df, contig.df$kingdom.nt!="No_hit"), aes(x=phylum.nt)) +
+  facet_wrap(~ kingdom.nt, scales="free") +
+  geom_bar() + 
+  opts(axis.text.x=theme_text(angle=-90, hjust=0))
+
+phyl.plot.nr <- ggplot(subset(contig.df, contig.df$kingdom.nr!="No_hit"), aes(x=phylum.nr)) +
+  facet_wrap(~ kingdom.nr, scales="free") +
+  geom_bar() + 
+  opts(axis.text.x=theme_text(angle=-90, hjust=0))
+
+gc.cont.phylum <- ggplot(subset(contig.df, contig.df$kingdom.nr%in%"Metazoa" &
+                                (contig.df$phylum.nr%in%"Nematoda"|
+                                 contig.df$phylum.nr%in%"Chordata")),
+                   aes(x=gc, color=contamination)) + 
+  geom_density() +
+  facet_wrap( ~ phylum.nr)
+
+
+
+png("../figures/phylum_plots.png", width=2000, height=1000, res=144)
+
+# Set up the page
+grid.newpage()
+pushViewport(viewport(layout = grid.layout(1, 2)))
+vplayout <- function(x, y)
+    viewport(layout.pos.row = x, layout.pos.col = y)
+
+# Make each plot, in the correct location
+print(phyl.plot.nt, vp = vplayout(1, 1 ))
+print(phyl.plot.nr, vp = vplayout(1, 2 ))
+dev.off() 
+
+
+## nrow(contig.df[contig.df$contamination1=="valid" &
+##                contig.df$contamination2%in%c("valid", "nempep4") &
+##                contig.df$phylum.nr%in%c("Nematoda", "No_hit"), ])
+
+
+## summary(contig.df[contig.df$contamination1=="valid" &
+##                   contig.df$contamination2%in%c("valid", "nempep4") &
+##                   contig.df$phylum.nr%in%c("Nematoda", "No_hit"), "uniq_coverage"])
+
+@ 

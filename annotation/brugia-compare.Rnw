@@ -1,0 +1,37 @@
+<<annot.compare>>=
+
+Bm.sum.annot.C <- read.delim("/home/ele/Data/454/annotation/annot8r/output_Bm/piedata_C", skip=1)
+Bm.sum.annot.C$species <- "Brugia malayi"
+Ac.sum.annot.C <- read.delim("/home/ele/Data/454/annotation/annot8r/output/piedata_C", skip=1)
+Ac.sum.annot.C$species <- "Anguillicola crassus"
+sum.annot.C <- rbind(Bm.sum.annot.C, Ac.sum.annot.C)
+sum.annot.C$ontology <- "Cellular compartment"
+
+Bm.sum.annot.F <- read.delim("/home/ele/Data/454/annotation/annot8r/output_Bm/piedata_F", skip=1)
+Bm.sum.annot.F$species <- "Brugia malayi"
+Ac.sum.annot.F <- read.delim("/home/ele/Data/454/annotation/annot8r/output/piedata_F", skip=1)
+Ac.sum.annot.F$species <- "Anguillicola crassus"
+sum.annot.F <- rbind(Bm.sum.annot.F, Ac.sum.annot.F)
+sum.annot.F$ontology <- "Molecular Function"
+
+Bm.sum.annot.P <- read.delim("/home/ele/Data/454/annotation/annot8r/output_Bm/piedata_P", skip=1)
+Bm.sum.annot.P$species <- "Brugia malayi"
+Ac.sum.annot.P <- read.delim("/home/ele/Data/454/annotation/annot8r/output/piedata_P", skip=1)
+Ac.sum.annot.P$species <- "Anguillicola crassus"
+sum.annot.P <- rbind(Bm.sum.annot.P, Ac.sum.annot.P)
+sum.annot.P$ontology <- "Biological process"
+
+sum.annot <- rbind(sum.annot.C, sum.annot.F, sum.annot.P)
+
+
+
+GO.bm.com <- ggplot(sum.annot, aes(x=description, fill=species, weight=occurences)) +
+  geom_bar(position="dodge") +
+  scale_x_discrete(breaks=sum.annot$description,
+                   label=gsub("and\nnucleic\nacid\nmetabolic\nprocess",
+                     "and nucleic acid\nmetabolic process", gsub(" ", "\n", sum.annot$description))) +
+  facet_wrap(~ontology, ncol=1, scales="free") +
+    opts(legend.text = theme_text(face="italic"))
+
+ggsave("/home/ele/thesis/454/figures/go_bm_com.png", GO.bm.com)
+@ 

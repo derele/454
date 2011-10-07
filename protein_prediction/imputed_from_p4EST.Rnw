@@ -1,0 +1,93 @@
+%% read P4EST output processed with
+%% coordinates_from_p4e.pl
+
+<<imputedP4E, echo=FALSE, cache=TRUE>>=
+
+source("/home/ele/thesis/454/common_R_functions.R")
+
+
+get.seq.and.orf <- function (filepath){
+  IMPFAS <- read.sequences(filepath)
+  contig <-  gsub("\\s.*", "", names(IMPFAS))
+  mstrand <- grepl("minus", names(IMPFAS))
+  method <- sapply(names(IMPFAS),
+                             function (x){
+                               unlist(strsplit(x, " "))[[length(unlist(strsplit(x, " ")))]]})
+  
+  starts <- as.numeric(as.character(lapply(gregexpr("[a-z]", IMPFAS), function (x) x[[1]])))
+  st <- gregexpr("[a-z]", IMPFAS)
+  sst <- as.numeric(as.character(lapply(st, function (x) {
+    length(attr(x, "match.length"))})))
+  end <- sst + starts
+  
+  names(IMPFAS) <- contig
+  names(method) <- contig
+  
+  STST <- as.data.frame(cbind(contig,
+                              mstrand,
+                              method,
+                              starts,
+                              end,
+                              imp = IMPFAS))
+  return(STST)
+}
+
+imputed <- get.seq.and.orf("/home/ele/Data/454/prot4EST/fullest_assembly_imputed.fasta")
+## to get only the MN subset
+## imputed <- imputed[imputed$contig%in%MN,]
+
+imputed$method <- factor(imputed$method, levels=unique(imputed$method))
+
+
+imputed$starts <- as.numeric(as.character(imputed$starts))
+imputed$starts[imputed$starts==-1] <- 0
+imputed$end <- as.numeric(as.character(imputed$end))
+imputed$end[imputed$end==-1] <- 0
+imputed$imp <- as.character(imputed$imp)
+
+imp.sum <- table(imputed$mstrand, imputed$method)
+
+row.names(imp.sum) <- ifelse(row.names(imp.sum), "minus strand", "plus strand")
+names(imp.sum) <- gsub("p4e..", "", names(imp.sum))
+
+
+imputed$over.5p <-  ifelse(as.logical(imputed$mstrand),
+                           imputed$end+3 < nchar(imputed$imp),
+                           imputed$starts > 3)
+
+imputed$startcod <- ifelse(as.logical(imputed$mstrand),
+                           revcom(substr(imputed$imp, imputed$end-3, imputed$end-1)),
+                           substr(imputed$imp, imputed$starts, imputed$starts+2))
+
+imputed$stopcod <- ifelse(as.logical(imputed$mstrand),
+                          revcom(substr(imputed$imp, imputed$starts-3, imputed$starts-1)),
+                          ## lower-case letters have to be removed
+                          ## where ther a not 3 bases overhang 
+                          gsub("[a-z]", "",
+                               substr(imputed$imp, imputed$end, imputed$end+2 )))
+
+imputed$full.5p <-  ifelse(imputed$startcod=="atg" & imputed$over.5p, 
+                           TRUE,
+                           FALSE)
+
+imputed$full.3p <-  imputed$stopcod%in%c("TAG", "TAA", "TGA")
+
+
+imputed$full.length <- imputed$full.3p & imputed$full.5p
+
+imputed[(imputed$end-imputed$starts)%%3>0, 6] <- toupper(imputed[(imputed$end-imputed$starts)%%3>0, 6])
+imputed[(imputed$end-imputed$starts)%%3>0, c(2:5, 7:12)] <- NA
+
+contig.df <- merge(contig.df, imputed, all.x=TRUE)
+
+stopcods <- table(contig.df$stopcod[contig.df$stopcod%in%c("TAG", "TAA", "TGA")])
+
+same.same <- summary.factor(tolower(as.character(contig.df$imp))==tolower(as.character(contig.df$seq)))
+
+
+imp.pile <- read.table(pipe("cut -f1,2,4 /home/ele/Data/454/mapping/all_vs_full_imputed_uq.pileup"))
+names(imp.pile) <- c("contig", "base", "imputed.coverage")
+per.con.imp <- data.frame(imputed.coverage= tapply(imp.pile$imputed.coverage, imp.pile$contig, mean, rm.na=T))
+contig.df <- merge(contig.df, per.con.imp, by.x="contig", by.y="row.names", all.x=TRUE)
+
+@

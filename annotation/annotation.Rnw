@@ -1,0 +1,38 @@
+%%% annotation.Rnw --- 
+
+%% Author: emanuelheitlinger@gmail.com
+
+<<annolibs, echo=FALSE>>=
+library(GOstats)
+library(GO.db)
+## library(AnnotationDbi)
+## library(GSEABase)
+## library(GeneAnswers)
+## library(goTools)
+## For comparison with C.elegans
+## require("org.Ce.eg.db")
+@ 
+
+<<annotation, echo=FALSE, cache=TRUE>>=
+GO.annot <- read.delim("/home/ele/Data/454/annotation/annot8r/output/GO.csv", sep=",", header=FALSE)
+names(GO.annot) <- c("pept_id", "go_term", "pcf", "descr", "slim", "besthit", "bestscore", "bestev", "hitnum", "maxhits", "fraction") 
+
+## reset the shorted names used in annotation to the proper contig-names
+GO.annot$pept_id <- gsub("Ac_", "Acrassus_", GO.annot$pept_id)
+
+
+GO.annot$go_term <- as.character(gsub(" ", "", GO.annot$go_term))
+GO.annot$pcf <- gsub(" C", "CC", GO.annot$pcf)
+GO.annot$pcf <- gsub(" F", "MF", GO.annot$pcf)
+GO.annot$pcf <- gsub(" P", "BP", GO.annot$pcf)
+
+EC.annot <- read.delim("/home/ele/Data/454/annotation/annot8r/output/EC.csv", sep=",", header=FALSE)
+names(EC.annot) <- c("pept_id", "ec_id", "descr", "besthit", "bestscore", "bestev", "hitnum", "maxhits", "fraction") 
+EC.annot$pept_id <- gsub("Ac_", "Acrassus_", EC.annot$pept_id)
+
+KEGG.annot <- read.delim("/home/ele/Data/454/annotation/annot8r/output/KEGG.csv", sep=",", header=FALSE)
+names(KEGG.annot) <- c("pept_id", "ko_id", "path", "descr", "besthit", "bestscore", "bestev", "hitnum", "maxhits", "fraction") 
+KEGG.annot$pept_id <- gsub("Ac_", "Acrassus_", KEGG.annot$pept_id)
+
+@ 
+

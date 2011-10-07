@@ -1,0 +1,33 @@
+<<sigp, echo=FALSE, cache=TRUE>>=
+
+signalip <- as.data.frame(read.delim("/home/ele/Data/454/annotation/signalp/Ac_p4ePro.signalip",
+                                     skip=1, sep="\t", header=FALSE,
+                                     strip.white=TRUE, comment.char=";",
+                                     as.is=TRUE))
+
+signalnn.names <- gsub("# ", "", signalip[1, 1])
+signalnn.names <- unlist(strsplit(signalnn.names, " +"))
+
+signalhmm.names <- gsub("# ", "", signalip[1, 2])
+signalhmm.names <- unlist(strsplit(signalhmm.names, " +"))
+
+
+signalip <- signalip[!grepl("#", signalip[, 1]) , ]
+
+signalnn <- as.data.frame(do.call(rbind,
+                                  strsplit(as.character(signalip[, 1]), " +")))
+names(signalnn) <- signalnn.names
+
+signalhmm <- as.data.frame(do.call(rbind,
+                                  strsplit(as.character(signalip[, 2]), " +")))
+names(signalhmm) <- signalhmm.names
+
+sig.sum <- cbind(signalnn[ , c(1, 14)], signalhmm$"!")
+names(sig.sum) <- c("contig", "sigp.nn", "sigp.hmm")
+
+## translate the contig-names back
+sig.sum$contig <- gsub("Ac_", "Acrassus_", sig.sum$contig)
+
+contig.df <- merge(contig.df, sig.sum, all.x=TRUE)
+
+@ 
