@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99c (Web2C 7.5.6)
+The top-level auxiliary file: transcriptome_paper.aux
+The style file: bmc_article.bst
+Reallocated wiz_functions (elt_size=4) to 6000 items from 240518171576.
+Database file #1: /home/ele/bibtex/master.bib
+Database file #2: /home/ele/bibtex/master2.bib
+Warning--I didn't find a database entry for "pmid20470405"
+You've used 75 entries,
+            3603 wiz_defined-function locations,
+            1167 strings with 25587 characters,
+and the built_in function-call counts, 217441 in all, are:
+= -- 19775
+> -- 1653
+< -- 599
++ -- 1799
+- -- 526
+* -- 26039
+:= -- 36750
+add.period$ -- 150
+call.type$ -- 75
+change.case$ -- 532
+chr.to.int$ -- 0
+cite$ -- 75
+duplicate$ -- 13755
+empty$ -- 17237
+format.name$ -- 2161
+if$ -- 42417
+int.to.chr$ -- 0
+int.to.str$ -- 150
+missing$ -- 4335
+newline$ -- 1613
+num.names$ -- 151
+pop$ -- 2831
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 150
+skip$ -- 1333
+stack$ -- 0
+substring$ -- 35352
+swap$ -- 3083
+text.length$ -- 145
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 8
+warning$ -- 0
+while$ -- 1084
+width$ -- 77
+write$ -- 3585
+(There was 1 warning)
