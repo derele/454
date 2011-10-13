@@ -1277,6 +1277,7 @@ rownames(snp.summary) <- c("", "raw", "h.screened", "p.screened")
 read.per.b <- nReadSnps/(nbases/1000)
 scree.per.b <- nScreeSnps/(n.inOrf/1000)
 perc.per.b <- nPercSnps/(n.inOrf/1000)
+perc.per.cov8.b <- nPercSnps/(nCov8bases/1000)
 
 total.syn <- sum(contig.df[, "syn.sites"], na.rm=TRUE)
 total.cov8.syn <- sum(contig.df[, "cov8.syn.sites"], na.rm=TRUE)
@@ -1298,7 +1299,7 @@ n.per.n.cov8.base <- total.nSNP/(total.cov8.nsyn/1000)
 ###################################################
 ### chunk number 16: annolibs
 ###################################################
-#line 1853 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
+#line 1854 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 library(GOstats)
 library(GO.db)
 ## library(AnnotationDbi)
@@ -1312,7 +1313,7 @@ library(GO.db)
 ###################################################
 ### chunk number 17: annotation
 ###################################################
-#line 1864 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
+#line 1865 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 GO.annot <- read.delim("/home/ele/Data/454/annotation/annot8r/output/GO.csv", sep=",", header=FALSE)
 names(GO.annot) <- c("pept_id", "go_term", "pcf", "descr", "slim", "besthit", "bestscore", "bestev", "hitnum", "maxhits", "fraction") 
 
@@ -1338,7 +1339,7 @@ KEGG.annot$pept_id <- gsub("Ac_", "Acrassus_", KEGG.annot$pept_id)
 ###################################################
 ### chunk number 18: sigp
 ###################################################
-#line 1887 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
+#line 1888 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 signalip <- as.data.frame(read.delim("/home/ele/Data/454/annotation/signalp/Ac_p4ePro.signalip",
                                      skip=1, sep="\t", header=FALSE,
@@ -1375,7 +1376,7 @@ contig.df <- merge(contig.df, sig.sum, all.x=TRUE)
 ###################################################
 ### chunk number 19: annot
 ###################################################
-#line 1921 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
+#line 1922 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 GOannotations <- unique(GO.annot$pept_id)
 nGO <- length(GOannotations)
 
@@ -1420,7 +1421,7 @@ venn.diagram(list(nn.Signal   = match(Signn, contig.df$contig),
 ###################################################
 ### chunk number 20: annot.compare
 ###################################################
-#line 1971 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
+#line 1972 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 Bm.sum.annot.C <- read.delim("/home/ele/Data/454/annotation/annot8r/output_Bm/piedata_C", skip=1)
 Bm.sum.annot.C$species <- "Brugia malayi"
@@ -1461,7 +1462,7 @@ ggsave("/home/ele/thesis/454/figures/go_bm_com.png", GO.bm.com)
 ###################################################
 ### chunk number 21: overrep
 ###################################################
-#line 2023 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
+#line 2024 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 ## subsets for contig.df and GO-annotation containing only dn.ds contigs
 dn.ds.df <- subset(contig.df, !is.na(dn.ds))
@@ -1654,7 +1655,7 @@ t.test.AC.hmm <- wilcox.test(dn.ds.df.AC$dn.ds ~ as.logical(dn.ds.df.AC$sigp.hmm
 ###################################################
 ### chunk number 22: nn.dn.ds
 ###################################################
-#line 2215 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
+#line 2216 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 nn.box <- ggplot(dn.ds.df, aes(dn.ds.df$sigp.nn, dn.ds.df$dn.ds)) + 
   geom_boxplot() + 

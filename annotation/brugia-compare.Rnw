@@ -28,10 +28,12 @@ sum.annot <- rbind(sum.annot.C, sum.annot.F, sum.annot.P)
 GO.bm.com <- ggplot(sum.annot, aes(x=description, fill=species, weight=occurences)) +
   geom_bar(position="dodge") +
   scale_x_discrete(breaks=sum.annot$description,
-                   label=gsub("and\nnucleic\nacid\nmetabolic\nprocess",
-                     "and nucleic acid\nmetabolic process", gsub(" ", "\n", sum.annot$description))) +
+                   label=gsub("^\n", "",
+                     gsub("and\nnucleic\nacid\nmetabolic\nprocess",
+                          "and nucleic acid\nmetabolic process",
+                          gsub(" ", "\n", sum.annot$description)))) +
   facet_wrap(~ontology, ncol=1, scales="free") +
     opts(legend.text = theme_text(face="italic"))
 
-ggsave("/home/ele/thesis/454/figures/go_bm_com.png", GO.bm.com)
+ggsave("/home/ele/thesis/454/figures/go_bm_com.png", GO.bm.com, width=16, height=16)
 @ 

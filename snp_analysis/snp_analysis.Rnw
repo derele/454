@@ -598,7 +598,80 @@ dev.off()
 @ 
 
 
+<<snps.again, echo=FALSE, cache=TRUE>>=
+varlog <- readLines("/home/ele/Data/454/mapping/all_vs_full_imputed_uq.varlog")
+nRawSnps <- unlist(strsplit(varlog[length(varlog)], " "))[[1]]
+nCov8bases <- nrow(imp.pile[imp.pile$imputed.coverage>7, ])
+nbases <- nrow(imp.pile)
+n.inOrf <- sum(contig.df$syn.sites, contig.df$nsyn.sites, na.rm=TRUE) 
+n.outOrf <- n.inOrf-nbases
 
+nReadSnps <- nrow(VAR)
+nReadOrf <- tapply(VAR$inORF, VAR$inORF, length)
+nReadFrame <- tapply(VAR$inFRAME, VAR$inFRAME, length)
+tsv.read <- round(transversion.transition(VAR), 2)
+tsv.read.orf <- round(do.call(rbind, by(VAR, VAR$inORF, transversion.transition)), 2)
+read.dn.ds <- round(get.dn.ds(VAR), 2)
 
+nScreeSnps <- nrow(VARq)
+nScreeOrf <- tapply(VARq$inORF, VARq$inORF, length)
+nScreeFrame <- tapply(VARq$inFRAME, VARq$inFRAME, length)
+tsv.scree <- round(transversion.transition(VARq),2)
+tsv.scree.orf <- round(do.call(rbind, by(VARq, VARq$inORF, transversion.transition)),2)
+scree.dn.ds <- round(get.dn.ds(VARq),2)
 
+nPercSnps <- nrow(VARqp)
+nPercOrf <- tapply(VARqp$inORF, VARqp$inORF, length)
+nPercFrame <- tapply(VARqp$inFRAME, VARqp$inFRAME, length)
+tsv.perc <- round(transversion.transition(VARqp), 2)
+tsv.perc.orf <- round(do.call(rbind, by(VARqp, VARqp$inORF, transversion.transition)), 2)
+perc.dn.ds <- round(get.dn.ds(VARqp), 2)
 
+snp.summary <- data.frame(c("No.SNPs", nReadSnps, nScreeSnps, nPercSnps),
+                          c("in.ORF",nReadOrf[["TRUE"]], nScreeOrf[["TRUE"]], nPercOrf[["TRUE"]]),
+                          check.names=FALSE)
+
+FR <- rbind(nReadFrame, nScreeFrame, nPercFrame)
+snp.summary <- cbind(snp.summary, rbind(colnames(FR), FR))
+
+TS <- rbind(tsv.read[["ratioTS.TV"]], tsv.scree[["ratioTS.TV"]], tsv.perc[["ratioTS.TV"]])
+snp.summary <- cbind(snp.summary, rbind("overall", TS))
+
+TSf <- rbind(tsv.read.orf[["TRUE", "ratioTS.TV"]],
+             tsv.scree.orf[["TRUE", "ratioTS.TV"]],
+             tsv.perc.orf[["TRUE", "ratioTS.TV"]])
+
+snp.summary <- cbind(snp.summary, rbind("ins.orf", TSf))
+
+TSo <- rbind(tsv.read.orf[["FALSE", "ratioTS.TV"]],
+             tsv.scree.orf[["FALSE", "ratioTS.TV"]],
+             tsv.perc.orf[["FALSE", "ratioTS.TV"]])
+
+snp.summary <- cbind(snp.summary, rbind("outs.orf", TSo))
+snp.summary <- cbind(snp.summary, rbind("dn.ds", read.dn.ds, scree.dn.ds, perc.dn.ds))
+
+names(snp.summary) <- c(" ", " ", "pos", "in", "codon", " ", "ti/tv ", " ", " ")
+
+rownames(snp.summary) <- c("", "raw", "h.screened", "p.screened")
+
+read.per.b <- nReadSnps/(nbases/1000)
+scree.per.b <- nScreeSnps/(n.inOrf/1000)
+perc.per.b <- nPercSnps/(n.inOrf/1000)
+perc.per.cov8.b <- nPercSnps/(nCov8bases/1000)
+
+total.syn <- sum(contig.df[, "syn.sites"], na.rm=TRUE)
+total.cov8.syn <- sum(contig.df[, "cov8.syn.sites"], na.rm=TRUE)
+
+total.nsyn <- sum(contig.df[ , "nsyn.sites"], na.rm=TRUE )
+total.cov8.nsyn <- sum(contig.df[ , "cov8.nsyn.sites"], na.rm=TRUE )
+
+total.nSNP <- sum(contig.df$Nonsynonymous, na.rm=TRUE)
+total.sSNP <- sum(contig.df$Synonymous, na.rm=TRUE)
+
+s.per.s.base <- total.sSNP/(total.syn/1000)
+s.per.s.cov8.base <- total.sSNP/(total.cov8.syn/1000)
+
+n.per.n.base <- total.nSNP/(total.nsyn/1000)
+n.per.n.cov8.base <- total.nSNP/(total.cov8.nsyn/1000)
+
+@ 

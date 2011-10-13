@@ -36,3 +36,30 @@ KEGG.annot$pept_id <- gsub("Ac_", "Acrassus_", KEGG.annot$pept_id)
 
 @ 
 
+<<ann.venn, echo=FALSE>>=
+GOannotations <- unique(GO.annot$pept_id)
+nGO <- length(GOannotations)
+
+ECannotations <- unique(EC.annot$pept_id)
+nEC <- length(ECannotations)
+
+KEGGannotations <- unique(KEGG.annot$pept_id)
+nKEGG <- length(KEGGannotations)
+
+## IPRannotations <- unique(IPR.annot[grepl("GO:", IPR.annot$GO_descr), "pept_id"])
+## nIPR <- length(IPRannotations)
+## nIPRonly <- length(IPRannotations[!IPRannotations%in%GOannotations &
+##                                   !IPRannotations%in%ECannotations &
+##                                   !IPRannotations%in%KEGGannotations
+##                                   ])
+
+Allannotations <- unique(c(GOannotations, ECannotations, KEGGannotations))#,  IPRannotations))
+nallannotations <- length(Allannotations)
+
+venn.diagram(list(GO   = match(GOannotations, Allannotations),
+                  EC   = match(ECannotations, Allannotations),
+                  KEGG = match(KEGGannotations, Allannotations)),
+                  ##                  IPR  = match(IPRannotations, Allannotations)),
+                  filename = "/home/ele/thesis/454/figures/annotataionVenn.tiff")
+
+@ 

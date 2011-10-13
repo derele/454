@@ -31,3 +31,20 @@ sig.sum$contig <- gsub("Ac_", "Acrassus_", sig.sum$contig)
 contig.df <- merge(contig.df, sig.sum, all.x=TRUE)
 
 @ 
+
+<<signn.venn, echo=FALSE, results=hide>>=
+
+Signn <- contig.df[contig.df$sigp.nn%in%"Y", "contig" ]
+Sighmm <- contig.df[contig.df$sigp.hmm%in%"S", "contig" ]
+Anchmm <- contig.df[contig.df$sigp.hmm%in%"A", "contig" ]
+
+nSignn <- length(Signn)
+nSighmm <- length(Sighmm)
+nAnchmm <- length(Anchmm)
+
+venn.diagram(list(nn.Signal   = match(Signn, contig.df$contig),
+                  hmm.Signal   = match(Sighmm, contig.df$contig),
+                  hmm.Anchor = match(Anchmm, contig.df$contig)),
+                  filename = "/home/ele/thesis/454/figures/signalVenn.tiff")
+
+@ 

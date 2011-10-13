@@ -57,3 +57,21 @@ print(rRNA.lib.bases, vp = vplayout(2, 1 ))
 dev.off() 
 
 @ 
+
+<<count.screened, echo=FALSE, cach=TRUE>>=
+
+pre.screen.tab <- table(R$lib, R$dbhit)
+names(pre.screen.tab) <- c("A. crassus rRNA", "host", "host rRNA", "valid (assembled)")
+
+nscreened <- nrow(R[R$dbhit%in%c("eelrRNA", "AcrRNA", "eelmRNA"), ])
+nscreened.r <- nrow(R[R$dbhit%in%c("eelrRNA", "AcrRNA"),])
+nscreened.m <- nrow(R[R$dbhit%in%"eelmRNA",])
+
+AcrRNA_vs_nt <- read.blast.best("/home/ele/Data/454/pre_assembly_screening/AcrRNA_vs_nt.blt")
+AcrRNA_cerco <- AcrRNA_vs_nt[grepl("Cerco|Flag", AcrRNA_vs_nt$V1), ]
+
+cerco <- cbind( sequence.identifier=as.character(AcrRNA_cerco$V2), 
+                sequence.identitiy=AcrRNA_cerco$V3,
+                hsp.length=AcrRNA_cerco$V8-AcrRNA_cerco$V7)
+
+@ 

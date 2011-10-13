@@ -412,24 +412,6 @@ RE$length <- nchar(RE$seq)
 
 \SweaveInput{../contamination/pre_assembly.Rnw}
 
-<<count.screened, echo=FALSE, cach=TRUE>>=
-
-pre.screen.tab <- table(R$lib, R$dbhit)
-names(pre.screen.tab) <- c("A. crassus rRNA", "host", "host rRNA", "valid (assembled)")
-
-nscreened <- nrow(R[R$dbhit%in%c("eelrRNA", "AcrRNA", "eelmRNA"), ])
-nscreened.r <- nrow(R[R$dbhit%in%c("eelrRNA", "AcrRNA"),])
-nscreened.m <- nrow(R[R$dbhit%in%"eelmRNA",])
-
-AcrRNA_vs_nt <- read.blast.best("/home/ele/Data/454/pre_assembly_screening/AcrRNA_vs_nt.blt")
-AcrRNA_cerco <- AcrRNA_vs_nt[grepl("Cerco|Flag", AcrRNA_vs_nt$V1), ]
-
-cerco <- cbind( sequence.identifier=as.character(AcrRNA_cerco$V2), 
-                sequence.identitiy=AcrRNA_cerco$V3,
-                hsp.length=AcrRNA_cerco$V8-AcrRNA_cerco$V7)
-
-@ 
-
 In total \Sexpr{nscreened} reads were discarded prior to assembly,
 \Sexpr{nscreened.r} due to \texttt{blast} hits (e-value cut of 1e-5,
 hit longer than 80\% of the read-length and identity bigger 95\%) to
@@ -530,38 +512,6 @@ Two kinds sequences were labled ``valid'' \textit{A. crassus}
 sequences: Valid due to evidence of nematode origing (hitting
 nempep4), and valid due to missingness of evidence of host-origin.
 
-<<post.con, echo=FALSE, cache=TRUE>>=
-post.table <- rbind(table(contig.df$contamination),
-                    rbind(tapply(contig.df$uniq_coverage, contig.df$contamination, mean)))
-
-row.names(post.table) <- c("number",
-                           "mean coverage")
-
-nvalid <- nrow(contig.df[grepl("valid", contig.df$contamination) ,])
-
-## Examples of selecting from the data
-
-select_no_eel <- grepl("valid", contig.df$contamination) &
-                            !contig.df$phylum.nt%in%"Chordata" &
-                            !contig.df$phylum.nr%in%"Chordata"
-select_no_eel_MN <- select_no_eel  & contig.df$category%in%"MN"
-
-n_no_eel <- nrow(contig.df[select_no_eel,])
-n_MNno_eel <- nrow(contig.df[select_no_eel_MN,])
-
-select_AC <- grepl("valid", contig.df$contamination) &
-                          contig.df$phylum.nt%in%c("Nematoda", "No_hit") &
-                          contig.df$phylum.nr%in%c("Nematoda", "No_hit")
-select_AC_MN <- select_AC & contig.df$category%in%"MN"
-
-contig.df$Ac <- select_AC
-contig.df$AcMN <- select_AC_MN
-
-n_su_Ac <- nrow(contig.df[contig.df$Ac, ])
-n_suMN_Ac <- nrow(contig.df[contig.df$AcMN, ])
-
-@ 
-
 Table 3 gives the numbers of TUGs labled as possible host or rRNA
 contamination. The \Sexpr{nvalid} TUGs regarded to be of
 \textit{A. crassus}-origin give a positive indication of the origin of
@@ -648,83 +598,6 @@ imputed ORF was slightly changed compared to the raw sequence.
 
 \SweaveInput{../snp_analysis/snp_analysis.Rnw}
 
-<<snps.again, echo=FALSE, cache=TRUE>>=
-varlog <- readLines("/home/ele/Data/454/mapping/all_vs_full_imputed_uq.varlog")
-nRawSnps <- unlist(strsplit(varlog[length(varlog)], " "))[[1]]
-nCov8bases <- nrow(imp.pile[imp.pile$imputed.coverage>7, ])
-nbases <- nrow(imp.pile)
-n.inOrf <- sum(contig.df$syn.sites, contig.df$nsyn.sites, na.rm=TRUE) 
-n.outOrf <- n.inOrf-nbases
-
-nReadSnps <- nrow(VAR)
-nReadOrf <- tapply(VAR$inORF, VAR$inORF, length)
-nReadFrame <- tapply(VAR$inFRAME, VAR$inFRAME, length)
-tsv.read <- round(transversion.transition(VAR), 2)
-tsv.read.orf <- round(do.call(rbind, by(VAR, VAR$inORF, transversion.transition)), 2)
-read.dn.ds <- round(get.dn.ds(VAR), 2)
-
-nScreeSnps <- nrow(VARq)
-nScreeOrf <- tapply(VARq$inORF, VARq$inORF, length)
-nScreeFrame <- tapply(VARq$inFRAME, VARq$inFRAME, length)
-tsv.scree <- round(transversion.transition(VARq),2)
-tsv.scree.orf <- round(do.call(rbind, by(VARq, VARq$inORF, transversion.transition)),2)
-scree.dn.ds <- round(get.dn.ds(VARq),2)
-
-nPercSnps <- nrow(VARqp)
-nPercOrf <- tapply(VARqp$inORF, VARqp$inORF, length)
-nPercFrame <- tapply(VARqp$inFRAME, VARqp$inFRAME, length)
-tsv.perc <- round(transversion.transition(VARqp), 2)
-tsv.perc.orf <- round(do.call(rbind, by(VARqp, VARqp$inORF, transversion.transition)), 2)
-perc.dn.ds <- round(get.dn.ds(VARqp), 2)
-
-snp.summary <- data.frame(c("No.SNPs", nReadSnps, nScreeSnps, nPercSnps),
-                          c("in.ORF",nReadOrf[["TRUE"]], nScreeOrf[["TRUE"]], nPercOrf[["TRUE"]]),
-                          check.names=FALSE)
-
-FR <- rbind(nReadFrame, nScreeFrame, nPercFrame)
-snp.summary <- cbind(snp.summary, rbind(colnames(FR), FR))
-
-TS <- rbind(tsv.read[["ratioTS.TV"]], tsv.scree[["ratioTS.TV"]], tsv.perc[["ratioTS.TV"]])
-snp.summary <- cbind(snp.summary, rbind("overall", TS))
-
-TSf <- rbind(tsv.read.orf[["TRUE", "ratioTS.TV"]],
-             tsv.scree.orf[["TRUE", "ratioTS.TV"]],
-             tsv.perc.orf[["TRUE", "ratioTS.TV"]])
-
-snp.summary <- cbind(snp.summary, rbind("ins.orf", TSf))
-
-TSo <- rbind(tsv.read.orf[["FALSE", "ratioTS.TV"]],
-             tsv.scree.orf[["FALSE", "ratioTS.TV"]],
-             tsv.perc.orf[["FALSE", "ratioTS.TV"]])
-
-snp.summary <- cbind(snp.summary, rbind("outs.orf", TSo))
-snp.summary <- cbind(snp.summary, rbind("dn.ds", read.dn.ds, scree.dn.ds, perc.dn.ds))
-
-names(snp.summary) <- c(" ", " ", "pos", "in", "codon", " ", "ti/tv ", " ", " ")
-
-rownames(snp.summary) <- c("", "raw", "h.screened", "p.screened")
-
-read.per.b <- nReadSnps/(nbases/1000)
-scree.per.b <- nScreeSnps/(n.inOrf/1000)
-perc.per.b <- nPercSnps/(n.inOrf/1000)
-
-total.syn <- sum(contig.df[, "syn.sites"], na.rm=TRUE)
-total.cov8.syn <- sum(contig.df[, "cov8.syn.sites"], na.rm=TRUE)
-
-total.nsyn <- sum(contig.df[ , "nsyn.sites"], na.rm=TRUE )
-total.cov8.nsyn <- sum(contig.df[ , "cov8.nsyn.sites"], na.rm=TRUE )
-
-total.nSNP <- sum(contig.df$Nonsynonymous, na.rm=TRUE)
-total.sSNP <- sum(contig.df$Synonymous, na.rm=TRUE)
-
-s.per.s.base <- total.sSNP/(total.syn/1000)
-s.per.s.cov8.base <- total.sSNP/(total.cov8.syn/1000)
-
-n.per.n.base <- total.nSNP/(total.nsyn/1000)
-n.per.n.cov8.base <- total.nSNP/(total.cov8.nsyn/1000)
-
-@ 
-
 In order to improve SNP-calling we screened a set of \Sexpr{nRawSnps}
 candidate-SNPs predicted on in total \Sexpr{nbases} bases
 (\Sexpr{nCov8bases} bases with a minimum coverage of more then 8-fold
@@ -756,8 +629,8 @@ to classify every base as to its ``response'' to mutation. We used
 this classification to compute the number of synonymous and
 non-synonymous sites in a given TUG. In total \Sexpr{total.nsyn}
 non-synonymous and \Sexpr{total.syn} sites were found in ORFs, of
-these \Sexpr{total.cov8.nsyn} non-synonymous sites and
-\Sexpr{total.cov8.syn} synonymous sites were covered at least 8-fold,
+these \Sexpr{round(total.cov8.nsyn, 2)} non-synonymous sites and
+\Sexpr{round(total.cov8.syn, 2)} synonymous sites were covered at least 8-fold,
 and thus available for SNP-calling.
 
 For the raw set of candidate-SNPs the ratio of synonymous
@@ -803,7 +676,7 @@ predicting dn/ds (see figure dn\_ds\_scales.png a and c).
 
 Figure dens\_dn\_ds.png gives the disribution of per-contig dn/ds for
 the fully screened set of SNPs. The final numbers of SNPs per
-kilo-base was \Sexpr{round(perc.per.b,2)},
+kilo-base was \Sexpr{round(perc.per.cov8.b,2)},
 \Sexpr{round(s.per.s.cov8.base,2)} synonymous SNPs per 1000 synonymous
 bases and \Sexpr{round(n.per.n.cov8.base, 2)} non-synonymous SNPs per
 1000 non-synonymous bases. For a total of
@@ -822,48 +695,6 @@ bases and \Sexpr{round(n.per.n.cov8.base, 2)} non-synonymous SNPs per
 
 \SweaveInput{../annotation/annotation.Rnw}
 \SweaveInput{../annotation/read_signalp.Rnw}
-
-<<annot, echo=FALSE, results=hide>>=
-GOannotations <- unique(GO.annot$pept_id)
-nGO <- length(GOannotations)
-
-ECannotations <- unique(EC.annot$pept_id)
-nEC <- length(ECannotations)
-
-KEGGannotations <- unique(KEGG.annot$pept_id)
-nKEGG <- length(KEGGannotations)
-
-## IPRannotations <- unique(IPR.annot[grepl("GO:", IPR.annot$GO_descr), "pept_id"])
-## nIPR <- length(IPRannotations)
-## nIPRonly <- length(IPRannotations[!IPRannotations%in%GOannotations &
-##                                   !IPRannotations%in%ECannotations &
-##                                   !IPRannotations%in%KEGGannotations
-##                                   ])
-
-Allannotations <- unique(c(GOannotations, ECannotations, KEGGannotations))#,  IPRannotations))
-nallannotations <- length(Allannotations)
-
-venn.diagram(list(GO   = match(GOannotations, Allannotations),
-                  EC   = match(ECannotations, Allannotations),
-                  KEGG = match(KEGGannotations, Allannotations)),
-                  ##                  IPR  = match(IPRannotations, Allannotations)),
-                  filename = "/home/ele/thesis/454/figures/annotataionVenn.tiff")
-
-
-Signn <- contig.df[contig.df$sigp.nn%in%"Y", "contig" ]
-Sighmm <- contig.df[contig.df$sigp.hmm%in%"S", "contig" ]
-Anchmm <- contig.df[contig.df$sigp.hmm%in%"A", "contig" ]
-
-nSignn <- length(Signn)
-nSighmm <- length(Sighmm)
-nAnchmm <- length(Anchmm)
-
-venn.diagram(list(nn.Signal   = match(Signn, contig.df$contig),
-                  hmm.Signal   = match(Sighmm, contig.df$contig),
-                  hmm.Anchor = match(Anchmm, contig.df$contig)),
-                  filename = "/home/ele/thesis/454/figures/signalVenn.tiff")
-
-@ 
 
 We obtained annotations with GO-terms for \Sexpr{nGO}, with EC-numbers
 for \Sexpr{nEC} and with KEGG-pathways for \Sexpr{nKEGG} TUGs using
@@ -890,48 +721,6 @@ respectively using hidden Markov models \cite{pmid9783217}.
 \subsection*{Consolidated results}
 
 \SweaveInput{../snp_analysis/overrepresentation.Rnw}
-
-<<nn.dn.ds, echo=FALSE, results=hide>>=
-
-nn.box <- ggplot(dn.ds.df, aes(dn.ds.df$sigp.nn, dn.ds.df$dn.ds)) + 
-  geom_boxplot() + 
-  scale_y_log10("dn/ds") +
-  scale_x_discrete("", 
-                   breaks=levels(dn.ds.df$sigp.nn),
-                   labels=c("No signal peptide",
-                     "Signal peptide")) +
-  opts(title = "SignalP neural networks prediction",
-       axis.title.x = theme_text(size = 15), 
-       axis.text.x = theme_text(size = 15))
-
-  
-hmm.box <- ggplot(dn.ds.df, aes(dn.ds.df$sigp.hmm, dn.ds.df$dn.ds)) + 
-  geom_boxplot() + 
-  scale_y_log10("dn/ds") +
-  scale_x_discrete("", 
-                   breaks=levels(dn.ds.df$sigp.hmm),
-                   labels=c("Signal anchor",
-                     "No signal peptide",
-                     "Signal peptide")) +
-  opts(title = "SignalP hmm prediction",
-       axis.title.x = theme_text(size = 15), 
-       axis.text.x = theme_text(size = 15))
-dev.off()
-
-png("../figures/sigp_dn_ds.png", width=2000, height=1000, res=144)
-
-# Set up the page
-grid.newpage()
-pushViewport(viewport(layout = grid.layout(1, 2)))
-vplayout <- function(x, y)
-    viewport(layout.pos.row = x, layout.pos.col = y)
-
-# Make each plot, in the correct location
-print(nn.box, vp = vplayout(1, 1 ))
-print(hmm.box, vp = vplayout(1, 2 ))
-
-dev.off() 
-@ 
 
 \subsubsection*{Signal-positives have higher dn/ds}
 
@@ -976,53 +765,6 @@ those obtained for the fullest data-set (data not shown).
 
 \subsubsection*{Novel in cladeIII have elevated dn/ds}
 
-<<novel.dn.ds, echo=FALSE, results=hide>>=
-novel.dn.ds.50 <- ggplot(subset(contig.df, !is.na(novel.50) & !is.na(dn.ds)),
-                         aes(novel.50, dn.ds)) +
-  geom_boxplot() +
-  scale_y_log10("dn/ds") +
-  scale_x_discrete("evolutionary conseravation at bitscore threshold of 50")
-
-novel.dn.ds.80 <- ggplot(subset(contig.df, !is.na(novel.80) & !is.na(dn.ds)),
-                                aes(novel.80, dn.ds)) +
-  geom_boxplot() +
-  scale_y_log10("dn/ds") +
-  scale_x_discrete("evolutionary conseravation at bitsore threshold of 80")
-
-# Set up the page
-
-png("../figures/conservation_dn_ds.png", width=2000, height=1000, res=144)
-grid.newpage()
-pushViewport(viewport(layout = grid.layout(1, 2)))
-vplayout <- function(x, y)
-    viewport(layout.pos.row = x, layout.pos.col = y)
-
-# Make each plot, in the correct location
-print(novel.dn.ds.50, vp = vplayout(1, 1 ))
-print(novel.dn.ds.80, vp = vplayout(1, 2 ))
-
-dev.off() 
-
-@ 
-
-<<novel.dn.ds.test, echo=FALSE, results=hide, cache=TRUE>>=
-dn.ds.df$novel.50 <- as.factor(dn.ds.df$novel.50)
-dn.ds.df$novel.80 <- as.factor(dn.ds.df$novel.80)
-
-novel.50.ndwd <- get.ndwd(dn.ds.df, dn.ds.df$dn.ds, dn.ds.df$novel.50)
-novel.50.kw.ph <- pvalue(novel.50.ndwd, method = "single-step")
-
-novel.80.ndwd <- get.ndwd(dn.ds.df, dn.ds.df$dn.ds, dn.ds.df$novel.80)
-novel.80.kw.ph <- pvalue(novel.80.ndwd, method = "single-step")
-
-
-u.novel.50 <- wilcox.test(dn.ds.df$dn.ds~
-                          as.factor(dn.ds.df$novel.50%in%"novel.in.clade3"))
-u.novel.80 <- wilcox.test(dn.ds.df$dn.ds~
-                          as.factor(dn.ds.df$novel.80%in%"novel.in.clade3"))
-
-@ 
-
 Figure conservation\_dn\_ds.png shows differences in dn/ds across the
 categories defined for evolutionary conservation. At a bitscore
 threshold of 80 sequences novel in clade III had a significantly
@@ -1033,59 +775,6 @@ same trend.
 
 \subsubsection*{Sequences novel in nematodes are enriched for
   Signal-positives}
-
-<<novel.nn, echo=FALSE, results=hide>>=
-
-nn.50 <- table(contig.df$novel.50, contig.df$sigp.nn)
-nn.80 <- table(contig.df$novel.80, contig.df$sigp.nn)
-
-hmm.50 <- table(contig.df$novel.50, contig.df$sigp.hmm)
-hmm.80 <- table(contig.df$novel.80, contig.df$sigp.hmm)
-
-
-nn.50.p <- ggplot(subset(contig.df, !is.na(novel.50) & !is.na(sigp.nn)),
-              aes(novel.50, fill=sigp.nn)) +
-       geom_bar(position="fill") + coord_polar(theta="y") +
-  scale_y_continuous("evolutionary conseravation categories at bitsore threshold of 50") +
-  scale_x_discrete("") +
-  opts(title="proportion of sequences in SignalP-nn category")
-
-
-nn.80.p <- ggplot(subset(contig.df, !is.na(novel.80) & !is.na(sigp.nn)),
-              aes(novel.80, fill=sigp.nn)) +
-  geom_bar(position="fill") + coord_polar(theta="y") +
-  scale_y_continuous("evolutionary conseravation categories at bitsore threshold of 80") +
-  scale_x_discrete("") +
-  opts(title="proportion of sequences in SignalP-nn category")
-
-hmm.50.p <- ggplot(subset(contig.df, !is.na(novel.50) & !is.na(sigp.hmm)),
-                   aes(novel.50, fill=sigp.hmm)) +
-  geom_bar(position="fill") + coord_polar(theta="y") +
-  scale_y_continuous("evolutionary conseravation categories at bitsore threshold of 50") +
-  scale_x_discrete("") +
-  opts(title="proportion of sequences in SignalP-hmm category")
-
-hmm.80.p <- ggplot(subset(contig.df, !is.na(novel.80) & !is.na(sigp.hmm)),
-                   aes(novel.80, fill=sigp.hmm)) +
-  geom_bar(position="fill") + coord_polar(theta="y") +
-  scale_y_continuous("evolutionary conseravation categories at bitsore threshold of 80") +
-  scale_x_discrete("") +
-  opts(title="proportion of sequences in SignalP-hmm category")
-
-png("../figures/signal_novel.png", width=2000, height=2000, res=144)
-grid.newpage()
-pushViewport(viewport(layout = grid.layout(2, 2)))
-vplayout <- function(x, y)
-    viewport(layout.pos.row = x, layout.pos.col = y)
-
-# Make each plot, in the correct location
-print(nn.50.p, vp = vplayout(1, 1 ))
-print(nn.80.p, vp = vplayout(1, 2 ))
-print(hmm.50.p, vp = vplayout(2, 1 ))
-print(hmm.80.p, vp = vplayout(2, 2 ))
-
-dev.off() 
-@ 
 
 Figure signal\_novel.png gives the proportions of
 \texttt{SignalP}-predictions for each category of evolutionary
@@ -1181,8 +870,8 @@ write.csv(contig.df[,readable], "../A_crassus_contigs_readable.csv")
 \section*{Discussion}
 
 We are providing transcriptome-data for the parasite
-\textit{A. crassus}, enabling a broad spectrum of molecular research on
-this ecologically and economically important species.
+\textit{A. crassus}, enabling a broad spectrum of molecular research
+on this ecologically and economically important species.
 
 We emphasize the importance of screening for xenobiotics. We consider
 this aspect important in any deep transcriptome project. First the
