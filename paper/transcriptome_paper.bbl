@@ -172,15 +172,10 @@ Balzer S, Malde K, Jonassen I: \textbf{{{S}ystematic exploration of error
   sources in pyrosequencing flowgram data}}. \emph{Bioinformatics} 2011,
   \textbf{27}:i304--309.
 
-\bibitem{pmid17446895}
-Emanuelsson O, Brunak S, von Heijne G, Nielsen H: \textbf{{{L}ocating proteins
-  in the cell using {T}arget{P}, {S}ignal{P} and related tools}}. \emph{Nat
-  Protoc} 2007, \textbf{2}:953--971.
-
-\bibitem{pmid9783217}
-Nielsen H, Krogh A: \textbf{{{P}rediction of signal peptides and signal anchors
-  by a hidden {M}arkov model}}. \emph{Proc Int Conf Intell Syst Mol Biol} 1998,
-  \textbf{6}:122--130.
+\bibitem{pmid21959131}
+Petersen TN, Brunak S, von Heijne G, Nielsen H: \textbf{{{S}ignal{P} 4.0:
+  discriminating signal peptides from transmembrane regions}}. \emph{Nat.
+  Methods} 2011, \textbf{8}:785--786.
 
 \bibitem{pmid20137071}
 Lennon NJ, Lintner RE, Anderson S, Alvarez P, Barry A, Brockman W, Daza R,
@@ -981,36 +976,22 @@ l>
 </bibl>
 
 <bibl id="B28">
-  <title><p>{{L}ocating proteins in the cell using {T}arget{P}, {S}ignal{P} and
-  related tools}</p></title>
+  <title><p>{{S}ignal{P} 4.0: discriminating signal peptides from transmembrane
+  regions}</p></title>
   <aug>
-    <au><snm>Emanuelsson</snm><fnm>O.</fnm></au>
+    <au><snm>Petersen</snm><fnm>T. N.</fnm></au>
     <au><snm>Brunak</snm><fnm>S.</fnm></au>
     <au><snm>Heijne</snm><fnm>G.</fnm></au>
     <au><snm>Nielsen</snm><fnm>H.</fnm></au>
   </aug>
-  <source>Nat Protoc</source>
-  <pubdate>2007</pubdate>
-  <volume>2</volume>
-  <fpage>953</fpage>
-  <lpage>-971</lpage>
+  <source>Nat. Methods</source>
+  <pubdate>2011</pubdate>
+  <volume>8</volume>
+  <fpage>785</fpage>
+  <lpage>-786</lpage>
 </bibl>
 
 <bibl id="B29">
-  <title><p>{{P}rediction of signal peptides and signal anchors by a hidden
-  {M}arkov model}</p></title>
-  <aug>
-    <au><snm>Nielsen</snm><fnm>H.</fnm></au>
-    <au><snm>Krogh</snm><fnm>A.</fnm></au>
-  </aug>
-  <source>Proc Int Conf Intell Syst Mol Biol</source>
-  <pubdate>1998</pubdate>
-  <volume>6</volume>
-  <fpage>122</fpage>
-  <lpage>-130</lpage>
-</bibl>
-
-<bibl id="B30">
   <title><p>{{A} scalable, fully automated process for construction of
   sequence-ready barcoded libraries for 454}</p></title>
   <aug>
@@ -1051,7 +1032,7 @@ l>
   <fpage>R15</fpage>
 </bibl>
 
-<bibl id="B31">
+<bibl id="B30">
   <title><p>{{S}equencing, de novo annotation and analysis of the first
   {A}nguilla anguilla transcriptome: {E}eel{B}ase opens new perspectives for
   the study of the critically endangered {E}uropean eel}</p></title>
@@ -1071,7 +1052,7 @@ l>
   <fpage>635</fpage>
 </bibl>
 
-<bibl id="B32">
+<bibl id="B31">
   <title><p>{{I}nhibition and facilitation of nucleic acid
   amplification}</p></title>
   <aug>
@@ -1084,7 +1065,7 @@ l>
   <lpage>-3751</lpage>
 </bibl>
 
-<bibl id="B33">
+<bibl id="B32">
   <title><p>{{T}he power of real-time {P}{C}{R}}</p></title>
   <aug>
     <au><snm>Valasek</snm><fnm>M. A.</fnm></au>
@@ -1097,7 +1078,7 @@ l>
   <lpage>-159</lpage>
 </bibl>
 
-<bibl id="B34">
+<bibl id="B33">
   <title><p>{{A} garter snake transcriptome: pyrosequencing, de novo assembly,
   and sex-specific differences}</p></title>
   <aug>
@@ -1116,7 +1097,7 @@ l>
   <fpage>694</fpage>
 </bibl>
 
-<bibl id="B35">
+<bibl id="B34">
   <title><p>{{D}iscovery and evaluation of candidate sex-determining genes and
   xenobiotics in the gonads of lake sturgeon ({A}cipenser
   fulvescens)}</p></title>
@@ -1132,7 +1113,7 @@ l>
   <lpage>-756</lpage>
 </bibl>
 
-<bibl id="B36">
+<bibl id="B35">
   <title><p>{{N}ext generation transcriptomes for next generation genomes using
   est2assembly}</p></title>
   <aug>
@@ -1147,7 +1128,7 @@ l>
   <fpage>447</fpage>
 </bibl>
 
-<bibl id="B37">
+<bibl id="B36">
   <title><p>{{S}eparation of sequences from host-pathogen interface using
   triplet nucleotide frequencies}</p></title>
   <aug>
@@ -1164,7 +1145,7 @@ l>
   <url>http://dx.doi.org/10.1016/j.fgb.2006.11.010</url>
 </bibl>
 
-<bibl id="B38">
+<bibl id="B37">
   <title><p>{{A} {D}e {N}ovo {E}xpression {P}rofiling of {A}nopheles funestus,
   {M}alaria {V}ector in {A}frica, {U}sing 454 {P}yrosequencing}</p></title>
   <aug>
@@ -1186,7 +1167,7 @@ l>
   <fpage>e17418</fpage>
 </bibl>
 
-<bibl id="B39">
+<bibl id="B38">
   <title><p>{{C}omparative genomics based on massive parallel transcriptome
   sequencing reveals patterns of substitution and selection across 10 bird
   species}</p></title>
@@ -1212,7 +1193,7 @@ l>
   <lpage>-276</lpage>
 </bibl>
 
-<bibl id="B40">
+<bibl id="B39">
   <title><p>{{C}ompletely phased genome sequencing through chromosome
   sorting}</p></title>
   <aug>
@@ -1227,7 +1208,7 @@ l>
   <lpage>-17</lpage>
 </bibl>
 
-<bibl id="B41">
+<bibl id="B40">
   <title><p>{Rapid, low-input, low-bias construction of shotgun fragment
   libraries by high-density in vitro transposition}</p></title>
   <aug>
@@ -1256,7 +1237,7 @@ l>
   <fpage>R119</fpage>
 </bibl>
 
-<bibl id="B42">
+<bibl id="B41">
   <title><p>{{T}he population genetics of d{N}/d{S}}</p></title>
   <aug>
     <au><snm>Kryazhimskiy</snm><fnm>S.</fnm></au>
@@ -1268,7 +1249,7 @@ l>
   <fpage>e1000304</fpage>
 </bibl>
 
-<bibl id="B43">
+<bibl id="B42">
   <title><p>{{H}igh-throughput gene and {S}{N}{P} discovery in {E}ucalyptus
   grandis, an uncharacterized genome}</p></title>
   <aug>
@@ -1286,7 +1267,7 @@ l>
   <fpage>312</fpage>
 </bibl>
 
-<bibl id="B44">
+<bibl id="B43">
   <title><p>{{P}opulation-level transcriptome sequencing of nonmodel organisms
   {E}rynnis propertius and {P}apilio zelicaon}</p></title>
   <aug>
@@ -1303,7 +1284,7 @@ l>
   <fpage>310</fpage>
 </bibl>
 
-<bibl id="B45">
+<bibl id="B44">
   <title><p>{{E}volutionary expressed sequence tag analysis of {D}rosophila
   female reproductive tracts identifies genes subjected to positive
   selection}</p></title>
@@ -1320,7 +1301,7 @@ l>
   <lpage>-1465</lpage>
 </bibl>
 
-<bibl id="B46">
+<bibl id="B45">
   <title><p>{{M}olecular evolution of m{R}{N}{A}: a method for estimating
   evolutionary rates of synonymous and amino acid substitutions from homologous
   nucleotide sequences and its application}</p></title>
@@ -1335,7 +1316,7 @@ l>
   <lpage>-36</lpage>
 </bibl>
 
-<bibl id="B47">
+<bibl id="B46">
   <title><p>{{E}volutionary {E}{S}{T} analysis identifies rapidly evolving male
   reproductive proteins in {D}rosophila}</p></title>
   <aug>
@@ -1352,7 +1333,7 @@ l>
   <lpage>-7379</lpage>
 </bibl>
 
-<bibl id="B48">
+<bibl id="B47">
   <title><p>{{D}igital gene expression analysis of the zebra finch
   genome}</p></title>
   <aug>
@@ -1367,7 +1348,7 @@ l>
   <fpage>219</fpage>
 </bibl>
 
-<bibl id="B49">
+<bibl id="B48">
   <title><p>{{I}nterpopulation patterns of divergence and selection across the
   transcriptome of the copepod {T}igriopus californicus}</p></title>
   <aug>
@@ -1382,7 +1363,7 @@ l>
   <lpage>-572</lpage>
 </bibl>
 
-<bibl id="B50">
+<bibl id="B49">
   <title><p>{{C}haracterizing {A}ncylostoma caninum transcriptome and exploring
   nematode parasitic adaptation}</p></title>
   <aug>
@@ -1399,7 +1380,7 @@ l>
   <fpage>307</fpage>
 </bibl>
 
-<bibl id="B51">
+<bibl id="B50">
   <title><p>{{S}equencing, bioinformatic characterization and expression
   pattern of a putative amino acid transporter from the parasitic cestode
   {E}chinococcus granulosus}</p></title>
@@ -1419,7 +1400,7 @@ l>
   <lpage>-9</lpage>
 </bibl>
 
-<bibl id="B52">
+<bibl id="B51">
   <title><p>Identification and characterization of the proteolytic enzymes in
   the developmental stages of the eel-pathogenic nematode Anguillicola
   crassus</p></title>
@@ -1436,7 +1417,7 @@ l>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/7682326</url>
 </bibl>
 
-<bibl id="B53">
+<bibl id="B52">
   <title><p>{{P}hylogenetic relationships of fungi, plantae, and animalia
   inferred from homologous comparison of ribosomal proteins}</p></title>
   <aug>
@@ -1450,7 +1431,7 @@ l>
   <lpage>-92</lpage>
 </bibl>
 
-<bibl id="B54">
+<bibl id="B53">
   <title><p>Signal sequence analysis of expressed sequence tags from the
   nematode Nippostrongylus brasiliensis and the evolution of secreted proteins
   in parasites</p></title>
@@ -1471,7 +1452,7 @@ l>
   <url>http://genomebiology.com/2004/5/6/R39</url>
 </bibl>
 
-<bibl id="B55">
+<bibl id="B54">
   <title><p>Needles in the {EST} Haystack: {Large-Scale} Identification and
   Analysis of {Excretory-Secretory} {(ES)} Proteins in Parasitic Nematodes
   Using Expressed Sequence Tags {(ESTs)}</p></title>
@@ -1487,7 +1468,7 @@ l>
   <fpage>e301</fpage>
 </bibl>
 
-<bibl id="B56">
+<bibl id="B55">
   <title><p>{{B}rugia malayi excreted/secreted proteins at the host/parasite
   interface: stage- and gender-specific proteomic profiling}</p></title>
   <aug>
@@ -1504,7 +1485,7 @@ l>
   <fpage>e410</fpage>
 </bibl>
 
-<bibl id="B57">
+<bibl id="B56">
   <title><p>{{S}tage- and gender-specific proteomic analysis of {B}rugia malayi
   excretory-secretory products}</p></title>
   <aug>
@@ -1517,7 +1498,7 @@ l>
   <fpage>e326</fpage>
 </bibl>
 
-<bibl id="B58">
+<bibl id="B57">
   <title><p>{{P}roteomic analysis of secretory products from the model
   gastrointestinal nematode {H}eligmosomoides polygyrus reveals dominance of
   {V}enom {A}llergen-{L}ike ({V}{A}{L}) proteins}</p></title>
@@ -1544,7 +1525,7 @@ l>
   <lpage>-1594</lpage>
 </bibl>
 
-<bibl id="B59">
+<bibl id="B58">
   <title><p>{{D}ifferential expression analysis for sequence count
   data}</p></title>
   <aug>
@@ -1557,7 +1538,7 @@ l>
   <fpage>R106</fpage>
 </bibl>
 
-<bibl id="B60">
+<bibl id="B59">
   <title><p>PHRAP documentation.</p></title>
   <aug>
     <au><snm>Green</snm><fnm>P</fnm></au>
@@ -1566,7 +1547,7 @@ l>
   <url>http://www.phrap.org</url>
 </bibl>
 
-<bibl id="B61">
+<bibl id="B60">
   <title><p>{{T}{I}{G}{R} {G}ene {I}ndices clustering tools ({T}{G}{I}{C}{L}):
   a software system for fast clustering of large {E}{S}{T}
   datasets}</p></title>
@@ -1592,7 +1573,7 @@ l>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/12651724</url>
 </bibl>
 
-<bibl id="B62">
+<bibl id="B61">
   <title><p>{{U}sing the mira{E}{S}{T} assembler for reliable and automated
   m{R}{N}{A} transcript assembly and {S}{N}{P} detection in sequenced
   {E}{S}{T}s}</p></title>
@@ -1613,7 +1594,7 @@ l>
   <url>http://www.ncbi.nlm.nih.gov/pmc/articles/PMC419793</url>
 </bibl>
 
-<bibl id="B63">
+<bibl id="B62">
   <title><p>{{C}{A}{P}3: {A} {D}{N}{A} sequence assembly program}</p></title>
   <aug>
     <au><snm>Huang</snm><fnm>X.</fnm></au>
@@ -1627,7 +1608,7 @@ l>
   <url>http://www.ncbi.nlm.nih.gov/pmc/articles/PMC310812</url>
 </bibl>
 
-<bibl id="B64">
+<bibl id="B63">
   <title><p>{NEMBASE:} a resource for parasitic nematode {ESTs}</p></title>
   <aug>
     <au><snm>Parkinson</snm><fnm>J</fnm></au>
@@ -1645,7 +1626,7 @@ l>
   <url>http://nar.oxfordjournals.org/cgi/content/abstract/32/suppl_1/D427</url>
 </bibl>
 
-<bibl id="B65">
+<bibl id="B64">
   <title><p>{prot4EST:} Translating Expressed Sequence Tags from neglected
   genomes</p></title>
   <aug>
@@ -1660,7 +1641,7 @@ l>
   <url>http://www.biomedcentral.com/1471-2105/5/187</url>
 </bibl>
 
-<bibl id="B66">
+<bibl id="B65">
   <title><p>{{T}he {U}niversal {P}rotein {R}esource ({U}ni{P}rot)
   2009}</p></title>
   <aug>
@@ -1809,7 +1790,7 @@ l>
   <lpage>-174</lpage>
 </bibl>
 
-<bibl id="B67">
+<bibl id="B66">
   <title><p>{ESTScan:} a program for detecting, evaluating, and reconstructing
   potential coding regions in {EST} sequences.</p></title>
   <aug>
@@ -1824,7 +1805,7 @@ l>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/10786296</url>
 </bibl>
 
-<bibl id="B68">
+<bibl id="B67">
   <title><p>annot8r: {GO,} {EC} and {KEGG} annotation of {EST}
   datasets</p></title>
   <aug>
@@ -1838,7 +1819,7 @@ l>
   <url>http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2324097</url>
 </bibl>
 
-<bibl id="B69">
+<bibl id="B68">
   <title><p>The Sequence Alignment/Map format and SAMtools.</p></title>
   <aug>
     <au><snm>Li</snm><fnm>H</fnm></au>
@@ -1859,7 +1840,7 @@ l>
   <lpage>2079</lpage>
 </bibl>
 
-<bibl id="B70">
+<bibl id="B69">
   <title><p>{{V}ar{S}can: variant detection in massively parallel sequencing of
   individual and pooled samples}</p></title>
   <aug>
@@ -1880,7 +1861,7 @@ l>
   <lpage>-2285</lpage>
 </bibl>
 
-<bibl id="B71">
+<bibl id="B70">
   <title><p>{{F}ast and accurate short read alignment with {B}urrows-{W}heeler
   transform}</p></title>
   <aug>
@@ -1894,7 +1875,7 @@ l>
   <lpage>-1760</lpage>
 </bibl>
 
-<bibl id="B72">
+<bibl id="B71">
   <title><p>R: A language and environment for statistical computing</p></title>
   <aug>
     <au><cnm>{R Development Core Team}</cnm></au>
@@ -1904,7 +1885,7 @@ l>
   <url>http://www.R-project.org</url>
 </bibl>
 
-<bibl id="B73">
+<bibl id="B72">
   <title><p>Sweave: Dynamic Generation of Statistical Reports Using Literate
   Data Analysis</p></title>
   <aug>
@@ -1920,7 +1901,7 @@ l>
   <note>ISBN 3-7908-1517-9</note>
 </bibl>
 
-<bibl id="B74">
+<bibl id="B73">
   <title><p>Caching code chunks in dynamic documents</p></title>
   <aug>
     <au><snm>Falcon</snm><fnm>S</fnm></au>
@@ -1934,7 +1915,7 @@ l>
   <url>http://www.springerlink.com/content/55411257n1473414</url>
 </bibl>
 
-<bibl id="B75">
+<bibl id="B74">
   <title><p>Lattice: Multivariate Data Visualization with R</p></title>
   <aug>
     <au><snm>Sarkar</snm><fnm>D</fnm></au>
@@ -1945,7 +1926,7 @@ l>
   <note>ISBN 978-0-387-75968-5</note>
 </bibl>
 
-<bibl id="B76">
+<bibl id="B75">
   <title><p>ggplot2: elegant graphics for data analysis</p></title>
   <aug>
     <au><snm>Wickham</snm><fnm>H</fnm></au>

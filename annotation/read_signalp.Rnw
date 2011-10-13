@@ -1,50 +1,34 @@
 <<sigp, echo=FALSE, cache=TRUE>>=
 
-signalip <- as.data.frame(read.delim("/home/ele/Data/454/annotation/signalp/Ac_p4ePro.signalip",
-                                     skip=1, sep="\t", header=FALSE,
+signalip <- as.data.frame(read.delim("/home/ele/Data/454/annotation/signalp/Ac_p4ePro.signalip4",
+                                     skip=2, sep="", header=FALSE,
                                      strip.white=TRUE, comment.char=";",
                                      as.is=TRUE))
 
-signalnn.names <- gsub("# ", "", signalip[1, 1])
-signalnn.names <- unlist(strsplit(signalnn.names, " +"))
+signalip.names <- c("contig", "Cmax", "pos", "Ymax",
+                    "pos", "Smax", "pos", "Smean", "D",
+                    "sigp.pred", "Dmaxcut", "Networks-used")
 
-signalhmm.names <- gsub("# ", "", signalip[1, 2])
-signalhmm.names <- unlist(strsplit(signalhmm.names, " +"))
-
-
-signalip <- signalip[!grepl("#", signalip[, 1]) , ]
-
-signalnn <- as.data.frame(do.call(rbind,
-                                  strsplit(as.character(signalip[, 1]), " +")))
-names(signalnn) <- signalnn.names
-
-signalhmm <- as.data.frame(do.call(rbind,
-                                  strsplit(as.character(signalip[, 2]), " +")))
-names(signalhmm) <- signalhmm.names
-
-sig.sum <- cbind(signalnn[ , c(1, 14)], signalhmm$"!")
-names(sig.sum) <- c("contig", "sigp.nn", "sigp.hmm")
+names(signalip) <- signalip.names
 
 ## translate the contig-names back
-sig.sum$contig <- gsub("Ac_", "Acrassus_", sig.sum$contig)
+signalip$contig <- gsub("Ac_", "Acrassus_", signalip$contig)
 
-contig.df <- merge(contig.df, sig.sum, all.x=TRUE)
+signalip$sigP <- ifelse(signalip$sigp.pred=="Y",
+                        paste("Yes", gsub("SignalP",
+                                        "", signalip$"Networks-used"),
+                              sep=""), "No")
 
+contig.df <- merge(contig.df, signalip[, c("contig", "sigP")], all.x=TRUE)
+
+sigP <- contig.df[contig.df$sigP%in%"Yes-noTM", "contig"]
+sigPtm <- contig.df[contig.df$sigP%in%"Yes-TM", "contig"]
 @ 
+
 
 <<signn.venn, echo=FALSE, results=hide>>=
 
-Signn <- contig.df[contig.df$sigp.nn%in%"Y", "contig" ]
-Sighmm <- contig.df[contig.df$sigp.hmm%in%"S", "contig" ]
-Anchmm <- contig.df[contig.df$sigp.hmm%in%"A", "contig" ]
-
-nSignn <- length(Signn)
-nSighmm <- length(Sighmm)
-nAnchmm <- length(Anchmm)
-
-venn.diagram(list(nn.Signal   = match(Signn, contig.df$contig),
-                  hmm.Signal   = match(Sighmm, contig.df$contig),
-                  hmm.Anchor = match(Anchmm, contig.df$contig)),
-                  filename = "/home/ele/thesis/454/figures/signalVenn.tiff")
+nsigP <- length(sigP)
+nsigPtm <- length(sigPtm)
 
 @ 

@@ -146,85 +146,31 @@ cc.dn.ds.AC.MN <- test.over.under.GOstats(subset(GO.dn.ds.AC,
 ## head(summary(kOver))
 ### WTF!!
 
+dn.ds.df$sigP <- as.factor(dn.ds.df$sigP)
+dn.ds.df.AC$sigP <- as.factor(dn.ds.df.AC$sigP)
 
 ## this for the easy nn-data
-u.test <- wilcox.test(dn.ds ~ sigp.nn, data=dn.ds.df)
-
-u.test.AC <- wilcox.test(dn.ds ~ sigp.nn, data=dn.ds.df.AC)
-
-## ## kruskal-Wallis tests, but they say nothing about kontrasts
-## ## in group comparisons
-## kw.test <- kruskal.test(dn.ds ~ sigp.hmm, data=dn.ds.df)
-
-## ### Kruskal-Wallis test, approximate exact p-value
-## kw.test2 <- kruskal_test(dn.ds ~ sigp.hmm, data = dn.ds.df, 
-##                    distribution = approximate(B = 9999))
-     
-### Nemenyi-Damico-Wolfe-Dunn test (joint ranking)
-### Hollander & Wolfe (1999), page 244 
-### (where Steel-Dwass results are given)
-get.ndwd <- function(data.df, test.var, fac.var) {
-  NDWD <- oneway_test(test.var ~ fac.var, data = data.df,
-                      ytrafo = function(data) trafo(data, numeric_trafo = rank),
-                      xtrafo = function(data) trafo(data, factor_trafo = function(x)
-                        model.matrix(~x - 1) %*% t(contrMat(table(x), "Tukey"))),
-                      teststat = "max", distribution = approximate(B = 90000))
-  return(NDWD)
-}
-
-ndwd <- get.ndwd(dn.ds.df, dn.ds.df$dn.ds, dn.ds.df$sigp.hmm)
-kw.ph <- pvalue(ndwd, method = "single-step")
-
-
-ndwd.AC <- get.ndwd(dn.ds.df.AC, dn.ds.df.AC$dn.ds, dn.ds.df.AC$sigp.hmm)
-kw.ph.AC <- pvalue(ndwd.AC, method = "single-step")
-
-t.test.hmm <- wilcox.test(dn.ds.df$dn.ds ~ as.logical(dn.ds.df$sigp.hmm%in%"S"))
-t.test.AC.hmm <- wilcox.test(dn.ds.df.AC$dn.ds ~ as.logical(dn.ds.df.AC$sigp.hmm%in%"S"))
+u.test <- wilcox.test(dn.ds ~ sigP, data=dn.ds.df)
+u.test.AC <- wilcox.test(dn.ds ~ sigP, data=dn.ds.df.AC)
 
 @   
 
 
 <<nn.dn.ds, echo=FALSE, results=hide>>=
 
-nn.box <- ggplot(dn.ds.df, aes(dn.ds.df$sigp.nn, dn.ds.df$dn.ds)) + 
+sigP.box <- ggplot(dn.ds.df.AC, aes(dn.ds.df.AC$sigP, dn.ds.df.AC$dn.ds)) + 
   geom_boxplot() + 
   scale_y_log10("dn/ds") +
   scale_x_discrete("", 
-                   breaks=levels(dn.ds.df$sigp.nn),
+                   breaks=levels(dn.ds.df.AC$sigP),
                    labels=c("No signal peptide",
                      "Signal peptide")) +
   opts(title = "SignalP neural networks prediction",
        axis.title.x = theme_text(size = 15), 
-       axis.text.x = theme_text(size = 15))
+       axis.text.x = theme_text(size = 15)) +
+  geom_jitter()
 
-  
-hmm.box <- ggplot(dn.ds.df, aes(dn.ds.df$sigp.hmm, dn.ds.df$dn.ds)) + 
-  geom_boxplot() + 
-  scale_y_log10("dn/ds") +
-  scale_x_discrete("", 
-                   breaks=levels(dn.ds.df$sigp.hmm),
-                   labels=c("Signal anchor",
-                     "No signal peptide",
-                     "Signal peptide")) +
-  opts(title = "SignalP hmm prediction",
-       axis.title.x = theme_text(size = 15), 
-       axis.text.x = theme_text(size = 15))
-dev.off()
-
-png("../figures/sigp_dn_ds.png", width=2000, height=1000, res=144)
-
-# Set up the page
-grid.newpage()
-pushViewport(viewport(layout = grid.layout(1, 2)))
-vplayout <- function(x, y)
-    viewport(layout.pos.row = x, layout.pos.col = y)
-
-# Make each plot, in the correct location
-print(nn.box, vp = vplayout(1, 1 ))
-print(hmm.box, vp = vplayout(1, 2 ))
-
-dev.off() 
+ggsave("../figures/sigp_dn_ds.png", sigP.box)
 @ 
 
 <<novel.dn.ds, echo=FALSE, results=hide>>=
@@ -257,72 +203,70 @@ dev.off()
 @ 
 
 <<novel.dn.ds.test, echo=FALSE, results=hide, cache=TRUE>>=
-dn.ds.df$novel.50 <- as.factor(dn.ds.df$novel.50)
-dn.ds.df$novel.80 <- as.factor(dn.ds.df$novel.80)
 
-novel.50.ndwd <- get.ndwd(dn.ds.df, dn.ds.df$dn.ds, dn.ds.df$novel.50)
+### Nemenyi-Damico-Wolfe-Dunn test (joint ranking)
+  ### Hollander & Wolfe (1999), page 244
+  ### (where Steel-Dwass results are given)
+get.ndwd <- function(data.df, test.var, fac.var) {
+  NDWD <- oneway_test(test.var ~ fac.var, data = data.df,
+                      ytrafo = function(data) trafo(data, numeric_trafo = rank),
+                      xtrafo = function(data) trafo(data, factor_trafo = function(x)
+                        model.matrix(~x - 1) %*% t(contrMat(table(x), "Tukey"))),
+                      teststat = "max", distribution = approximate(B = 90000))
+  return(NDWD)
+}
+
+
+dn.ds.df.AC$novel.50 <- as.factor(dn.ds.df.AC$novel.50)
+dn.ds.df.AC$novel.80 <- as.factor(dn.ds.df.AC$novel.80)
+
+novel.50.ndwd <- get.ndwd(dn.ds.df.AC, dn.ds.df.AC$dn.ds, dn.ds.df.AC$novel.50)
 novel.50.kw.ph <- pvalue(novel.50.ndwd, method = "single-step")
 
-novel.80.ndwd <- get.ndwd(dn.ds.df, dn.ds.df$dn.ds, dn.ds.df$novel.80)
+novel.80.ndwd <- get.ndwd(dn.ds.df.AC, dn.ds.df.AC$dn.ds, dn.ds.df.AC$novel.80)
 novel.80.kw.ph <- pvalue(novel.80.ndwd, method = "single-step")
 
+u.novel.50 <- wilcox.test(dn.ds.df.AC$dn.ds~
+                          as.factor(dn.ds.df.AC$novel.50%in%"novel.in.clade3"), alternative="less")
 
-u.novel.50 <- wilcox.test(dn.ds.df$dn.ds~
-                          as.factor(dn.ds.df$novel.50%in%"novel.in.clade3"))
-u.novel.80 <- wilcox.test(dn.ds.df$dn.ds~
-                          as.factor(dn.ds.df$novel.80%in%"novel.in.clade3"))
-
+u.novel.80 <- wilcox.test(dn.ds.df.AC$dn.ds~
+                          as.factor(dn.ds.df.AC$novel.80%in%"novel.in.clade3"), alternative="less")
 @ 
 
 <<novel.nn, echo=FALSE, results=hide>>=
 
-nn.50 <- table(contig.df$novel.50, contig.df$sigp.nn)
-nn.80 <- table(contig.df$novel.80, contig.df$sigp.nn)
+sigP.50 <- table(contig.df$novel.50=="novel.in.nematoda", grepl("Yes*", contig.df$sigP))
+sigP.80 <- table(contig.df$novel.80=="novel.in.nematoda", grepl("Yes*", contig.df$sigP))
 
-hmm.50 <- table(contig.df$novel.50, contig.df$sigp.hmm)
-hmm.80 <- table(contig.df$novel.80, contig.df$sigp.hmm)
-
-
-nn.50.p <- ggplot(subset(contig.df, !is.na(novel.50) & !is.na(sigp.nn)),
-              aes(novel.50, fill=sigp.nn)) +
+sigP.50.p <- ggplot(subset(contig.df, !is.na(novel.50) & !is.na(sigP)),
+              aes(novel.50, fill=sigP)) +
        geom_bar(position="fill") + coord_polar(theta="y") +
   scale_y_continuous("evolutionary conseravation categories at bitsore threshold of 50") +
   scale_x_discrete("") +
   opts(title="proportion of sequences in SignalP-nn category")
 
 
-nn.80.p <- ggplot(subset(contig.df, !is.na(novel.80) & !is.na(sigp.nn)),
-              aes(novel.80, fill=sigp.nn)) +
+sigP.80.p <- ggplot(subset(contig.df, !is.na(novel.80) & !is.na(sigP)),
+              aes(novel.80, fill=sigP)) +
   geom_bar(position="fill") + coord_polar(theta="y") +
   scale_y_continuous("evolutionary conseravation categories at bitsore threshold of 80") +
   scale_x_discrete("") +
   opts(title="proportion of sequences in SignalP-nn category")
 
-hmm.50.p <- ggplot(subset(contig.df, !is.na(novel.50) & !is.na(sigp.hmm)),
-                   aes(novel.50, fill=sigp.hmm)) +
-  geom_bar(position="fill") + coord_polar(theta="y") +
-  scale_y_continuous("evolutionary conseravation categories at bitsore threshold of 50") +
-  scale_x_discrete("") +
-  opts(title="proportion of sequences in SignalP-hmm category")
-
-hmm.80.p <- ggplot(subset(contig.df, !is.na(novel.80) & !is.na(sigp.hmm)),
-                   aes(novel.80, fill=sigp.hmm)) +
-  geom_bar(position="fill") + coord_polar(theta="y") +
-  scale_y_continuous("evolutionary conseravation categories at bitsore threshold of 80") +
-  scale_x_discrete("") +
-  opts(title="proportion of sequences in SignalP-hmm category")
-
-png("../figures/signal_novel.png", width=2000, height=2000, res=144)
+png("../figures/signal_novel.png", width=2000, height=1000, res=144)
 grid.newpage()
-pushViewport(viewport(layout = grid.layout(2, 2)))
+pushViewport(viewport(layout = grid.layout(1, 2)))
 vplayout <- function(x, y)
     viewport(layout.pos.row = x, layout.pos.col = y)
 
 # Make each plot, in the correct location
-print(nn.50.p, vp = vplayout(1, 1 ))
-print(nn.80.p, vp = vplayout(1, 2 ))
-print(hmm.50.p, vp = vplayout(2, 1 ))
-print(hmm.80.p, vp = vplayout(2, 2 ))
+print(sigP.50.p, vp = vplayout(1, 1 ))
+print(sigP.80.p, vp = vplayout(1, 2 ))
 
 dev.off() 
+
+## ## wtf this could be really, really bad, is it?
+## summary(dn.ds~cov8.nsyn.sites+cov8.syn.sites, data=dn.ds.df.AC)
+## summary(dn.ds~nsyn.sites+syn.sites, data=dn.ds.df.AC)
+
 @ 
