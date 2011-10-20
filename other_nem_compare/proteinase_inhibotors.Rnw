@@ -80,4 +80,46 @@ system("/home/ele/tools/clustalw -INFILE=/home/ele/Data/454/biology/phylo/serpin
 
 ## BM.serpins <- c("UniRef100_A8NGJ9", "UniRef100_A8NJS8", "UniRef100_A8NTC6", "UniRef100_A8NTC9", "UniRef100_A8NTX7", "UniRef100_A8P7H0", "UniRef100_A8PHV1", "UniRef100_A8PHV3", "UniRef100_A8PHV4", "UniRef100_A8PHV8", "UniRef100_A8PJW0", "UniRef100_A8Q733", "UniRef100_O18656", "UniRef100_Q17158")
 
+## Cystatins from Gregory and Maizels 2008
+GregMai.cys <- c("Bmalayi_CPI_1" = "P90698", "Bmalayi_CPI_2" = "O16159",
+                 "Lsigmodontis_CPI" = "Q9NH95", "Aviteae_CPI" = "Q17108",
+                 "Ovolvulus_CPI_1" = "Q9U9A1", "Ovolvulus_CPI_2" = "P22085",
+                 "Nbrasiliensis_CPI" = "Q966W0", "Hcontortus_CPI" = "O44396",
+                 "Celegans_CPI_1" = "Q9TYY2", "Celegans_CPI_2" = "17562818",
+                 "CST11_HUMAN" = "Q9H112", "CST9_HUMAN" = "Q9H4G1", "CYTA_SARPE" = "P31727",
+                 "CYTC_HUMAN" = "P01034", "CYTD_HUMAN" = "P28325", "CYTF_HUMAN" = "O76096",
+                 "CYTL_DROME" = "P23779", "CYTM_HUMAN" = "Q15828", "CYTS_HUMAN" = "P01036",
+                 "CYTT_HUMAN" = "P09228", "CYT_CHICK" = "P01038", "CYT_CYPCA" = "P35481",
+                 "CYT_NAJAT"= "P81714", "CYT_BITAR" = "P08935",
+                 "CYT_COTJA" = "P81061", "Omoubata_cystatin_1" = "Q6QZV5",
+                 "ORNMO_O_moubata_cystatin_2" = "Q6QD55", 
+                 "IXOSC_Iscapularis_CPI" = "Q8MVB6", "IXOSC_I_ricinus_CPI" = "Q86GB6",
+                 "Danio_cyc" = "225543303", "Omykiss_cy" = "1079570")
+
+
+## These are accessions for nuclotide sequence in the above pub??
+## "IXORI_Hechinata_CPI" = "CO539721", "Tnigroviridis_CPI" = "CR648555",
+## "Trubripes_CPI" = "CA845225")
+
+## These are not found 
+## "ORNMO_Iscapularis_cystatin-2" = "CPIQ4PMS6",
+
+library(annotate)
+
+GregMai.cys.seq <- lapply(GregMai.cys, getSEQ)
+cy.GM.fasta <- c(GregMai.cys.seq, Ac.cy.fasta)
+write.sequence(cy.GM.fasta, "/home/ele/Data/454/biology/phylo/GM.fasta")
+system("/home/ele/tools/clustalw -INFILE=/home/ele/Data/454/biology/phylo/GM.fasta -ALIGN -OUTPUT=NEXUS")
+
+bm_mif1.seq <- read.sequences("/home/ele/Data/454/biology/phylo/Bm_mif1_homologs.fasta")
+names(bm_mif1.seq) <- gsub(".*OS=", "", names(bm_mif1.seq))
+names(bm_mif1.seq) <- sub(" ", "_", names(bm_mif1.seq))
+names(bm_mif1.seq) <- gsub(" .*", "", names(bm_mif1.seq))
+
+mif1.hom <- contig.df[contig.df$Bm.hit%in%"UniRef100_P91850", "contig"]
+mif2.hom <- contig.df[contig.df$Bm.hit%in%"UniRef100_Q9NAS2", "contig"]
+
+mif1.fasta <- c(Ac.pep[names(Ac.pep)%in%mif1.hom],  bm_mif1.seq)
+write.sequence(mif1.fasta, "/home/ele/Data/454/biology/phylo/mif1.fasta")
+
 @ 

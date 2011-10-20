@@ -41,5 +41,9 @@ revcom <- function(x){
   return(chartr("acgtryswkmbdhvnxACGTRYSWKMBDHVNX", "tgcayrswmkvhdbnxTGCAYRSWMKVHDBNX", r))
 }
 
-
-
+give.annot <- function (contigs) {
+  g <- GO.annot[GO.annot$pept_id%in%contigs, ]
+  e <- EC.annot[EC.annot$pept_id%in%contigs, ]
+  k <- KEGG.annot[KEGG.annot$pept_id%in%contigs, ]
+  return(list(GO=as.character(g$descr), EC=as.character(e$descr), KEGG=as.character(k$descr)))
+}
