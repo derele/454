@@ -36,6 +36,16 @@ contig.df <- merge(contig.df, ER[ , c("contig", "contamination")], all.x=TRUE)
 contig.df$contamination[is.na(contig.df$contamination)] <- "valid_no_hit"
 contig.df$contamination[contig.df$contamination=="nempep4"] <- "valid_nempep"
 
+## Patches ## patches ## patches
+
+bm.rRNA.contigs <- contig.df[grepl("A8Q5G4|A8PJZ7|A8NLF8|A8PEQ0",
+                                   contig.df$Bm.hit), "contig"]
+
+contig.df[contig.df$contig%in%bm.rRNA.contigs, "contamination"] <- "AcrRNA"
+
+## a valid Ce protein
+contig.df[contig.df$contig%in%"Acrassus_rep_c255", "contamination"] <- "valid_nempep"
+
 ## nt ###################################################################
 nt <- read.blast.best("/home/ele/Data/454/post_assembly_screening/fullest_vs_nt.blt")
 gi.nt.blast <- sub("gi\\|(\\d+)\\|.*", "\\1", nt$V2)

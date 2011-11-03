@@ -14,15 +14,34 @@ names(signalip) <- signalip.names
 ## translate the contig-names back
 signalip$contig <- gsub("Ac_", "Acrassus_", signalip$contig)
 
-signalip$sigP <- ifelse(signalip$sigp.pred=="Y",
-                        paste("Yes", gsub("SignalP",
-                                        "", signalip$"Networks-used"),
-                              sep=""), "No")
+sum.sigP <- function (sigp.obj) {
+  ifelse(sigp.obj$sigp.pred=="Y",
+         paste("Yes", gsub("SignalP",
+                           "", sigp.obj$"Networks-used"),
+               sep=""), "No")}
+
+signalip$sigP <- sum.sigP(signalip)
 
 contig.df <- merge(contig.df, signalip[, c("contig", "sigP")], all.x=TRUE)
 
 sigP <- contig.df[contig.df$sigP%in%"Yes-noTM", "contig"]
 sigPtm <- contig.df[contig.df$sigP%in%"Yes-TM", "contig"]
+
+
+signalip.bm <- as.data.frame(read.delim("/home/ele/Data/454/annotation/signalp/uniref100_bm.signalp4",
+                                     skip=2, sep="", header=FALSE,
+                                     strip.white=TRUE, comment.char=";",
+                                     as.is=TRUE))
+names(signalip.bm) <- signalip.names
+signalip.bm$sigP <- sum.sigP(signalip.bm)
+
+signalip.ce <- as.data.frame(read.delim("/home/ele/Data/454/annotation/signalp/wormpep220.signalp4",
+                                        skip=2, sep="", header=FALSE,
+                                        strip.white=TRUE, comment.char=";",
+                                        as.is=TRUE))
+names(signalip.ce) <- signalip.names
+signalip.ce$sigP <- sum.sigP(signalip.ce)
+
 @ 
 
 

@@ -573,7 +573,7 @@ CR <- melt(CR, id.vars=c("V1", "V2", "V3","V4","V5"))
 Bm.all <- covred.common.blast("/home/ele/Data/454/assemblies/blasts/ALL.fasta_vs_Bm.blt", "/home/ele/db/blastdb/uniref100/uniref100_bm.fasta")
 Bm.all <- cbind(Bm.all, db="B. malayi")
 
-Ce.all <- covred.common.blast("/home/ele/Data/454/assemblies/blasts/ALL.fasta_vs_Ce.blt", "/home/ele/db/blastdb/wormpep217/wormpep217.fasta")
+Ce.all <- covred.common.blast("/home/ele/Data/454/assemblies/blasts/ALL.fasta_vs_Ce.blt", "/home/ele/db/blastdb/wormpep220/wormpep220.fasta")
 Ce.all <- cbind(Ce.all, db="C. elegans")
 
 ALL <- rbind(Ce.all, Bm.all)
@@ -949,7 +949,6 @@ contigs before converting the \texttt{sam}-file.
 \end{itemize}
 
 \subsection{Example use of the contig-measurements}
-
 
 Based on these measurements the emergence of a given contig from the
 assembly process can be reconstructed. Table \ref{tab:ex-me} gives an

@@ -10,6 +10,8 @@ eelrRNA$dbhit <- "eelrRNA"
 
 AcrRNA <- read.blast.best("/home/ele/Data/454/pre_assembly_screening/trimmed_all_vs_AcrRNA.blt")
 AcrRNA$dbhit <- "AcrRNA"
+AcrRNA[grepl("Cerco|Flag", AcrRNA$V2), "dbhit"] <- "Cercozoa"
+
 
 B <- rbind(eelmRNA, eelrRNA, AcrRNA)
 
@@ -60,8 +62,10 @@ dev.off()
 
 <<count.screened, echo=FALSE, cach=TRUE>>=
 
-pre.screen.tab <- table(R$lib, R$dbhit)
-names(pre.screen.tab) <- c("A. crassus rRNA", "host", "host rRNA", "valid (assembled)")
+pre.screen.tab <- as.data.frame.matrix(table(R$lib, R$dbhit))
+pre.screen.span <- rbind( by(R, list(R$lib, R$dbhit), function (x) sum(nchar(x$seq))))
+
+pre.screen.tab <- cbind(pre.screen.tab, valid.span=pre.screen.span[,"valid"])
 
 nscreened <- nrow(R[R$dbhit%in%c("eelrRNA", "AcrRNA", "eelmRNA"), ])
 nscreened.r <- nrow(R[R$dbhit%in%c("eelrRNA", "AcrRNA"),])
@@ -73,5 +77,8 @@ AcrRNA_cerco <- AcrRNA_vs_nt[grepl("Cerco|Flag", AcrRNA_vs_nt$V1), ]
 cerco <- cbind( sequence.identifier=as.character(AcrRNA_cerco$V2), 
                 sequence.identitiy=AcrRNA_cerco$V3,
                 hsp.length=AcrRNA_cerco$V8-AcrRNA_cerco$V7)
+
+
+
 
 @ 

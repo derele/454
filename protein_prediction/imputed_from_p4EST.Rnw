@@ -84,10 +84,16 @@ stopcods <- table(contig.df$stopcod[contig.df$stopcod%in%c("TAG", "TAA", "TGA")]
 
 same.same <- summary.factor(tolower(as.character(contig.df$imp))==tolower(as.character(contig.df$seq)))
 
-
 imp.pile <- read.table(pipe("cut -f1,2,4 /home/ele/Data/454/mapping/all_vs_full_imputed_uq.pileup"))
 names(imp.pile) <- c("contig", "base", "imputed.coverage")
 per.con.imp <- data.frame(imputed.coverage= tapply(imp.pile$imputed.coverage, imp.pile$contig, mean, rm.na=T))
 contig.df <- merge(contig.df, per.con.imp, by.x="contig", by.y="row.names", all.x=TRUE)
+
+
+## finally also add the peptide sequence
+Ac.pep <- read.sequences("/home/ele/Data/454/prot4EST/A.crassus_p4ePro.fsa")
+names(Ac.pep) <- (gsub(" .*|_\\d.*|\t.*|\\s.*" , "", names(Ac.pep)))
+
+contig.df <- merge(contig.df, as.data.frame(Ac.pep), by.x="contig", by.y="row.names", all.x=TRUE)
 
 @

@@ -1,0 +1,137 @@
+
+<<echo=FALSE, cache=TRUE>>=
+
+nempep.cystatins <- read.delim("/home/ele/thesis/454/other_nem_compare/cystatins.csv", sep=",")
+## notice difference between cluster identifiers and paptide identifiers
+nempep.cystatins$Pept.ID <- gsub("(\\w)(\\w)C", "\\1\\2P", nempep.cystatins$Cluster.ID)
+nempep.cystatins <- nempep.cystatins[!grepl("^TSP", nempep.cystatins$Pept.ID),]
+
+nempep.serpins <- read.delim("/home/ele/thesis/454/other_nem_compare/serpins.csv", sep=",")
+nempep.serpins$Pept.ID <- gsub("(\\w)(\\w)C", "\\1\\2P", nempep.serpins$Cluster.ID)
+
+## this would also work with cy.names or sp.names from the annotation of the nuc file
+CY <- merge(BL.nempep, nempep.cystatins)
+SP <- merge(BL.nempep, nempep.serpins)
+
+annot.cy <- GO.annot[grepl("cystein.*inhibitor", GO.annot$descr, ignore.case=TRUE), "pept_id" ]
+Ac.cy.fasta <- Ac.pep[names(Ac.pep)%in%c(as.character(CY$V1), annot.cy)]
+
+nem.cy.fasta <- nempep.pep[names(nempep.pep)%in%nempep.cystatins$Pept.ID]
+
+## after looking at the alignmet these sequences are too divergent
+too.divergent.cy <- c("BMP05811", "LSP01787", "OCP00005", "OVP09801",
+                      "CJP18096", "XIP02173",
+                      "BMP17818", "ASP15515", "OVP03952", "BMP00199", "RSP01191")
+## from the Ac possible also "Contig7873" "GFPMTW202CANF3" "FSIONBI01B15XA"
+
+## manual according to  missingness of conserved residues
+short.missing.cy <- c("AYP00805", "BMP12405", "BMP12402", "BMP12403",
+                      "HCP02131", "DAP00723", "CBP10840", "CBP15736", "RSP02311")
+## from Ac possible also "GKYPR1L01ASQ8N"
+
+short.cy <- names(nem.cy.fasta)[nchar(nem.cy.fasta)<100]
+
+bad.cy <- c(too.divergent.cy, short.missing.cy, short.cy)
+
+## this contig has probably wrong 5' ... but others may also...
+## cy.fasta["Contig2444"] <- substring(cy.fasta["Contig2444"], 122, nchar(cy.fasta["Contig2444"]))
+
+nem.cy.fasta <- nem.cy.fasta[!duplicated(names(nem.cy.fasta))]
+
+cy.print.fasta <- c(nem.cy.fasta[!names(nem.cy.fasta)%in%bad.cy], Ac.cy.fasta)
+write.sequence(cy.print.fasta, "/home/ele/Data/454/biology/phylo/cystatins.fasta")
+
+system("/home/ele/tools/clustalw -INFILE=/home/ele/Data/454/biology/phylo/cystatins.fasta -ALIGN -OUTPUT=NEXUS 1>/dev/null")
+
+## library(ape)
+
+## cy.alignment <- as.alignment(read.nexus.data("/home/ele/Data/454/biology/phylo/cystatins.nxs"))
+## ## remove the first 51 postitons
+
+## cy.alignment$seq <- substring(cy.alignment$seq, 52, nchar(cy.alignment$seq))
+
+## write.nexus.data(cy.alignment, "/home/ele/Data/454/biology/phylo/cystatins.nxs")
+
+
+## system("/home/ele/tools/clustalw -INFILE=/home/ele/Data/454/biology/phylo/cystatins.aln -BOOTSTRAP")
+
+## serpins
+
+sp.fasta <- c(nempep.pep[names(nempep.pep)%in%serpins$Pept.ID], Ac.pep[names(Ac.pep)%in%SP$V1])
+sp.fasta <- sp.fasta[!duplicated(names(sp.fasta))]
+
+write.sequence(sp.fasta, "/home/ele/Data/454/biology/phylo/serpins.fasta")
+
+system("/home/ele/tools/clustalw -INFILE=/home/ele/Data/454/biology/phylo/serpins.fasta -ALIGN -OUTPUT=NEXUS 1>/dev/null")
+
+
+## BM.cystatins <- c("UniRef100_A8P9W7", "UniRef100_A8QH93", "UniRef100_O16159", "UniRef100_P90698")
+
+## BM.serpins <- c("UniRef100_A8NGJ9", "UniRef100_A8NJS8", "UniRef100_A8NTC6", "UniRef100_A8NTC9", "UniRef100_A8NTX7", "UniRef100_A8P7H0", "UniRef100_A8PHV1", "UniRef100_A8PHV3", "UniRef100_A8PHV4", "UniRef100_A8PHV8", "UniRef100_A8PJW0", "UniRef100_A8Q733", "UniRef100_O18656", "UniRef100_Q17158")
+
+## Cystatins from Gregory and Maizels 2008
+GregMai.cys <- c("Bmalayi_CPI_1" = "P90698", "Bmalayi_CPI_2" = "O16159",
+                 "Lsigmodontis_CPI" = "Q9NH95", "Aviteae_CPI" = "Q17108",
+                 "Ovolvulus_CPI_1" = "Q9U9A1", "Ovolvulus_CPI_2" = "P22085",
+                 "Nbrasiliensis_CPI" = "Q966W0", "Hcontortus_CPI" = "O44396",
+                 "Celegans_CPI_1" = "Q9TYY2", "Celegans_CPI_2" = "17562818",
+                 "CST11_HUMAN" = "Q9H112", "CST9_HUMAN" = "Q9H4G1", "CYTA_SARPE" = "P31727",
+                 "CYTC_HUMAN" = "P01034", "CYTD_HUMAN" = "P28325", "CYTF_HUMAN" = "O76096",
+                 "CYTL_DROME" = "P23779", "CYTM_HUMAN" = "Q15828", "CYTS_HUMAN" = "P01036",
+                 "CYTT_HUMAN" = "P09228", "CYT_CHICK" = "P01038", "CYT_CYPCA" = "P35481",
+                 "CYT_NAJAT"= "P81714", "CYT_BITAR" = "P08935",
+                 "CYT_COTJA" = "P81061", "Omoubata_cystatin_1" = "Q6QZV5",
+                 "ORNMO_O_moubata_cystatin_2" = "Q6QD55", 
+                 "IXOSC_Iscapularis_CPI" = "Q8MVB6", "IXOSC_I_ricinus_CPI" = "Q86GB6",
+                 "Danio_cyc" = "225543303", "Omykiss_cy" = "1079570")
+
+
+## These are accessions for nuclotide sequence in the above pub??
+## "IXORI_Hechinata_CPI" = "CO539721", "Tnigroviridis_CPI" = "CR648555",
+## "Trubripes_CPI" = "CA845225")
+
+## These are not found 
+## "ORNMO_Iscapularis_cystatin-2" = "CPIQ4PMS6",
+
+library(annotate)
+
+GregMai.cys.seq <- lapply(GregMai.cys, getSEQ)
+cy.GM.fasta <- c(GregMai.cys.seq, Ac.cy.fasta)
+write.sequence(cy.GM.fasta, "/home/ele/Data/454/biology/phylo/GM.fasta")
+system("/home/ele/tools/clustalw -INFILE=/home/ele/Data/454/biology/phylo/GM.fasta -ALIGN -OUTPUT=NEXUS")
+
+bm_mif1.seq <- read.sequences("/home/ele/Data/454/biology/phylo/Bm_mif1_homologs.fasta")
+names(bm_mif1.seq) <- gsub(".*OS=", "", names(bm_mif1.seq))
+names(bm_mif1.seq) <- sub(" ", "_", names(bm_mif1.seq))
+names(bm_mif1.seq) <- gsub(" .*", "", names(bm_mif1.seq))
+
+mif1.hom <- contig.df[contig.df$Bm.hit%in%"UniRef100_P91850", "contig"]
+mif2.hom <- contig.df[contig.df$Bm.hit%in%"UniRef100_Q9NAS2", "contig"]
+
+mif1.fasta <- c(Ac.pep[names(Ac.pep)%in%mif1.hom],  bm_mif1.seq)
+write.sequence(mif1.fasta, "/home/ele/Data/454/biology/phylo/mif1.fasta")
+
+@ 
+
+<<brugia.comp, echo=FALSE>>=
+we.syn.purin <- GO.annot[grepl("purine.*synthetic", GO.annot$descr),]
+## we don't do heme biosynthesis like all (?) nematodes 
+we.syn.riboflavin <- GO.annot[grepl("riboflavin.*synthetic", GO.annot$descr),]
+
+we.riboflav.contigs <- unique(we.syn.riboflavin$pept_id)
+we.purin.contigs <- unique(we.syn.purin$pept_id)
+
+
+## purin and riboflavin de-novo syntesis should be absent in brugia  
+GO.brugia <- read.delim("/home/ele/Data/454/annotation/annot8r/output_Bm/GO.csv", sep=",", header=FALSE)
+names(GO.brugia) <- c("pept_id", "go_term", "pcf", "descr", "slim", "besthit", "bestscore", "bestev", "hitnum", "maxhits", "fraction") 
+
+brugia.syn.riboflavin <- GO.brugia[grepl("riboflavin.*synthetic", GO.brugia$descr),]
+brugia.syn.purin <- GO.brugia[grepl("purin.*synthetic", GO.brugia$descr),]
+
+@ 
+
+<<wolbachia, echo=FALSE>>=
+wolbachia.df <- contig.df[contig.df$family.nr%in%"Anaplasmataceae",readable]
+
+@ 

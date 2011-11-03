@@ -336,6 +336,11 @@ library(multcomp)
 
 library(DESeq)
 library(ShortRead)
+library(biomaRt)
+
+library(BioIDMapper)
+
+library(Rhh)
 
 source("/home/ele/thesis/454/common_R_functions.R")
 @ 
@@ -630,9 +635,9 @@ to classify every base as to its ``response'' to mutation. We used
 this classification to compute the number of synonymous and
 non-synonymous sites in a given TUG. In total \Sexpr{total.nsyn}
 non-synonymous and \Sexpr{total.syn} sites were found in ORFs, of
-these \Sexpr{round(total.cov8.nsyn, 2)} non-synonymous sites and
-\Sexpr{round(total.cov8.syn, 2)} synonymous sites were covered at least 8-fold,
-and thus available for SNP-calling.
+these \Sexpr{round(total.cov8.nsyn,2)} non-synonymous sites and
+\Sexpr{round(total.cov8.syn,2)} synonymous sites were covered at
+least 8-fold, and thus available for SNP-calling.
 
 For the raw set of candidate-SNPs the ratio of synonymous
 polymorphisms per synonymous site to non-synonymous polymorphisms per
@@ -688,9 +693,11 @@ bases and \Sexpr{round(n.per.n.cov8.base, 2)} non-synonymous SNPs per
 
   It should be noted that the overall dn/ds value of
   \Sexpr{perc.dn.ds} is different from the mean dn/ds value of contigs
-  \Sexpr{round(mean(contig.df$dn.ds, na.rm=TRUE), 2)#$}, as in the first the
-  complete length of the sequence (also from TUGs without synonymous
-  SNP predicted) can be included.
+  \Sexpr{round(mean(contig.df$dn.ds, na.rm=TRUE),2)#$}, as in the
+  first the complete length of the sequence (also from TUGs without
+  synonymous SNP predicted) can be included.
+
+\SweaveInput{../snp_analysis/snp_by_population.Rnw}
 
 \subsection*{Annotation}
 
@@ -851,7 +858,8 @@ immunumodulators. Should I???
 
 <<save, echo=FALSE>>=
 ## for a more readable version of contig.df
-readable <- !names(contig.df)%in%c("seq", "imp", "ontology", "coding")
+readable <- !names(contig.df)%in%c("seq", "imp", "ontology", "coding", "Ac.pep")
+
 save.image("paper.Rdata")
 write.csv(contig.df, "../A_crassus_contigs_full.csv")
 write.csv(contig.df[,readable], "../A_crassus_contigs_readable.csv")
@@ -1394,11 +1402,16 @@ Volkswagen Foundation, "F\"{o}rderinitiative Evolutionsbiologie".
 
 <<echo=FALSE, results=tex>>=
 print(xtable(TRIM, display=rep("d", times=7)), floating=FALSE)
+trim_mark <- transform(TRIM, lowqal = short+lowq+dust+shortq)[1:6, ]
+trim_mark <- trim_mark[,c(1,7)]
 @ 
 
 \subsection*{Table 2 - Pre-assembly screening statistics}
 <<echo=FALSE, results=tex>>=
 print(xtable(pre.screen.tab), floating=FALSE)
+trim_mark <- merge(pre.screen.tab,
+                   trim_mark, by="row.names")
+write.csv(trim_mark, "/home/ele/thesis/454/paper/table1.csv")
 @   
 
 \subsection*{Table 3 - \texttt{Blast}-hits to protozoan rRNA in
@@ -1497,8 +1510,6 @@ File A\_crassus\_contigs\_full.csv lists all data computed on the contig
 level, including sequences (raw, coding, imputed). File
 A\_crassus\_contigs\_readable.csv lists only the metadata not including
 sequences.
-
- 
 
 \end{bmcformat}
 \end{document}

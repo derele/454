@@ -1,9 +1,7 @@
 %% SNP calling from VARSCAN output
 
-
 <<snp, echo=FALSE, results=hide, cache=TRUE>>=
 
-source("/home/ele/thesis/454/common_R_functions.R")  
 read.var <- function (path) {
   VAR <- read.delim(path, header=FALSE, as.is=TRUE)
   names(VAR) <- c("contig", "base", "from", "to", "nfrom", "nto", "perc", "sfrom", "sto", "qfrom", "qto", "pval")
@@ -21,11 +19,16 @@ read.var <- function (path) {
   return(VAR)
 }
 
+
+
 VAR <- read.var ("/home/ele/Data/454/mapping/all_vs_full_imputed_uq.varsnp")
 ## ## screen for fish and bacterial contamination
 ## VAR <- VAR[VAR$contig%in%nematode.contig.df$contig,]
 ## ## use only the good category
 ## VAR <- VAR[VAR$contig%in%MN,]
+
+## reduce to get only the sure Ac 
+VAR <- VAR[VAR$contig%in%contig.df[contig.df$Ac, "contig"], ]
 
 VAR <- merge(VAR, imputed)
 

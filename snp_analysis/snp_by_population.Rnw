@@ -1,0 +1,168 @@
+<<snp.by.population, echo=FALSE, cache=TRUE>>=
+
+## from within /home/ele/Data/454/mapping/mapping_each_lib:  
+## /home/ele/tools/samtools/samtools mpileup -uf
+## ../fullest_assembly_imputed.fasta *.sorted.bam |
+## /home/ele/tools/samtools/bcftools/bcftools view -gcv -
+
+VCF <- read.delim("/home/ele/Data/454/mapping/mapping_each_lib/all_imp.vca",
+                  skip=26, as.is=TRUE)
+
+## does a e.g. tA point tow wrongly imputed sequence???
+## wrong.imputed <- VCF[grepl("(a|c|g|t){1}(A|C|G|T){1}", VCF$ALT), ]
+## wrong.imputed.contigs <- wrong.imputed$X.CHROM
+
+## get only snps
+VCF <- VCF[nchar(VCF$REF)<2 & nchar(VCF$ALT)<2, ]
+VCF <- VCF[grepl("a|c|g|t", VCF$REF, ignore.case=TRUE) &
+           grepl("a|c|g|t", VCF$ALT, ignore.case=TRUE), ]
+
+super.geno <- function (VCF.obj, snp.qual, gt.qual, sum=TRUE){
+  VCFQ <- VCF[as.numeric(VCF$QUAL)>snp.qual, ]
+  VCFQ <- VCFQ[, c(1, 2, 4, 5, 10:15)]
+  names(VCFQ) <- gsub("final.(\\d*|\\w*).sff.trimmed.sff.fasta.sorted.bam",
+                      "\\1", names(VCFQ))
+
+  ## as the library-format we have GT:PL:GQ
+
+  ## GT genotype, encoded as alleles values separated , e.g. The allele
+  ## values are 0 for the reference allele (what is in the reference
+  ## sequence), 1 for the first allele listed in ALT, 2 for the second
+  ## allele list in ALT and so on. For diploid calls examples could be
+  ## 0/1 or 1|0 etc. For haploid calls, e.g. on Y, male X,
+  ## mitochondrion, only one allele value should be given. All samples
+  ## must have GT call information; if a call cannot be made for a
+  ## sample at a must be specified for each missing allele in the GT
+  ## field (for example ./. for a diploid). The meanings of the
+  ## separators are: / : genotype unphased | : genotype phased
+
+  ## GL : genotype likelihoods
+  ## comprised of comma separated floating point log10-scaled
+  ## likelihoods for all possible genotypes given the set of alleles
+  ## defined in the REF and ALT fields. In presence of the GT field the
+  ## same ploidy is expected and the canonical order is used; without GT
+  ## field, diploidy is assumed. If A is the allele in REF and
+  ## B,C,... are the alleles as ordered in ALT, the ordering of
+  ## genotypes for the likelihoods is given by: F(j/k) = (k*(k+1)/2)+j.
+  ## In other words, for biallelic sites the ordering is: AA,AB,BB; for
+  ## triallelic sites the ordering is: AA,AB,BB,AC,BC,CC, etc.  For
+  ## example: GT:GL 0/1:-323.03,-99.29,-802.53 (Numeric)
+
+  ## PL : the phred-scaled genotype likelihoods rounded to the closest
+  ## integer (and otherwise defined precisely as the GL field)
+  ## (Integers)
+
+  ## GQ : conditional genotype quality, encoded as a phred quality
+  ## -10log_10p(genotype call is wrong, conditioned on the site's being
+  ## variant) (numeric)
+
+  get.likely.gt <- function (vcf.col, gt.qual=10){
+    gt.l <- strsplit(vcf.col, ":|,")
+    gt.l <- lapply(gt.l, function(x) x[c(1,5)])
+    g <- lapply(gt.l, function (x){
+      if (as.numeric(as.character(x[[2]]))>gt.qual) { return(x[1]) }
+      else{ return(NA) }
+    })
+    unlist(g)
+  }
+
+  gt.l <- apply(VCFQ[,5:10], 2, get.likely.gt)
+  gt.df <- as.data.frame( gt.l)
+  gt.df$"L2R3" <- NULL
+  
+  V <- cbind(VCFQ[ , c(1:4)], gt.df)
+  names(V)[1:4] <- c( "contig", "base", "from", "to")
+
+  ## merging with the general VARscan estimate to remove bad 
+  VAR.pop <- merge(VARqp, V, by=c( "contig", "base", "from", "to"))
+    
+  relative.h <- function (x){
+    length(x[x%in%c("0/1")])/length(x[x%in%c("0/0", "1/1")])
+  }
+
+  if (sum) {return (apply(VAR.pop[, c("10F", "179F", "M175", "KS4F", "UW07F")],
+                          2, relative.h))}
+  else {return(VAR.pop)}
+}
+
+
+## consistently over heterozygoszy-calling-thresholds european samples
+## are less heterozygot
+
+## super.geno(VCF, 0, 30)
+## super.geno(VCF, 0, 40)
+## super.geno(VCF, 0, 50)
+## super.geno(VCF, 0, 60)
+
+## super.geno(VCF, 10, 30)
+## super.geno(VCF, 10, 40)
+## super.geno(VCF, 10, 50)
+## super.geno(VCF, 10, 60)
+
+## super.geno(VCF, 30, 30)
+## super.geno(VCF, 30, 40)
+## super.geno(VCF, 30, 50)
+  
+het.table <- as.data.frame(super.geno(VCF, 10, 10, TRUE))
+VAR.pop <- super.geno(VCF, 10, 10, FALSE)
+
+sep.gt <- function (gt.col){
+  l <- strsplit(as.character(gt.col), "/")
+  s <- lapply(l, function (x) {if (is.na(x[1])){ rep(x,2)}
+              else{x}})
+  unlist(s)}
+
+Rh <- VAR.pop[, c("10F", "179F", "KS4F", "M175", "UW07F")]
+### remove loci with only one allele
+
+## like this internal relationship does not work
+## Rh <- Rh[ apply(Rh, 1, function (x) ("0/1"%in%x ) | ("0/0"%in%x & "1/1"%in%x) ), ]
+
+## like this internal relationship does  work
+Rh <- Rh[ apply(Rh, 1, function (x) ("0/1"%in%x & "0/0"%in%x  ) |
+                ("0/0"%in%x & "1/1"%in%x)|
+                ("0/1"%in%x & "1/1"%in%x)), ]
+
+number.hetero.info.snps <- nrow(Rh)
+
+Rh.data <- as.data.frame(rbind(sep.gt(Rh$"10F"),
+                               sep.gt(Rh$"179F"),
+                               sep.gt(Rh$"M175"),
+                               sep.gt(Rh$"KS4F"),
+                               sep.gt(Rh$"UW07F")))
+
+chkdata(Rh.data)
+
+## shows that it worked:
+ir.test <- hh(Rh.data, 100, "ir")
+hl.test <- hh(Rh.data, 100, "hl")
+hh.test <- hh(Rh.data, 100, "sh")
+
+## mean(ir.test)
+## quantile(ir.test, probs=c(0.025, 0.975))
+
+## mean(hl.test)
+## quantile(hl.test, probs=c(0.025, 0.975))
+
+## mean(hh.test)
+## quantile(hh.test, probs=c(0.025, 0.975))
+
+## Internal relatedness, a multilocus heterozygosity measure developed
+## by Amos et al. (2001): Amos W, Worthington Wilmer J, Fullard K et
+## al (2001) The influence of parental relatedness on reproductive
+## success. Proc R Soc Lond B 268:2021-2027
+het.table <- cbind(het.table, ir(Rh.data))
+
+## homozygosity by loci: Aparicio et al. (2007)?(2006) : Aparicio JM,
+## Ortego J, Cordero PJ (2006) What should we weigh to estimate
+## heterozygosity, alleles or loci? Mol Ecol 15:4659-4665
+het.table <- cbind(het.table, hl(Rh.data))
+
+## standardized heterozygosity: Coltman et al. (1999): Coltman DW,
+## Pilkington JG, Smith JA et al (1999) Parasite-mediated selection
+## against inbred Soay sheep in a free-living island
+## population. Evolution 53:1259-1267
+het.table <- cbind(het.table, sh(Rh.data))
+names(het.table) <- c("rel.het", "int.rel", "ho.loci", "std.het")
+
+@ 

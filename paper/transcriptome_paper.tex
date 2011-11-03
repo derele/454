@@ -339,8 +339,8 @@ host-contamination before assembly.
 
 
 
-In total 232894 reads were discarded prior to assembly,
-202823 due to \texttt{blast} hits (e-value cut of 1e-5,
+In total 227608 reads were discarded prior to assembly,
+197537 due to \texttt{blast} hits (e-value cut of 1e-5,
 hit longer than 80\% of the read-length and identity bigger 95\%) to
 rRNA, 30071 to host-databases (same thresholds). Figure
 (rRNA\_plots.png) and table 2 give an overview of this pre-assembly
@@ -418,7 +418,7 @@ sequences: Valid due to evidence of nematode origin (hitting nempep4),
 and valid due to absence of evidence of host-origin.
 
 Table 3 gives the numbers of TUGs labeled as possible host or rRNA
-contamination. The 38371 TUGs regarded to be of
+contamination. The 38028 TUGs regarded to be of
 \textit{A. crassus}-origin give a positive indication of the origin of
 sequence data. However TUGs hitting \textit{A. crassus}-rRNA still
 have a high coverage, indicating a noticeable loss of raw-read data
@@ -441,13 +441,13 @@ of results to avoid misleading conclusions based on differences in
 off target data.
 
 For example a study excluding putative host-derived sequence prior to
-analysis, would have 36166 TUGs or 12796
+analysis, would have 35851 TUGs or 12769
 quality-contigs left for analysis, based on choosing only sequence not
 labeled ``Chordata'' (from nt- and nr-searches) and labeled ``valid''
 or ``valid-nempep'' (from the evaluation of host-contamination). A
 second analysis aiming to exclude all data suspicious to be not of
-\textit{A. crassus}-origin would choose 31893 TUGs or
-10999 quality-contigs, by using sequence labeled
+\textit{A. crassus}-origin would choose 31693 TUGs or
+10987 quality-contigs, by using sequence labeled
 ``Nematoda'' or ``no hit'' (from nt- and nr-searches) and ``valid'' or
 ``valid-nempep''. We use such restricted dataset like in the second
 example in later analysis to verify that results are not induced by a
@@ -509,15 +509,14 @@ imputed ORF was slightly changed compared to the raw sequence.
 
 
 
-
 In order to improve SNP-calling we screened a set of 13518
 candidate-SNPs predicted on in total 15718866 bases
 (1412806 bases with a minimum coverage of more then 8-fold
 available for SNP-calling). We first excluded SNPs predicted to be
 present as more than 2 alleles and to undetermined (``N'') base in the
-reference retaining 13042 SNPs. The ratio of transitions
-(8663) to transversion (4379) in
-this set was 1.98 (ti/tv).
+reference retaining 9938 SNPs. The ratio of transitions
+(6564) to transversion (3374) in
+this set was 1.95 (ti/tv).
 
 To further screen those SNPs we utilized observations made in
 combination with protein prediction, i.e. with the inferred
@@ -526,14 +525,14 @@ be disregarded, but the imputation of a continuous corrected ORF had
 the advantage of making the coordinates for the ORF straight forward
 to use.
 
-8309 of the raw SNPs were predicted to be inside
-an ORF, 2713 at a first positon in a codon,
-2172 on a second base and
-3424 on a third base in a codon.
+6812 of the raw SNPs were predicted to be inside
+an ORF, 2193 at a first positon in a codon,
+1735 on a second base and
+2884 on a third base in a codon.
 
 As expected ti/tv inside ORFs was with
 2.43 higher than outside ORFs
-with 1.42.
+with 1.25.
 
 To asses the effect of a mutation at a given base we used an idea of
 Mark Blaxter (unpublished, some information at \cite{Marks_ontology}),
@@ -542,12 +541,12 @@ this classification to compute the number of synonymous and
 non-synonymous sites in a given TUG. In total 8847926
 non-synonymous and 2739223 sites were found in ORFs, of
 these 858749.67 non-synonymous sites and
-259935.33 synonymous sites were covered at least 8-fold,
-and thus available for SNP-calling.
+259935.33 synonymous sites were covered at
+least 8-fold, and thus available for SNP-calling.
 
 For the raw set of candidate-SNPs the ratio of synonymous
 polymorphisms per synonymous site to non-synonymous polymorphisms per
-non-synonymous site (dn/ds) was 0.45.
+non-synonymous site (dn/ds) was 0.42.
 
 To improve SNP-calling with respect to the well-known homopolymer
 issues in 454-sequencing\cite{pmid21685085}, we analysed the effect of
@@ -588,28 +587,27 @@ predicting dn/ds (see figure dn\_ds\_scales.png a and c).
 
 Figure dens\_dn\_ds.png gives the distribution of per-contig dn/ds for
 the fully screened set of SNPs. The final numbers of SNPs per
-kilo-base was 4.44,
-7.87 synonymous SNPs per 1000 synonymous
-bases and 2.43 non-synonymous SNPs per
+kilo-base was 3.43,
+6.64 synonymous SNPs per 1000 synonymous
+bases and 1.94 non-synonymous SNPs per
 1000 non-synonymous bases. For a total of
-980 TUGs
-(858 high
+824 TUGs
+(733 high
   quality contigs) a value for dn/ds could be obtained, because at
   least one synonymous SNP was found.
 
   It should be noted that the overall dn/ds value of
-  0.32 is different from the mean dn/ds value of contigs
-  0.23, as in the first the
-  complete length of the sequence (also from TUGs without synonymous
-  SNP predicted) can be included.
+  0.3 is different from the mean dn/ds value of contigs
+  0.23, as in the
+  first the complete length of the sequence (also from TUGs without
+  synonymous SNP predicted) can be included.
+
 
 \subsection*{Annotation}
 
 %%% annotation.Rnw --- 
 
 %% Author: emanuelheitlinger@gmail.com
-
-
 
 \begin{Schunk}
 \begin{Soutput}
@@ -658,7 +656,7 @@ performed against a universe of only TUGs we were sure to be of
 TUGs predicted to contain signal peptide cleavage sites by the
 neural-networks method in \texttt{SignalP} have higher dn/ds values
 than TUGs without signal peptide cleavage sites (p =
-0.055; one sided U-test; see also
+0.056; one sided U-test; see also
 figure sigp\_dn\_ds.png).
 
 \subsubsection*{Enrichment of GO-categories in high dn/ds}
@@ -735,7 +733,7 @@ contigs.
 \subsubsection*{Differential expression between male and female worms}
 
 Despite the lack of replicates for male worms we were able to identify
-25 sequences being significantly
+49 sequences being significantly
 over-expressed in male worms. In fact all these TUGs were nearly
 exclusively expressed in males. 
 
@@ -745,11 +743,11 @@ For the L2-library we changed our approach and used gene-expression
 analysis rather to highlight the off-target data in this library. For
 this reason we used counts for the fullest assembly.
 
-479 sequences being expressed exclusively
+137 sequences being expressed exclusively
 in L2 library were strongly enriched in sequences being labeled as
 possible off-target data in taxonomic classification. From these
-sequences only 57 had best hits to metazoa and only
-6 to nematoda.
+sequences only 23 had best hits to metazoa and only
+1 to nematoda.
 
 \subsubsection*{Differential expression between worms from the European
   and Japanese eel}
@@ -887,16 +885,16 @@ errors would be independent of transversion-transition bias erroneous
 SNPs would have a ti/tv of 0.5 and thereby lower the overall
 value. Other explanations for these observations are hard to find so
 it can be concluded that removing noise from homopolymer
-sequencing-error ti/tv increases.  The value of 2.38
-(1.82 outside,
-2.74 inside ORFs) is in good agreement with
+sequencing-error ti/tv increases.  The value of 2.45
+(1.81 outside,
+2.79 inside ORFs) is in good agreement with
 the overall ti/tv of humans (2.16 \cite{pmid21169219}) or
 \textit{Drosophila} (2.07 \cite{pmid21143862}). 
 
 The ratio of non-synonymous SNPs per non-synonymous site to synonymous
 SNPs per synonymous site (dn/ds) decreased with removal of SNPs
-adjacent to homopolymer regions from 0.45 to
-0.32 after full screening. Similar to ti/tv it the most
+adjacent to homopolymer regions from 0.42 to
+0.3 after full screening. Similar to ti/tv it the most
 plausible explanation is the removal of error, as unbiased error would
 lead to a dn/ds of 1. While dn/ds is not unproblematic to interpret
 within populations \cite{pmid19081788}, assuming negative (purifying)
@@ -1308,7 +1306,7 @@ Volkswagen Foundation, "F\"{o}rderinitiative Evolutionsbiologie".
   \subsection*{Table 1 - Trimming statistics}
 
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Thu Oct 13 17:35:12 2011
+% Tue Nov  1 07:48:31 2011
 \begin{tabular}{rrrrrrr}
   \hline
  & raw\_reads & short & lowq & dust & shortq & valid \\ 
@@ -1324,23 +1322,23 @@ T2 & 116366 &  46 & 24361 &  50 & 3226 & 88683 \\
 \end{tabular}
 \subsection*{Table 2 - Pre-assembly screening statistics}
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Thu Oct 13 17:35:12 2011
-\begin{tabular}{rrrrr}
+% Tue Nov  1 07:48:31 2011
+\begin{tabular}{rrrrrrr}
   \hline
- & AcrRNA & eelmRNA & eelrRNA & valid \\ 
+ & AcrRNA & Cercozoa & eelmRNA & eelrRNA & valid & valid.span \\ 
   \hline
-E1 & 76403 & 4835 & 13112 & 22231 \\ 
-  E2 & 11213 & 3613 &  69 & 85948 \\ 
-  L2 & 35940 & 1220 & 1603 & 58302 \\ 
-  M & 31351 & 1187 & 418 & 58286 \\ 
-  T1 & 24929 & 7475 & 514 & 58617 \\ 
-  T2 & 7233 & 11741 &  38 & 69671 \\ 
+E1 & 76403 &   0 & 4835 & 13112 & 22231 & 7167338 \\ 
+  E2 & 11213 &   0 & 3613 &  69 & 85948 & 24046225 \\ 
+  L2 & 30654 & 5286 & 1220 & 1603 & 58302 & 16661548 \\ 
+  M & 31351 &   0 & 1187 & 418 & 58286 & 17424408 \\ 
+  T1 & 24929 &   0 & 7475 & 514 & 58617 & 14443123 \\ 
+  T2 & 7233 &   0 & 11741 &  38 & 69671 & 20749177 \\ 
    \hline
 \end{tabular}
 \subsection*{Table 3 - \texttt{Blast}-hits to protozoan rRNA in
   pre-assembly screening}
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Thu Oct 13 17:35:12 2011
+% Tue Nov  1 07:48:31 2011
 \begin{tabular}{lll}
   \hline
 sequence.identifier & sequence.identitiy & hsp.length \\ 
@@ -1361,18 +1359,18 @@ gi$|$299836113$|$gb$|$GU290110.1$|$ & 99.67 & 599 \\
 \subsection*{Table 4 - Post-assembly host-screening }
   
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Thu Oct 13 17:35:12 2011
+% Tue Nov  1 07:48:31 2011
 \begin{tabular}{rrrrrr}
   \hline
  & AcrRNA & eelmRNA & eelrRNA & valid\_nempep & valid\_no\_hit \\ 
   \hline
-number & 604 & 1162 & 50 & 1254 & 37117 \\ 
-  mean coverage & 3.28 & 1.80 & 2.00 & 6.67 & 2.44 \\ 
+number & 953 & 1159 & 47 & 1211 & 36817 \\ 
+  mean coverage & 4.14 & 1.80 & 1.99 & 6.79 & 2.41 \\ 
    \hline
 \end{tabular}
 \subsection*{Table 5 - Evolutionary conservation }
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Thu Oct 13 17:35:12 2011
+% Tue Nov  1 07:48:31 2011
 \begin{tabular}{rrrrr}
   \hline
  & conserved & novel.in.metazoa & novel.in.nematoda & novel.in.clade3 \\ 
@@ -1384,7 +1382,7 @@ bit.threshold.50 & 7741 & 1720 & 1769 & 1523 \\
 \subsection*{Table 6 - Protein prediction statistics}
 
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Thu Oct 13 17:35:12 2011
+% Tue Nov  1 07:48:31 2011
 \begin{tabular}{rrrrr}
   \hline
  & p4e-$>$BLAST-similarity & p4e-$>$ESTScan & p4e-$>$LongestORF & no-prediction \\ 
@@ -1397,21 +1395,21 @@ plus strand & 9701 & 8005 & 6393 & 562 \\
 \subsection*{Table 7 - SNP summry statistics}
 
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Thu Oct 13 17:35:12 2011
+% Tue Nov  1 07:48:31 2011
 \begin{tabular}{rlllllllll}
   \hline
  &   &   & pos & in & codon &   & ti/tv  &   &   \\ 
   & No.SNPs & in.ORF & 1 & 2 & 3 & overall & ins.orf & outs.orf & dn.ds \\ 
    \hline
-raw & 13042 & 8309 & 2713 & 2172 & 3424 & 1.98 & 2.43 & 1.42 & 0.45 \\ 
-  h.screened & 9523 & 6395 & 2058 & 1604 & 2733 & 2.86 & 3.32 & 2.16 & 0.39 \\ 
-  p.screened & 6276 & 4226 & 1368 & 925 & 1933 & 2.38 & 2.74 & 1.82 & 0.32 \\ 
+raw & 9938 & 6812 & 2193 & 1735 & 2884 & 1.95 & 2.43 & 1.25 & 0.42 \\ 
+  h.screened & 7153 & 5184 & 1630 & 1268 & 2286 & 2.9 & 3.37 & 2.03 & 0.36 \\ 
+  p.screened & 4849 & 3464 & 1096 & 738 & 1630 & 2.45 & 2.79 & 1.81 & 0.3 \\ 
   \end{tabular}
 
 \subsection*{Table 8 - GO-terms in positively selected}
 
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Thu Oct 13 17:35:12 2011
+% Tue Nov  1 07:48:31 2011
 \begin{longtable}{rrll}
  Count & Size & Term & direction \\ 
   \hline
@@ -1421,14 +1419,14 @@ raw & 13042 & 8309 & 2713 & 2172 & 3424 & 1.98 & 2.43 & 1.42 & 0.45 \\
     3 &   6 & ribonucleoprotein binding & Over \\ 
     7 &  26 & ATPase activity & Over \\ 
    21 & 113 & hydrolase activity & Over \\ 
-    2 &   3 & carboxylic acid transmembrane transporter activity & Over \\ 
     2 &   3 & testosterone dehydrogenase activity & Over \\ 
-    2 &   3 & organic acid transmembrane transporter activity & Over \\ 
+    2 &   3 & carboxylic acid transmembrane transporter activity & Over \\ 
     2 &   3 & oxidoreduction-driven active transmembrane transporter activity & Over \\ 
     2 &   3 & ribonuclease activity & Over \\ 
+    2 &   3 & amine transmembrane transporter activity & Over \\ 
     2 &   3 & amino acid transmembrane transporter activity & Over \\ 
     2 &   3 & testosterone dehydrogenase (NAD+) activity & Over \\ 
-    2 &   3 & amine transmembrane transporter activity & Over \\ 
+    2 &   3 & organic acid transmembrane transporter activity & Over \\ 
     1 &  44 & structural constituent of ribosome & Under \\ 
    \hline
   3 &   3 & branched chain family amino acid metabolic process & Over \\ 
@@ -1447,34 +1445,34 @@ raw & 13042 & 8309 & 2713 & 2172 & 3424 & 1.98 & 2.43 & 1.42 & 0.45 \\
    10 &  37 & regulation of cell cycle process & Over \\ 
     8 &  27 & interphase & Over \\ 
     8 &  27 & interphase of mitotic cell cycle & Over \\ 
+    2 &   2 & L-amino acid transport & Over \\ 
+    2 &   2 & response to sucrose stimulus & Over \\ 
+    2 &   2 & NADP metabolic process & Over \\ 
     2 &   2 & pentose metabolic process & Over \\ 
     2 &   2 & xylulose metabolic process & Over \\ 
     2 &   2 & response to disaccharide stimulus & Over \\ 
     2 &   2 & embryonic body morphogenesis & Over \\ 
-    2 &   2 & response to sucrose stimulus & Over \\ 
-    2 &   2 & L-amino acid transport & Over \\ 
-    2 &   2 & NADP metabolic process & Over \\ 
    17 &  81 & apoptosis & Over \\ 
-   16 &  76 & regulation of molecular function & Over \\ 
+   16 &  75 & regulation of molecular function & Over \\ 
+   33 & 194 & response to stress & Over \\ 
    27 & 151 & catabolic process & Over \\ 
    12 &  52 & cellular amine metabolic process & Over \\ 
-   33 & 195 & response to stress & Over \\ 
     5 &  14 & mitotic cell cycle G1/S transition DNA damage checkpoint & Over \\ 
     5 &  14 & regulation of cellular amine metabolic process & Over \\ 
    10 &  41 & reproductive structure development & Over \\ 
    12 &  53 & amine metabolic process & Over \\ 
     8 &  30 & muscle organ development & Over \\ 
     7 &  25 & regulation of catabolic process & Over \\ 
-    3 &   6 & centrosome organization & Over \\ 
     3 &   6 & RNA catabolic process & Over \\ 
-    3 &   6 & microtubule organizing center organization & Over \\ 
     3 &   6 & positive regulation of organelle organization & Over \\ 
+    3 &   6 & centrosome organization & Over \\ 
+    3 &   6 & microtubule organizing center organization & Over \\ 
+    5 &  15 & G1/S transition checkpoint & Over \\ 
+    5 &  15 & regulation of G1/S transition of mitotic cell cycle & Over \\ 
     5 &  15 & signal transduction in response to DNA damage & Over \\ 
     5 &  15 & mitotic cell cycle G1/S transition checkpoint & Over \\ 
-    5 &  15 & G1/S transition checkpoint & Over \\ 
     5 &  15 & DNA damage response, signal transduction by p53 class mediator & Over \\ 
     5 &  15 & G1/S transition of mitotic cell cycle & Over \\ 
-    5 &  15 & regulation of G1/S transition of mitotic cell cycle & Over \\ 
    16 &  80 & cell cycle phase & Over \\ 
    11 &  49 & mRNA metabolic process & Over \\ 
    18 &  94 & nervous system development & Over \\ 
@@ -1482,7 +1480,11 @@ raw & 13042 & 8309 & 2713 & 2172 & 3424 & 1.98 & 2.43 & 1.42 & 0.45 \\
     4 &  11 & imaginal disc development & Over \\ 
    14 &  69 & regulation of apoptosis & Over \\ 
    14 &  69 & regulation of programmed cell death & Over \\ 
+    2 &   3 & nuclear mRNA cis splicing, via spliceosome & Over \\ 
+    2 &   3 & regulation of the force of heart contraction & Over \\ 
+    2 &   3 & spliceosomal conformational changes to generate catalytic conformation & Over \\ 
     2 &   3 & positive regulation of mitotic metaphase/anaphase transition & Over \\ 
+    2 &   3 & amino acid transport & Over \\ 
     2 &   3 & negative regulation of reproductive process & Over \\ 
     2 &   3 & germ cell migration & Over \\ 
     2 &   3 & centrosome duplication & Over \\ 
@@ -1490,19 +1492,15 @@ raw & 13042 & 8309 & 2713 & 2172 & 3424 & 1.98 & 2.43 & 1.42 & 0.45 \\
     2 &   3 & protein tetramerization & Over \\ 
     2 &   3 & protein homotetramerization & Over \\ 
     2 &   3 & mitotic centrosome separation & Over \\ 
-    2 &   3 & regulation of the force of heart contraction & Over \\ 
-    2 &   3 & spliceosomal conformational changes to generate catalytic conformation & Over \\ 
-    2 &   3 & nuclear mRNA cis splicing, via spliceosome & Over \\ 
-    2 &   3 & amino acid transport & Over \\ 
    19 & 103 & cell cycle & Over \\ 
     8 &  33 & ATP synthesis coupled electron transport & Over \\ 
     8 &  33 & mitochondrial ATP synthesis coupled electron transport & Over \\ 
     8 &  33 & regulation of mitotic cell cycle & Over \\ 
    17 &  90 & programmed cell death & Over \\ 
-    3 &   7 & regulation of neurotransmitter levels & Over \\ 
     3 &   7 & cellular response to starvation & Over \\ 
-   18 &  97 & cell death & Over \\ 
+    3 &   7 & regulation of neurotransmitter levels & Over \\ 
    18 &  97 & death & Over \\ 
+   18 &  97 & cell death & Over \\ 
    13 &  64 & macromolecule catabolic process & Over \\ 
     6 &  22 & response to protein stimulus & Over \\ 
    15 & 188 & gene expression & Under \\ 
@@ -1510,24 +1508,24 @@ raw & 13042 & 8309 & 2713 & 2172 & 3424 & 1.98 & 2.43 & 1.42 & 0.45 \\
     1 &  46 & macromolecular complex disassembly & Under \\ 
     1 &  46 & cellular macromolecular complex disassembly & Under \\ 
     1 &  46 & protein complex disassembly & Under \\ 
+    1 &  45 & endocrine system development & Under \\ 
     1 &  45 & viral genome expression & Under \\ 
     1 &  45 & viral transcription & Under \\ 
     1 &  45 & pancreas development & Under \\ 
     1 &  45 & endocrine pancreas development & Under \\ 
-    1 &  45 & endocrine system development & Under \\ 
     4 &  79 & translation & Under \\ 
     1 &  44 & translational termination & Under \\ 
     8 & 118 & transcription & Under \\ 
     2 &  55 & cellular component disassembly at cellular level & Under \\ 
     2 &  55 & cellular component disassembly & Under \\ 
    21 & 225 & biosynthetic process & Under \\ 
-    0 &  25 & positive regulation of intracellular protein kinase cascade & Under \\ 
    14 & 165 & cellular macromolecule biosynthetic process & Under \\ 
-    0 &  24 & oocyte differentiation & Under \\ 
+    0 &  25 & positive regulation of intracellular protein kinase cascade & Under \\ 
    21 & 222 & cellular biosynthetic process & Under \\ 
+    0 &  24 & oocyte differentiation & Under \\ 
     1 &  37 & oogenesis & Under \\ 
-    0 &  23 & oocyte development & Under \\ 
     0 &  23 & cation transport & Under \\ 
+    0 &  23 & oocyte development & Under \\ 
     2 &  47 & viral infectious cycle & Under \\ 
     2 &  47 & viral reproductive process & Under \\ 
    15 & 168 & macromolecule biosynthetic process & Under \\ 
@@ -1535,22 +1533,22 @@ raw & 13042 & 8309 & 2713 & 2172 & 3424 & 1.98 & 2.43 & 1.42 & 0.45 \\
     0 &  22 & positive regulation of MAPKKK cascade & Under \\ 
    \hline
   4 &   7 & small nuclear ribonucleoprotein complex & Over \\ 
-    2 &   2 & Cajal body & Over \\ 
     2 &   2 & U4/U6 x U5 tri-snRNP complex & Over \\ 
+    2 &   2 & Cajal body & Over \\ 
     2 &   2 & U5 snRNP & Over \\ 
     3 &   6 & nuclear speck & Over \\ 
-   27 & 152 & mitochondrion & Over \\ 
     5 &  15 & nuclear body & Over \\ 
-    2 &   3 & clathrin sculpted vesicle & Over \\ 
-    2 &   3 & basement membrane & Over \\ 
-    2 &   3 & plant-type cell wall & Over \\ 
-    2 &   3 & plasma membrane respiratory chain complex I & Over \\ 
+   27 & 152 & mitochondrion & Over \\ 
     2 &   3 & plasma membrane respiratory chain & Over \\ 
+    2 &   3 & plasma membrane respiratory chain complex I & Over \\ 
+    2 &   3 & clathrin sculpted vesicle & Over \\ 
+    2 &   3 & plant-type cell wall & Over \\ 
+    2 &   3 & basement membrane & Over \\ 
     0 &  29 & large ribosomal subunit & Under \\ 
     0 &  27 & cytosolic large ribosomal subunit & Under \\ 
    27 & 266 & nucleus & Under \\ 
-   17 & 185 & non-membrane-bounded organelle & Under \\ 
-   17 & 185 & intracellular non-membrane-bounded organelle & Under \\ 
+   17 & 184 & non-membrane-bounded organelle & Under \\ 
+   17 & 184 & intracellular non-membrane-bounded organelle & Under \\ 
     4 &  65 & nucleolus & Under \\ 
    \hline
 \hline
@@ -1563,7 +1561,7 @@ raw & 13042 & 8309 & 2713 & 2172 & 3424 & 1.98 & 2.43 & 1.42 & 0.45 \\
 \subsubsection*{Table 9 a - analysing all TUGs}
 
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Thu Oct 13 17:35:12 2011
+% Tue Nov  1 07:48:31 2011
 \begin{tabular}{rrrrrrrrr}
   \hline
  & solexa.tags & E1 & E2 & L2 & M & T1 & T2 & all.reads \\ 
@@ -1580,7 +1578,7 @@ solexa.tags & 1.000 & 0.257 & 0.356 & -0.165 & 0.320 & 0.233 & 0.127 & 0.315 \\
 \end{tabular}\subsubsection*{Table 9 b - analysing good-category contigs only}
 
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Thu Oct 13 17:35:12 2011
+% Tue Nov  1 07:48:31 2011
 \begin{tabular}{rrrrrrrrr}
   \hline
  & solexa.tags & E1 & E2 & L2 & M & T1 & T2 & all.reads \\ 
@@ -1598,19 +1596,19 @@ solexa.tags & 1.000 & 0.371 & 0.528 & -0.196 & 0.450 & 0.393 & 0.199 & 0.385 \\
 \subsubsection*{Table 9 c - analysing good-category contigs surely from \textit{A. crassus} only}
 
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Thu Oct 13 17:35:12 2011
+% Tue Nov  1 07:48:31 2011
 \begin{tabular}{rrrrrrrrr}
   \hline
  & solexa.tags & E1 & E2 & L2 & M & T1 & T2 & all.reads \\ 
   \hline
-solexa.tags & 1.000 & 0.373 & 0.524 & -0.123 & 0.438 & 0.411 & 0.168 & 0.430 \\ 
-  E1 & 0.373 & 1.000 & 0.311 & 0.000 & 0.346 & 0.313 & 0.160 & 0.341 \\ 
-  E2 & 0.524 & 0.311 & 1.000 & -0.186 & 0.271 & 0.421 & 0.148 & 0.434 \\ 
-  L2 & -0.123 & 0.000 & -0.186 & 1.000 & -0.106 & -0.140 & -0.258 & 0.001 \\ 
-  M & 0.438 & 0.346 & 0.271 & -0.106 & 1.000 & 0.249 & 0.030 & 0.384 \\ 
-  T1 & 0.411 & 0.313 & 0.421 & -0.140 & 0.249 & 1.000 & 0.151 & 0.397 \\ 
-  T2 & 0.168 & 0.160 & 0.148 & -0.258 & 0.030 & 0.151 & 1.000 & 0.505 \\ 
-  all.reads & 0.430 & 0.341 & 0.434 & 0.001 & 0.384 & 0.397 & 0.505 & 1.000 \\ 
+solexa.tags & 1.000 & 0.373 & 0.524 & -0.123 & 0.438 & 0.410 & 0.168 & 0.430 \\ 
+  E1 & 0.373 & 1.000 & 0.312 & 0.001 & 0.345 & 0.313 & 0.161 & 0.341 \\ 
+  E2 & 0.524 & 0.312 & 1.000 & -0.187 & 0.272 & 0.421 & 0.148 & 0.434 \\ 
+  L2 & -0.123 & 0.001 & -0.187 & 1.000 & -0.106 & -0.140 & -0.259 & 0.001 \\ 
+  M & 0.438 & 0.345 & 0.272 & -0.106 & 1.000 & 0.248 & 0.031 & 0.383 \\ 
+  T1 & 0.410 & 0.313 & 0.421 & -0.140 & 0.248 & 1.000 & 0.151 & 0.396 \\ 
+  T2 & 0.168 & 0.161 & 0.148 & -0.259 & 0.031 & 0.151 & 1.000 & 0.505 \\ 
+  all.reads & 0.430 & 0.341 & 0.434 & 0.001 & 0.383 & 0.396 & 0.505 & 1.000 \\ 
    \hline
 \end{tabular}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1625,8 +1623,6 @@ File A\_crassus\_contigs\_full.csv lists all data computed on the contig
 level, including sequences (raw, coding, imputed). File
 A\_crassus\_contigs\_readable.csv lists only the metadata not including
 sequences.
-
- 
 
 \end{bmcformat}
 \end{document}

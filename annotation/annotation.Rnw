@@ -1,20 +1,8 @@
 %%% annotation.Rnw --- 
 
 %% Author: emanuelheitlinger@gmail.com
-
-<<annolibs, echo=FALSE>>=
-library(GOstats)
-library(GO.db)
-## library(AnnotationDbi)
-## library(GSEABase)
-## library(GeneAnswers)
-## library(goTools)
-## For comparison with C.elegans
-## require("org.Ce.eg.db")
-@ 
-
 <<annotation, echo=FALSE, cache=TRUE>>=
-GO.annot <- read.delim("/home/ele/Data/454/annotation/annot8r/output/GO.csv", sep=",", header=FALSE)
+GO.annot <- read.delim("/home/ele/Data/454/annotation/annot8r/output_Ac/GO.csv", sep=",", header=FALSE)
 names(GO.annot) <- c("pept_id", "go_term", "pcf", "descr", "slim", "besthit", "bestscore", "bestev", "hitnum", "maxhits", "fraction") 
 
 ## reset the shorted names used in annotation to the proper contig-names
@@ -26,13 +14,79 @@ GO.annot$pcf <- gsub(" C", "CC", GO.annot$pcf)
 GO.annot$pcf <- gsub(" F", "MF", GO.annot$pcf)
 GO.annot$pcf <- gsub(" P", "BP", GO.annot$pcf)
 
-EC.annot <- read.delim("/home/ele/Data/454/annotation/annot8r/output/EC.csv", sep=",", header=FALSE)
+EC.annot <- read.delim("/home/ele/Data/454/annotation/annot8r/output_Ac/EC.csv", sep=",", header=FALSE)
 names(EC.annot) <- c("pept_id", "ec_id", "descr", "besthit", "bestscore", "bestev", "hitnum", "maxhits", "fraction") 
 EC.annot$pept_id <- gsub("Ac_", "Acrassus_", EC.annot$pept_id)
 
-KEGG.annot <- read.delim("/home/ele/Data/454/annotation/annot8r/output/KEGG.csv", sep=",", header=FALSE)
+KEGG.annot <- read.delim("/home/ele/Data/454/annotation/annot8r/output_Ac/KEGG.csv", sep=",", header=FALSE)
 names(KEGG.annot) <- c("pept_id", "ko_id", "path", "descr", "besthit", "bestscore", "bestev", "hitnum", "maxhits", "fraction") 
 KEGG.annot$pept_id <- gsub("Ac_", "Acrassus_", KEGG.annot$pept_id)
+
+## annotation with Bm orthologous sequence
+all.bm.hit <- contig.df[, "Bm.hit"]
+all.bm.hit <- all.bm.hit[!is.na(all.bm.hit)]
+all.bm.hit <- gsub("UniRef100_", "", all.bm.hit)
+
+uniProt <- useMart("unimart", dataset="uniprot")
+all.bm.names <- getBM(attributes =c("name", "protein_name"),
+                          filter="accession",values=all.bm.hit, mart=uniProt)
+all.bm.names$name <- gsub("_BRUMA", "", all.bm.names$name)
+all.bm.names$Bm.hit <- paste("UniRef100_", all.bm.names$name, sep="")
+names(all.bm.names)[names(all.bm.names)=="protein_name"] <- "Bm.annot"
+contig.df <- merge(all.bm.names[, 2:3], contig.df, by="Bm.hit", all.y=TRUE, sort=FALSE)
+
+## anntoation with Ce orthologous sequence
+all.ce.hit <- contig.df[, "Ce.hit"]
+all.ce.hit <- all.ce.hit[!is.na(all.ce.hit)]
+
+WORMB <- useMart("WS220" , dataset="wormbase_gene")
+all.ce.rnai <- getBM(attributes = c("transcript", "brief_ident",
+                        "rnai_phenotype_phenotype_label"),
+                          filter="transcript",values=all.ce.hit, mart=WORMB)
+
+ce.names <- all.ce.rnai[, c("transcript","brief_ident")]
+names(ce.names) <- c("Ce.hit", "Ce.annot")
+ce.names <- ce.names[!duplicated(ce.names$Ce.hit), ]
+
+contig.df <- merge(contig.df, ce.names, by="Ce.hit", all.x=TRUE, sort=FALSE)
+
+## anntoation with nempep descriptions
+nempep.nuc <- read.sequences("/home/ele/db/blastdb/nembase4/nembase4_nuc.fasta")
+nempep <- data.frame(Cluster.ID=substring(names(nempep.nuc), 1, 8))
+nempep$nempep.annot <- gsub("\\w{3}\\d{5}_1 Cluster: ", "",  names(nempep.nuc))
+nempep <- nempep[!duplicated(nempep$Cluster.ID),]
+
+BL.nempep <- read.blast.best("/home/ele/Data/454/post_assembly_screening/fullest_vs_nembase_pro.blt")
+BL.nempep$Pept.ID <- substring(BL.nempep$V2, 1, 8)
+## notice difference between cluster identifiers and peptide identifiers
+BL.nempep$Cluster.ID <- gsub("(\\w)(\\w)P", "\\1\\2C", BL.nempep$Pept.ID)
+names(BL.nempep)[names(BL.nempep)=="V12"] <- "nempep.bit"
+names(BL.nempep)[names(BL.nempep)=="V1"] <- "contig"
+
+nemp <- merge(BL.nempep[, c(1, 12, 14)], nempep, by="Cluster.ID")
+names(nemp)[names(nemp)=="Cluster.ID"] <- "nempep.hit"
+contig.df <- merge(contig.df, nemp, by="contig", all.x=TRUE)
+
+## annotagion with uniprot-name of nr-orthologous sequence
+gis.nr <- unique(nr$gi.nr.blast)
+## bioIDMapping!!
+gi.uni.acc <- sapply(gis.nr, function (x) try(bio.convert(x, 1, 19), TRUE))
+
+gi.uni.acc <- gi.uni.acc[lapply(gi.uni.acc, length)>1]
+gi.uni.acc <- as.data.frame(do.call(rbind, gi.uni.acc))
+
+gi.uni <- getBM(attributes = c("accession", "protein_name"),
+                filter="accession",values=gi.uni.acc$ACC, mart=uniProt)
+
+gi.uni.acc <- merge(gi.uni, gi.uni.acc, by.x="accession", by.y="ACC")
+names(gi.uni.acc)[2:3] <- c("nr.uniprot.annot", "gi.nr.blast")
+nr <- merge(nr, gi.uni.acc[,2:3], all.x=TRUE)
+nr <- nr[!duplicated(nr$V1),]
+
+names(nr)[names(nr)%in%c("V1", "V12")] <- c("contig", "nr.bit")
+contig.df <- merge(contig.df,
+                   nr[, c("gi.nr.blast", "contig", "nr.bit", "nr.uniprot.annot")],
+                   all.x=TRUE)
 
 @ 
 

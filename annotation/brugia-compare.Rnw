@@ -1,39 +1,38 @@
 <<annot.compare, echo=FALSE>>=
 
-Bm.sum.annot.C <- read.delim("/home/ele/Data/454/annotation/annot8r/output_Bm/piedata_C", skip=1)
-Bm.sum.annot.C$species <- "Brugia malayi"
-Ac.sum.annot.C <- read.delim("/home/ele/Data/454/annotation/annot8r/output/piedata_C", skip=1)
-Ac.sum.annot.C$species <- "Anguillicola crassus"
-sum.annot.C <- rbind(Bm.sum.annot.C, Ac.sum.annot.C)
-sum.annot.C$ontology <- "Cellular compartment"
+slim.annot8r <- function (path, species){ 
+  l <- list()
+  l <- lapply(c("F", "C", "P"), function (x){
+    d <- read.delim(paste(path, "/piedata_", x, sep=""), skip=1)
+    d$species <- species
+    d
+  })
+  l[[1]]$ontology <- "Molecular Function"
+  l[[2]]$ontology <- "Cellular compartment"
+  l[[3]]$ontology <- "Biological process"
+  melt(l)
+}
 
-Bm.sum.annot.F <- read.delim("/home/ele/Data/454/annotation/annot8r/output_Bm/piedata_F", skip=1)
-Bm.sum.annot.F$species <- "Brugia malayi"
-Ac.sum.annot.F <- read.delim("/home/ele/Data/454/annotation/annot8r/output/piedata_F", skip=1)
-Ac.sum.annot.F$species <- "Anguillicola crassus"
-sum.annot.F <- rbind(Bm.sum.annot.F, Ac.sum.annot.F)
-sum.annot.F$ontology <- "Molecular Function"
+Ac.slim <- slim.annot8r("/home/ele/Data/454/annotation/annot8r/output_Ac/", "Anguillicola crassus")
+Bm.slim <- slim.annot8r("/home/ele/Data/454/annotation/annot8r/output_Bm/", "Brugia malayi")
+Ce.slim <- slim.annot8r("/home/ele/Data/454/annotation/annot8r/output_Ce/", "Caenorhabditis elegans")
 
-Bm.sum.annot.P <- read.delim("/home/ele/Data/454/annotation/annot8r/output_Bm/piedata_P", skip=1)
-Bm.sum.annot.P$species <- "Brugia malayi"
-Ac.sum.annot.P <- read.delim("/home/ele/Data/454/annotation/annot8r/output/piedata_P", skip=1)
-Ac.sum.annot.P$species <- "Anguillicola crassus"
-sum.annot.P <- rbind(Bm.sum.annot.P, Ac.sum.annot.P)
-sum.annot.P$ontology <- "Biological process"
+slim <- rbind(Ac.slim, Bm.slim, Ce.slim)
 
-sum.annot <- rbind(sum.annot.C, sum.annot.F, sum.annot.P)
-
-
-
-GO.bm.com <- ggplot(sum.annot, aes(x=description, fill=species, weight=occurences)) +
+GO.bm.com <- ggplot(slim, aes(x=description, fill=species, weight=value)) +
   geom_bar(position="dodge") +
-  scale_x_discrete(breaks=sum.annot$description,
+  scale_x_discrete(breaks=slim$description,
                    label=gsub("^\n", "",
                      gsub("and\nnucleic\nacid\nmetabolic\nprocess",
                           "and nucleic acid\nmetabolic process",
-                          gsub(" ", "\n", sum.annot$description)))) +
+                          gsub(" ", "\n", slim$description)))) +
   facet_wrap(~ontology, ncol=1, scales="free") +
     opts(legend.text = theme_text(face="italic"))
 
 ggsave("/home/ele/thesis/454/figures/go_bm_com.png", GO.bm.com, width=16, height=16)
+
+Go.rep.Ac.Bm <- cor(Ac.slim$value, Bm.slim$value, method="spearman")
+Go.rep.Ac.Ce <- cor(Ac.slim$value, Ce.slim$value, method="spearman")
+Go.rep.Bm.Ce <- cor(Bm.slim$value, Ce.slim$value, method="spearman")
+
 @ 
