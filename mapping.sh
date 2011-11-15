@@ -65,4 +65,7 @@ cat all_vs_full_imputed.pileup | java -jar /home/ele/tools/varscan/VarScan.v2.2.
 cat all_vs_full_imputed_uq.pileup | java -jar /home/ele/tools/varscan/VarScan.v2.2.2.jar  pileup2snp > all_vs_full_imputed_uq.varsnp 2>all_vs_full_imputed_uq.varlog;
 
 
+## using mpileup instead
+/home/ele/tools/samtools/samtools mpileup -uf fullest_assembly_imputed.fasta all_vs_full_imputed_uq.sorted.bam | /home/ele/tools/samtools/bcftools/bcftools view -gcv - > all_once_imp.vca
+
 

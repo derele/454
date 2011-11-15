@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.9.20)  1 NOV 2011 07:48
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.9.20)  15 NOV 2011 10:42
 entering extended mode
  %&-line parsing enabled.
 **\nonstopmode \input{/home/ele/thesis/454/paper/transcriptome_paper.tex}
@@ -556,88 +556,135 @@ LaTeX Font Info:    Try loading font information for TS1+cmr on input line 109.
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Try loading font information for T1+aess on input line 158.
+LaTeX Font Info:    Try loading font information for T1+aess on input line 163.
 
 
 (/usr/share/texmf/tex/latex/ae/t1aess.fd
 File: t1aess.fd 1997/11/16 Font definitions for T1/aess.
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 158.
+(Font)              <12> on input line 163.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 158.
+(Font)              <8> on input line 163.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 158.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 158.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 158.
+(Font)              <6> on input line 163.
 
-Overfull \hbox (9.98987pt too wide) in paragraph at lines 158--158
+Underfull \hbox (badness 1496) in paragraph at lines 163--163
+\T1/aess/m/n/12 Emanuel G Heitlinger$[]$$[]$Stephen Bridgett$[]$Anna Montazam$[
+]$Horst Taraschewski$[]$and Mark
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 163.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 163.
+
+Overfull \hbox (9.98987pt too wide) in paragraph at lines 163--163
 []  
  []
 
 [1
 
-{/usr/share/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-LaTeX Font Info:    Try loading font information for T1+aett on input line 332.
+{/usr/share/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+LaTeX Font Info:    Try loading font information for T1+aett on input line 414.
 
 
 (/usr/share/texmf/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-) [3]
+)
+
+LaTeX Warning: Citation `pmid11590104' on page 4 undefined on input line 451.
+
+[4] [5]
 LaTeX Font Info:    Font shape `T1/aess/m/it' in size <10> not available
-(Font)              Font shape `T1/aess/m/sl' tried instead on input line 403.
- [4] [5] [6] [7] [8] [9] [10]
-[11] [12] [13] [14]
-LaTeX Font Info:    Try loading font information for TS1+aer on input line 1057
-.
-LaTeX Font Info:    No file TS1aer.fd. on input line 1057.
-
-
-LaTeX Font Warning: Font shape `TS1/aer/m/n' undefined
-(Font)              using `TS1/cmr/m/n' instead
-(Font)              for symbol `textbullet' on input line 1057.
-
-[15] [16] [17] [18] (/home/ele/thesis/454/paper/transcriptome_paper.bbl
+(Font)              Font shape `T1/aess/m/sl' tried instead on input line 568.
+ [6] [7] [8] [9] [10] [11] [12] [13] [14]
+(/home/ele/thesis/454/paper/transcriptome_paper.bbl
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line 27.
+ [15] [16] [17] [18])
+[19] [20]
+Overfull \hbox (70.92615pt too wide) in paragraph at lines 1113--1126
+[]  
+ []
 
-[19] [20] [21] [22]) [23] [24]
+[21]
 
 LaTeX Font Warning: Font shape `T1/aett/bx/n' undefined
-(Font)              using `T1/aett/m/n' instead on input line 1339.
+(Font)              using `T1/aett/m/n' instead on input line 1182.
 
-[25] [26] [27] [28] [29] [30]
-(/home/ele/thesis/454/paper/transcriptome_paper.aux)
+
+Overfull \hbox (2.60425pt too wide) in alignment at lines 1256--1278
+ [] [] [] [] 
+ []
+
+[22]
+Overfull \hbox (2.60425pt too wide) in alignment at lines 1278--1299
+ [] [] [] [] 
+ []
+
+
+Overfull \hbox (2.60425pt too wide) in alignment at lines 1299--1319
+ [] [] [] [] 
+ []
+
+
+Overfull \hbox (2.60425pt too wide) in alignment at lines 1319--1339
+ [] [] [] [] 
+ []
+
+[23]
+Overfull \hbox (2.60425pt too wide) in alignment at lines 1339--1359
+ [] [] [] [] 
+ []
+
+
+Overfull \hbox (2.60425pt too wide) in alignment at lines 1359--1379
+ [] [] [] [] 
+ []
+
+
+Overfull \hbox (2.60425pt too wide) in alignment at lines 1379--1400
+ [] [] [] [] 
+ []
+
+[24]
+Overfull \hbox (2.60425pt too wide) in alignment at lines 1400--1420
+ [] [] [] [] 
+ []
+
+[25] [26] [27] (/home/ele/thesis/454/paper/transcriptome_paper.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: There were undefined references.
+
  ) 
 Here is how much of TeX's memory you used:
- 2564 strings out of 256216
- 32978 string characters out of 1917072
- 122737 words of memory out of 1500000
- 5762 multiletter control sequences out of 10000+200000
- 44519 words of font info for 80 fonts, out of 1200000 for 2000
+ 2558 strings out of 256216
+ 32909 string characters out of 1917072
+ 125899 words of memory out of 1500000
+ 5757 multiletter control sequences out of 10000+200000
+ 44851 words of font info for 81 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  36i,7n,21p,315b,412s stack positions out of 5000i,500n,6000p,200000b,15000s
- </home/ele/.texlive2007/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk
-></usr/share/texmf/fonts/type1/bluesky/cm/cmbx9.pfb></usr/share/texmf/fonts/typ
-e1/bluesky/cm/cmmi10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi8.pfb></u
-sr/share/texmf/fonts/type1/bluesky/cm/cmr10.pfb></usr/share/texmf/fonts/type1/b
-luesky/cm/cmr6.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr8.pfb></usr/shar
-e/texmf/fonts/type1/bluesky/cm/cmr9.pfb></usr/share/texmf/fonts/type1/bluesky/c
-m/cmss10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmss12.pfb></usr/share/te
-xmf/fonts/type1/bluesky/cm/cmss8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/c
-mssbx10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmssi10.pfb></usr/share/te
-xmf/fonts/type1/bluesky/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/
-cmsy6.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf/
-fonts/type1/bluesky/cm/cmti10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmti
-9.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmtt10.pfb>
-Output written on transcriptome_paper.pdf (30 pages, 214064 bytes).
+</usr/share/texmf/fonts/type1/bluesky/cm/cmbx10.pfb></usr/share/texmf/fonts/t
+ype1/bluesky/cm/cmbx9.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi10.pfb><
+/usr/share/texmf/fonts/type1/bluesky/cm/cmmi8.pfb></usr/share/texmf/fonts/type1
+/bluesky/cm/cmr10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr6.pfb></usr/s
+hare/texmf/fonts/type1/bluesky/cm/cmr8.pfb></usr/share/texmf/fonts/type1/bluesk
+y/cm/cmr9.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmss10.pfb></usr/share/t
+exmf/fonts/type1/bluesky/cm/cmss12.pfb></usr/share/texmf/fonts/type1/bluesky/cm
+/cmss8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmssbx10.pfb></usr/share/te
+xmf/fonts/type1/bluesky/cm/cmssi10.pfb></usr/share/texmf/fonts/type1/bluesky/cm
+/cmsy10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy6.pfb></usr/share/texm
+f/fonts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmt
+i10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmti9.pfb></usr/share/texmf/fo
+nts/type1/bluesky/cm/cmtt10.pfb>
+Output written on transcriptome_paper.pdf (27 pages, 206293 bytes).
 PDF statistics:
- 175 PDF objects out of 1000 (max. 8388607)
+ 165 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

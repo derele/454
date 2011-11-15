@@ -1,4 +1,4 @@
-<<sigp, echo=FALSE, cache=TRUE>>=
+<<sigp, echo=FALSE, cache=TRUE, results=hide>>=
 
 signalip <- as.data.frame(read.delim("/home/ele/Data/454/annotation/signalp/Ac_p4ePro.signalip4",
                                      skip=2, sep="", header=FALSE,
@@ -47,7 +47,15 @@ signalip.ce$sigP <- sum.sigP(signalip.ce)
 
 <<signn.venn, echo=FALSE, results=hide>>=
 
-nsigP <- length(sigP)
-nsigPtm <- length(sigPtm)
+nsigP <- length(contig.df[contig.df$Ac &  contig.df$sigP%in%"Yes-noTM", "sigP"])
+nsigPtm <- length(contig.df[contig.df$Ac &  contig.df$sigP%in%"Yes-TM", "sigP"])
+
+
+nsigP.Bm <- nrow(signalip.bm[signalip.bm$sigP%in%"Yes-noTM",])
+nsigPtm.Bm <- nrow(signalip.bm[signalip.bm$sigP%in%"Yes-TM",])
+
+nsigP.Ce <- nrow(signalip.bm[signalip.ce$sigP%in%"Yes-noTM",])
+nsigPtm.Ce <- nrow(signalip.bm[signalip.ce$sigP%in%"Yes-TM",])
+
 
 @ 

@@ -17,3 +17,5 @@ do
     $SAMT pileup -f ../fullest_assembly_imputed.fasta $i.sorted.bam | java -jar /home/ele/tools/varscan/VarScan.v2.2.2.jar  pileup2snp --min-coverage 0 --min-reads2 0 --min-avg-qual 0 --min-var-freq 0 --p-value 100 > $i.varsnp;
 done
 
+
+$SAMT mpileup -uf ../fullest_assembly_imputed.fasta *.sorted.bam | /home/ele/tools/samtools/bcftools/bcftools view -gcv - > all_imp.vca

@@ -1,13 +1,12 @@
 %%% annotation.Rnw --- 
 
 %% Author: emanuelheitlinger@gmail.com
-<<annotation, echo=FALSE, cache=TRUE>>=
+<<annotation, echo=FALSE, cache=TRUE, results=hide>>=
 GO.annot <- read.delim("/home/ele/Data/454/annotation/annot8r/output_Ac/GO.csv", sep=",", header=FALSE)
 names(GO.annot) <- c("pept_id", "go_term", "pcf", "descr", "slim", "besthit", "bestscore", "bestev", "hitnum", "maxhits", "fraction") 
 
 ## reset the shorted names used in annotation to the proper contig-names
 GO.annot$pept_id <- gsub("Ac_", "Acrassus_", GO.annot$pept_id)
-
 
 GO.annot$go_term <- as.character(gsub(" ", "", GO.annot$go_term))
 GO.annot$pcf <- gsub(" C", "CC", GO.annot$pcf)
@@ -22,8 +21,16 @@ KEGG.annot <- read.delim("/home/ele/Data/454/annotation/annot8r/output_Ac/KEGG.c
 names(KEGG.annot) <- c("pept_id", "ko_id", "path", "descr", "besthit", "bestscore", "bestev", "hitnum", "maxhits", "fraction") 
 KEGG.annot$pept_id <- gsub("Ac_", "Acrassus_", KEGG.annot$pept_id)
 
+IPR.annot <- read.delim("/home/ele/Data/454/annotation/iprscan/MN.pep.fasta.iprscan", header=FALSE)
+names(IPR.annot)[1] <- "pept_id"
+
 ## annotation with Bm orthologous sequence
-all.bm.hit <- contig.df[, "Bm.hit"]
+  
+BMblast <- read.blast.best("/home/ele/Data/454/annotation/blast/full_vs_bm.blt")
+names(BMblast)[names(BMblast)%in%c("V1", "V2", "V12")] <- c("contig", "Bm.hit", "Bm.bit")
+contig.df <- merge(contig.df, BMblast[, c("contig", "Bm.hit", "Bm.bit")], all.x=TRUE)
+
+all.bm.hit <- contig.df[contig.df$Ac, "Bm.hit"]
 all.bm.hit <- all.bm.hit[!is.na(all.bm.hit)]
 all.bm.hit <- gsub("UniRef100_", "", all.bm.hit)
 
@@ -36,7 +43,11 @@ names(all.bm.names)[names(all.bm.names)=="protein_name"] <- "Bm.annot"
 contig.df <- merge(all.bm.names[, 2:3], contig.df, by="Bm.hit", all.y=TRUE, sort=FALSE)
 
 ## anntoation with Ce orthologous sequence
-all.ce.hit <- contig.df[, "Ce.hit"]
+CEblast <- read.blast.best("/home/ele/Data/454/annotation/blast/full_vs_ce.blt")
+names(CEblast)[names(CEblast)%in%c("V1", "V2", "V12")] <- c("contig", "Ce.hit", "Ce.bit")
+contig.df <- merge(contig.df, CEblast[, c("contig", "Ce.hit", "Ce.bit")], all.x=TRUE)
+
+all.ce.hit <- contig.df[contig.df$Ac, "Ce.hit"]
 all.ce.hit <- all.ce.hit[!is.na(all.ce.hit)]
 
 WORMB <- useMart("WS220" , dataset="wormbase_gene")
@@ -44,9 +55,14 @@ all.ce.rnai <- getBM(attributes = c("transcript", "brief_ident",
                         "rnai_phenotype_phenotype_label"),
                           filter="transcript",values=all.ce.hit, mart=WORMB)
 
+rnai <- as.data.frame(c(by(all.ce.rnai, all.ce.rnai$transcript,
+                           function (x) any(grepl("lethal", x$rnai_phenotype_phenotype_label)))))
+names(rnai) <- "Ce.rnai"
+
 ce.names <- all.ce.rnai[, c("transcript","brief_ident")]
 names(ce.names) <- c("Ce.hit", "Ce.annot")
 ce.names <- ce.names[!duplicated(ce.names$Ce.hit), ]
+ce.names <- merge(ce.names, rnai, by.x="Ce.hit", by.y="row.names", all.x=TRUE)
 
 contig.df <- merge(contig.df, ce.names, by="Ce.hit", all.x=TRUE, sort=FALSE)
 
@@ -66,6 +82,10 @@ names(BL.nempep)[names(BL.nempep)=="V1"] <- "contig"
 nemp <- merge(BL.nempep[, c(1, 12, 14)], nempep, by="Cluster.ID")
 names(nemp)[names(nemp)=="Cluster.ID"] <- "nempep.hit"
 contig.df <- merge(contig.df, nemp, by="contig", all.x=TRUE)
+
+n.nempep <- length(contig.df[contig.df$Ac &
+                             !grepl("no annotation", contig.df$nempep.annot) &
+                             !is.na(contig.df$nempep.annot), "nempep.annot"])
 
 ## annotagion with uniprot-name of nr-orthologous sequence
 gis.nr <- unique(nr$gi.nr.blast)
@@ -88,32 +108,60 @@ contig.df <- merge(contig.df,
                    nr[, c("gi.nr.blast", "contig", "nr.bit", "nr.uniprot.annot")],
                    all.x=TRUE)
 
+n.uniprot <- length(contig.df[contig.df$Ac & !is.na(contig.df$nr.uniprot.annot), "nr.uniprot.annot"])
+
 @ 
 
 <<ann.venn, echo=FALSE>>=
-GOannotations <- unique(GO.annot$pept_id)
+GOannotations <- unique(GO.annot$pept_id[GO.annot$pept_id%in%contig.df[contig.df$Ac,"contig"]])
 nGO <- length(GOannotations)
 
-ECannotations <- unique(EC.annot$pept_id)
+ECannotations <- unique(EC.annot$pept_id[EC.annot$pept_id%in%contig.df[contig.df$Ac,"contig"]])
 nEC <- length(ECannotations)
 
-KEGGannotations <- unique(KEGG.annot$pept_id)
+KEGGannotations <- unique(KEGG.annot$pept_id[KEGG.annot$pept_id%in%contig.df[contig.df$Ac,"contig"]])
 nKEGG <- length(KEGGannotations)
 
-## IPRannotations <- unique(IPR.annot[grepl("GO:", IPR.annot$GO_descr), "pept_id"])
-## nIPR <- length(IPRannotations)
-## nIPRonly <- length(IPRannotations[!IPRannotations%in%GOannotations &
-##                                   !IPRannotations%in%ECannotations &
-##                                   !IPRannotations%in%KEGGannotations
-##                                   ])
 
-Allannotations <- unique(c(GOannotations, ECannotations, KEGGannotations))#,  IPRannotations))
+Allannotations <- unique(c(GOannotations, ECannotations, KEGGannotations))
 nallannotations <- length(Allannotations)
 
 venn.diagram(list(GO   = match(GOannotations, Allannotations),
                   EC   = match(ECannotations, Allannotations),
                   KEGG = match(KEGGannotations, Allannotations)),
-                  ##                  IPR  = match(IPRannotations, Allannotations)),
                   filename = "/home/ele/thesis/454/figures/annotataionVenn.tiff")
+
+
+GOannotations.MN <- unique(GO.annot$pept_id[GO.annot$pept_id%in%contig.df[contig.df$AcMN,"contig"]])
+nGO.MN <- length(GOannotations.MN)
+
+ECannotations.MN <- unique(EC.annot$pept_id[EC.annot$pept_id%in%contig.df[contig.df$AcMN,"contig"]])
+nEC.MN <- length(ECannotations.MN)
+
+KEGGannotations.MN <- unique(KEGG.annot$pept_id[KEGG.annot$pept_id%in%contig.df[contig.df$AcMN,"contig"]])
+nKEGG.MN <- length(KEGGannotations.MN)
+
+IPRannotations <- unique(as.character(IPR.annot[!IPR.annot$V4%in%"Seg",
+                                                "pept_id"]))
+nIPR <- length(IPRannotations)
+
+Allannotations.MN <- unique(c(GOannotations.MN, ECannotations.MN, KEGGannotations.MN, IPRannotations))
+
+venn.diagram(list(GO   = match(GOannotations.MN, Allannotations.MN),
+                  EC   = match(ECannotations.MN, Allannotations.MN),
+                  KEGG = match(KEGGannotations.MN, Allannotations.MN),
+                  IPR = match(IPRannotations, Allannotations.MN)),
+                  filename = "/home/ele/thesis/454/figures/annotataionVennMN.tiff")
+
+nIPRonly <- length(IPRannotations[!IPRannotations%in%GOannotations &
+                                  !IPRannotations%in%ECannotations &
+                                  !IPRannotations%in%KEGGannotations
+                                  ])
+
+all.identifier <- length(contig.df[contig.df$Ac &
+                                   contig.df$contig%in%GOannotations &
+                                   contig.df$contig%in%ECannotations &
+                                   contig.df$contig%in%KEGGannotations 
+                                   , "contig"])
 
 @ 

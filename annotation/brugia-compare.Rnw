@@ -1,4 +1,4 @@
-<<annot.compare, echo=FALSE>>=
+<<annot.compare, echo=FALSE, results=hide>>=
 
 slim.annot8r <- function (path, species){ 
   l <- list()

@@ -1,7 +1,5 @@
 <<load.cobl, echo=FALSE, results=hide, cache=TRUE>>=
 
-source("/home/ele/thesis/454/common_R_functions.R")
-
 eelmRNA <- read.blast.best("/home/ele/Data/454/pre_assembly_screening/trimmed_all_vs_eelmRNA.blt")
 eelmRNA$dbhit <- "eelmRNA"
 
@@ -11,7 +9,6 @@ eelrRNA$dbhit <- "eelrRNA"
 AcrRNA <- read.blast.best("/home/ele/Data/454/pre_assembly_screening/trimmed_all_vs_AcrRNA.blt")
 AcrRNA$dbhit <- "AcrRNA"
 AcrRNA[grepl("Cerco|Flag", AcrRNA$V2), "dbhit"] <- "Cercozoa"
-
 
 B <- rbind(eelmRNA, eelrRNA, AcrRNA)
 

@@ -8,19 +8,6 @@ GO.dn.ds <- subset(GO.annot, pept_id%in%dn.ds.df$contig)
 big05 <- dn.ds.df[dn.ds.df$dn.ds>0.5 &
                   dn.ds.df$contig%in%GO.dn.ds$pept_id, "contig"]
 
-## whole data-frames for these categories
-big05.df <- contig.df[contig.df$dn.ds>0.5 & !is.na(contig.df$dn.ds), ]
-EC.big05.df <- merge(EC.annot, big05.df, by.x="pept_id", by.y="contig")
-
-## now the same for the contigs only absolutely surely  Ac
-dn.ds.df.AC <- dn.ds.df[dn.ds.df$Ac, ]
-
-GO.dn.ds.AC <- subset(GO.annot, pept_id%in%dn.ds.df.AC$contig)
-
-big05.AC <- dn.ds.df.AC[dn.ds.df.AC$dn.ds>0.5 &
-                        dn.ds.df.AC$contig%in%GO.dn.ds.AC$pept_id, "contig"]
-
-
 ## ## From the GOstats vignette
 test.over.under.GOstats <- function (annotation, set, ontology="MF") {
   goframeData <- as.data.frame(cbind(frame.go_id=
@@ -62,63 +49,57 @@ test.over.under.GOstats <- function (annotation, set, ontology="MF") {
   rbind(Over, Under)
 }
 
-## using just what is not na in dn ds as universe
+## only for sure AC this time
 mf.dn.ds <- test.over.under.GOstats(GO.dn.ds, big05, "MF")
 bp.dn.ds <- test.over.under.GOstats(GO.dn.ds, big05, "BP")
 cc.dn.ds <- test.over.under.GOstats(GO.dn.ds, big05, "CC")
-
-## using just what is not na in dn ds as universe BUT
-## only for sure AC this time
-mf.dn.ds.AC <- test.over.under.GOstats(GO.dn.ds.AC, big05.AC, "MF")
-bp.dn.ds.AC <- test.over.under.GOstats(GO.dn.ds.AC, big05.AC, "BP")
-cc.dn.ds.AC <- test.over.under.GOstats(GO.dn.ds.AC, big05.AC, "CC")
 
 ## make a list of offspring terms to allow finding of 
 GOMFOFF.list <- as.list(GOMFOFFSPRING)
 GOMFOFF.list <- GOMFOFF.list[!is.na(GOMFOFF.list)]
 
 ## which are the amino acid transporter contigs (2) being in dn.ds>0.5
-amino.acid.transporter.go <- mf.dn.ds.AC[grepl("acid transmembrane transporter",
-                                               mf.dn.ds.AC$Term), 1]
+amino.acid.transporter.go <- mf.dn.ds[grepl("acid transmembrane transporter",
+                                               mf.dn.ds$Term), 1]
 amino.acid.tr.off <- unlist(GOMFOFF.list[amino.acid.transporter.go])
 
 ## get the term-contigs plus their boffspring term-contigs
-## consistent with mf.dn.ds.AC results (size)
-amino.acid.tr.contigs <- unique(GO.dn.ds.AC[GO.dn.ds.AC$go_term%in%
+## consistent with mf.dn.ds results (size)
+amino.acid.tr.contigs <- unique(GO.dn.ds[GO.dn.ds$go_term%in%
                                             c(amino.acid.transporter.go, amino.acid.tr.off),
                                             "pept_id"])
 
-peptidase.go <- mf.dn.ds.AC[grepl("peptidase", mf.dn.ds.AC$Term), 1]
+peptidase.go <- mf.dn.ds[grepl("peptidase", mf.dn.ds$Term), 1]
 peptidase.off <- unlist(GOMFOFF.list[peptidase.go])
 
-## consistent with mf.dn.ds.AC results
-peptidase.contigs <- unique(GO.dn.ds.AC[GO.dn.ds.AC$go_term%in%
+## consistent with mf.dn.ds results
+peptidase.contigs <- unique(GO.dn.ds[GO.dn.ds$go_term%in%
                                         c(peptidase.go, peptidase.off),
                                             "pept_id"])
 
-## consistent with mf.dn.ds.AC results (count)
+## consistent with mf.dn.ds results (count)
 peptidase.contigs.pos <- contig.df[contig.df$contig%in%peptidase.contigs &
                                    contig.df$dn.ds>0.5 , "contig"]
 
 
 ## just to test that results for quality-contigs only are consistent.
-mf.dn.ds.AC.MN <- test.over.under.GOstats(subset(GO.dn.ds.AC,
-                                                 GO.dn.ds.AC$pept_id%in%
+mf.dn.ds.MN <- test.over.under.GOstats(subset(GO.dn.ds,
+                                                 GO.dn.ds$pept_id%in%
                                                  contig.df[contig.df$category%in%"MN",
                                                            "contig"]),
-                                          big05.AC, "MF")
+                                          big05, "MF")
 
-bp.dn.ds.AC.MN <- test.over.under.GOstats(subset(GO.dn.ds.AC,
-                                                 GO.dn.ds.AC$pept_id%in%
+bp.dn.ds.MN <- test.over.under.GOstats(subset(GO.dn.ds,
+                                                 GO.dn.ds$pept_id%in%
                                                  contig.df[contig.df$category%in%"MN",
                                                            "contig"]),
-                                          big05.AC, "BP")
+                                          big05, "BP")
 
-cc.dn.ds.AC.MN <- test.over.under.GOstats(subset(GO.dn.ds.AC,
-                                                 GO.dn.ds.AC$pept_id%in%
+cc.dn.ds.MN <- test.over.under.GOstats(subset(GO.dn.ds,
+                                                 GO.dn.ds$pept_id%in%
                                                  contig.df[contig.df$category%in%"MN",
                                                            "contig"]),
-                                          big05.AC, "CC")
+                                          big05, "CC")
 
 ## The same for KEGG doesn't work as I have not-uniqe annotations to a single contig
 ## keggframeData = data.frame(frame.path_id=as.character(gsub("^ K", "", KEGG.annot$ko_id)),
@@ -147,22 +128,20 @@ cc.dn.ds.AC.MN <- test.over.under.GOstats(subset(GO.dn.ds.AC,
 ### WTF!!
 
 dn.ds.df$sigP <- as.factor(dn.ds.df$sigP)
-dn.ds.df.AC$sigP <- as.factor(dn.ds.df.AC$sigP)
 
 ## this for the easy nn-data
-u.test <- wilcox.test(dn.ds ~ sigP, data=dn.ds.df)
-u.test.AC <- wilcox.test(dn.ds ~ sigP, data=dn.ds.df.AC)
+u.test <- wilcox.test(dn.ds ~ sigP, data=dn.ds.df, alternative="less")
 
 @   
 
 
 <<nn.dn.ds, echo=FALSE, results=hide>>=
 
-sigP.box <- ggplot(dn.ds.df.AC, aes(dn.ds.df.AC$sigP, dn.ds.df.AC$dn.ds)) + 
+sigP.box <- ggplot(dn.ds.df, aes(dn.ds.df$sigP, dn.ds.df$dn.ds)) + 
   geom_boxplot() + 
   scale_y_log10("dn/ds") +
   scale_x_discrete("", 
-                   breaks=levels(dn.ds.df.AC$sigP),
+                   breaks=levels(dn.ds.df$sigP),
                    labels=c("No signal peptide",
                      "Signal peptide")) +
   opts(title = "SignalP neural networks prediction",
@@ -217,20 +196,20 @@ get.ndwd <- function(data.df, test.var, fac.var) {
 }
 
 
-dn.ds.df.AC$novel.50 <- as.factor(dn.ds.df.AC$novel.50)
-dn.ds.df.AC$novel.80 <- as.factor(dn.ds.df.AC$novel.80)
+dn.ds.df$novel.50 <- as.factor(dn.ds.df$novel.50)
+dn.ds.df$novel.80 <- as.factor(dn.ds.df$novel.80)
 
-novel.50.ndwd <- get.ndwd(dn.ds.df.AC, dn.ds.df.AC$dn.ds, dn.ds.df.AC$novel.50)
+novel.50.ndwd <- get.ndwd(dn.ds.df, dn.ds.df$dn.ds, dn.ds.df$novel.50)
 novel.50.kw.ph <- pvalue(novel.50.ndwd, method = "single-step")
 
-novel.80.ndwd <- get.ndwd(dn.ds.df.AC, dn.ds.df.AC$dn.ds, dn.ds.df.AC$novel.80)
+novel.80.ndwd <- get.ndwd(dn.ds.df, dn.ds.df$dn.ds, dn.ds.df$novel.80)
 novel.80.kw.ph <- pvalue(novel.80.ndwd, method = "single-step")
 
-u.novel.50 <- wilcox.test(dn.ds.df.AC$dn.ds~
-                          as.factor(dn.ds.df.AC$novel.50%in%"novel.in.clade3"), alternative="less")
+u.novel.50 <- wilcox.test(dn.ds.df$dn.ds~
+                          as.factor(dn.ds.df$novel.50%in%"novel.in.clade3"), alternative="less")
 
-u.novel.80 <- wilcox.test(dn.ds.df.AC$dn.ds~
-                          as.factor(dn.ds.df.AC$novel.80%in%"novel.in.clade3"), alternative="less")
+u.novel.80 <- wilcox.test(dn.ds.df$dn.ds~
+                          as.factor(dn.ds.df$novel.80%in%"novel.in.clade3"), alternative="less")
 @ 
 
 <<novel.nn, echo=FALSE, results=hide>>=
@@ -265,8 +244,5 @@ print(sigP.80.p, vp = vplayout(1, 2 ))
 
 dev.off() 
 
-## ## wtf this could be really, really bad, is it?
-## summary(dn.ds~cov8.nsyn.sites+cov8.syn.sites, data=dn.ds.df.AC)
-## summary(dn.ds~nsyn.sites+syn.sites, data=dn.ds.df.AC)
 
 @ 

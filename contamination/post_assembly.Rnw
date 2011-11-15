@@ -1,7 +1,5 @@
 <<host.screen, echo=FALSE, cache=TRUE>>=
 
-source("/home/ele/thesis/454/common_R_functions.R")
-
 ## new style uncompromising screening 
 eelmRNA <- read.blast.best("/home/ele/Data/454/post_assembly_screening/fullest_vs_eelmRNA.blt")
 eelmRNA$dbhit <- "eelmRNA"
@@ -100,8 +98,6 @@ gc.cont.phylum <- ggplot(subset(contig.df, contig.df$kingdom.nr%in%"Metazoa" &
   geom_density() +
   facet_wrap( ~ phylum.nr)
 
-
-
 png("../figures/phylum_plots.png", width=2000, height=1000, res=144)
 
 # Set up the page
@@ -116,15 +112,6 @@ print(phyl.plot.nr, vp = vplayout(1, 2 ))
 dev.off() 
 
 
-## nrow(contig.df[contig.df$contamination1=="valid" &
-##                contig.df$contamination2%in%c("valid", "nempep4") &
-##                contig.df$phylum.nr%in%c("Nematoda", "No_hit"), ])
-
-
-## summary(contig.df[contig.df$contamination1=="valid" &
-##                   contig.df$contamination2%in%c("valid", "nempep4") &
-##                   contig.df$phylum.nr%in%c("Nematoda", "No_hit"), "uniq_coverage"])
-
 @ 
 
 <<post.con, echo=FALSE, cache=TRUE>>=
@@ -137,18 +124,13 @@ row.names(post.table) <- c("number",
 nvalid <- nrow(contig.df[grepl("valid", contig.df$contamination) ,])
 
 ## Examples of selecting from the data
-
-select_no_eel <- grepl("valid", contig.df$contamination) &
-                            !contig.df$phylum.nt%in%"Chordata" &
-                            !contig.df$phylum.nr%in%"Chordata"
-select_no_eel_MN <- select_no_eel  & contig.df$category%in%"MN"
-
-n_no_eel <- nrow(contig.df[select_no_eel,])
-n_MNno_eel <- nrow(contig.df[select_no_eel_MN,])
-
 select_AC <- grepl("valid", contig.df$contamination) &
-                          contig.df$phylum.nt%in%c("Nematoda", "No_hit") &
-                          contig.df$phylum.nr%in%c("Nematoda", "No_hit")
+                            contig.df$kingdom.nt%in%c("Metazoa", "No_hit") &
+                            contig.df$kingdom.nr%in%c("Metazoa", "No_hit") &
+                            !contig.df$phylum.nr%in%c("Chordata") &
+                            !contig.df$phylum.nt%in%c("Chordata") 
+
+
 select_AC_MN <- select_AC & contig.df$category%in%"MN"
 
 contig.df$Ac <- select_AC
@@ -156,5 +138,18 @@ contig.df$AcMN <- select_AC_MN
 
 n_su_Ac <- nrow(contig.df[contig.df$Ac, ])
 n_suMN_Ac <- nrow(contig.df[contig.df$AcMN, ])
+
+contig.df$seq.origin <- contig.df$contamination
+contig.df[!contig.df$phylum.nr%in%c("Nematoda", "No_hit"),  "seq.origin"] <- contig.df[!contig.df$phylum.nr%in%c("Nematoda", "No_hit"), "phylum.nr"]
+
+other.king <- summary.factor(contig.df[!contig.df$Ac &
+                                       !contig.df$seq.origin%in%c("Nematoda", "No_hit",
+                                                                  "eelmRNA", "Chordata", "AcrRNA"),
+                             "kingdom.nr"])
+
+other.phyl <- summary.factor(contig.df[!contig.df$Ac &
+                                       !contig.df$seq.origin%in%c("Nematoda", "No_hit",
+                                                                  "eelmRNA", "Chordata", "AcrRNA"),
+                             "phylum.nr"])
 
 @ 

@@ -1,10 +1,7 @@
 %% read P4EST output processed with
 %% coordinates_from_p4e.pl
 
-<<imputedP4E, echo=FALSE, cache=TRUE>>=
-
-source("/home/ele/thesis/454/common_R_functions.R")
-
+<<imputedP4E, echo=FALSE, cache=TRUE, results=hide>>=
 
 get.seq.and.orf <- function (filepath){
   IMPFAS <- read.sequences(filepath)
@@ -82,13 +79,12 @@ contig.df <- merge(contig.df, imputed, all.x=TRUE)
 
 stopcods <- table(contig.df$stopcod[contig.df$stopcod%in%c("TAG", "TAA", "TGA")])
 
-same.same <- summary.factor(tolower(as.character(contig.df$imp))==tolower(as.character(contig.df$seq)))
+same.same <- summary.factor(tolower(as.character(contig.df[contig.df$Ac, "imp"]))==tolower(as.character(contig.df[contig.df$Ac, "seq"])))
 
 imp.pile <- read.table(pipe("cut -f1,2,4 /home/ele/Data/454/mapping/all_vs_full_imputed_uq.pileup"))
 names(imp.pile) <- c("contig", "base", "imputed.coverage")
 per.con.imp <- data.frame(imputed.coverage= tapply(imp.pile$imputed.coverage, imp.pile$contig, mean, rm.na=T))
 contig.df <- merge(contig.df, per.con.imp, by.x="contig", by.y="row.names", all.x=TRUE)
-
 
 ## finally also add the peptide sequence
 Ac.pep <- read.sequences("/home/ele/Data/454/prot4EST/A.crassus_p4ePro.fsa")

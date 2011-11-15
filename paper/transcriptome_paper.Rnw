@@ -135,9 +135,9 @@
 \author{Emanuel G Heitlinger\correspondingauthor$^{1,2}$%
        \email{Emanuel G Heitlinger\correspondingauthor - emanuelheitlinger@gmail.com}%
        Stephen Bridgett$^{3}$%
-       \email{Stephen Bridgett- s.bridgett@genepool.ed.ac.uk}%
-       Anna Montazaam$^{3}$%
-       \email{Anna Montazaam- a.montazaam@genepool.ed.ac.uk}%
+       \email{Stephen Bridgett- sbridget@staffmail.ed.ac.uk}%
+       Anna Montazam$^{3}$%
+       \email{Anna Montazam- Anna.Montazam@ed.ac.uk}%
        Horst Taraschewski$^1$%
        \email{Horst Taraschewski- dc20@rz.uni-karlsruhe.de}%
        and Mark Blaxter$^2$%
@@ -327,9 +327,17 @@ source("/home/ele/thesis/454/common_R_functions.R")
 
 \subsection*{Sampling A. crassus}
 
-****Describe the samples taken - lifecycle stage, population source
-and host source and reference table 1.  Mention the issues of host
-contamination, and thus mention the eel transcriptome set.***
+One female worm and one male worm were sampled from an aquaculture
+with height infection loads in Taiwan. An additonal female worm was
+sampled from a stream with low infection pressure adjacent to the
+aquaculture. All these worms were parsitising endemic
+\textit{An. japonica}. A female worm and pool of L2 larval stages were
+sampled from \textit{An. anguilla} in the river Rhein, one female worm
+from a lake in Poland. All adult worms were filled with large amounts
+of host-bood, therefore we anticipated abundand host-contamination in
+sequencing and decided to sequence a liver sample of an unifected
+\textit{An. japonica} for screening.
+
 
  \subsection*{Sequencing, trimming and pre-assembly screening}
 
@@ -389,25 +397,38 @@ RE <- cbind(read=names, lib)
 names(RE)[2:3] <- c("seq", "lib")
 RE$seq <- as.character(RE$seq)
 RE$length <- nchar(RE$seq)
+
+eel.all <- read.sequences(pipe("/home/ele/tools/Newbler2.6/bin/sffinfo -s /home/ele/Data/454/Li68_assembly/sff/Li68.sff"))
+
+eel.clean <- read.sequences(pipe("/home/ele/tools/Newbler2.6/bin/sffinfo -s /home/ele/Data/454/Li68_assembly/sff/Li68.sff.trimmed.sff"))
+
+eel.rRNA.contigs <- read.sequences("/home/ele/Data/454/Li68_assembly/Aj_liver_rRNA.fasta")
+
+eel.contigs <- read.sequences("/home/ele/Data/454/Li68_assembly/Aj_liver.fasta")
+
 @ 
 
 \SweaveInput{../contamination/pre_assembly.Rnw}
 
 A total of \Sexpr{TRIM["total","raw_reads"]} raw sequencing reads were
-generated for A. crassus (Table 1). These were trimmed for base call
-quality, and filtered by length to give \Sexpr{TRIM["total","valid"]}
-high-quality reads (XX bases). We then screened these reads for
-contamination by host (30,071 matched previously sequenced eel genes
-or our own An. anguilla 454 transcriptome), and for sequences derived
-from ribosomal RNAs of the nematode (202,823 reads matched large or
-small subunit nuclear ribosomal RNA sequences of A. crassus) (Table
-1). In addition to fish mRNAs, we identified (and removed) XXXX reads
-in the library derived from the L2 nematodes that had significant
-similarity to cercozoan (likely parasite) ribosomal RNA genes (Table
-1).
+generated for \textit{A. crassus} (Table 1). These were trimmed for
+base call quality, and filtered by length to give
+\Sexpr{TRIM["total","valid"]} high-quality reads (spanning
+\Sexpr{sum(pre.screen.tab$valid.span)#$} bases). In the eel data-set
+from \Sexpr{length(eel.all)} raw reads \Sexpr{length(eel.clean)} were
+assembled after basic quality screening.
 
-In the eel data-set XXX reads matched for ribosomal RNA from
-\textit{An. japonica} or \textit{An. anguilla} and were removed.
+We then screened the \textit{A. crassus} reads for contamination by
+host (\Sexpr{sum(pre.screen.tab$eelmRNA)#$} matched previously
+sequenced eel genes in our own \textit{An. anguilla} 454
+transcriptome, which was partitioned in \Sexpr{length(eel.contigs)}
+mRNA and \Sexpr{length(eel.rRNA.contigs)} rRNA TUGs after
+the nematode (\Sexpr{sum(pre.screen.tab$AcrRNA)#$} reads matched large
+or small subunit nuclear or mitochondrial ribosomal RNA sequences of
+A. crassus) (Table 1). In addition to fish mRNAs, we identified (and
+removed) \Sexpr{pre.screen.tab[["L2","Cercozoa"]]} reads in the
+library derived from the L2 nematodes that had significant similarity
+to cercozoan (likely parasite) ribosomal RNA genes (Table 1).
 
 \subsection*{Assembly}
 
@@ -426,338 +447,232 @@ nSing <- nrow(contig.df[contig.df$category%in%0,])
 We assembled the remaining \Sexpr{length(raw.fasta)} reads (spanning
 \Sexpr{nBases} bases) using the combined assembler strategy
 \cite{pmid20950480} and Roche 454 GSassembler (version 2.6) and MIRA
-(version 3.01 XXX) \cite{miraEST}. From this we derived 13,851 contigs
-that were supported by both assembly algorithms, 3,745 contigs only
-supported by one of the assembly algorithms and 22,591 singletons that
-were not assembled by either approach (****Table 2 or Figure
-1****). When scored by matches to known genes, the contigs supported
-by both assemblers are of the highest credibility, and this set is
-thus termed the high credibility assembly (highCA). Those with
-evidence from only one assembler are of medium credibility (medCA),
-and the singletons are of lower credibility (lowCA). These datasets
-are the most parsimonious (having the smallest size) for their quality
+(version 3.21) \cite{miraEST}. From this we derived \Sexpr{nMN}
+contigs that were supported by both assembly algorithms,
+\Sexpr{nbad.c} contigs only supported by one of the assembly
+algorithms and \Sexpr{nSing} singletons that were not assembled by
+either approach (Table 2). When scored by matches to known genes, the
+contigs supported by both assemblers are of the highest credibility,
+and this set is thus termed the high credibility assembly
+(highCA). Those with evidence from only one assembler and the
+singletons are of lower credibility (lowCA). These datasets are the
+most parsimonious (having the smallest size) for their quality
 (covering the largest amount of sequence in reference
 transcritomes). In the highCA parsimony and low redundancy is
-prioritized, while in the complete assembly (highCA plus medCA plus
-lowCA) completeness is proiritized. The 40187 sequences (contig
-consensuses and singletons) in the complete assembly are referred to
-below as tentatively unique genes (TUGs).
+prioritized, while in the complete assembly (highCA plus lowCA)
+completeness is proiritized. The 40187 sequences (contig consensuses
+and singletons) in the complete assembly are referred to below as
+tentatively unique genes (TUGs).
 
 <<mean.cov, echo=FALSE, cache=TRUE>>=
 
-cov <- round(mean(con.pile[, "coverage"]),2)
-cov.u <- round(mean(con.pile.uniq[, "uniq_coverage"]),2)
-cov.mn <- round(mean(con.pile[con.pile$contig%in%
-                                contig.df[contig.df$category=="MN", "contig"],
-                                "coverage"]),2)
-cov.mn.u <- round(mean(con.pile.uniq[con.pile.uniq$contig%in%
-                                        contig.df[contig.df$category=="MN", "contig"],
-                                        "uniq_coverage"]),2)
+cov.mn <- tapply(con.pile$coverage,
+                 con.pile$contig%in%contig.df[contig.df$category=="MN", "contig"],
+                 mean)
+                            
+cov.mn.u <- tapply(con.pile.uniq$uniq_coverage,
+                   con.pile.uniq$contig%in%contig.df[contig.df$category=="MN", "contig"],
+                   mean)
+
+cov.nu.total <- mean(con.pile$coverage)
+cov.u.total <- mean(con.pile.uniq$uniq_coverage)
+
 
 @ 
-
-The mean per-base coverage of the TUGs was \Sexpr{cov} and the mean
-per-base unique coverage was \Sexpr{cov.u}. The mean per-base coverage
-of the quality contigs was lower with \Sexpr{cov.mn}, but the unique
-coverage higher with \Sexpr{cov.mn.u}. This indicates a higher amount
-of redundancy in the full assebmly set compared to the good-quality
-set. The distribution of mean per base coverages for single contigs or
-TUGs is given in Figure (coverage\_per\_contig.png)
 
 \SweaveInput{../contamination/post_assembly.Rnw}
 
 We screened the complete assembly for residual host contamination, and
-identified 1,816 contigs that had higher, significant similarity to
-eel (and fish) sequences (our 454 ESTs and EMBLBank fish proteins)
-than to nematode sequences \cite{pmid21550347}. 
+identified
+\Sexpr{length(contig.df$seq.origin%in%c("eelmRNA","Chordata"))#$}
+  TUGs that had higher, significant similarity to eel (and chordate)
+  sequences (our 454 ESTs and EMBLBank Chordata proteins) than to
+  nematode sequences \cite{pmid21550347}.
 
-Given our prior identification of cercozoan ribosomal RNAs, we also
-screened the complete assembly for contamination with other
-transcriptomes, and
+  Given our prior identification of cercozoan ribosomal RNAs, we also
+  screened the complete assembly for contamination with other
+  transcriptomes, and found \Sexpr{other.king["Fungi"]} TUGs with hits
+  to fungi (e.g Ajellomycetaceae, 53 hits),
+  \Sexpr{other.king["Viridiplantae"]} TUGs whith hits to plants and
+  \Sexpr{other.king["undef"]} hits to Protists (e.g. Trypanosomatidae,
+  26 hits and Vahlkampfiidae, 38 hits), Bacteria (mostly
+  Proteobacteria, 484 hits) and Viruses (see also additional figure
+  phylum\_plots.png).
 
-***describe what was found***
+  No hits were found to Wolbachia or related Bacteria known as
+  symbionts of Ecdyosozoans.
 
-*** Now we want Table 2 describing the three datasets, with columns
-highCA, medCA, lowCA, complete assembly, and rows initial contig
-numbers, # fish contigs, # other contigs, # remaining contigs, span of
-remaining contigs, number of reads total in contigs, mean base
-coverage of contigs, number protein predictions derived in p4e, number
-complete at 5', number complete at 3'', number with GO, number with
-KEGG, number with EC, number with any blast to nematode, number with
-any blast to anything ***
+  Our assembly thus has \Sexpr{nrow(contig.df[contig.df$Ac,])#$} TUGs,
+  spanning \Sexpr{sum(nchar(contig.df[contig.df$Ac,"seq"]))#$} bases
+  (of which \Sexpr{nrow(contig.df[contig.df$AcMN,])#$} are
+  highCA-derived, and span
+  \Sexpr{sum(nchar(contig.df[contig.df$Ac,"seq"]))#$} bases) that are
+  likely to derive from of \textit{A. crassus}.
 
-Our assembly thus has 38371
+\subsection*{Protein prediction}
+\SweaveInput{../conservation/conservation.Rnw}
+\SweaveInput{../protein_prediction/imputed_from_p4EST.Rnw}
+\SweaveInput{../snp_analysis/snp_analysis.Rnw}
+\SweaveInput{../snp_analysis/snp_by_population.Rnw}
+\SweaveInput{../annotation/annotation.Rnw}
+\SweaveInput{../annotation/read_signalp.Rnw}
+\SweaveInput{../annotation/brugia-compare.Rnw}
 
-*** what is the number? - given as 31893 , 36166 later ***
 
-TUGs spanning XY Mb (of which XYZ are highCA- or medCA-derived, and
-span XY Mb) that are likely to derive from of A. crassus.
-
-Protein prediction *** was this done for the fish and other biont
-contigs? if so remove their numbers from this section *** For 39625
-TUGs a protein was predicted using prot4EST [reference] (Table 2). The
-full open reading frame was obtained for in 414 TUGs, while for 3304
-the 5’ end and for 10178 the 3' end was complete. In 15988 TUGs the
+For
+\Sexpr{nrow(contig.df[contig.df$Ac&contig.df$method!="no-prediction",])}
+TUGs a protein was predicted using prot4EST
+\cite{wasmuth_prot4est:_2004} (Table 2). The full open reading frame
+was obtained in
+\Sexpr{nrow(contig.df[contig.df$Ac&imputed$full.length,])} TUGs, while
+while for \Sexpr{nrow(contig.df[contig.df$Ac&imputed$full.5p,])} the
+5’ end and for \Sexpr{nrow(contig.df[contig.df$Ac&imputed$full.3p,])}
+the 3' end was complete. In \Sexpr{same.same[["FALSE"]]} TUGs the
 corrected sequence with the imputed ORF was slightly changed compared
-to the raw sequence.  Annotation We used annot8r [reference] to assign
-gene ontology (GO) terms for 9569 TUGs, Enzyme Commission (EC) numbers
-for 3741 TUGs and Kyoto Encyclopaedia of Genes and Genomes (KEGG)
-pathway annotations for 5990 TUGs (Table 2). Nearly one third (10274)
-of the A. crassus TUGs were annotated with at least one identifier,
-and 2854 had GO, EC and KEGG annotations (Figure
-annotataionVenn.tiff). We compared our A. crassus GO annotations for
-high-level GO-slim terms to the annotations (obtained the same way)
-for the complete proteome of the filarial nematode Brugia malayi. The
-partial transcriptome of A. crassus shows a remarkably similar
-distribution 
+to the raw sequence.
 
-**** this is not a scientific statement... yes they are
-similar but is it remarkable? iis it sgnificantly different? is
-C. elegans similar? what does this tell us about the completeness of
-our data?**** 
+\subsection*{Annotation}
 
-of GO-slim terms to the full proteome \textit{B. malayi} (figure
-go_bm_com.png). We inferred presence of signal peptide cleavage sites
-in the predicted protein sequence using SignalP \cite{pmid21959131}
-predicted 1060 signal peptide cleavage sites and 83 signal peptides
-with a transmembrane signature. *
+We obtained basic annotations with orthologous sequences from
+\textit{C. elgeans} for \Sexpr{length(all.ce.hit)} TUGs, from
+\textit{B. malayi} for \Sexpr{length(all.bm.hit)} TUGs, from nempep
+\cite{parkinson_nembase:resource_2004, pmid21550347} for
+\Sexpr{n.nempep} TUGs and whith uni-prot proteins for
+\Sexpr{n.uniprot} TUGs.
 
-**and compared this proportion with Brugia, or ...***
+We used annot8r \cite{schmid_annot8r:_2008} to assign gene ontology
+(GO) terms for \Sexpr{nGO} TUGs, Enzyme Commission (EC) numbers for
+\Sexpr{nEC} TUGs and Kyoto Encyclopaedia of Genes and Genomes (KEGG)
+pathway annotations for \Sexpr{nKEGG} TUGs (Table 2). Additionally
+\Sexpr{nIPR} highCA derived contigs were anntotated with GO terms
+through Interpro Scan \cite{pmid11590104}. Nearly one third
+(\Sexpr{nallannotations}) of the \textit{A. crassus} TUGs were
+annotated with at least one identifier, and \Sexpr{all.identifier} had
+GO, EC and KEGG annotations (Figure 1).
+
+We compared our \textit{A. crassus} GO annotations for high-level
+GO-slim terms to the annotations (obtained the same way) for the
+complete proteome of the filarial nematode \textit{B. malayi} and the
+complete proteome of \textit{C. elegans}. 
+
+Correlation shows the occurence of terms for the partial transcriptome
+of \textit{A. crassus} to be more similar to the proteome of
+\textit{B. malayi} (\Sexpr{round(Go.rep.Ac.Bm,2)}; Spearman
+correlation coefficient) than to the proteome of \textit{C. elegans}
+(\Sexpr{round(Go.rep.Ac.Ce,2)}). Also the tow model-nematode compared
+ot each other (\Sexpr{round(Go.rep.Bm.Ce,2)}) are less similar in the
+occurence of therm.
+
+We inferred presence of signal peptide cleavage sites in the predicted
+protein sequence using SignalP \cite{pmid21959131}. We predicted
+\Sexpr{nsigP} signal peptide cleavage sites and \Sexpr{nsigPtm} signal
+peptides with a transmembrane signature. Again these predictions are
+more similar to predictions using the same methods for the proteome
+\textit{B. malayi} (\Sexpr{nsigP.Bm} signal peptide cleavage sites and
+\Sexpr{nsigPtm.Bm} with transmembrane anchor) than for the proteome of
+\textit{C. elegans} (\Sexpr{nsigP.Ce} signal peptide cleavage sites
+and \Sexpr{nsigPtm.Ce} with transmembrane anchor).
 
 \subsection*{Evolutionary conservation}
-\SweaveInput{../conservation/conservation.Rnw}
 
 Evolutionary conservation The A. crassus TUGs were classified as
 conserved, conserved in Metazoa, conserved in Nematoda, conserved in
 Spirurina or novel to A. crassus by comparing them to public databases
 and using two BLAST bit-score cutoffs to define relatedness.
 
+
+
 ****Now describe the data, and reference table 3, add novel in
 A. crassus****
-
-\subsection*{Protein prediction}
-
-\SweaveInput{../protein_prediction/imputed_from_p4EST.Rnw}
-
-For in total
-\Sexpr{nrow(contig.df[contig.df$method!="no-prediction",])#$} TUGs
-a protein was predicted. A summary of protein prediction using the
-different methods implemented in prot4EST is given in table 6.
  
-The full open reading frame was obtained for in total
-\Sexpr{nrow(imputed[imputed$full.length,])#$} TUGs, while for
-\Sexpr{nrow(imputed[imputed$full.5p,])#$} the 5' end and for
-\Sexpr{nrow(imputed[imputed$full.3p,])#$} the 3’ end was complete.  A
-predicted ORF was defined at complete if it was starting with an
-``atg''-start-codon, having at least 3 non-coding bases 5' of the
-start-codon and having a ``tag'' (\Sexpr{stopcods["TAG"]}
-observations), ``taa'' (\Sexpr{stopcods["TAA"]}) or ``tga''
-(\Sexpr{stopcods["TGA"]}) stop-codon 3' of the ORF.
+\subsection*{Identification of single nucleotide polymorphisms}
 
-In addition to the protein-sequence used for annotation we obtained a
-corrected nucleotide-sequence using the nucleotide equivalent of the
-protein-prediction. This was necessary as \texttt{prot4Est} joins
-high-scoring pairs from \texttt{blast}-searces introducing gaps (or
-unknown fill-bases respectively) relative to the raw nucleotide
-sequence if needed to obtain the correct frame for the ORF. In
-\Sexpr{same.same[["FALSE"]]} TUGs the corrected sequence with the
-imputed ORF was slightly changed compared to the raw sequence.
- 
-\subsection*{SNP analysis}
-\label{sec:snp-analysis}
+We called single nucleotide polymorphisms (SNPs) on the 1,412,806
+bases of the TUGs that had coverage of more then 8-fold available
+using VARScan \cite{pmid19542151}. We excluded SNPs predicted to have
+more than 2 alleles or that mapped to an undertermined (N) base in the
+reference, and retained 13042 SNPs. The ratio of transitions (ti;
+8663) to transversion (tv; 4379) in this set was 1.98. Using the
+prot4EST prtedictions and the corrected sequences, 8309 of the SNPs
+were predicted to be inside an ORF, with 2713 at codon first positons,
+2172 at second positions and 3424 at third positions. As expected
+ti/tv inside ORFs (2.43) was higher than outside ORFs (1.42). The
+ratio of synonymous polymorphisms per synonymous site to
+non-synonymous polymorphisms per non-synonymous site (dn/ds) was 0.45.
+We filtered these SNPs to exclude those that might be associated with
+analytical bias. As Roche 454 sequences have well-known systematic
+errors associated with homopolymeric nucleotide sequences
+\cite{pmid21685085}, we analysed the effect of exclusion of SNPs in,
+or close to, homopolymer regions. We observed changes in ti/tv and in
+dn/ds when SNPs were discarded using different size thresholds for
+homoploymer runs and proximity thresholds (see figure
+snp\_ex\_parameter\_plots.png). Based on this we decided to exclude SNPs
+with a homopolymer-run as long as or longer than 4 bases inside a
+window of 11 bases (5 to bases to the right, 5 to the left) around the
+SNP. We also observed a relationship between TUG dn/ds and TUG
+coverage, associated with the presence of sites with low abundance
+minority alleles (less than 7\% of the allele calls), suggesting that
+some of these may be errors.  Removing low abundance minority allele
+SNPs from the set removed this effect.  Our filtered SNP dataset
+includes \Sexpr{nrow(VARqp)} SNPs. We retained 4.44 SNPs per kb of
+contig sequence, with 7.87 synonymous SNPs per 1000 synonymous bases
+and 2.43 non-synonymous SNPs per 1000 non-synonymous bases. A mean
+dn/ds of 0.32 was calculated for the 980 TUGs (858 highCA and lowCA
+contigs) containing at least one synonymous SNP.
 
-\SweaveInput{../snp_analysis/snp_analysis.Rnw}
 
-In order to improve SNP-calling we screened a set of \Sexpr{nRawSnps}
-candidate-SNPs predicted on in total \Sexpr{nbases} bases
-(\Sexpr{nCov8bases} bases with a minimum coverage of more then 8-fold
-available for SNP-calling). We first excluded SNPs predicted to be
-present as more than 2 alleles and to undetermined (``N'') base in the
-reference retaining \Sexpr{nReadSnps} SNPs. The ratio of transitions
-(\Sexpr{tsv.read[[1]]}) to transversion (\Sexpr{tsv.read[[2]]}) in
-this set was \Sexpr{round(tsv.read[[3]],2)} (ti/tv).
 
-To further screen those SNPs we utilized observations made in
-combination with protein prediction, i.e. with the inferred
-open-reading frame. As noted above SNPs at unknown fill-bases had to
-be disregarded, but the imputation of a continuous corrected ORF had
-the advantage of making the coordinates for the ORF straight forward
-to use.
-
-\Sexpr{nReadOrf[["TRUE"]]} of the raw SNPs were predicted to be inside
-an ORF, \Sexpr{nReadFrame[["1"]]} at a first positon in a codon,
-\Sexpr{nReadFrame[["2"]]} on a second base and
-\Sexpr{nReadFrame[["3"]]} on a third base in a codon.
-
-As expected ti/tv inside ORFs was with
-\Sexpr{tsv.read.orf["TRUE","ratioTS.TV"]} higher than outside ORFs
-with \Sexpr{tsv.read.orf["FALSE","ratioTS.TV"]}.
-
-To asses the effect of a mutation at a given base we used an idea of
-Mark Blaxter (unpublished, some information at \cite{Marks_ontology}),
-to classify every base as to its ``response'' to mutation. We used
-this classification to compute the number of synonymous and
-non-synonymous sites in a given TUG. In total \Sexpr{total.nsyn}
-non-synonymous and \Sexpr{total.syn} sites were found in ORFs, of
-these \Sexpr{round(total.cov8.nsyn,2)} non-synonymous sites and
-\Sexpr{round(total.cov8.syn,2)} synonymous sites were covered at
-least 8-fold, and thus available for SNP-calling.
-
-For the raw set of candidate-SNPs the ratio of synonymous
-polymorphisms per synonymous site to non-synonymous polymorphisms per
-non-synonymous site (dn/ds) was \Sexpr{round(read.dn.ds, 2)}.
-
-To improve SNP-calling with respect to the well-known homopolymer
-issues in 454-sequencing\cite{pmid21685085}, we analysed the effect of
-exclusion of SNPs in, or close to, homopolymer regions. We observed
-changes in ti/tv and in dn/ds when SNPs were discareded due to
-different sizes thresholds for homoploymer-runs and different
-proximity thresholds (see figure snp\_ex\_parameter\_plots.png). Based
-on this we decided to exclude SNPs with a homopolymer-run as long as
-or longer than 4 bases inside a window of 11 bases (5 to bases to the
-right, 5 to the left) around the SNP.
-
-After these screening steps based on a sequence-features we
-investigated the effect of data volume and mapping on the remaining
-candidate SNPs. Based on a slight overrepresentation of SNPs on first-
-and second-positions in the ORF and on a little bigger than average
-excess of non-synonymous polymorphisms in SNPs with a percentage of
-the minority allele smaller than 7\% (see figure
-snp\_pos\_eff\_plots.png a and b) we examined exclusion of SNPs at
-this percentage threshold. Evaluation of an exclusion of SNPs based on
-coverage at the SNP-site, did not seem necessary (see figure
-snp\_pos\_eff\_plots.png c and d).
-
-Table 7 gives on overview of how the basic SNP-statistics described
-above changed with screening of the candidate SNPs. The change of
-ti/tv back to lower values, when SNPs were screened based on a 7\%
-coverage threshold, left the benefit of this screening-step
-questionable.
-
-However, calculating dn/ds on a per contig base, the screening based
-on percentage threshold of the minority-allele showed it's benefits:
-figure dn\_ds\_scales.png b shows how for the unscreened SNP-set dn/ds
-scaled with the coverage of a contig. This correlation was not longer
-present if the percentage screening was used (see figure
-dn\_ds\_scales.png d, the linear model had a slightly negative
-non-significant slope). For both the screened and unscreened sets of
-SNPs there was a significant slope for the number of SNPs in a contig
-predicting dn/ds (see figure dn\_ds\_scales.png a and c).
-
-Figure dens\_dn\_ds.png gives the distribution of per-contig dn/ds for
-the fully screened set of SNPs. The final numbers of SNPs per
-kilo-base was \Sexpr{round(perc.per.cov8.b,2)},
-\Sexpr{round(s.per.s.cov8.base,2)} synonymous SNPs per 1000 synonymous
-bases and \Sexpr{round(n.per.n.cov8.base, 2)} non-synonymous SNPs per
-1000 non-synonymous bases. For a total of
-\Sexpr{nrow(subset(contig.df,!is.na(dn.ds)))} TUGs
-(\Sexpr{nrow(subset(contig.df,!is.na(dn.ds)&category%in%"MN"))} high
-  quality contigs) a value for dn/ds could be obtained, because at
-  least one synonymous SNP was found.
-
-  It should be noted that the overall dn/ds value of
-  \Sexpr{perc.dn.ds} is different from the mean dn/ds value of contigs
-  \Sexpr{round(mean(contig.df$dn.ds, na.rm=TRUE),2)#$}, as in the
-  first the complete length of the sequence (also from TUGs without
-  synonymous SNP predicted) can be included.
-
-\SweaveInput{../snp_analysis/snp_by_population.Rnw}
-
-\subsection*{Annotation}
-
-\SweaveInput{../annotation/annotation.Rnw}
-\SweaveInput{../annotation/read_signalp.Rnw}
-
-We obtained annotations with GO-terms for \Sexpr{nGO}, with EC-numbers
-for \Sexpr{nEC} and with KEGG-pathways for \Sexpr{nKEGG} TUGs using
-the \texttt{Blast}-based program annot8r.
-
-Figure (annotataionVenn.tiff) gives an overview of the
-\Sexpr{nallannotations} TUGs annotations were found for with
-different methods.
-
-\SweaveInput{../annotation/brugia-compare.Rnw}
-
-We compared GO-annotations for high-level GO-slim terms to the
-annotations obtained the same way for all \textit{B. malayi}-proteins:
-Our transcriptome for \textit{A. crassus} shows a remarkably similar
-distribution of GO-terms to the full set of annotations for the genome
-of the related nematode (see figure go\_bm\_com.png).
-
-In addition we inferred presence of signal peptide cleavage sites in
-the predicted protein sequence: \texttt{SignalP} \cite{pmid21959131}
-predicted \Sexpr{nsigP} signal peptide cleavage sites and
-\Sexpr{nsigPtm} signal peptides with a transmembrane signature.
-
-\subsection*{Consolidated results}
+\subsection*{Polymorphisms associated with biological processes}
 
 \SweaveInput{../snp_analysis/overrepresentation.Rnw}
 
-The following set of analyses, represetnt enrichment analysis where
-the ``gene-universe'' to test against has to be defined. Possible
-off-target sequences were excluded prior to analysis. Testing was
-performed against a universe of only TUGs we were sure to be of
-\textit{A. crassus}-origin.
+We consolidated our annotation and polymorphism analyses by examining
+correlations between nonsynonymous variability and particular
+classifications. Signal peptide containing proteins have been shown to
+have higher rates of evolution than cytosolic proteins in a number of
+nematode species. In \textit{A. crassus}, TUGs predicted to contain
+signal peptide cleavage sites in SignalP had higher dn/ds values than
+TUGs without signal peptide cleavage sites (p =
+\Sexpr{round(u.test[["p.value"]],3)}; one sided U-test; Figure
+sigp\_dn\_ds.png). Proteins predicted to be novel to the Nematoda were
+significantly enriched in signal peptide annotation.
 
-\subsubsection*{Signal-positives have higher dn/ds}
+(Figure signal\_novel.png ***why is nematoda on the outside? should
+order by breadth of conservation***).
 
-TUGs predicted to contain signal peptide cleavage sites by the
-neural-networks method in \texttt{SignalP} have higher dn/ds values
-than TUGs without signal peptide cleavage sites (p =
-\Sexpr{round(u.test.AC[["p.value"]], 3)}; one sided U-test; see also
-figure sigp\_dn\_ds.png).
+Positive selection can be inferred from dn/ds analyses, and we defined
+TUGs with a dn/ds higher than 0.5 as positively selected. We
+identified over- and under-represented GO ontology terms associated
+with these putatively positively selected genes (Table 3). Within the
+molecular function category, ``peptidase activity'' was the most
+significantly overrepresented term and had twelve TUGs supporting the
+overrrepresentation. The highlighted twelve peptidases annotated with
+eleven unique orthologs in \textit{C. elegans} and \textit{B. malayi}.
+The term ``structural constituent of ribosome'' was underrepresented.
+The biological process category provides less usable information for a
+nematode (highlighting e.g. brain or pancreas development). The same
+is true for the cellular compartment, however unterrepresented terms
+can connected to ribosomal proteins, validating the analysis for the
+molecular function category.
 
-\subsubsection*{Enrichment of GO-categories in high dn/ds}
-
-We defined TUGs with a dn.ds higher than 0.5 as positively selected
-and tested each node-term in the ontology for a over-representation in
-this set. Tables X give an overview of enriched terms for different
-parts of the ontology.
-
-The terms ``amino acid transmembrane transporter activity'' and
-``peptidase activity'' were among the overrepresented terms for
-``molecular function''. Underrepresented were on the other hand terms
-associated with ribosomal proteins and transcription (visible in
-``molecular function'' and ``cellular compartment'') .
-
-TODO: BP and CC over-representation. 
-
-To make sure these inferences were not biased by redundancy in the
-fullest data-set we repeated the analysis using only the good-quality
-contigs as gene-universe. The results showed to be consistent with
-those obtained for the fullest data-set (data not shown).
-
-\subsubsection*{Novel in cladeIII have elevated dn/ds}
-
-Figure conservation\_dn\_ds.png shows differences in dn/ds across the
-categories defined for evolutionary conservation. At a bitscore
-threshold of 80 sequences novel in clade III had a significantly
-higher dn/ds than other sequences (p =
+At a bit score threshold of 80 sequences novel in clade III had a
+significantly higher dn/ds than other sequences (p = 0.038;
 \Sexpr{round(u.novel.80[["p.value"]],3)}; two sided U-test). At a
 bitscore thershold of 50 results were non-significant but showed the
-same trend.
-
-\subsubsection*{Sequences novel in nematodes are enriched for
-  Signal-positives}
-
-Figure signal\_novel.png gives the proportions of
-\texttt{SignalP}-predictions for each category of evolutionary
-conservation. Generally - across bit-score thresholds - sequences
-novel in nematodes contained the highest proportion of
-signal-positives.
+same trend (Figure conservation\_dn\_ds.png).
 
 \subsection*{Differential expression}
                 
 \SweaveInput{../gene_expression/gene_expression.Rnw}
 
-Using methods developed for sequencing data, we analyzed
+sing methods developed for sequencing data, we analyzed
 gene-expression inferred from mapping. Of the \Sexpr{n454.map} reads
 mapping to the fullest assembly \Sexpr{n454.Umap} mapped uniquely
 (with their best hit) and were counted on a per library base.
 
 \subsection*{Comparison with tag-sequencing pilot data-set}
 
-\SweaveInput{../solexa_compare/solexa_compare.Rnw}
+%% \SweaveInput{../solexa_compare/solexa_compare.Rnw}
 
 \Sexpr{nMapped} of \Sexpr{nTags} (\Sexpr{nUniq} unique) NlaIII-tags
 mapped to the fullest assembly. Only \Sexpr{nUMapped}
@@ -815,19 +730,22 @@ and results were closer to significance: The lowest adjusted p-values
 for the cleaned data-set were around 0.4, while on the full data-set
 only adjusted p-values above 0.8 could be obtained.
 
-\subsection*{Secreted immunomodulatory molecules}
-
-We further highlight a list of genes with similarities to known
-immunumodulators. Should I???
 
 <<save, echo=FALSE>>=
+## write the MN.peptide sequence for iprscan prediction
+MN.pep.fasta <- as.character(contig.df[contig.df$AcMN, "Ac.pep"])
+names(MN.pep.fasta) <- as.character(contig.df[contig.df$AcMN, "contig"])
+write.sequence(MN.pep.fasta, "/home/ele/thesis/454/MN.pep.fasta")
+
 ## for a more readable version of contig.df
 readable <- !names(contig.df)%in%c("seq", "imp", "ontology", "coding", "Ac.pep")
-
-save.image("paper.Rdata")
 write.csv(contig.df, "../A_crassus_contigs_full.csv")
 write.csv(contig.df[,readable], "../A_crassus_contigs_readable.csv")
 
+## for summary statistics a non-Ac reduced dataset
+c.df <- contig.df[contig.df$Ac, ]
+
+save.image("/home/ele/thesis/454/paper/paper.Rdata")
 @ 
 
 \section*{Discussion}
@@ -1233,13 +1151,25 @@ Volkswagen Foundation, "F\"{o}rderinitiative Evolutionsbiologie".
 %% Do not use \listoffigures as most will included as separate files
 
 \section*{Figures}
+
   \subsection*{Figure 1 - rRNA-screening statistics}
  
-
+  Annotations obtained for Gene Ontology (GO), Enzyme Commission (EC)
+  and Kyoto Encyclopaedia of Genes and Genomes (KEGG) terms through
+  Annot8r\cite{schmid_annot8r:_2008} for all TUGs (a) and for higCA
+  derived contigs (b). The latter includes annotations obtained with
+  interpro scan \cite{pmid11590104}.
 
   \subsection*{Figure 2 - Contig-coverage}
 
-  \subsection*{Figure 3 - }
+ 
+\subsection*{Figure 3 -Sequences novel in nematodes are enriched for
+  Signal-positives}
+
+Figure 3 gives the proportions of \texttt{SignalP}-predictions for
+each category of evolutionary conservation. Generally - across
+bit-score thresholds - sequences novel in nematodes contained the
+highest proportion of signal-positives.
 
   \subsection*{Figure 4 - }
 
@@ -1255,36 +1185,101 @@ Volkswagen Foundation, "F\"{o}rderinitiative Evolutionsbiologie".
 %% Use of \listoftables is discouraged.
 %%
 \section*{Tables}
-  \subsection*{Table 1 - Trimming statistics}
+  \subsection*{Table 1 - Sampling, trimming and pre-assembly screening}
 
 <<echo=FALSE, results=tex>>=
-print(xtable(TRIM, display=rep("d", times=7)), floating=FALSE)
+## print(xtable(TRIM, display=rep("d", times=7)), floating=FALSE)
 trim_mark <- transform(TRIM, lowqal = short+lowq+dust+shortq)[1:6, ]
 trim_mark <- trim_mark[,c(1,7)]
-@ 
 
-\subsection*{Table 2 - Pre-assembly screening statistics}
-<<echo=FALSE, results=tex>>=
-print(xtable(pre.screen.tab), floating=FALSE)
 trim_mark <- merge(pre.screen.tab,
                    trim_mark, by="row.names")
+
+trim_mark$life.st <- c("adult f", "adult f", "L2 lavae",
+                       "adult m", "adult f", "adult f")
+
+trim_mark$source.p <- c("Europe R", "Europe P", "Europe R",
+                       "Asia C", "Asia C", "Asia W")
+
+trim_mark[7,] <- c("Eel", "", "", "", "", length(eel.clean), sum(nchar(eel.clean)),
+                   length(eel.all), length(eel.all)-length(eel.clean), "liver", "Taiwan")
+
+trim_mark <- trim_mark[, c(1, 10, 11,  8, 9, 2, 4, 5, 3, 6, 7 )]
+
+names(trim_mark)[c(1, 4)] <- c("library", "raw.reads")
+
 write.csv(trim_mark, "/home/ele/thesis/454/paper/table1.csv")
+
+trim_mark.tab <- xtable(trim_mark)
+print(trim_mark.tab, floating=FALSE, include.rownames=FALSE)
 @   
 
-\subsection*{Table 3 - \texttt{Blast}-hits to protozoan rRNA in
-  pre-assembly screening}
-<<echo=FALSE, results=tex>>=
-print(xtable(cerco), include.rownames=FALSE, floating=FALSE)
-@   
+\subsection*{Table 2 - assembly classification and summarized contig stats}
 
-\subsection*{Table 4 - Post-assembly host-screening }
-  
 <<echo=FALSE, results=tex>>=
-digs <- matrix(c(0, 2), nrow=2 , ncol=6)
-print(xtable(post.table, digits=digs), floating=FALSE)
-@
+T2 <- as.data.frame.array(tapply(contig.df$contig, contig.df$category%in%"MN", length))
+rownames(T2) <- c("lowCA", "highCA")
+names(T2) <- "total.contigs"
+T2$rRNA.contigs <- table(contig.df$category%in%"MN", contig.df$seq.origin%in%"AcrRNA")[, 2]
+T2$fish.contigs <- table(contig.df$category%in%"MN",
+                         contig.df$seq.origin%in%c("eelmRNA", "Chordata"))[, 2]
+T2$xeno.contigs <- table(contig.df$category%in%"MN",
+                         !contig.df$seq.origin%in%c("Nematoda", "No_hit",
+                                                  "eelmRNA", "Chordata", "AcrRNA"))[, 1]
+T2$remaining.contigs <- table(contig.df$category%in%"MN", contig.df$Ac)[, 2]
+T2$remaining.span <- tapply(contig.df$seq,
+                            contig.df$category%in%"MN",
+                            function (x) sum(nchar(as.character(x))))
+T2$non.u.cov <- cov.mn
+T2$cov <- cov.mn.u
 
-\subsection*{Table 5 - Evolutionary conservation }
+T2$p4e <- table(c.df$category%in%"MN", gsub("p4e->", "", c.df$method))
+T2$full.3p <- table(c.df$category%in%"MN", c.df$full.3p)[,2]
+T2$full.5p <- table(c.df$category%in%"MN", c.df$full.5p)[,2]
+T2$full.l <- table(c.df$category%in%"MN", c.df$full.length)[,2]
+
+T2$GO <-  table(c.df$category%in%"MN", c.df$contig%in%GO.annot$pept_id)[, 2]
+T2$EC <-  table(c.df$category%in%"MN", c.df$contig%in%EC.annot$pept_id)[, 2]
+T2$KEGG <-  table(c.df$category%in%"MN", c.df$contig%in%KEGG.annot$pept_id)[, 2]
+T2$IPR <-  table(c.df$category%in%"MN", c.df$contig%in%IPR.annot$pept_id)[, 2]
+
+T2$nem.blast <- table(c.df$category%in%"MN", c.df$phylum.nr%in%"Nematoda")[, 2]
+
+T2$any.blast <- table(c.df$category%in%"MN", c.df$phylum.nr%in%"No_hit")[,1]
+
+T2 <- as.data.frame(t(T2))
+T2 <- transform(T2, combined=lowCA+highCA)
+
+T2["non.u.cov", "combined"] <- cov.nu.total
+T2["cov", "combined"] <- cov.u.total
+
+dig <- t(matrix(c(rep(0,24), rep(c(0, 3 , 3, 3), 2), rep(0,48)), nrow=4))
+T2.tab <- xtable(T2, digits=dig)
+
+print(T2.tab)
+@ 
+
+Tabel describing summary statistics for contigs from different
+assembly-categories given in colums as highCA = high credibility
+assembly; lowCA = low credibility assembly, CA = complete assembly.
+
+Rows indicate summary statistics: total.contigs = numbers of total
+contigs, fish.contigs = number of contigs hitting eel-mRNA or Chordata
+in NCBI-nr or NCBI-nt (screened out), xeno.contigs = number of contigs
+with best hit (NCBI-nr and NCBI-nt) to non-eukaryote (screened out),
+remaining.contigs = number of contigs remaining after this screening,
+remaining.span = total length of remaining contigs, non.u.cov =
+non-unique mean base coverage of contigs, cov = unique mean base
+coverage of contigs, p4e.X = number protein predictions derived in
+p4e, where X describes the method of prediction (see Methods), full.3p
+= number of contigs complete at 3', full.5p = number of contigs
+complete at 5', GO = number of contigs with GO-anntotation, KEGG =
+number of contigs with KEGG-anntotation, EC = number of contigs with
+EC-anntotation, nem.blast = number of contigs with blast-hit to
+nematode in nr, any.blast = number of contigs with blast-hit to
+non-nematode (eukaryote non chordate) sequence in NCBI-nr.
+
+\subsection*{Table 3 - Evolutionary conservation }
 <<echo=FALSE, results=tex>>=
 nov.tab <- rbind(summary.factor(contig.df$novel.50), 
                  summary.factor(contig.df$novel.80))[, c(1,3,4,2)]
@@ -1293,39 +1288,34 @@ print(xtable(nov.tab), floating=FALSE)
 
 @ 
 
-\subsection*{Table 6 - Protein prediction statistics}
+\subsection*{Table 4 - Over- and under-representation of GO-terms in
+  positively selected}
+
+GO-terms over- or under-represented (direction) in contigs putatively
+under positive selection. Horizontal lines seratate categories of the
+GO-ontology. First category is molecular function, then biological
+process last cellular compartment. P values (Pval) for over- or
+under-representation are given along with the number of positively
+selected contigs (Count; dn/ds $>$ 0.5) and the number of contigs with
+this annotation for wich a dn/ds was obtained (Size) and the
+description of the GO-term (Term).
 
 <<echo=FALSE, results=tex>>=
-print(xtable(imp.sum),
-      floating=FALSE)
-@
-
-
-\subsection*{Table 7 - SNP summry statistics}
-
-<<echo=FALSE, results=tex>>=
-
-print(xtable(snp.summary),
-      hline.after = c(-1,1),
-      floating=FALSE)
-
-@ 
-
-
-\subsection*{Table 8 - GO-terms in positively selected}
-
-<<echo=FALSE, results=tex>>=
-mf <- mf.dn.ds.AC[, 5:8]
-bp <- bp.dn.ds.AC[, 5:8]
-cc <- cc.dn.ds.AC[, 5:8]
+mf <- mf.dn.ds[, c(2, 5:8)]
+bp <- bp.dn.ds[, c(2, 5:8)]
+cc <- cc.dn.ds[, c(2, 5:8)]
 nhlines <- c(0, nrow(mf), nrow(mf) + nrow(bp), nrow(mf) + nrow(bp) + nrow(cc))
 
 onto.tab <- xtable(rbind(mf, bp, cc))
+
+align(onto.tab) <- "rrrrp{4cm}r"
 
 print(onto.tab, tabular.environment="longtable",
       floating=FALSE,
       hline.after=nhlines, include.rownames=FALSE)
 @ 
+
+
 
 \subsection*{Table 9 - Correlation between read-counts in
   454-libraries and solexa-tags}

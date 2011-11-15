@@ -902,29 +902,7 @@ contig.df$max.new.split[is.na(contig.df$max.new.split)] <- 0
 contig.df$cluster.id[is.na(contig.df$cluster.id)] <- 0
 @ 
 
-<<blasts, echo=FALSE, cache=TRUE>>=
 
-CEblast <- read.delim("/home/ele/Data/454/assemblies/blasts/ALL.fasta_vs_Ce.blt", header=FALSE)
-BMblast <- read.delim("/home/ele/Data/454/assemblies/blasts/ALL.fasta_vs_Bm.blt", header=FALSE)
-
-CEblast <- CEblast[!duplicated(CEblast$V1),]
-BMblast <- BMblast[!duplicated(BMblast$V1),]
-
-## isoforms?
-Ce <- as.data.frame(cbind(contig=as.character(CEblast[,1]),
-                          Ce.hit=as.character(CEblast[,2]),
-                          Ce.bit=as.numeric(CEblast[,12])
-))
-
-Bm <- as.data.frame(cbind(contig=as.character(BMblast[,1]),
-                          Bm.hit=as.character(BMblast[,2]),
-                          Bm.bit=as.numeric(BMblast[,12])
-))
-
-contig.df <- merge(contig.df, Ce, all.x=TRUE)
-contig.df <- merge(contig.df, Bm, all.x=TRUE)
-
-@ 
 
 \subsection{Contig coverage}
 
@@ -1058,7 +1036,7 @@ unique genes (TUGs), redifining the ``fullest assembly'' dataset.
 
 <<save, echo=FALSE>>=
 ## save what is needed downstream
-save(file="Method.Rdata", list=c("contig.df", "con.pile", "con.pile.uniq", "per.con", "per.con.uniq"))
+save(file="Method.Rdata", list=c("contig.df", "con.pile", "con.pile.uniq", "per.con", "per.con.uniq", "raw.fasta", "nBases"))
 fullest.assembly <- c(contigs ,
                       super.frass.fasta)[names(c(contigs, super.frass.fasta))%in%
                                          contig.df$contig] 

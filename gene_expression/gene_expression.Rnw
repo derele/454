@@ -1,110 +1,154 @@
 <<gene.expr, echo=FALSE, cache=TRUE, results=hide>>=
 
+## read the 454 mapping first  
 SAM <- read.delim("/home/ele/Data/454/mapping/all_vs_full_imputed.sam", header=FALSE)
 names(SAM)[c(1,3)] <- c("read", "mapped")
 
 ## partition the sam in an easy part of reads with single matches and
 ## a part with problematic reads with multiple matches
 easy <- !SAM$read%in%SAM$read[duplicated(SAM$read)]
-SAM.easy <- SAM[easy,]
-SAM.multi <- SAM[!easy,]
+SAM <- SAM[easy,]
 
-## get counts for the easy single matches
-SAM.easy <- merge(SAM.easy, R[, c("read", "lib")], all.x=TRUE)
-
-## Get additional info from multiple maps but split according to
-## easy.map get the single counts for each of the multiple
-##so <- by(SAM.multi, SAM.multi$read , function (x) easy.counts[x$mapped])
-## so <- so[!unlist(lapply(so, is.null))]
-## so.diff <- unlist(lapply(so, function (x) x/sum(x)))
-## names(so.diff) <- gsub(".*\\.", "", names(so.diff))
-## added <- sapply(1:length(easy.counts), function (x){
-##   sum(easy.counts[x], so.diff[names(easy.counts[x])], na.rm=TRUE)})
-## names(added) <- names(easy.counts)
+SAM <- merge(SAM, R[, c("read", "lib")], all.x=TRUE)
 
 n454.map <- length(unique(SAM$read))
 n454.Umap <- length(unique(SAM.easy$read))
 
-countsTable <- as.data.frame.matrix(table(SAM.easy$mapped, SAM.easy$lib))
+countsTable <- as.data.frame.matrix(table(SAM$mapped, SAM$lib))
 
-cst <- countsTable[rowSums(countsTable)>48, ]
+## read the solexa tag-counts
+what <- c("rname", "strand", "pos", "qwidth", "seq")
+param <- ScanBamParam(what = what)
+bam <- scanBam("/home/ele/Data/nlaIII-tags/UW08F_tags.bam", param=param)
+
+nTags <- length(bam[[1]]$seq)
+counts <- as.data.frame(table(bam[[1]]$rname))
+names(counts) <- c("contig", "solexa.tags")
+
+nMapped <- sum(counts$solexa.tags)
+nUniq <- length(unique(bam[[1]]$seq))
+
+nUMapped <- nTags-nMapped
+
+lst <- lapply(names(bam[[1]]), function(elt) {
+  do.call(c, unname(lapply(bam, "[[", elt)))
+})
+names(lst) <- names(bam[[1]])
+df <- do.call("DataFrame", lst)
+
+nUniqUMapped <- length(unique(df[is.na(df$rname), "seq"]))
+
+counts <- merge(counts, countsTable, by.x="contig", by.y="row.names")
+counts$all.reads <- apply(countsTable, 1, sum)
+
+### merge all counts into the main data
+contig.df <- merge(contig.df, counts, all.x=TRUE)
+
+## discard all non Ac matches
+cst <- contig.df[contig.df$Ac, c("E1", "E2", "L2", "M", "T1", "T2")]
+rownames(cst) <- contig.df[contig.df$Ac, "contig"]
+
+cst <- cst[rowSums(cst)>48, ]
 
 conds.eel <- factor(c("EU", "EU", "L2", "M", "TW", "TW"))
-
-good.contigs <- contig.df[as.logical(contig.df$Ac), "contig"]
-
-cds.eel <- newCountDataSet(cst[rownames(cst)%in%good.contigs,], conds.eel)
-                           
-cds.eel <- estimateSizeFactors(cds.eel)
-cds.eel <- estimateVarianceFunctions(cds.eel)
-res.eel <- nbinomTest(cds.eel, "TW", "EU")
-
-resSig.eel <- subset(res.eel, padj < .1)
-sig.eel.contigs <- resSig.eel$id
-sig.eel.counts <- cst[sig.eel.contigs, ]
-
-### This shows nothing as depth is not big enough to allow
-### detection of significance
-## plot( 
-##      res.eel$baseMean, 
-##      res.eel$log2FoldChange, 
-##      log="x", pch=20, cex=.4, 
-##      col = ifelse( res.eel$padj < .1, "red", "black" ),
-##      main="My data")
-
 conds.mf <- factor(c("F", "F", "L2", "M", "F", "F"))
-cds.mf <- newCountDataSet(cst[rownames(cst)%in%good.contigs,], conds.mf)
-cds.mf <- estimateSizeFactors(cds.mf)
-cds.mf <- estimateVarianceFunctions(cds.mf)
-res.mf <- nbinomTest(cds.mf, "M", "F")
-
-resSig.mf <- subset(res.mf, padj < .1)
-sig.mf.contigs <- resSig.mf$id
-sig.mf.counts <- cst[sig.mf.contigs, ]
-
 conds.ad <- factor(c("Ad", "Ad", "L2", "Ad", "Ad", "Ad"))
-cds.ad <- newCountDataSet(cst, conds.ad)
-cds.ad <- estimateSizeFactors(cds.ad)
-cds.ad <- estimateVarianceFunctions(cds.ad)
-res.ad <- nbinomTest(cds.ad, "Ad", "L2")
+
+exp.get.3.diff <- function (countsFrame) {
+  cds.eel <- newCountDataSet(countsFrame, conds.eel)
+  cds.eel <- estimateSizeFactors(cds.eel)
+  cds.eel <- estimateVarianceFunctions(cds.eel)
+  res.eel <- nbinomTest(cds.eel, "TW", "EU")
+
+  cds.mf <- newCountDataSet(countsFrame, conds.mf)
+  cds.mf <- estimateSizeFactors(cds.mf)
+  cds.mf <- estimateVarianceFunctions(cds.mf)
+  res.mf <- nbinomTest(cds.mf, "M", "F")
+
+  cds.ad <- newCountDataSet(countsFrame, conds.ad)
+  cds.ad <- estimateSizeFactors(cds.ad)
+  cds.ad <- estimateVarianceFunctions(cds.ad)
+  res.ad <- nbinomTest(cds.ad, "Ad", "L2")
+
+  return(list(res.eel, res.mf, res.ad))
+}
+
+## for the contig-counts
+contig.diff <- exp.get.3.diff(cst)
+
+## collapsed for Bm orthologs 
+bst <- contig.df[contig.df$Ac, c("Bm.hit", "E1", "E2", "L2", "M", "T1", "T2")]
+bst <- bst[!is.na(bst$Bm.hit),]
+bst <- do.call("rbind", by(bst, bst$Bm.hit, function (x) colSums(x[,2:7])))
+bst <- bst[rowSums(bst)>48, ]
+
+bm.diff <- exp.get.3.diff(bst)
+
+## Collapsed for Ce orthologs
+wst <- contig.df[contig.df$Ac, c("Ce.hit", "E1", "E2", "L2", "M", "T1", "T2")]
+wst <- wst[!is.na(wst$Ce.hit),]
+wst <- do.call("rbind", by(wst, wst$Ce.hit, function (x) colSums(x[,2:7])))
+wst <- wst[rowSums(bst)>48, ]
+
+ce.diff <- exp.get.3.diff(wst)
+
+mf <- merge(contig.df[,c("contig", "Bm.hit", "Ce.hit")],
+             contig.diff[[2]][,c("id", "padj")],
+             by.x="contig", by.y="id")
+
+mf <- merge(mf, bm.diff[[2]][,c("id", "padj")],
+            by.x="Bm.hit", by.y="id", 
+            all.x=TRUE)
+
+mf <- merge(mf, ce.diff[[2]][,c("id", "padj")],
+            by.x="Ce.hit", by.y="id", 
+            all.x=TRUE)
+
+
+eel <- merge(contig.df[,c("contig", "Bm.hit", "Ce.hit", "Bm.annot", "Ce.annot")],
+             contig.diff[[1]][,c("id", "padj")],
+             by.x="contig", by.y="id")
+
+eel <- merge(eel, bm.diff[[1]][,c("id", "padj")],
+            by.x="Bm.hit", by.y="id", 
+            all.x=TRUE)
+
+eel <- merge(eel, ce.diff[[1]][,c("id", "padj")],
+            by.x="Ce.hit", by.y="id", 
+            all.x=TRUE)
+
+
 
 resSig.ad <- subset(res.ad, padj < .1)
 sig.ad.contigs <- resSig.ad$id
 sig.ad.counts <- cst[sig.ad.contigs, ]
 
-l2.met.hits <- nrow(subset(contig.df, contig.df$contig%in%sig.ad.contigs & kingdom.nr%in%"Metazoa"))
-l2.nem.hits <- nrow(subset(contig.df, contig.df$contig%in%sig.ad.contigs & phylum.nr%in%"Nematoda"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 vsd <- getVarianceStabilizedData( cds.mf )
 dists <- dist( t( vsd ) )
 idists <- as.matrix(dists)
-## heatmap (idists , symm=TRUE, margins = c (7,7))
-
-
-## will do this better after gettin Bm_annotation for all!!
-de.eel <- contig.df[contig.df$contig%in%sig.eel.contigs,
-                    c("contig", "Ac",
-                      "E1", "E2", "L2", "M", "T1", "T2",
-                      "Bm.annot", "Bm.bit", "nr.uniprot.annot", "nr.bit")]
-
-de.mf <- contig.df[contig.df$contig%in%sig.mf.contigs,
-                    c("contig", "Ac",
-                      "E1", "E2", "L2", "M", "T1", "T2",
-                      "Bm.annot", "Bm.bit", "nr.uniprot.annot", "nr.bit")]
-
-## tubulin and actin are there other contigs with same annot not differing some not
-tubulin <- contig.df[grepl("Tubulin ", contig.df$Bm.annot) |
-                     grepl("Tubulin ", contig.df$nr.uniprot.annot),
-                    c("contig", "Ac",
-                      "E1", "E2", "L2", "M", "T1", "T2",
-                      "Bm.annot", "Bm.bit", "nr.uniprot.annot", "nr.bit")]
-tub.total <- colSums(tubulin[, c("E1", "E2", "L2", "M", "T1", "T2")])
-
-actin <- contig.df[grepl("^Actin", contig.df$Bm.annot) |
-                     grepl("^Actin ", contig.df$nr.uniprot.annot),
-                    c("contig", "Ac",
-                      "E1", "E2", "L2", "M", "T1", "T2",
-                      "Bm.annot", "Bm.bit", "nr.uniprot.annot", "nr.bit")]
-act.total <- colSums(actin[, c("E1", "E2", "L2", "M", "T1", "T2")])
+##heatmap (idists , symm=TRUE, margins = c (7,7))
 
 @ 

@@ -1,4 +1,4 @@
-<<snp.by.population, echo=FALSE, cache=TRUE>>=
+<<snp.by.population, echo=FALSE, cache=TRUE, results=hide>>=
 
 ## from within /home/ele/Data/454/mapping/mapping_each_lib:  
 ## /home/ele/tools/samtools/samtools mpileup -uf
