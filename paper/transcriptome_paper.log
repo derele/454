@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.9.20)  15 NOV 2011 10:42
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.9.20)  18 NOV 2011 15:09
 entering extended mode
  %&-line parsing enabled.
 **\nonstopmode \input{/home/ele/thesis/454/paper/transcriptome_paper.tex}
@@ -585,106 +585,305 @@ Overfull \hbox (9.98987pt too wide) in paragraph at lines 163--163
 
 [1
 
-{/usr/share/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
-LaTeX Font Info:    Try loading font information for T1+aett on input line 414.
+{/usr/share/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+LaTeX Font Info:    Try loading font information for T1+aett on input line 355.
 
 
 (/usr/share/texmf/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-)
-
-LaTeX Warning: Citation `pmid11590104' on page 4 undefined on input line 451.
-
-[4] [5]
+) [3] [4] [5] [6] [7] [8] [9] [10]
 LaTeX Font Info:    Font shape `T1/aess/m/it' in size <10> not available
-(Font)              Font shape `T1/aess/m/sl' tried instead on input line 568.
- [6] [7] [8] [9] [10] [11] [12] [13] [14]
-(/home/ele/thesis/454/paper/transcriptome_paper.bbl
+(Font)              Font shape `T1/aess/m/sl' tried instead on input line 816.
+
+[11] [12] [13] [14] (/home/ele/thesis/454/paper/transcriptome_paper.bbl
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line 27.
- [15] [16] [17] [18])
-[19] [20]
-Overfull \hbox (70.92615pt too wide) in paragraph at lines 1113--1126
+
+[15] [16] [17] [18]) [19] [20]
+Overfull \hbox (70.92615pt too wide) in paragraph at lines 1149--1162
 []  
  []
 
 [21]
+Underfull \hbox (badness 10000) in paragraph at lines 1249--1249
+[]|\T1/aer/m/n/10 oxidoreductase ac-tiv-ity,
+ []
 
-LaTeX Font Warning: Font shape `T1/aett/bx/n' undefined
-(Font)              using `T1/aett/m/n' instead on input line 1182.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1250--1250
+[]|\T1/aer/m/n/10 oxidoreductase ac-tiv-ity,
+ []
 
 
-Overfull \hbox (2.60425pt too wide) in alignment at lines 1256--1278
- [] [] [] [] 
+Underfull \hbox (badness 10000) in paragraph at lines 1250--1250
+\T1/aer/m/n/10 of donors, oxy-gen as
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1253--1253
+[]|\T1/aer/m/n/10 transmembrane trans-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1254--1254
+[]|\T1/aer/m/n/10 monovalent in-or-ganic
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1254--1254
+\T1/aer/m/n/10 cation trans-mem-brane
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1256--1256
+[]|\T1/aer/m/n/10 inorganic cation trans-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1256--1256
+\T1/aer/m/n/10 mem-brane trans-porter
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1261--1261
+[]|\T1/aer/m/n/10 substrate-specific trans-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1261--1261
+\T1/aer/m/n/10 mem-brane trans-porter
+ []
+
+
+Underfull \hbox (badness 1226) in paragraph at lines 1263--1263
+[]|\T1/aer/m/n/10 structural con-stituent of
+ []
+
+
+Underfull \hbox (badness 5203) in paragraph at lines 1267--1267
+\T1/aer/m/n/10 ing tran-scrip-tion fac-tor
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1273--1273
+[]|\T1/aer/m/n/10 branched chain fam-ily
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1273--1273
+\T1/aer/m/n/10 amino acid metabolic
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1274--1274
+[]|\T1/aer/m/n/10 branched chain fam-ily
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1274--1274
+\T1/aer/m/n/10 amino acid catabolic
+ []
+
+
+Underfull \hbox (badness 7740) in paragraph at lines 1275--1275
+[]|\T1/aer/m/n/10 ATP syn-the-sis cou-pled
+ []
+
+
+Underfull \hbox (badness 1320) in paragraph at lines 1276--1276
+[]|\T1/aer/m/n/10 mitochondrial ATP syn-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1276--1276
+\T1/aer/m/n/10 the-sis cou-pled elec-tron
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1277--1277
+[]|\T1/aer/m/n/10 mitochondrial elec-tron
+ []
+
+
+Underfull \hbox (badness 1303) in paragraph at lines 1277--1277
+\T1/aer/m/n/10 trans-port, cy-tochrome c
+ []
+
+
+Underfull \hbox (badness 1337) in paragraph at lines 1278--1278
+[]|\T1/aer/m/n/10 nervous sys-tem de-vel-op-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1281--1281
+[]|\T1/aer/m/n/10 cellular amino acid
  []
 
 [22]
-Overfull \hbox (2.60425pt too wide) in alignment at lines 1278--1299
- [] [] [] [] 
+Underfull \hbox (badness 10000) in paragraph at lines 1289--1289
+[]|\T1/aer/m/n/10 metencephalon de-vel-op-
  []
 
 
-Overfull \hbox (2.60425pt too wide) in alignment at lines 1299--1319
- [] [] [] [] 
+Underfull \hbox (badness 3884) in paragraph at lines 1290--1290
+[]|\T1/aer/m/n/10 response to methylmer-
  []
 
 
-Overfull \hbox (2.60425pt too wide) in alignment at lines 1319--1339
- [] [] [] [] 
+Underfull \hbox (badness 10000) in paragraph at lines 1296--1296
+[]|\T1/aer/m/n/10 neuromuscular pro-cess
+ []
+
+
+Underfull \hbox (badness 1472) in paragraph at lines 1299--1299
+[]|\T1/aer/m/n/10 response to dis-ac-cha-ride
+ []
+
+
+Underfull \hbox (badness 3386) in paragraph at lines 1311--1311
+[]|\T1/aer/m/n/10 regulation of cell cy-cle
+ []
+
+
+Underfull \hbox (badness 6032) in paragraph at lines 1313--1313
+[]|\T1/aer/m/n/10 regulation of molec-u-lar
+ []
+
+
+Underfull \hbox (badness 2027) in paragraph at lines 1315--1315
+[]|\T1/aer/m/n/10 mitotic cell cy-cle G1/S
+ []
+
+
+Underfull \hbox (badness 1960) in paragraph at lines 1315--1315
+\T1/aer/m/n/10 tran-si-tion DNA dam-age
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1317--1317
+[]|\T1/aer/m/n/10 cellular amino acid
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1319--1319
+[]|\T1/aer/m/n/10 microtubule or-ga-niz-ing
+ []
+
+
+Underfull \hbox (badness 1571) in paragraph at lines 1324--1324
+\T1/aer/m/n/10 i-da-tion of or-ganic com-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1325--1325
+[]|\T1/aer/m/n/10 regulation of catabolic
  []
 
 [23]
-Overfull \hbox (2.60425pt too wide) in alignment at lines 1339--1359
- [] [] [] [] 
+Underfull \hbox (badness 2027) in paragraph at lines 1329--1329
+[]|\T1/aer/m/n/10 mitotic cell cy-cle G1/S
  []
 
 
-Overfull \hbox (2.60425pt too wide) in alignment at lines 1359--1379
- [] [] [] [] 
+Underfull \hbox (badness 10000) in paragraph at lines 1330--1330
+[]|\T1/aer/m/n/10 G1/S tran-si-tion check-
  []
 
 
-Overfull \hbox (2.60425pt too wide) in alignment at lines 1379--1400
- [] [] [] [] 
+Underfull \hbox (badness 4036) in paragraph at lines 1331--1331
+[]|\T1/aer/m/n/10 DNA dam-age re-sponse,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1332--1332
+[]|\T1/aer/m/n/10 regulation of cel-lu-lar
+ []
+
+
+Underfull \hbox (badness 4832) in paragraph at lines 1343--1343
+[]|\T1/aer/m/n/10 oligosaccharide catabolic
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1344--1344
+[]|\T1/aer/m/n/10 spliceosomal con-for-ma-
  []
 
 [24]
-Overfull \hbox (2.60425pt too wide) in alignment at lines 1400--1420
- [] [] [] [] 
+Underfull \hbox (badness 1735) in paragraph at lines 1352--1352
+[]|\T1/aer/m/n/10 cellular pro-tein com-plex
  []
 
-[25] [26] [27] (/home/ele/thesis/454/paper/transcriptome_paper.aux)
 
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+Underfull \hbox (badness 4242) in paragraph at lines 1353--1353
+[]|\T1/aer/m/n/10 macromolecular com-plex
+ []
 
 
-LaTeX Warning: There were undefined references.
+Underfull \hbox (badness 10000) in paragraph at lines 1355--1355
+[]|\T1/aer/m/n/10 cellular macro-molec-u-lar
+ []
 
- ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 1366--1366
+[]|\T1/aer/m/n/10 cellular macro-molecule
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1369--1369
+[]|\T1/aer/m/n/10 macromolecule biosyn-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1377--1377
+[]|\T1/aer/m/n/10 positive reg-u-la-tion of
+ []
+
+
+Underfull \hbox (badness 1077) in paragraph at lines 1384--1384
+[]|\T1/aer/m/n/10 U4/U6 x U5 tri-snRNP
+ []
+
+[25]
+Underfull \hbox (badness 10000) in paragraph at lines 1398--1398
+[]|\T1/aer/m/n/10 non-membrane-bounded
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1399--1399
+[]|\T1/aer/m/n/10 intracellular non-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1399--1399
+\T1/aer/m/n/10 membrane-bounded
+ []
+
+[26] [27] (/home/ele/thesis/454/paper/transcriptome_paper.aux) ) 
 Here is how much of TeX's memory you used:
- 2558 strings out of 256216
- 32909 string characters out of 1917072
- 125899 words of memory out of 1500000
- 5757 multiletter control sequences out of 10000+200000
- 44851 words of font info for 81 fonts, out of 1200000 for 2000
+ 2556 strings out of 256216
+ 32859 string characters out of 1917072
+ 127486 words of memory out of 1500000
+ 5754 multiletter control sequences out of 10000+200000
+ 46339 words of font info for 82 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  36i,7n,21p,315b,412s stack positions out of 5000i,500n,6000p,200000b,15000s
-</usr/share/texmf/fonts/type1/bluesky/cm/cmbx10.pfb></usr/share/texmf/fonts/t
-ype1/bluesky/cm/cmbx9.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi10.pfb><
-/usr/share/texmf/fonts/type1/bluesky/cm/cmmi8.pfb></usr/share/texmf/fonts/type1
-/bluesky/cm/cmr10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr6.pfb></usr/s
-hare/texmf/fonts/type1/bluesky/cm/cmr8.pfb></usr/share/texmf/fonts/type1/bluesk
-y/cm/cmr9.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmss10.pfb></usr/share/t
-exmf/fonts/type1/bluesky/cm/cmss12.pfb></usr/share/texmf/fonts/type1/bluesky/cm
-/cmss8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmssbx10.pfb></usr/share/te
-xmf/fonts/type1/bluesky/cm/cmssi10.pfb></usr/share/texmf/fonts/type1/bluesky/cm
-/cmsy10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy6.pfb></usr/share/texm
-f/fonts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmt
-i10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmti9.pfb></usr/share/texmf/fo
-nts/type1/bluesky/cm/cmtt10.pfb>
-Output written on transcriptome_paper.pdf (27 pages, 206293 bytes).
+</usr/share/tex
+mf/fonts/type1/bluesky/cm/cmbx9.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cm
+mi10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi8.pfb></usr/share/texmf/f
+onts/type1/bluesky/cm/cmr10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr6.p
+fb></usr/share/texmf/fonts/type1/bluesky/cm/cmr7.pfb></usr/share/texmf/fonts/ty
+pe1/bluesky/cm/cmr8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr9.pfb></usr
+/share/texmf/fonts/type1/bluesky/cm/cmss10.pfb></usr/share/texmf/fonts/type1/bl
+uesky/cm/cmss12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmss8.pfb></usr/sh
+are/texmf/fonts/type1/bluesky/cm/cmssbx10.pfb></usr/share/texmf/fonts/type1/blu
+esky/cm/cmssi10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy6.pfb></usr/sh
+are/texmf/fonts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/bluesk
+y/cm/cmti10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmti9.pfb></usr/share/
+texmf/fonts/type1/bluesky/cm/cmtt10.pfb>
+Output written on transcriptome_paper.pdf (27 pages, 206010 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
+ 161 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

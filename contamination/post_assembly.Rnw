@@ -34,6 +34,23 @@ contig.df <- merge(contig.df, ER[ , c("contig", "contamination")], all.x=TRUE)
 contig.df$contamination[is.na(contig.df$contamination)] <- "valid_no_hit"
 contig.df$contamination[contig.df$contamination=="nempep4"] <- "valid_nempep"
 
+## this is rather annotation
+## annotation with Bm orthologous sequence
+BMblast <- read.blast.best("/home/ele/Data/454/annotation/blast/full_vs_bm.blt")
+names(BMblast)[names(BMblast)%in%c("V1")] <- "contig"
+names(BMblast)[names(BMblast)%in%c("V2")] <- "Bm.hit"
+names(BMblast)[names(BMblast)%in%c("V12")] <- "Bm.bit"
+contig.df <- merge(contig.df, BMblast[, c("contig", "Bm.hit", "Bm.bit")], all.x=TRUE)
+
+
+## anntoation with Ce orthologous sequence
+CEblast <- read.blast.best("/home/ele/Data/454/annotation/blast/full_vs_ce.blt")
+names(CEblast)[names(CEblast)%in%c("V1")] <- "contig" 
+names(CEblast)[names(CEblast)%in%c("V2")] <- "Ce.hit"
+names(CEblast)[names(CEblast)%in%c("V12")] <- "Ce.bit"
+
+contig.df <- merge(contig.df, CEblast[, c("contig", "Ce.hit", "Ce.bit")], all.x=TRUE)
+
 ## Patches ## patches ## patches
 
 bm.rRNA.contigs <- contig.df[grepl("A8Q5G4|A8PJZ7|A8NLF8|A8PEQ0",

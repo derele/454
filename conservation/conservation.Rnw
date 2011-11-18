@@ -23,10 +23,7 @@ is.conserved <- function(taxa.blast, level, value, bit.threshold) {
   B <- subset(taxa.blast, as.numeric(V12)>as.numeric(bit.threshold) )
   if(nrow(B) < 1){return("No_hit")}
   if(all(B[, level]%in%value)){return(FALSE)}
-  if(any(B[, level]%in%value) &
-     any(!B[,level]%in%value)){return(TRUE)}
-  if(all(!B[, level]%in%value) &
-     any(!B[,level]%in%value)){return("dubious")}
+  if(any(!B[,level]%in%value)){return(TRUE)}
   else{stop("Error in consevation function: Unrecognized case")}
 }
 
@@ -100,9 +97,9 @@ contig.df$novel.50 <- ifelse(contig.df$conserved.clade.50%in%TRUE &
                                                   contig.df$conserved.phylum.50%in%FALSE &
                                                   contig.df$conserved.kingdom.50%in%FALSE,
                                                   "novel.in.clade3",
-                                                  ifelse(is.na(contig.df$conserved.clade.50) &
-                                                         is.na(contig.df$conserved.phylum.50) &
-                                                         is.na(contig.df$conserved.kingdom.50),
+                                                  ifelse(contig.df$conserved.clade.50%in%c("No_hit", NA) &
+                                                         contig.df$conserved.phylum.50%in%c("No_hit", NA) &
+                                                         contig.df$conserved.kingdom.50%in%c("No_hit", NA) ,
                                                          "novel.in.Ac",
                                                          NA)))))
 
@@ -122,9 +119,9 @@ contig.df$novel.80 <- ifelse(contig.df$conserved.clade.80%in%TRUE &
                                                   contig.df$conserved.phylum.80%in%FALSE &
                                                   contig.df$conserved.kingdom.80%in%FALSE,
                                                   "novel.in.clade3",
-                                                  ifelse(is.na(contig.df$conserved.clade.80) &
-                                                         is.na(contig.df$conserved.phylum.80) &
-                                                         is.na(contig.df$conserved.kingdom.80),
+                                                  ifelse(contig.df$conserved.clade.80%in%c("No_hit", NA) &
+                                                         contig.df$conserved.phylum.80%in%c("No_hit", NA) &
+                                                         contig.df$conserved.kingdom.80%in%c("No_hit", NA),
                                                          "novel.in.Ac",
                                                          NA)))))
 

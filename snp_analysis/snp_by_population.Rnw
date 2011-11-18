@@ -131,8 +131,6 @@ Rh.data <- as.data.frame(rbind(sep.gt(Rh$"10F"),
                                sep.gt(Rh$"KS4F"),
                                sep.gt(Rh$"UW07F")))
 
-chkdata(Rh.data)
-
 ## shows that it worked:
 ir.test <- hh(Rh.data, 100, "ir")
 hl.test <- hh(Rh.data, 100, "hl")

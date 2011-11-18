@@ -37,19 +37,6 @@ Kristmundsson A, Helgason S: \textbf{Parasite communities of ecls Anguilla
   other parasite communities of eels in Europe}. \emph{Folia Parasitologica}
   2007, \textbf{54}(2):141.
 
-\bibitem{wrtz_distribution_1998}
-W\"{u}rtz J, Knopf K, Taraschewski H: \textbf{Distribution and prevalence of
-  Anguillicola crassus {(Nematoda)} in eels Anguilla anguilla of the rivers
-  Rhine and Naab, Germany}. \emph{Diseases of Aquatic Organisms} 1998,
-  \textbf{32}(2):137--43,
-  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/9676253]}.
-
-\bibitem{lefebvre_anguillicolosis:_2004}
-Lefebvre FS, Crivelli AJ: \textbf{Anguillicolosis: dynamics of the infection
-  over two decades}. \emph{Diseases of Aquatic Organisms} 2004,
-  \textbf{62}(3):227--32,
-  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/15672878]}.
-
 \bibitem{taraschewski_hosts_2007}
 Taraschewski H: \textbf{Hosts and Parasites as Aliens}. \emph{Journal of
   Helminthology} 2007, \textbf{80}(02):99--128,
@@ -64,19 +51,25 @@ M\"{u}nderle M, Taraschewski H, Klar B, Chang CW, Shiao JC, Shen KN, He JT, Lin
   \textbf{71}(2):101--8,
   \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/16956057]}.
 
+\bibitem{wrtz_distribution_1998}
+W\"{u}rtz J, Knopf K, Taraschewski H: \textbf{Distribution and prevalence of
+  Anguillicola crassus {(Nematoda)} in eels Anguilla anguilla of the rivers
+  Rhine and Naab, Germany}. \emph{Diseases of Aquatic Organisms} 1998,
+  \textbf{32}(2):137--43,
+  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/9676253]}.
+
+\bibitem{lefebvre_anguillicolosis:_2004}
+Lefebvre FS, Crivelli AJ: \textbf{Anguillicolosis: dynamics of the infection
+  over two decades}. \emph{Diseases of Aquatic Organisms} 2004,
+  \textbf{62}(3):227--32,
+  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/15672878]}.
+
 \bibitem{knopf_swimbladder_2006}
 Knopf K: \textbf{The swimbladder nematode Anguillicola crassus in the European
   eel Anguilla anguilla and the Japanese eel Anguilla japonica: differences in
   susceptibility and immunity between a recently colonized host and the
   original host}. \emph{Journal of Helminthology} 2006, \textbf{80}(2):129--36,
   \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/16768856]}.
-
-\bibitem{knopf_differences_2004}
-Knopf K, Mahnke M: \textbf{Differences in susceptibility of the European eel
-  {(Anguilla} anguilla) and the Japanese eel {(Anguilla} japonica) to the
-  swim-bladder nematode Anguillicola crassus}. \emph{Parasitology} 2004,
-  \textbf{129}(Pt 4):491--6,
-  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/15521638]}.
 
 \bibitem{knopf_vaccination_2008}
 Knopf K, Lucius R: \textbf{Vaccination of eels {(Anguilla} japonica and
@@ -96,6 +89,13 @@ W\"{u}rtz J, Taraschewski H: \textbf{Histopathological changes in the
   Anguillicola crassus}. \emph{Diseases of Aquatic Organisms} 2000,
   \textbf{39}(2):121--34,
   \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/10715817]}.
+
+\bibitem{knopf_differences_2004}
+Knopf K, Mahnke M: \textbf{Differences in susceptibility of the European eel
+  {(Anguilla} anguilla) and the Japanese eel {(Anguilla} japonica) to the
+  swim-bladder nematode Anguillicola crassus}. \emph{Parasitology} 2004,
+  \textbf{129}(Pt 4):491--6,
+  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/15521638]}.
 
 \bibitem{blaxter_molecular_1998}
 Blaxter ML, Ley PD, Garey JR, Liu LX, Scheldeman P, Vierstraete A, Vanfleteren
@@ -119,13 +119,6 @@ Wijov\'{a} M, Moravec F, Hor\'{a}k A, Lukes J: \textbf{Evolutionary
   \textbf{36}(9):1067--75,
   \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/16753171]}.
 
-\bibitem{zang_serine_2001}
-Zang X, Maizels RM: \textbf{Serine proteinase inhibitors from nematodes and the
-  arms race between host and pathogen}. \emph{Trends in Biochemical Sciences}
-  2001, \textbf{26}(3):191--197,
-  \urlprefix\url{[http://www.sciencedirect.com/science/article/B6TCV-42H1RTN-T%
-/2/0a8af31e701aab88f214aad50e50bdca]}.
-
 \bibitem{pmid16056220}
 Margulies M, Egholm M, Altman WE, Attiya S, Bader JS, Bemben LA, Berka J,
   Braverman MS, Chen YJ, Chen Z, Dewell SB, Du L, Fierro JM, Gomes XV, Godwin
@@ -144,47 +137,17 @@ Kumar S, Blaxter ML: \textbf{{{C}omparing de novo assemblers for 454
   transcriptome data}}. \emph{BMC Genomics} 2010, \textbf{11}:571,
   \urlprefix\url{[http://dx.doi.org/10.1186/1471-2164-11-571]}.
 
-\bibitem{pmid21627854}
-Malone JH, Oliver B: \textbf{{{M}icroarrays, deep sequencing and the true
-  measure of the transcriptome}}. \emph{BMC Biol.} 2011, \textbf{9}:34.
+\bibitem{PHRAP}
+Green P: \emph{PHRAP documentation.} 1994,
+  \urlprefix\url{[http://www.phrap.org]}.
 
-\bibitem{pmid20967605}
-Matsumura H, Yoshida K, Luo S, Kruger DH, Kahl G, Schroth GP, Terauchi R:
-  \textbf{{{H}igh-throughput {S}uper{S}{A}{G}{E}}}. \emph{Methods Mol. Biol.}
-  2011, \textbf{687}:135--146.
-
-\bibitem{pmid19015660}
-Wang Z, Gerstein M, Snyder M: \textbf{{{R}{N}{A}-{S}eq: a revolutionary tool
-  for transcriptomics}}. \emph{Nat. Rev. Genet.} 2009, \textbf{10}:57--63.
-
-\bibitem{pmid21550347}
-Elsworth B, Wasmuth J, Blaxter M: \textbf{{{N}{E}{M}{B}{A}{S}{E}4: {T}he
-  nematode transcriptome resource}}. \emph{Int. J. Parasitol.} 2011,
-  \textbf{41}:881--894.
-
-\bibitem{Marks_ontology}
-Blaxter M: \emph{Base Ontology: An idea from Mark Blaxter} 2010,
-  \urlprefix\url{[http://genepool.bio.ed.ac.uk/nextgenbug/resources/gff_parsin%
-g_group]}.
-
-\bibitem{pmid21685085}
-Balzer S, Malde K, Jonassen I: \textbf{{{S}ystematic exploration of error
-  sources in pyrosequencing flowgram data}}. \emph{Bioinformatics} 2011,
-  \textbf{27}:i304--309.
-
-\bibitem{pmid21959131}
-Petersen TN, Brunak S, von Heijne G, Nielsen H: \textbf{{{S}ignal{P} 4.0:
-  discriminating signal peptides from transmembrane regions}}. \emph{Nat.
-  Methods} 2011, \textbf{8}:785--786.
-
-\bibitem{pmid20137071}
-Lennon NJ, Lintner RE, Anderson S, Alvarez P, Barry A, Brockman W, Daza R,
-  Erlich RL, Giannoukos G, Green L, Hollinger A, Hoover CA, Jaffe DB, Juhn F,
-  McCarthy D, Perrin D, Ponchner K, Powers TL, Rizzolo K, Robbins D, Ryan E,
-  Russ C, Sparrow T, Stalker J, Steelman S, Weiand M, Zimmer A, Henn MR,
-  Nusbaum C, Nicol R: \textbf{{{A} scalable, fully automated process for
-  construction of sequence-ready barcoded libraries for 454}}. \emph{Genome
-  Biol.} 2010, \textbf{11}:R15.
+\bibitem{tgicl_pertea}
+Pertea G, Huang X, Liang F, Antonescu V, Sultana R, Karamycheva S, Lee Y, White
+  J, Cheung F, Parvizi B, Tsai J, Quackenbush J: \textbf{{{T}{I}{G}{R} {G}ene
+  {I}ndices clustering tools ({T}{G}{I}{C}{L}): a software system for fast
+  clustering of large {E}{S}{T} datasets}}. \emph{Bioinformatics} 2003,
+  \textbf{19}:651--652,
+  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/12651724]}.
 
 \bibitem{pmid21080939}
 Coppe A, Pujolar JM, Maes GE, Larsen PF, Hansen MM, Bernatchez L, Zane L,
@@ -193,14 +156,161 @@ Coppe A, Pujolar JM, Maes GE, Larsen PF, Hansen MM, Bernatchez L, Zane L,
   for the study of the critically endangered {E}uropean eel}}. \emph{BMC
   Genomics} 2010, \textbf{11}:635.
 
-\bibitem{pmid9327537}
-Wilson IG: \textbf{{{I}nhibition and facilitation of nucleic acid
-  amplification}}. \emph{Appl. Environ. Microbiol.} 1997,
-  \textbf{63}:3741--3751.
+\bibitem{miraEST}
+Chevreux B, Pfisterer T, Drescher B, Driesel AJ, Muller WE, Wetter T, Suhai S:
+  \textbf{{{U}sing the mira{E}{S}{T} assembler for reliable and automated
+  m{R}{N}{A} transcript assembly and {S}{N}{P} detection in sequenced
+  {E}{S}{T}s}}. \emph{Genome Res.} 2004, \textbf{14}:1147--1159,
+  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pmc/articles/PMC419793]}.
 
-\bibitem{pmid16109794}
-Valasek MA, Repa JJ: \textbf{{{T}he power of real-time {P}{C}{R}}}. \emph{Adv
-  Physiol Educ} 2005, \textbf{29}:151--159.
+\bibitem{Cap3_Huang}
+Huang X, Madan A: \textbf{{{C}{A}{P}3: {A} {D}{N}{A} sequence assembly
+  program}}. \emph{Genome Res.} 1999, \textbf{9}:868--877,
+  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pmc/articles/PMC310812]}.
+
+\bibitem{parkinson_nembase:resource_2004}
+Parkinson J, Whitton C, Schmid R, Thomson M, Blaxter M: \textbf{{NEMBASE:} a
+  resource for parasitic nematode {ESTs}}. \emph{Nucl. Acids Res.} 2004,
+  \textbf{32}(suppl\_1):D427--430,
+  \urlprefix\url{[http://nar.oxfordjournals.org/cgi/content/abstract/32/suppl_%
+1/D427]}.
+
+\bibitem{pmid21550347}
+Elsworth B, Wasmuth J, Blaxter M: \textbf{{{N}{E}{M}{B}{A}{S}{E}4: {T}he
+  nematode transcriptome resource}}. \emph{Int. J. Parasitol.} 2011,
+  \textbf{41}:881--894.
+
+\bibitem{wasmuth_prot4est:_2004}
+Wasmuth J, Blaxter M: \textbf{{prot4EST:} Translating Expressed Sequence Tags
+  from neglected genomes}. \emph{{BMC} Bioinformatics} 2004, \textbf{5}:187,
+  \urlprefix\url{[http://www.biomedcentral.com/1471-2105/5/187]}.
+
+\bibitem{pmid18836194}
+Bairoch A, Bougueleret L, Altairac S, Amendolia V, Auchincloss A, Argoud-Puy G,
+  Axelsen K, Baratin D, Blatter MC, Boeckmann B, Bolleman J, Bollondi L, Boutet
+  E, Quintaje SB, Breuza L, Bridge A, deCastro E, Ciapina L, Coral D, Coudert
+  E, Cusin I, Delbard G, Dornevil D, Roggli PD, Duvaud S, Estreicher A,
+  Famiglietti L, Feuermann M, Gehant S, Farriol-Mathis N, Ferro S, Gasteiger E,
+  Gateau A, Gerritsen V, Gos A, Gruaz-Gumowski N, Hinz U, Hulo C, Hulo N, James
+  J, Jimenez S, Jungo F, Junker V, Kappler T, Keller G, Lachaize C,
+  Lane-Guermonprez L, Langendijk-Genevaux P, Lara V, Lemercier P, Le~Saux V,
+  Lieberherr D, Lima TdeO, Mangold V, Martin X, Masson P, Michoud K, Moinat M,
+  Morgat A, Mottaz A, Paesano S, Pedruzzi I, Phan I, Pilbout S, Pillet V, Poux
+  S, Pozzato M, Redaschi N, Reynaud S, Rivoire C, Roechert B, Schneider M,
+  Sigrist C, Sonesson K, Staehli S, Stutz A, Sundaram S, Tognolli M, Verbregue
+  L, Veuthey AL, Yip L, Zuletta L, Apweiler R, Alam-Faruque Y, Antunes R,
+  Barrell D, Binns D, Bower L, Browne P, Chan WM, Dimmer E, Eberhardt R,
+  Fedotov A, Foulger R, Garavelli J, Golin R, Horne A, Huntley R, Jacobsen J,
+  Kleen M, Kersey P, Laiho K, Leinonen R, Legge D, Lin Q, Magrane M, Martin MJ,
+  O'Donovan C, Orchard S, O'Rourke J, Patient S, Pruess M, Sitnov A, Stanley E,
+  Corbett M, di~Martino G, Donnelly M, Luo J, van Rensburg P, Wu C, Arighi C,
+  Arminski L, Barker W, Chen Y, Hu ZZ, Hua HK, Huang H, Mazumder R, McGarvey P,
+  Natale DA, Nikolskaya A, Petrova N, Suzek BE, Vasudevan S, Vinayaka CR, Yeh
+  LS, Zhang J: \textbf{{{T}he {U}niversal {P}rotein {R}esource ({U}ni{P}rot)
+  2009}}. \emph{Nucleic Acids Res.} 2009, \textbf{37}:D169--174.
+
+\bibitem{estscan}
+Iseli C, Jongeneel C, Bucher P: \textbf{{ESTScan:} a program for detecting,
+  evaluating, and reconstructing potential coding regions in {EST} sequences.}
+  \emph{Proc Int Conf Intell Syst Mol Biol} 1999, :138--148,
+  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/10786296]}.
+
+\bibitem{schmid_annot8r:_2008}
+Schmid R, Blaxter ML: \textbf{annot8r: {GO,} {EC} and {KEGG} annotation of
+  {EST} datasets}. \emph{{BMC} Bioinformatics} 2008, \textbf{9}:180,
+  \urlprefix\url{[http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=23%
+24097]}.
+
+\bibitem{pmid21959131}
+Petersen TN, Brunak S, von Heijne G, Nielsen H: \textbf{{{S}ignal{P} 4.0:
+  discriminating signal peptides from transmembrane regions}}. \emph{Nat.
+  Methods} 2011, \textbf{8}:785--786.
+
+\bibitem{pmid11590104}
+Zdobnov EM, Apweiler R: \textbf{{{I}nter{P}ro{S}can--an integration platform
+  for the signature-recognition methods in {I}nter{P}ro}}.
+  \emph{Bioinformatics} 2001, \textbf{17}:847--848.
+
+\bibitem{pmid22083790}
+Kasprzyk A: \textbf{{{B}io{M}art: driving a paradigm change in biological data
+  management}}. \emph{Database (Oxford)} 2011, \textbf{2011}:bar049.
+
+\bibitem{pmid19617889}
+Durinck S, Spellman PT, Birney E, Huber W: \textbf{{{M}apping identifiers for
+  the integration of genomic datasets with the {R}/{B}ioconductor package
+  bioma{R}t}}. \emph{Nat Protoc} 2009, \textbf{4}:1184--1191.
+
+\bibitem{journals/bioinformatics/LiHWFRHMAD09}
+Li H, Handsaker B, Wysoker A, Fennell T, Ruan J, Homer N, Marth G, Abecasis GR,
+  Durbin R: \textbf{The Sequence Alignment/Map format and SAMtools.}
+  \emph{Bioinformatics} 2009, \textbf{25}(16):2078--2079.
+
+\bibitem{pmid19542151}
+Koboldt DC, Chen K, Wylie T, Larson DE, McLellan MD, Mardis ER, Weinstock GM,
+  Wilson RK, Ding L: \textbf{{{V}ar{S}can: variant detection in massively
+  parallel sequencing of individual and pooled samples}}. \emph{Bioinformatics}
+  2009, \textbf{25}:2283--2285.
+
+\bibitem{pmid21565077}
+Alho JS, Valimaki K, Merila J: \textbf{{{R}hh: an {R} extension for estimating
+  multilocus heterozygosity and heterozygosity-heterozygosity correlation}}.
+  \emph{Mol Ecol Resour} 2010, \textbf{10}:720--722.
+
+\bibitem{pmid11571049}
+Amos W, Wilmer JW, Fullard K, Burg TM, Croxall JP, Bloch D, Coulson T:
+  \textbf{{{T}he influence of parental relatedness on reproductive success}}.
+  \emph{Proc. Biol. Sci.} 2001, \textbf{268}:2021--2027.
+
+\bibitem{pmid17107491}
+Aparicio JM, Ortego J, Cordero PJ: \textbf{{{W}hat should we weigh to estimate
+  heterozygosity, alleles or loci?}} \emph{Mol. Ecol.} 2006,
+  \textbf{15}:4659--4665.
+
+\bibitem{coltman81j}
+ColtMan W, G PJ, A SJ, ton JM P: \textbf{Parasite-mediated selection against
+  inbred Soay sheep in a free-living, island population}. \emph{Evolution}
+  1999, \textbf{81}:1259--1267.
+
+\bibitem{pmid19451168}
+Li H, Durbin R: \textbf{{{F}ast and accurate short read alignment with
+  {B}urrows-{W}heeler transform}}. \emph{Bioinformatics} 2009,
+  \textbf{25}:1754--1760.
+
+\bibitem{pmid20979621}
+Anders S, Huber W: \textbf{{{D}ifferential expression analysis for sequence
+  count data}}. \emph{Genome Biol.} 2010, \textbf{11}:R106.
+
+\bibitem{R_project}
+{R Development Core Team}: \emph{R: A language and environment for statistical
+  computing}. R Foundation for Statistical Computing, Vienna, Austria 2009,
+  \urlprefix\url{[http://www.R-project.org]}.
+
+\bibitem{lmucs-papers:Leisch:2002}
+Leisch F: \textbf{Sweave: Dynamic Generation of Statistical Reports Using
+  Literate Data Analysis}. In \emph{Compstat 2002 --- Proceedings in
+  Computational Statistics}. Edited by H{\"a}rdle W, R{\"o}nz B, Physica
+  Verlag, Heidelberg 2002:575--580,
+  \urlprefix\url{[http://www.stat.uni-muenchen.de/~leisch/Sweave]}. [ISBN
+  3-7908-1517-9].
+
+\bibitem{weaver}
+Falcon S: \textbf{Caching code chunks in dynamic documents}.
+  \emph{Computational Statistics} 2009, \textbf{24}(2):255--261,
+  \urlprefix\url{[http://www.springerlink.com/content/55411257n1473414]}.
+
+\bibitem{ggplot-book}
+Wickham H: \emph{ggplot2: elegant graphics for data analysis}. Springer New
+  York 2009, \urlprefix\url{[http://had.co.nz/ggplot2/book]}.
+
+\bibitem{pmid21269502}
+Chen H, Boutros PC: \textbf{{{V}enn{D}iagram: a package for the generation of
+  highly-customizable {V}enn and {E}uler diagrams in {R}}}. \emph{BMC
+  Bioinformatics} 2011, \textbf{12}:35.
+
+\bibitem{pmid21685085}
+Balzer S, Malde K, Jonassen I: \textbf{{{S}ystematic exploration of error
+  sources in pyrosequencing flowgram data}}. \emph{Bioinformatics} 2011,
+  \textbf{27}:i304--309.
 
 \bibitem{pmid21138572}
 Schwartz TS, Tae H, Yang Y, Mockaitis K, Van~Hemert JL, Proulx SR, Choi JH,
@@ -350,125 +460,6 @@ Hewitson JP, Harcus Y, Murray J, van Agtmaal M, Filbey KJ, Grainger JR,
   of {V}enom {A}llergen-{L}ike ({V}{A}{L}) proteins}}. \emph{J Proteomics}
   2011, \textbf{74}:1573--1594.
 
-\bibitem{pmid20979621}
-Anders S, Huber W: \textbf{{{D}ifferential expression analysis for sequence
-  count data}}. \emph{Genome Biol.} 2010, \textbf{11}:R106.
-
-\bibitem{PHRAP}
-Green P: \emph{PHRAP documentation.} 1994,
-  \urlprefix\url{[http://www.phrap.org]}.
-
-\bibitem{tgicl_pertea}
-Pertea G, Huang X, Liang F, Antonescu V, Sultana R, Karamycheva S, Lee Y, White
-  J, Cheung F, Parvizi B, Tsai J, Quackenbush J: \textbf{{{T}{I}{G}{R} {G}ene
-  {I}ndices clustering tools ({T}{G}{I}{C}{L}): a software system for fast
-  clustering of large {E}{S}{T} datasets}}. \emph{Bioinformatics} 2003,
-  \textbf{19}:651--652,
-  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/12651724]}.
-
-\bibitem{miraEST}
-Chevreux B, Pfisterer T, Drescher B, Driesel AJ, Muller WE, Wetter T, Suhai S:
-  \textbf{{{U}sing the mira{E}{S}{T} assembler for reliable and automated
-  m{R}{N}{A} transcript assembly and {S}{N}{P} detection in sequenced
-  {E}{S}{T}s}}. \emph{Genome Res.} 2004, \textbf{14}:1147--1159,
-  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pmc/articles/PMC419793]}.
-
-\bibitem{Cap3_Huang}
-Huang X, Madan A: \textbf{{{C}{A}{P}3: {A} {D}{N}{A} sequence assembly
-  program}}. \emph{Genome Res.} 1999, \textbf{9}:868--877,
-  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pmc/articles/PMC310812]}.
-
-\bibitem{parkinson_nembase:resource_2004}
-Parkinson J, Whitton C, Schmid R, Thomson M, Blaxter M: \textbf{{NEMBASE:} a
-  resource for parasitic nematode {ESTs}}. \emph{Nucl. Acids Res.} 2004,
-  \textbf{32}(suppl\_1):D427--430,
-  \urlprefix\url{[http://nar.oxfordjournals.org/cgi/content/abstract/32/suppl_%
-1/D427]}.
-
-\bibitem{wasmuth_prot4est:_2004}
-Wasmuth J, Blaxter M: \textbf{{prot4EST:} Translating Expressed Sequence Tags
-  from neglected genomes}. \emph{{BMC} Bioinformatics} 2004, \textbf{5}:187,
-  \urlprefix\url{[http://www.biomedcentral.com/1471-2105/5/187]}.
-
-\bibitem{pmid18836194}
-Bairoch A, Bougueleret L, Altairac S, Amendolia V, Auchincloss A, Argoud-Puy G,
-  Axelsen K, Baratin D, Blatter MC, Boeckmann B, Bolleman J, Bollondi L, Boutet
-  E, Quintaje SB, Breuza L, Bridge A, deCastro E, Ciapina L, Coral D, Coudert
-  E, Cusin I, Delbard G, Dornevil D, Roggli PD, Duvaud S, Estreicher A,
-  Famiglietti L, Feuermann M, Gehant S, Farriol-Mathis N, Ferro S, Gasteiger E,
-  Gateau A, Gerritsen V, Gos A, Gruaz-Gumowski N, Hinz U, Hulo C, Hulo N, James
-  J, Jimenez S, Jungo F, Junker V, Kappler T, Keller G, Lachaize C,
-  Lane-Guermonprez L, Langendijk-Genevaux P, Lara V, Lemercier P, Le~Saux V,
-  Lieberherr D, Lima TdeO, Mangold V, Martin X, Masson P, Michoud K, Moinat M,
-  Morgat A, Mottaz A, Paesano S, Pedruzzi I, Phan I, Pilbout S, Pillet V, Poux
-  S, Pozzato M, Redaschi N, Reynaud S, Rivoire C, Roechert B, Schneider M,
-  Sigrist C, Sonesson K, Staehli S, Stutz A, Sundaram S, Tognolli M, Verbregue
-  L, Veuthey AL, Yip L, Zuletta L, Apweiler R, Alam-Faruque Y, Antunes R,
-  Barrell D, Binns D, Bower L, Browne P, Chan WM, Dimmer E, Eberhardt R,
-  Fedotov A, Foulger R, Garavelli J, Golin R, Horne A, Huntley R, Jacobsen J,
-  Kleen M, Kersey P, Laiho K, Leinonen R, Legge D, Lin Q, Magrane M, Martin MJ,
-  O'Donovan C, Orchard S, O'Rourke J, Patient S, Pruess M, Sitnov A, Stanley E,
-  Corbett M, di~Martino G, Donnelly M, Luo J, van Rensburg P, Wu C, Arighi C,
-  Arminski L, Barker W, Chen Y, Hu ZZ, Hua HK, Huang H, Mazumder R, McGarvey P,
-  Natale DA, Nikolskaya A, Petrova N, Suzek BE, Vasudevan S, Vinayaka CR, Yeh
-  LS, Zhang J: \textbf{{{T}he {U}niversal {P}rotein {R}esource ({U}ni{P}rot)
-  2009}}. \emph{Nucleic Acids Res.} 2009, \textbf{37}:D169--174.
-
-\bibitem{estscan}
-Iseli C, Jongeneel C, Bucher P: \textbf{{ESTScan:} a program for detecting,
-  evaluating, and reconstructing potential coding regions in {EST} sequences.}
-  \emph{Proc Int Conf Intell Syst Mol Biol} 1999, :138--148,
-  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/10786296]}.
-
-\bibitem{schmid_annot8r:_2008}
-Schmid R, Blaxter ML: \textbf{annot8r: {GO,} {EC} and {KEGG} annotation of
-  {EST} datasets}. \emph{{BMC} Bioinformatics} 2008, \textbf{9}:180,
-  \urlprefix\url{[http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=23%
-24097]}.
-
-\bibitem{journals/bioinformatics/LiHWFRHMAD09}
-Li H, Handsaker B, Wysoker A, Fennell T, Ruan J, Homer N, Marth G, Abecasis GR,
-  Durbin R: \textbf{The Sequence Alignment/Map format and SAMtools.}
-  \emph{Bioinformatics} 2009, \textbf{25}(16):2078--2079.
-
-\bibitem{pmid19542151}
-Koboldt DC, Chen K, Wylie T, Larson DE, McLellan MD, Mardis ER, Weinstock GM,
-  Wilson RK, Ding L: \textbf{{{V}ar{S}can: variant detection in massively
-  parallel sequencing of individual and pooled samples}}. \emph{Bioinformatics}
-  2009, \textbf{25}:2283--2285.
-
-\bibitem{pmid19451168}
-Li H, Durbin R: \textbf{{{F}ast and accurate short read alignment with
-  {B}urrows-{W}heeler transform}}. \emph{Bioinformatics} 2009,
-  \textbf{25}:1754--1760.
-
-\bibitem{R_project}
-{R Development Core Team}: \emph{R: A language and environment for statistical
-  computing}. R Foundation for Statistical Computing, Vienna, Austria 2009,
-  \urlprefix\url{[http://www.R-project.org]}.
-
-\bibitem{lmucs-papers:Leisch:2002}
-Leisch F: \textbf{Sweave: Dynamic Generation of Statistical Reports Using
-  Literate Data Analysis}. In \emph{Compstat 2002 --- Proceedings in
-  Computational Statistics}. Edited by H{\"a}rdle W, R{\"o}nz B, Physica
-  Verlag, Heidelberg 2002:575--580,
-  \urlprefix\url{[http://www.stat.uni-muenchen.de/~leisch/Sweave]}. [ISBN
-  3-7908-1517-9].
-
-\bibitem{weaver}
-Falcon S: \textbf{Caching code chunks in dynamic documents}.
-  \emph{Computational Statistics} 2009, \textbf{24}(2):255--261,
-  \urlprefix\url{[http://www.springerlink.com/content/55411257n1473414]}.
-
-\bibitem{lattice-book}
-Sarkar D: \emph{Lattice: Multivariate Data Visualization with R}. New York:
-  Springer 2008, \urlprefix\url{[http://lmdvr.r-forge.r-project.org]}. [ISBN
-  978-0-387-75968-5].
-
-\bibitem{ggplot-book}
-Wickham H: \emph{ggplot2: elegant graphics for data analysis}. Springer New
-  York 2009, \urlprefix\url{[http://had.co.nz/ggplot2/book]}.
-
 \end{thebibliography}
 
 \newcommand{\BMCxmlcomment}[1]{}
@@ -565,39 +556,6 @@ Wickham H: \emph{ggplot2: elegant graphics for data analysis}. Springer New
 </bibl>
 
 <bibl id="B7">
-  <title><p>Distribution and prevalence of Anguillicola crassus {(Nematoda)} in
-  eels Anguilla anguilla of the rivers Rhine and Naab, Germany</p></title>
-  <aug>
-    <au><snm>W\"{u}rtz</snm><fnm>J</fnm></au>
-    <au><snm>Knopf</snm><fnm>K</fnm></au>
-    <au><snm>Taraschewski</snm><fnm>H</fnm></au>
-  </aug>
-  <source>Diseases of Aquatic Organisms</source>
-  <pubdate>1998</pubdate>
-  <volume>32</volume>
-  <issue>2</issue>
-  <fpage>137</fpage>
-  <lpage>-43</lpage>
-  <url>http://www.ncbi.nlm.nih.gov/pubmed/9676253</url>
-</bibl>
-
-<bibl id="B8">
-  <title><p>Anguillicolosis: dynamics of the infection over two
-  decades</p></title>
-  <aug>
-    <au><snm>Lefebvre</snm><fnm>F S</fnm></au>
-    <au><snm>Crivelli</snm><fnm>A J</fnm></au>
-  </aug>
-  <source>Diseases of Aquatic Organisms</source>
-  <pubdate>2004</pubdate>
-  <volume>62</volume>
-  <issue>3</issue>
-  <fpage>227</fpage>
-  <lpage>-32</lpage>
-  <url>http://www.ncbi.nlm.nih.gov/pubmed/15672878</url>
-</bibl>
-
-<bibl id="B9">
   <title><p>Hosts and Parasites as Aliens</p></title>
   <aug>
     <au><snm>Taraschewski</snm><fnm>H.</fnm></au>
@@ -612,7 +570,7 @@ Wickham H: \emph{ggplot2: elegant graphics for data analysis}. Springer New
 d=713884</url>
 </bibl>
 
-<bibl id="B10">
+<bibl id="B8">
   <title><p>Occurrence of Anguillicola crassus {(Nematoda:} Dracunculoidea) in
   Japanese eels Anguilla japonica from a river and an aquaculture unit in {SW}
   Taiwan</p></title>
@@ -636,6 +594,39 @@ d=713884</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/16956057</url>
 </bibl>
 
+<bibl id="B9">
+  <title><p>Distribution and prevalence of Anguillicola crassus {(Nematoda)} in
+  eels Anguilla anguilla of the rivers Rhine and Naab, Germany</p></title>
+  <aug>
+    <au><snm>W\"{u}rtz</snm><fnm>J</fnm></au>
+    <au><snm>Knopf</snm><fnm>K</fnm></au>
+    <au><snm>Taraschewski</snm><fnm>H</fnm></au>
+  </aug>
+  <source>Diseases of Aquatic Organisms</source>
+  <pubdate>1998</pubdate>
+  <volume>32</volume>
+  <issue>2</issue>
+  <fpage>137</fpage>
+  <lpage>-43</lpage>
+  <url>http://www.ncbi.nlm.nih.gov/pubmed/9676253</url>
+</bibl>
+
+<bibl id="B10">
+  <title><p>Anguillicolosis: dynamics of the infection over two
+  decades</p></title>
+  <aug>
+    <au><snm>Lefebvre</snm><fnm>F S</fnm></au>
+    <au><snm>Crivelli</snm><fnm>A J</fnm></au>
+  </aug>
+  <source>Diseases of Aquatic Organisms</source>
+  <pubdate>2004</pubdate>
+  <volume>62</volume>
+  <issue>3</issue>
+  <fpage>227</fpage>
+  <lpage>-32</lpage>
+  <url>http://www.ncbi.nlm.nih.gov/pubmed/15672878</url>
+</bibl>
+
 <bibl id="B11">
   <title><p>The swimbladder nematode Anguillicola crassus in the European eel
   Anguilla anguilla and the Japanese eel Anguilla japonica: differences in
@@ -654,23 +645,6 @@ d=713884</url>
 </bibl>
 
 <bibl id="B12">
-  <title><p>Differences in susceptibility of the European eel {(Anguilla}
-  anguilla) and the Japanese eel {(Anguilla} japonica) to the swim-bladder
-  nematode Anguillicola crassus</p></title>
-  <aug>
-    <au><snm>Knopf</snm><fnm>K</fnm></au>
-    <au><snm>Mahnke</snm><fnm>M</fnm></au>
-  </aug>
-  <source>Parasitology</source>
-  <pubdate>2004</pubdate>
-  <volume>129</volume>
-  <issue>Pt 4</issue>
-  <fpage>491</fpage>
-  <lpage>-6</lpage>
-  <url>http://www.ncbi.nlm.nih.gov/pubmed/15521638</url>
-</bibl>
-
-<bibl id="B13">
   <title><p>Vaccination of eels {(Anguilla} japonica and Anguilla anguilla)
   against Anguillicola crassus with irradiated L3</p></title>
   <aug>
@@ -686,7 +660,7 @@ d=713884</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/18302804</url>
 </bibl>
 
-<bibl id="B14">
+<bibl id="B13">
   <title><p>Massive encapsulation of larval {Anguillicoloides crassus} in the
   intestinal wall of Japanese eels</p></title>
   <aug>
@@ -704,7 +678,7 @@ d=713884</url>
   <url>http://www.parasitesandvectors.com/content/2/1/48</url>
 </bibl>
 
-<bibl id="B15">
+<bibl id="B14">
   <title><p>Histopathological changes in the swimbladder wall of the European
   eel Anguilla anguilla due to infections with Anguillicola crassus</p></title>
   <aug>
@@ -718,6 +692,23 @@ d=713884</url>
   <fpage>121</fpage>
   <lpage>-34</lpage>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/10715817</url>
+</bibl>
+
+<bibl id="B15">
+  <title><p>Differences in susceptibility of the European eel {(Anguilla}
+  anguilla) and the Japanese eel {(Anguilla} japonica) to the swim-bladder
+  nematode Anguillicola crassus</p></title>
+  <aug>
+    <au><snm>Knopf</snm><fnm>K</fnm></au>
+    <au><snm>Mahnke</snm><fnm>M</fnm></au>
+  </aug>
+  <source>Parasitology</source>
+  <pubdate>2004</pubdate>
+  <volume>129</volume>
+  <issue>Pt 4</issue>
+  <fpage>491</fpage>
+  <lpage>-6</lpage>
+  <url>http://www.ncbi.nlm.nih.gov/pubmed/15521638</url>
 </bibl>
 
 <bibl id="B16">
@@ -788,23 +779,6 @@ d=1279744</url>
 </bibl>
 
 <bibl id="B19">
-  <title><p>Serine proteinase inhibitors from nematodes and the arms race
-  between host and pathogen</p></title>
-  <aug>
-    <au><snm>Zang</snm><fnm>X</fnm></au>
-    <au><snm>Maizels</snm><fnm>RM</fnm></au>
-  </aug>
-  <source>Trends in Biochemical Sciences</source>
-  <pubdate>2001</pubdate>
-  <volume>26</volume>
-  <issue>3</issue>
-  <fpage>191</fpage>
-  <lpage>-197</lpage>
-  <url>http://www.sciencedirect.com/science/article/B6TCV-42H1RTN-T/2/0a8af31e%
-701aab88f214aad50e50bdca</url>
-</bibl>
-
-<bibl id="B20">
   <title><p>{{G}enome sequencing in microfabricated high-density picolitre
   reactors}</p></title>
   <aug>
@@ -874,7 +848,7 @@ d=1279744</url>
   <url>http://dx.doi.org/10.1038/nature03959</url>
 </bibl>
 
-<bibl id="B21">
+<bibl id="B20">
   <title><p>{{C}omparing de novo assemblers for 454 transcriptome
   data}</p></title>
   <aug>
@@ -888,657 +862,7 @@ d=1279744</url>
   <url>http://dx.doi.org/10.1186/1471-2164-11-571</url>
 </bibl>
 
-<bibl id="B22">
-  <title><p>{{M}icroarrays, deep sequencing and the true measure of the
-  transcriptome}</p></title>
-  <aug>
-    <au><snm>Malone</snm><fnm>J. H.</fnm></au>
-    <au><snm>Oliver</snm><fnm>B.</fnm></au>
-  </aug>
-  <source>BMC Biol.</source>
-  <pubdate>2011</pubdate>
-  <volume>9</volume>
-  <fpage>34</fpage>
-</bibl>
-
-<bibl id="B23">
-  <title><p>{{H}igh-throughput {S}uper{S}{A}{G}{E}}</p></title>
-  <aug>
-    <au><snm>Matsumura</snm><fnm>H.</fnm></au>
-    <au><snm>Yoshida</snm><fnm>K.</fnm></au>
-    <au><snm>Luo</snm><fnm>S.</fnm></au>
-    <au><snm>Kruger</snm><fnm>D. H.</fnm></au>
-    <au><snm>Kahl</snm><fnm>G.</fnm></au>
-    <au><snm>Schroth</snm><fnm>G. P.</fnm></au>
-    <au><snm>Terauchi</snm><fnm>R.</fnm></au>
-  </aug>
-  <source>Methods Mol. Biol.</source>
-  <pubdate>2011</pubdate>
-  <volume>687</volume>
-  <fpage>135</fpage>
-  <lpage>-146</lpage>
-</bibl>
-
-<bibl id="B24">
-  <title><p>{{R}{N}{A}-{S}eq: a revolutionary tool for
-  transcriptomics}</p></title>
-  <aug>
-    <au><snm>Wang</snm><fnm>Z.</fnm></au>
-    <au><snm>Gerstein</snm><fnm>M.</fnm></au>
-    <au><snm>Snyder</snm><fnm>M.</fnm></au>
-  </aug>
-  <source>Nat. Rev. Genet.</source>
-  <pubdate>2009</pubdate>
-  <volume>10</volume>
-  <fpage>57</fpage>
-  <lpage>-63</lpage>
-</bibl>
-
-<bibl id="B25">
-  <title><p>{{N}{E}{M}{B}{A}{S}{E}4: {T}he nematode transcriptome
-  resource}</p></title>
-  <aug>
-    <au><snm>Elsworth</snm><fnm>B.</fnm></au>
-    <au><snm>Wasmuth</snm><fnm>J.</fnm></au>
-    <au><snm>Blaxter</snm><fnm>M.</fnm></au>
-  </aug>
-  <source>Int. J. Parasitol.</source>
-  <pubdate>2011</pubdate>
-  <volume>41</volume>
-  <fpage>881</fpage>
-  <lpage>-894</lpage>
-</bibl>
-
-<bibl id="B26">
-  <title><p>Base Ontology: An idea from Mark Blaxter</p></title>
-  <aug>
-    <au><snm>Blaxter</snm><fnm>M</fnm></au>
-  </aug>
-  <source>wiki-artikle</source>
-  <pubdate>2010</pubdate>
-  <url>http://genepool.bio.ed.ac.uk/nextgenbug/resources/gff_parsing_group</ur%
-l>
-</bibl>
-
-<bibl id="B27">
-  <title><p>{{S}ystematic exploration of error sources in pyrosequencing
-  flowgram data}</p></title>
-  <aug>
-    <au><snm>Balzer</snm><fnm>S.</fnm></au>
-    <au><snm>Malde</snm><fnm>K.</fnm></au>
-    <au><snm>Jonassen</snm><fnm>I.</fnm></au>
-  </aug>
-  <source>Bioinformatics</source>
-  <pubdate>2011</pubdate>
-  <volume>27</volume>
-  <fpage>i304</fpage>
-  <lpage>-309</lpage>
-</bibl>
-
-<bibl id="B28">
-  <title><p>{{S}ignal{P} 4.0: discriminating signal peptides from transmembrane
-  regions}</p></title>
-  <aug>
-    <au><snm>Petersen</snm><fnm>T. N.</fnm></au>
-    <au><snm>Brunak</snm><fnm>S.</fnm></au>
-    <au><snm>Heijne</snm><fnm>G.</fnm></au>
-    <au><snm>Nielsen</snm><fnm>H.</fnm></au>
-  </aug>
-  <source>Nat. Methods</source>
-  <pubdate>2011</pubdate>
-  <volume>8</volume>
-  <fpage>785</fpage>
-  <lpage>-786</lpage>
-</bibl>
-
-<bibl id="B29">
-  <title><p>{{A} scalable, fully automated process for construction of
-  sequence-ready barcoded libraries for 454}</p></title>
-  <aug>
-    <au><snm>Lennon</snm><fnm>N. J.</fnm></au>
-    <au><snm>Lintner</snm><fnm>R. E.</fnm></au>
-    <au><snm>Anderson</snm><fnm>S.</fnm></au>
-    <au><snm>Alvarez</snm><fnm>P.</fnm></au>
-    <au><snm>Barry</snm><fnm>A.</fnm></au>
-    <au><snm>Brockman</snm><fnm>W.</fnm></au>
-    <au><snm>Daza</snm><fnm>R.</fnm></au>
-    <au><snm>Erlich</snm><fnm>R. L.</fnm></au>
-    <au><snm>Giannoukos</snm><fnm>G.</fnm></au>
-    <au><snm>Green</snm><fnm>L.</fnm></au>
-    <au><snm>Hollinger</snm><fnm>A.</fnm></au>
-    <au><snm>Hoover</snm><fnm>C. A.</fnm></au>
-    <au><snm>Jaffe</snm><fnm>D. B.</fnm></au>
-    <au><snm>Juhn</snm><fnm>F.</fnm></au>
-    <au><snm>McCarthy</snm><fnm>D.</fnm></au>
-    <au><snm>Perrin</snm><fnm>D.</fnm></au>
-    <au><snm>Ponchner</snm><fnm>K.</fnm></au>
-    <au><snm>Powers</snm><fnm>T. L.</fnm></au>
-    <au><snm>Rizzolo</snm><fnm>K.</fnm></au>
-    <au><snm>Robbins</snm><fnm>D.</fnm></au>
-    <au><snm>Ryan</snm><fnm>E.</fnm></au>
-    <au><snm>Russ</snm><fnm>C.</fnm></au>
-    <au><snm>Sparrow</snm><fnm>T.</fnm></au>
-    <au><snm>Stalker</snm><fnm>J.</fnm></au>
-    <au><snm>Steelman</snm><fnm>S.</fnm></au>
-    <au><snm>Weiand</snm><fnm>M.</fnm></au>
-    <au><snm>Zimmer</snm><fnm>A.</fnm></au>
-    <au><snm>Henn</snm><fnm>M. R.</fnm></au>
-    <au><snm>Nusbaum</snm><fnm>C.</fnm></au>
-    <au><snm>Nicol</snm><fnm>R.</fnm></au>
-  </aug>
-  <source>Genome Biol.</source>
-  <pubdate>2010</pubdate>
-  <volume>11</volume>
-  <fpage>R15</fpage>
-</bibl>
-
-<bibl id="B30">
-  <title><p>{{S}equencing, de novo annotation and analysis of the first
-  {A}nguilla anguilla transcriptome: {E}eel{B}ase opens new perspectives for
-  the study of the critically endangered {E}uropean eel}</p></title>
-  <aug>
-    <au><snm>Coppe</snm><fnm>A.</fnm></au>
-    <au><snm>Pujolar</snm><fnm>J. M.</fnm></au>
-    <au><snm>Maes</snm><fnm>G. E.</fnm></au>
-    <au><snm>Larsen</snm><fnm>P. F.</fnm></au>
-    <au><snm>Hansen</snm><fnm>M. M.</fnm></au>
-    <au><snm>Bernatchez</snm><fnm>L.</fnm></au>
-    <au><snm>Zane</snm><fnm>L.</fnm></au>
-    <au><snm>Bortoluzzi</snm><fnm>S.</fnm></au>
-  </aug>
-  <source>BMC Genomics</source>
-  <pubdate>2010</pubdate>
-  <volume>11</volume>
-  <fpage>635</fpage>
-</bibl>
-
-<bibl id="B31">
-  <title><p>{{I}nhibition and facilitation of nucleic acid
-  amplification}</p></title>
-  <aug>
-    <au><snm>Wilson</snm><fnm>I. G.</fnm></au>
-  </aug>
-  <source>Appl. Environ. Microbiol.</source>
-  <pubdate>1997</pubdate>
-  <volume>63</volume>
-  <fpage>3741</fpage>
-  <lpage>-3751</lpage>
-</bibl>
-
-<bibl id="B32">
-  <title><p>{{T}he power of real-time {P}{C}{R}}</p></title>
-  <aug>
-    <au><snm>Valasek</snm><fnm>M. A.</fnm></au>
-    <au><snm>Repa</snm><fnm>J. J.</fnm></au>
-  </aug>
-  <source>Adv Physiol Educ</source>
-  <pubdate>2005</pubdate>
-  <volume>29</volume>
-  <fpage>151</fpage>
-  <lpage>-159</lpage>
-</bibl>
-
-<bibl id="B33">
-  <title><p>{{A} garter snake transcriptome: pyrosequencing, de novo assembly,
-  and sex-specific differences}</p></title>
-  <aug>
-    <au><snm>Schwartz</snm><fnm>T. S.</fnm></au>
-    <au><snm>Tae</snm><fnm>H.</fnm></au>
-    <au><snm>Yang</snm><fnm>Y.</fnm></au>
-    <au><snm>Mockaitis</snm><fnm>K.</fnm></au>
-    <au><snm>Van Hemert</snm><fnm>J. L.</fnm></au>
-    <au><snm>Proulx</snm><fnm>S. R.</fnm></au>
-    <au><snm>Choi</snm><fnm>J. H.</fnm></au>
-    <au><snm>Bronikowski</snm><fnm>A. M.</fnm></au>
-  </aug>
-  <source>BMC Genomics</source>
-  <pubdate>2010</pubdate>
-  <volume>11</volume>
-  <fpage>694</fpage>
-</bibl>
-
-<bibl id="B34">
-  <title><p>{{D}iscovery and evaluation of candidate sex-determining genes and
-  xenobiotics in the gonads of lake sturgeon ({A}cipenser
-  fulvescens)}</p></title>
-  <aug>
-    <au><snm>Hale</snm><fnm>M. C.</fnm></au>
-    <au><snm>Jackson</snm><fnm>J. R.</fnm></au>
-    <au><snm>Dewoody</snm><fnm>J. A.</fnm></au>
-  </aug>
-  <source>Genetica</source>
-  <pubdate>2010</pubdate>
-  <volume>138</volume>
-  <fpage>745</fpage>
-  <lpage>-756</lpage>
-</bibl>
-
-<bibl id="B35">
-  <title><p>{{N}ext generation transcriptomes for next generation genomes using
-  est2assembly}</p></title>
-  <aug>
-    <au><snm>Papanicolaou</snm><fnm>A.</fnm></au>
-    <au><snm>Stierli</snm><fnm>R.</fnm></au>
-    <au><snm>Ffrench Constant</snm><fnm>R. H.</fnm></au>
-    <au><snm>Heckel</snm><fnm>D. G.</fnm></au>
-  </aug>
-  <source>BMC Bioinformatics</source>
-  <pubdate>2009</pubdate>
-  <volume>10</volume>
-  <fpage>447</fpage>
-</bibl>
-
-<bibl id="B36">
-  <title><p>{{S}eparation of sequences from host-pathogen interface using
-  triplet nucleotide frequencies}</p></title>
-  <aug>
-    <au><snm>Emmersen</snm><fnm>J.</fnm></au>
-    <au><snm>Rudd</snm><fnm>S.</fnm></au>
-    <au><snm>Mewes</snm><fnm>H. W.</fnm></au>
-    <au><snm>Tetko</snm><fnm>I. V.</fnm></au>
-  </aug>
-  <source>Fungal Genet. Biol.</source>
-  <pubdate>2007</pubdate>
-  <volume>44</volume>
-  <fpage>231</fpage>
-  <lpage>-241</lpage>
-  <url>http://dx.doi.org/10.1016/j.fgb.2006.11.010</url>
-</bibl>
-
-<bibl id="B37">
-  <title><p>{{A} {D}e {N}ovo {E}xpression {P}rofiling of {A}nopheles funestus,
-  {M}alaria {V}ector in {A}frica, {U}sing 454 {P}yrosequencing}</p></title>
-  <aug>
-    <au><snm>Gregory</snm><fnm>R.</fnm></au>
-    <au><snm>Darby</snm><fnm>A. C.</fnm></au>
-    <au><snm>Irving</snm><fnm>H.</fnm></au>
-    <au><snm>Coulibaly</snm><fnm>M. B.</fnm></au>
-    <au><snm>Hughes</snm><fnm>M.</fnm></au>
-    <au><snm>Koekemoer</snm><fnm>L. L.</fnm></au>
-    <au><snm>Coetzee</snm><fnm>M.</fnm></au>
-    <au><snm>Ranson</snm><fnm>H.</fnm></au>
-    <au><snm>Hemingway</snm><fnm>J.</fnm></au>
-    <au><snm>Hall</snm><fnm>N.</fnm></au>
-    <au><snm>Wondji</snm><fnm>C. S.</fnm></au>
-  </aug>
-  <source>PLoS ONE</source>
-  <pubdate>2011</pubdate>
-  <volume>6</volume>
-  <fpage>e17418</fpage>
-</bibl>
-
-<bibl id="B38">
-  <title><p>{{C}omparative genomics based on massive parallel transcriptome
-  sequencing reveals patterns of substitution and selection across 10 bird
-  species}</p></title>
-  <aug>
-    <au><snm>Kunstner</snm><fnm>A.</fnm></au>
-    <au><snm>Wolf</snm><fnm>J. B.</fnm></au>
-    <au><snm>Backstrom</snm><fnm>N.</fnm></au>
-    <au><snm>Whitney</snm><fnm>O.</fnm></au>
-    <au><snm>Balakrishnan</snm><fnm>C. N.</fnm></au>
-    <au><snm>Day</snm><fnm>L.</fnm></au>
-    <au><snm>Edwards</snm><fnm>S. V.</fnm></au>
-    <au><snm>Janes</snm><fnm>D. E.</fnm></au>
-    <au><snm>Schlinger</snm><fnm>B. A.</fnm></au>
-    <au><snm>Wilson</snm><fnm>R. K.</fnm></au>
-    <au><snm>Jarvis</snm><fnm>E. D.</fnm></au>
-    <au><snm>Warren</snm><fnm>W. C.</fnm></au>
-    <au><snm>Ellegren</snm><fnm>H.</fnm></au>
-  </aug>
-  <source>Mol. Ecol.</source>
-  <pubdate>2010</pubdate>
-  <volume>19 Suppl 1</volume>
-  <fpage>266</fpage>
-  <lpage>-276</lpage>
-</bibl>
-
-<bibl id="B39">
-  <title><p>{{C}ompletely phased genome sequencing through chromosome
-  sorting}</p></title>
-  <aug>
-    <au><snm>Yang</snm><fnm>H.</fnm></au>
-    <au><snm>Chen</snm><fnm>X.</fnm></au>
-    <au><snm>Wong</snm><fnm>W. H.</fnm></au>
-  </aug>
-  <source>Proc. Natl. Acad. Sci. U.S.A.</source>
-  <pubdate>2011</pubdate>
-  <volume>108</volume>
-  <fpage>12</fpage>
-  <lpage>-17</lpage>
-</bibl>
-
-<bibl id="B40">
-  <title><p>{Rapid, low-input, low-bias construction of shotgun fragment
-  libraries by high-density in vitro transposition}</p></title>
-  <aug>
-    <au><snm>Adey</snm><fnm>A</fnm></au>
-    <au><snm>Morrison</snm><fnm>H</fnm></au>
-    <au><snm>Asan</snm><fnm>X</fnm></au>
-    <au><snm>Xun</snm><fnm>X</fnm></au>
-    <au><snm>Kitzman</snm><fnm>J</fnm></au>
-    <au><snm>Turner</snm><fnm>E</fnm></au>
-    <au><snm>Stackhouse</snm><fnm>B</fnm></au>
-    <au><snm>MacKenzie</snm><fnm>A</fnm></au>
-    <au><snm>Caruccio</snm><fnm>N</fnm></au>
-    <au><snm>Zhang</snm><fnm>X</fnm></au>
-    <au><snm>Shendure</snm><fnm>J</fnm></au>
-    <au><snm>Turner</snm><fnm>E</fnm></au>
-    <au><snm>Stackhouse</snm><fnm>B</fnm></au>
-    <au><snm>MacKenzie</snm><fnm>A</fnm></au>
-    <au><snm>Caruccio</snm><fnm>N</fnm></au>
-    <au><snm>Zhang</snm><fnm>X</fnm></au>
-    <au><snm>Shendure</snm><fnm>J</fnm></au>
-  </aug>
-  <source>Genome Biol.</source>
-  <pubdate>2010</pubdate>
-  <volume>11</volume>
-  <issue>12</issue>
-  <fpage>R119</fpage>
-</bibl>
-
-<bibl id="B41">
-  <title><p>{{T}he population genetics of d{N}/d{S}}</p></title>
-  <aug>
-    <au><snm>Kryazhimskiy</snm><fnm>S.</fnm></au>
-    <au><snm>Plotkin</snm><fnm>J. B.</fnm></au>
-  </aug>
-  <source>PLoS Genet.</source>
-  <pubdate>2008</pubdate>
-  <volume>4</volume>
-  <fpage>e1000304</fpage>
-</bibl>
-
-<bibl id="B42">
-  <title><p>{{H}igh-throughput gene and {S}{N}{P} discovery in {E}ucalyptus
-  grandis, an uncharacterized genome}</p></title>
-  <aug>
-    <au><snm>Novaes</snm><fnm>E.</fnm></au>
-    <au><snm>Drost</snm><fnm>D. R.</fnm></au>
-    <au><snm>Farmerie</snm><fnm>W. G.</fnm></au>
-    <au><snm>Pappas</snm><fnm>G. J.</fnm></au>
-    <au><snm>Grattapaglia</snm><fnm>D.</fnm></au>
-    <au><snm>Sederoff</snm><fnm>R. R.</fnm></au>
-    <au><snm>Kirst</snm><fnm>M.</fnm></au>
-  </aug>
-  <source>BMC Genomics</source>
-  <pubdate>2008</pubdate>
-  <volume>9</volume>
-  <fpage>312</fpage>
-</bibl>
-
-<bibl id="B43">
-  <title><p>{{P}opulation-level transcriptome sequencing of nonmodel organisms
-  {E}rynnis propertius and {P}apilio zelicaon}</p></title>
-  <aug>
-    <au><snm>O'Neil</snm><fnm>S. T.</fnm></au>
-    <au><snm>Dzurisin</snm><fnm>J. D.</fnm></au>
-    <au><snm>Carmichael</snm><fnm>R. D.</fnm></au>
-    <au><snm>Lobo</snm><fnm>N. F.</fnm></au>
-    <au><snm>Emrich</snm><fnm>S. J.</fnm></au>
-    <au><snm>Hellmann</snm><fnm>J. J.</fnm></au>
-  </aug>
-  <source>BMC Genomics</source>
-  <pubdate>2010</pubdate>
-  <volume>11</volume>
-  <fpage>310</fpage>
-</bibl>
-
-<bibl id="B44">
-  <title><p>{{E}volutionary expressed sequence tag analysis of {D}rosophila
-  female reproductive tracts identifies genes subjected to positive
-  selection}</p></title>
-  <aug>
-    <au><snm>Swanson</snm><fnm>W. J.</fnm></au>
-    <au><snm>Wong</snm><fnm>A.</fnm></au>
-    <au><snm>Wolfner</snm><fnm>M. F.</fnm></au>
-    <au><snm>Aquadro</snm><fnm>C. F.</fnm></au>
-  </aug>
-  <source>Genetics</source>
-  <pubdate>2004</pubdate>
-  <volume>168</volume>
-  <fpage>1457</fpage>
-  <lpage>-1465</lpage>
-</bibl>
-
-<bibl id="B45">
-  <title><p>{{M}olecular evolution of m{R}{N}{A}: a method for estimating
-  evolutionary rates of synonymous and amino acid substitutions from homologous
-  nucleotide sequences and its application}</p></title>
-  <aug>
-    <au><snm>Miyata</snm><fnm>T.</fnm></au>
-    <au><snm>Yasunaga</snm><fnm>T.</fnm></au>
-  </aug>
-  <source>J. Mol. Evol.</source>
-  <pubdate>1980</pubdate>
-  <volume>16</volume>
-  <fpage>23</fpage>
-  <lpage>-36</lpage>
-</bibl>
-
-<bibl id="B46">
-  <title><p>{{E}volutionary {E}{S}{T} analysis identifies rapidly evolving male
-  reproductive proteins in {D}rosophila}</p></title>
-  <aug>
-    <au><snm>Swanson</snm><fnm>W. J.</fnm></au>
-    <au><snm>Clark</snm><fnm>A. G.</fnm></au>
-    <au><snm>Waldrip Dail</snm><fnm>H. M.</fnm></au>
-    <au><snm>Wolfner</snm><fnm>M. F.</fnm></au>
-    <au><snm>Aquadro</snm><fnm>C. F.</fnm></au>
-  </aug>
-  <source>Proc. Natl. Acad. Sci. U.S.A.</source>
-  <pubdate>2001</pubdate>
-  <volume>98</volume>
-  <fpage>7375</fpage>
-  <lpage>-7379</lpage>
-</bibl>
-
-<bibl id="B47">
-  <title><p>{{D}igital gene expression analysis of the zebra finch
-  genome}</p></title>
-  <aug>
-    <au><snm>Ekblom</snm><fnm>R.</fnm></au>
-    <au><snm>Balakrishnan</snm><fnm>C. N.</fnm></au>
-    <au><snm>Burke</snm><fnm>T.</fnm></au>
-    <au><snm>Slate</snm><fnm>J.</fnm></au>
-  </aug>
-  <source>BMC Genomics</source>
-  <pubdate>2010</pubdate>
-  <volume>11</volume>
-  <fpage>219</fpage>
-</bibl>
-
-<bibl id="B48">
-  <title><p>{{I}nterpopulation patterns of divergence and selection across the
-  transcriptome of the copepod {T}igriopus californicus}</p></title>
-  <aug>
-    <au><snm>Barreto</snm><fnm>F. S.</fnm></au>
-    <au><snm>Moy</snm><fnm>G. W.</fnm></au>
-    <au><snm>Burton</snm><fnm>R. S.</fnm></au>
-  </aug>
-  <source>Mol. Ecol.</source>
-  <pubdate>2011</pubdate>
-  <volume>20</volume>
-  <fpage>560</fpage>
-  <lpage>-572</lpage>
-</bibl>
-
-<bibl id="B49">
-  <title><p>{{C}haracterizing {A}ncylostoma caninum transcriptome and exploring
-  nematode parasitic adaptation}</p></title>
-  <aug>
-    <au><snm>Wang</snm><fnm>Z.</fnm></au>
-    <au><snm>Abubucker</snm><fnm>S.</fnm></au>
-    <au><snm>Martin</snm><fnm>J.</fnm></au>
-    <au><snm>Wilson</snm><fnm>R. K.</fnm></au>
-    <au><snm>Hawdon</snm><fnm>J.</fnm></au>
-    <au><snm>Mitreva</snm><fnm>M.</fnm></au>
-  </aug>
-  <source>BMC Genomics</source>
-  <pubdate>2010</pubdate>
-  <volume>11</volume>
-  <fpage>307</fpage>
-</bibl>
-
-<bibl id="B50">
-  <title><p>{{S}equencing, bioinformatic characterization and expression
-  pattern of a putative amino acid transporter from the parasitic cestode
-  {E}chinococcus granulosus}</p></title>
-  <aug>
-    <au><snm>Camicia</snm><fnm>F.</fnm></au>
-    <au><snm>Paredes</snm><fnm>R.</fnm></au>
-    <au><snm>Chalar</snm><fnm>C.</fnm></au>
-    <au><snm>Galanti</snm><fnm>N.</fnm></au>
-    <au><snm>Kamenetzky</snm><fnm>L.</fnm></au>
-    <au><snm>Gutierrez</snm><fnm>A.</fnm></au>
-    <au><snm>Rosenzvit</snm><fnm>M. C.</fnm></au>
-  </aug>
-  <source>Gene</source>
-  <pubdate>2008</pubdate>
-  <volume>411</volume>
-  <fpage>1</fpage>
-  <lpage>-9</lpage>
-</bibl>
-
-<bibl id="B51">
-  <title><p>Identification and characterization of the proteolytic enzymes in
-  the developmental stages of the eel-pathogenic nematode Anguillicola
-  crassus</p></title>
-  <aug>
-    <au><snm>Polzer</snm><fnm>M</fnm></au>
-    <au><snm>Taraschewski</snm><fnm>H</fnm></au>
-  </aug>
-  <source>Parasitology Research</source>
-  <pubdate>1993</pubdate>
-  <volume>79</volume>
-  <issue>1</issue>
-  <fpage>24</fpage>
-  <lpage>-7</lpage>
-  <url>http://www.ncbi.nlm.nih.gov/pubmed/7682326</url>
-</bibl>
-
-<bibl id="B52">
-  <title><p>{{P}hylogenetic relationships of fungi, plantae, and animalia
-  inferred from homologous comparison of ribosomal proteins}</p></title>
-  <aug>
-    <au><snm>Veuthey</snm><fnm>A. L.</fnm></au>
-    <au><snm>Bittar</snm><fnm>G.</fnm></au>
-  </aug>
-  <source>J. Mol. Evol.</source>
-  <pubdate>1998</pubdate>
-  <volume>47</volume>
-  <fpage>81</fpage>
-  <lpage>-92</lpage>
-</bibl>
-
-<bibl id="B53">
-  <title><p>Signal sequence analysis of expressed sequence tags from the
-  nematode Nippostrongylus brasiliensis and the evolution of secreted proteins
-  in parasites</p></title>
-  <aug>
-    <au><snm>Harcus</snm><fnm>Y</fnm></au>
-    <au><snm>Parkinson</snm><fnm>J</fnm></au>
-    <au><snm>Fernandez</snm><fnm>C</fnm></au>
-    <au><snm>Daub</snm><fnm>J</fnm></au>
-    <au><snm>Selkirk</snm><fnm>M</fnm></au>
-    <au><snm>Blaxter</snm><fnm>M</fnm></au>
-    <au><snm>Maizels</snm><fnm>R</fnm></au>
-  </aug>
-  <source>Genome Biology</source>
-  <pubdate>2004</pubdate>
-  <volume>5</volume>
-  <issue>6</issue>
-  <fpage>R39</fpage>
-  <url>http://genomebiology.com/2004/5/6/R39</url>
-</bibl>
-
-<bibl id="B54">
-  <title><p>Needles in the {EST} Haystack: {Large-Scale} Identification and
-  Analysis of {Excretory-Secretory} {(ES)} Proteins in Parasitic Nematodes
-  Using Expressed Sequence Tags {(ESTs)}</p></title>
-  <aug>
-    <au><snm>Nagaraj</snm><fnm>SH</fnm></au>
-    <au><snm>Gasser</snm><fnm>RB</fnm></au>
-    <au><snm>Ranganathan</snm><fnm>S</fnm></au>
-  </aug>
-  <source>{PLoS} Neglected Tropical Diseases</source>
-  <pubdate>2008</pubdate>
-  <volume>2</volume>
-  <issue>9</issue>
-  <fpage>e301</fpage>
-</bibl>
-
-<bibl id="B55">
-  <title><p>{{B}rugia malayi excreted/secreted proteins at the host/parasite
-  interface: stage- and gender-specific proteomic profiling}</p></title>
-  <aug>
-    <au><snm>Bennuru</snm><fnm>S.</fnm></au>
-    <au><snm>Semnani</snm><fnm>R.</fnm></au>
-    <au><snm>Meng</snm><fnm>Z.</fnm></au>
-    <au><snm>Ribeiro</snm><fnm>J. M.</fnm></au>
-    <au><snm>Veenstra</snm><fnm>T. D.</fnm></au>
-    <au><snm>Nutman</snm><fnm>T. B.</fnm></au>
-  </aug>
-  <source>PLoS Negl Trop Dis</source>
-  <pubdate>2009</pubdate>
-  <volume>3</volume>
-  <fpage>e410</fpage>
-</bibl>
-
-<bibl id="B56">
-  <title><p>{{S}tage- and gender-specific proteomic analysis of {B}rugia malayi
-  excretory-secretory products}</p></title>
-  <aug>
-    <au><snm>Moreno</snm><fnm>Y.</fnm></au>
-    <au><snm>Geary</snm><fnm>T. G.</fnm></au>
-  </aug>
-  <source>PLoS Negl Trop Dis</source>
-  <pubdate>2008</pubdate>
-  <volume>2</volume>
-  <fpage>e326</fpage>
-</bibl>
-
-<bibl id="B57">
-  <title><p>{{P}roteomic analysis of secretory products from the model
-  gastrointestinal nematode {H}eligmosomoides polygyrus reveals dominance of
-  {V}enom {A}llergen-{L}ike ({V}{A}{L}) proteins}</p></title>
-  <aug>
-    <au><snm>Hewitson</snm><fnm>J. P.</fnm></au>
-    <au><snm>Harcus</snm><fnm>Y.</fnm></au>
-    <au><snm>Murray</snm><fnm>J.</fnm></au>
-    <au><snm>Agtmaal</snm><fnm>M.</fnm></au>
-    <au><snm>Filbey</snm><fnm>K. J.</fnm></au>
-    <au><snm>Grainger</snm><fnm>J. R.</fnm></au>
-    <au><snm>Bridgett</snm><fnm>S.</fnm></au>
-    <au><snm>Blaxter</snm><fnm>M. L.</fnm></au>
-    <au><snm>Ashton</snm><fnm>P. D.</fnm></au>
-    <au><snm>Ashford</snm><fnm>D. A.</fnm></au>
-    <au><snm>Curwen</snm><fnm>R. S.</fnm></au>
-    <au><snm>Wilson</snm><fnm>R. A.</fnm></au>
-    <au><snm>Dowle</snm><fnm>A. A.</fnm></au>
-    <au><snm>Maizels</snm><fnm>R. M.</fnm></au>
-  </aug>
-  <source>J Proteomics</source>
-  <pubdate>2011</pubdate>
-  <volume>74</volume>
-  <fpage>1573</fpage>
-  <lpage>-1594</lpage>
-</bibl>
-
-<bibl id="B58">
-  <title><p>{{D}ifferential expression analysis for sequence count
-  data}</p></title>
-  <aug>
-    <au><snm>Anders</snm><fnm>S.</fnm></au>
-    <au><snm>Huber</snm><fnm>W.</fnm></au>
-  </aug>
-  <source>Genome Biol.</source>
-  <pubdate>2010</pubdate>
-  <volume>11</volume>
-  <fpage>R106</fpage>
-</bibl>
-
-<bibl id="B59">
+<bibl id="B21">
   <title><p>PHRAP documentation.</p></title>
   <aug>
     <au><snm>Green</snm><fnm>P</fnm></au>
@@ -1547,7 +871,7 @@ l>
   <url>http://www.phrap.org</url>
 </bibl>
 
-<bibl id="B60">
+<bibl id="B22">
   <title><p>{{T}{I}{G}{R} {G}ene {I}ndices clustering tools ({T}{G}{I}{C}{L}):
   a software system for fast clustering of large {E}{S}{T}
   datasets}</p></title>
@@ -1573,7 +897,27 @@ l>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/12651724</url>
 </bibl>
 
-<bibl id="B61">
+<bibl id="B23">
+  <title><p>{{S}equencing, de novo annotation and analysis of the first
+  {A}nguilla anguilla transcriptome: {E}eel{B}ase opens new perspectives for
+  the study of the critically endangered {E}uropean eel}</p></title>
+  <aug>
+    <au><snm>Coppe</snm><fnm>A.</fnm></au>
+    <au><snm>Pujolar</snm><fnm>J. M.</fnm></au>
+    <au><snm>Maes</snm><fnm>G. E.</fnm></au>
+    <au><snm>Larsen</snm><fnm>P. F.</fnm></au>
+    <au><snm>Hansen</snm><fnm>M. M.</fnm></au>
+    <au><snm>Bernatchez</snm><fnm>L.</fnm></au>
+    <au><snm>Zane</snm><fnm>L.</fnm></au>
+    <au><snm>Bortoluzzi</snm><fnm>S.</fnm></au>
+  </aug>
+  <source>BMC Genomics</source>
+  <pubdate>2010</pubdate>
+  <volume>11</volume>
+  <fpage>635</fpage>
+</bibl>
+
+<bibl id="B24">
   <title><p>{{U}sing the mira{E}{S}{T} assembler for reliable and automated
   m{R}{N}{A} transcript assembly and {S}{N}{P} detection in sequenced
   {E}{S}{T}s}</p></title>
@@ -1594,7 +938,7 @@ l>
   <url>http://www.ncbi.nlm.nih.gov/pmc/articles/PMC419793</url>
 </bibl>
 
-<bibl id="B62">
+<bibl id="B25">
   <title><p>{{C}{A}{P}3: {A} {D}{N}{A} sequence assembly program}</p></title>
   <aug>
     <au><snm>Huang</snm><fnm>X.</fnm></au>
@@ -1608,7 +952,7 @@ l>
   <url>http://www.ncbi.nlm.nih.gov/pmc/articles/PMC310812</url>
 </bibl>
 
-<bibl id="B63">
+<bibl id="B26">
   <title><p>{NEMBASE:} a resource for parasitic nematode {ESTs}</p></title>
   <aug>
     <au><snm>Parkinson</snm><fnm>J</fnm></au>
@@ -1626,7 +970,22 @@ l>
   <url>http://nar.oxfordjournals.org/cgi/content/abstract/32/suppl_1/D427</url>
 </bibl>
 
-<bibl id="B64">
+<bibl id="B27">
+  <title><p>{{N}{E}{M}{B}{A}{S}{E}4: {T}he nematode transcriptome
+  resource}</p></title>
+  <aug>
+    <au><snm>Elsworth</snm><fnm>B.</fnm></au>
+    <au><snm>Wasmuth</snm><fnm>J.</fnm></au>
+    <au><snm>Blaxter</snm><fnm>M.</fnm></au>
+  </aug>
+  <source>Int. J. Parasitol.</source>
+  <pubdate>2011</pubdate>
+  <volume>41</volume>
+  <fpage>881</fpage>
+  <lpage>-894</lpage>
+</bibl>
+
+<bibl id="B28">
   <title><p>{prot4EST:} Translating Expressed Sequence Tags from neglected
   genomes</p></title>
   <aug>
@@ -1641,7 +1000,7 @@ l>
   <url>http://www.biomedcentral.com/1471-2105/5/187</url>
 </bibl>
 
-<bibl id="B65">
+<bibl id="B29">
   <title><p>{{T}he {U}niversal {P}rotein {R}esource ({U}ni{P}rot)
   2009}</p></title>
   <aug>
@@ -1790,7 +1149,7 @@ l>
   <lpage>-174</lpage>
 </bibl>
 
-<bibl id="B66">
+<bibl id="B30">
   <title><p>{ESTScan:} a program for detecting, evaluating, and reconstructing
   potential coding regions in {EST} sequences.</p></title>
   <aug>
@@ -1805,7 +1164,7 @@ l>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/10786296</url>
 </bibl>
 
-<bibl id="B67">
+<bibl id="B31">
   <title><p>annot8r: {GO,} {EC} and {KEGG} annotation of {EST}
   datasets</p></title>
   <aug>
@@ -1819,7 +1178,65 @@ l>
   <url>http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2324097</url>
 </bibl>
 
-<bibl id="B68">
+<bibl id="B32">
+  <title><p>{{S}ignal{P} 4.0: discriminating signal peptides from transmembrane
+  regions}</p></title>
+  <aug>
+    <au><snm>Petersen</snm><fnm>T. N.</fnm></au>
+    <au><snm>Brunak</snm><fnm>S.</fnm></au>
+    <au><snm>Heijne</snm><fnm>G.</fnm></au>
+    <au><snm>Nielsen</snm><fnm>H.</fnm></au>
+  </aug>
+  <source>Nat. Methods</source>
+  <pubdate>2011</pubdate>
+  <volume>8</volume>
+  <fpage>785</fpage>
+  <lpage>-786</lpage>
+</bibl>
+
+<bibl id="B33">
+  <title><p>{{I}nter{P}ro{S}can--an integration platform for the
+  signature-recognition methods in {I}nter{P}ro}</p></title>
+  <aug>
+    <au><snm>Zdobnov</snm><fnm>E. M.</fnm></au>
+    <au><snm>Apweiler</snm><fnm>R.</fnm></au>
+  </aug>
+  <source>Bioinformatics</source>
+  <pubdate>2001</pubdate>
+  <volume>17</volume>
+  <fpage>847</fpage>
+  <lpage>-848</lpage>
+</bibl>
+
+<bibl id="B34">
+  <title><p>{{B}io{M}art: driving a paradigm change in biological data
+  management}</p></title>
+  <aug>
+    <au><snm>Kasprzyk</snm><fnm>A.</fnm></au>
+  </aug>
+  <source>Database (Oxford)</source>
+  <pubdate>2011</pubdate>
+  <volume>2011</volume>
+  <fpage>bar049</fpage>
+</bibl>
+
+<bibl id="B35">
+  <title><p>{{M}apping identifiers for the integration of genomic datasets with
+  the {R}/{B}ioconductor package bioma{R}t}</p></title>
+  <aug>
+    <au><snm>Durinck</snm><fnm>S.</fnm></au>
+    <au><snm>Spellman</snm><fnm>P. T.</fnm></au>
+    <au><snm>Birney</snm><fnm>E.</fnm></au>
+    <au><snm>Huber</snm><fnm>W.</fnm></au>
+  </aug>
+  <source>Nat Protoc</source>
+  <pubdate>2009</pubdate>
+  <volume>4</volume>
+  <fpage>1184</fpage>
+  <lpage>-1191</lpage>
+</bibl>
+
+<bibl id="B36">
   <title><p>The Sequence Alignment/Map format and SAMtools.</p></title>
   <aug>
     <au><snm>Li</snm><fnm>H</fnm></au>
@@ -1840,7 +1257,7 @@ l>
   <lpage>2079</lpage>
 </bibl>
 
-<bibl id="B69">
+<bibl id="B37">
   <title><p>{{V}ar{S}can: variant detection in massively parallel sequencing of
   individual and pooled samples}</p></title>
   <aug>
@@ -1861,7 +1278,72 @@ l>
   <lpage>-2285</lpage>
 </bibl>
 
-<bibl id="B70">
+<bibl id="B38">
+  <title><p>{{R}hh: an {R} extension for estimating multilocus heterozygosity
+  and heterozygosity-heterozygosity correlation}</p></title>
+  <aug>
+    <au><snm>Alho</snm><fnm>J. S.</fnm></au>
+    <au><snm>Valimaki</snm><fnm>K.</fnm></au>
+    <au><snm>Merila</snm><fnm>J.</fnm></au>
+  </aug>
+  <source>Mol Ecol Resour</source>
+  <pubdate>2010</pubdate>
+  <volume>10</volume>
+  <fpage>720</fpage>
+  <lpage>-722</lpage>
+</bibl>
+
+<bibl id="B39">
+  <title><p>{{T}he influence of parental relatedness on reproductive
+  success}</p></title>
+  <aug>
+    <au><snm>Amos</snm><fnm>W.</fnm></au>
+    <au><snm>Wilmer</snm><fnm>J. W.</fnm></au>
+    <au><snm>Fullard</snm><fnm>K.</fnm></au>
+    <au><snm>Burg</snm><fnm>T. M.</fnm></au>
+    <au><snm>Croxall</snm><fnm>J. P.</fnm></au>
+    <au><snm>Bloch</snm><fnm>D.</fnm></au>
+    <au><snm>Coulson</snm><fnm>T.</fnm></au>
+  </aug>
+  <source>Proc. Biol. Sci.</source>
+  <pubdate>2001</pubdate>
+  <volume>268</volume>
+  <fpage>2021</fpage>
+  <lpage>-2027</lpage>
+</bibl>
+
+<bibl id="B40">
+  <title><p>{{W}hat should we weigh to estimate heterozygosity, alleles or
+  loci?}</p></title>
+  <aug>
+    <au><snm>Aparicio</snm><fnm>J. M.</fnm></au>
+    <au><snm>Ortego</snm><fnm>J.</fnm></au>
+    <au><snm>Cordero</snm><fnm>P. J.</fnm></au>
+  </aug>
+  <source>Mol. Ecol.</source>
+  <pubdate>2006</pubdate>
+  <volume>15</volume>
+  <fpage>4659</fpage>
+  <lpage>-4665</lpage>
+</bibl>
+
+<bibl id="B41">
+  <title><p>Parasite-mediated selection against inbred Soay sheep in a
+  free-living, island population</p></title>
+  <aug>
+    <au><snm>ColtMan</snm><fnm>W.</fnm></au>
+    <au><snm>G.</snm><fnm>PJ</fnm></au>
+    <au><snm>A.</snm><fnm>SJ</fnm></au>
+    <au><snm>J.M.</snm><fnm>P</fnm></au>
+  </aug>
+  <source>Evolution</source>
+  <pubdate>1999</pubdate>
+  <volume>81</volume>
+  <fpage>1259</fpage>
+  <lpage>-1267</lpage>
+</bibl>
+
+<bibl id="B42">
   <title><p>{{F}ast and accurate short read alignment with {B}urrows-{W}heeler
   transform}</p></title>
   <aug>
@@ -1875,7 +1357,20 @@ l>
   <lpage>-1760</lpage>
 </bibl>
 
-<bibl id="B71">
+<bibl id="B43">
+  <title><p>{{D}ifferential expression analysis for sequence count
+  data}</p></title>
+  <aug>
+    <au><snm>Anders</snm><fnm>S.</fnm></au>
+    <au><snm>Huber</snm><fnm>W.</fnm></au>
+  </aug>
+  <source>Genome Biol.</source>
+  <pubdate>2010</pubdate>
+  <volume>11</volume>
+  <fpage>R106</fpage>
+</bibl>
+
+<bibl id="B44">
   <title><p>R: A language and environment for statistical computing</p></title>
   <aug>
     <au><cnm>{R Development Core Team}</cnm></au>
@@ -1885,7 +1380,7 @@ l>
   <url>http://www.R-project.org</url>
 </bibl>
 
-<bibl id="B72">
+<bibl id="B45">
   <title><p>Sweave: Dynamic Generation of Statistical Reports Using Literate
   Data Analysis</p></title>
   <aug>
@@ -1901,7 +1396,7 @@ l>
   <note>ISBN 3-7908-1517-9</note>
 </bibl>
 
-<bibl id="B73">
+<bibl id="B46">
   <title><p>Caching code chunks in dynamic documents</p></title>
   <aug>
     <au><snm>Falcon</snm><fnm>S</fnm></au>
@@ -1915,18 +1410,7 @@ l>
   <url>http://www.springerlink.com/content/55411257n1473414</url>
 </bibl>
 
-<bibl id="B74">
-  <title><p>Lattice: Multivariate Data Visualization with R</p></title>
-  <aug>
-    <au><snm>Sarkar</snm><fnm>D</fnm></au>
-  </aug>
-  <publisher>New York: Springer</publisher>
-  <pubdate>2008</pubdate>
-  <url>http://lmdvr.r-forge.r-project.org</url>
-  <note>ISBN 978-0-387-75968-5</note>
-</bibl>
-
-<bibl id="B75">
+<bibl id="B47">
   <title><p>ggplot2: elegant graphics for data analysis</p></title>
   <aug>
     <au><snm>Wickham</snm><fnm>H</fnm></au>
@@ -1934,6 +1418,481 @@ l>
   <publisher>Springer New York</publisher>
   <pubdate>2009</pubdate>
   <url>http://had.co.nz/ggplot2/book</url>
+</bibl>
+
+<bibl id="B48">
+  <title><p>{{V}enn{D}iagram: a package for the generation of
+  highly-customizable {V}enn and {E}uler diagrams in {R}}</p></title>
+  <aug>
+    <au><snm>Chen</snm><fnm>H.</fnm></au>
+    <au><snm>Boutros</snm><fnm>P. C.</fnm></au>
+  </aug>
+  <source>BMC Bioinformatics</source>
+  <pubdate>2011</pubdate>
+  <volume>12</volume>
+  <fpage>35</fpage>
+</bibl>
+
+<bibl id="B49">
+  <title><p>{{S}ystematic exploration of error sources in pyrosequencing
+  flowgram data}</p></title>
+  <aug>
+    <au><snm>Balzer</snm><fnm>S.</fnm></au>
+    <au><snm>Malde</snm><fnm>K.</fnm></au>
+    <au><snm>Jonassen</snm><fnm>I.</fnm></au>
+  </aug>
+  <source>Bioinformatics</source>
+  <pubdate>2011</pubdate>
+  <volume>27</volume>
+  <fpage>i304</fpage>
+  <lpage>-309</lpage>
+</bibl>
+
+<bibl id="B50">
+  <title><p>{{A} garter snake transcriptome: pyrosequencing, de novo assembly,
+  and sex-specific differences}</p></title>
+  <aug>
+    <au><snm>Schwartz</snm><fnm>T. S.</fnm></au>
+    <au><snm>Tae</snm><fnm>H.</fnm></au>
+    <au><snm>Yang</snm><fnm>Y.</fnm></au>
+    <au><snm>Mockaitis</snm><fnm>K.</fnm></au>
+    <au><snm>Van Hemert</snm><fnm>J. L.</fnm></au>
+    <au><snm>Proulx</snm><fnm>S. R.</fnm></au>
+    <au><snm>Choi</snm><fnm>J. H.</fnm></au>
+    <au><snm>Bronikowski</snm><fnm>A. M.</fnm></au>
+  </aug>
+  <source>BMC Genomics</source>
+  <pubdate>2010</pubdate>
+  <volume>11</volume>
+  <fpage>694</fpage>
+</bibl>
+
+<bibl id="B51">
+  <title><p>{{D}iscovery and evaluation of candidate sex-determining genes and
+  xenobiotics in the gonads of lake sturgeon ({A}cipenser
+  fulvescens)}</p></title>
+  <aug>
+    <au><snm>Hale</snm><fnm>M. C.</fnm></au>
+    <au><snm>Jackson</snm><fnm>J. R.</fnm></au>
+    <au><snm>Dewoody</snm><fnm>J. A.</fnm></au>
+  </aug>
+  <source>Genetica</source>
+  <pubdate>2010</pubdate>
+  <volume>138</volume>
+  <fpage>745</fpage>
+  <lpage>-756</lpage>
+</bibl>
+
+<bibl id="B52">
+  <title><p>{{N}ext generation transcriptomes for next generation genomes using
+  est2assembly}</p></title>
+  <aug>
+    <au><snm>Papanicolaou</snm><fnm>A.</fnm></au>
+    <au><snm>Stierli</snm><fnm>R.</fnm></au>
+    <au><snm>Ffrench Constant</snm><fnm>R. H.</fnm></au>
+    <au><snm>Heckel</snm><fnm>D. G.</fnm></au>
+  </aug>
+  <source>BMC Bioinformatics</source>
+  <pubdate>2009</pubdate>
+  <volume>10</volume>
+  <fpage>447</fpage>
+</bibl>
+
+<bibl id="B53">
+  <title><p>{{S}eparation of sequences from host-pathogen interface using
+  triplet nucleotide frequencies}</p></title>
+  <aug>
+    <au><snm>Emmersen</snm><fnm>J.</fnm></au>
+    <au><snm>Rudd</snm><fnm>S.</fnm></au>
+    <au><snm>Mewes</snm><fnm>H. W.</fnm></au>
+    <au><snm>Tetko</snm><fnm>I. V.</fnm></au>
+  </aug>
+  <source>Fungal Genet. Biol.</source>
+  <pubdate>2007</pubdate>
+  <volume>44</volume>
+  <fpage>231</fpage>
+  <lpage>-241</lpage>
+  <url>http://dx.doi.org/10.1016/j.fgb.2006.11.010</url>
+</bibl>
+
+<bibl id="B54">
+  <title><p>{{A} {D}e {N}ovo {E}xpression {P}rofiling of {A}nopheles funestus,
+  {M}alaria {V}ector in {A}frica, {U}sing 454 {P}yrosequencing}</p></title>
+  <aug>
+    <au><snm>Gregory</snm><fnm>R.</fnm></au>
+    <au><snm>Darby</snm><fnm>A. C.</fnm></au>
+    <au><snm>Irving</snm><fnm>H.</fnm></au>
+    <au><snm>Coulibaly</snm><fnm>M. B.</fnm></au>
+    <au><snm>Hughes</snm><fnm>M.</fnm></au>
+    <au><snm>Koekemoer</snm><fnm>L. L.</fnm></au>
+    <au><snm>Coetzee</snm><fnm>M.</fnm></au>
+    <au><snm>Ranson</snm><fnm>H.</fnm></au>
+    <au><snm>Hemingway</snm><fnm>J.</fnm></au>
+    <au><snm>Hall</snm><fnm>N.</fnm></au>
+    <au><snm>Wondji</snm><fnm>C. S.</fnm></au>
+  </aug>
+  <source>PLoS ONE</source>
+  <pubdate>2011</pubdate>
+  <volume>6</volume>
+  <fpage>e17418</fpage>
+</bibl>
+
+<bibl id="B55">
+  <title><p>{{C}omparative genomics based on massive parallel transcriptome
+  sequencing reveals patterns of substitution and selection across 10 bird
+  species}</p></title>
+  <aug>
+    <au><snm>Kunstner</snm><fnm>A.</fnm></au>
+    <au><snm>Wolf</snm><fnm>J. B.</fnm></au>
+    <au><snm>Backstrom</snm><fnm>N.</fnm></au>
+    <au><snm>Whitney</snm><fnm>O.</fnm></au>
+    <au><snm>Balakrishnan</snm><fnm>C. N.</fnm></au>
+    <au><snm>Day</snm><fnm>L.</fnm></au>
+    <au><snm>Edwards</snm><fnm>S. V.</fnm></au>
+    <au><snm>Janes</snm><fnm>D. E.</fnm></au>
+    <au><snm>Schlinger</snm><fnm>B. A.</fnm></au>
+    <au><snm>Wilson</snm><fnm>R. K.</fnm></au>
+    <au><snm>Jarvis</snm><fnm>E. D.</fnm></au>
+    <au><snm>Warren</snm><fnm>W. C.</fnm></au>
+    <au><snm>Ellegren</snm><fnm>H.</fnm></au>
+  </aug>
+  <source>Mol. Ecol.</source>
+  <pubdate>2010</pubdate>
+  <volume>19 Suppl 1</volume>
+  <fpage>266</fpage>
+  <lpage>-276</lpage>
+</bibl>
+
+<bibl id="B56">
+  <title><p>{{C}ompletely phased genome sequencing through chromosome
+  sorting}</p></title>
+  <aug>
+    <au><snm>Yang</snm><fnm>H.</fnm></au>
+    <au><snm>Chen</snm><fnm>X.</fnm></au>
+    <au><snm>Wong</snm><fnm>W. H.</fnm></au>
+  </aug>
+  <source>Proc. Natl. Acad. Sci. U.S.A.</source>
+  <pubdate>2011</pubdate>
+  <volume>108</volume>
+  <fpage>12</fpage>
+  <lpage>-17</lpage>
+</bibl>
+
+<bibl id="B57">
+  <title><p>{Rapid, low-input, low-bias construction of shotgun fragment
+  libraries by high-density in vitro transposition}</p></title>
+  <aug>
+    <au><snm>Adey</snm><fnm>A</fnm></au>
+    <au><snm>Morrison</snm><fnm>H</fnm></au>
+    <au><snm>Asan</snm><fnm>X</fnm></au>
+    <au><snm>Xun</snm><fnm>X</fnm></au>
+    <au><snm>Kitzman</snm><fnm>J</fnm></au>
+    <au><snm>Turner</snm><fnm>E</fnm></au>
+    <au><snm>Stackhouse</snm><fnm>B</fnm></au>
+    <au><snm>MacKenzie</snm><fnm>A</fnm></au>
+    <au><snm>Caruccio</snm><fnm>N</fnm></au>
+    <au><snm>Zhang</snm><fnm>X</fnm></au>
+    <au><snm>Shendure</snm><fnm>J</fnm></au>
+    <au><snm>Turner</snm><fnm>E</fnm></au>
+    <au><snm>Stackhouse</snm><fnm>B</fnm></au>
+    <au><snm>MacKenzie</snm><fnm>A</fnm></au>
+    <au><snm>Caruccio</snm><fnm>N</fnm></au>
+    <au><snm>Zhang</snm><fnm>X</fnm></au>
+    <au><snm>Shendure</snm><fnm>J</fnm></au>
+  </aug>
+  <source>Genome Biol.</source>
+  <pubdate>2010</pubdate>
+  <volume>11</volume>
+  <issue>12</issue>
+  <fpage>R119</fpage>
+</bibl>
+
+<bibl id="B58">
+  <title><p>{{T}he population genetics of d{N}/d{S}}</p></title>
+  <aug>
+    <au><snm>Kryazhimskiy</snm><fnm>S.</fnm></au>
+    <au><snm>Plotkin</snm><fnm>J. B.</fnm></au>
+  </aug>
+  <source>PLoS Genet.</source>
+  <pubdate>2008</pubdate>
+  <volume>4</volume>
+  <fpage>e1000304</fpage>
+</bibl>
+
+<bibl id="B59">
+  <title><p>{{H}igh-throughput gene and {S}{N}{P} discovery in {E}ucalyptus
+  grandis, an uncharacterized genome}</p></title>
+  <aug>
+    <au><snm>Novaes</snm><fnm>E.</fnm></au>
+    <au><snm>Drost</snm><fnm>D. R.</fnm></au>
+    <au><snm>Farmerie</snm><fnm>W. G.</fnm></au>
+    <au><snm>Pappas</snm><fnm>G. J.</fnm></au>
+    <au><snm>Grattapaglia</snm><fnm>D.</fnm></au>
+    <au><snm>Sederoff</snm><fnm>R. R.</fnm></au>
+    <au><snm>Kirst</snm><fnm>M.</fnm></au>
+  </aug>
+  <source>BMC Genomics</source>
+  <pubdate>2008</pubdate>
+  <volume>9</volume>
+  <fpage>312</fpage>
+</bibl>
+
+<bibl id="B60">
+  <title><p>{{P}opulation-level transcriptome sequencing of nonmodel organisms
+  {E}rynnis propertius and {P}apilio zelicaon}</p></title>
+  <aug>
+    <au><snm>O'Neil</snm><fnm>S. T.</fnm></au>
+    <au><snm>Dzurisin</snm><fnm>J. D.</fnm></au>
+    <au><snm>Carmichael</snm><fnm>R. D.</fnm></au>
+    <au><snm>Lobo</snm><fnm>N. F.</fnm></au>
+    <au><snm>Emrich</snm><fnm>S. J.</fnm></au>
+    <au><snm>Hellmann</snm><fnm>J. J.</fnm></au>
+  </aug>
+  <source>BMC Genomics</source>
+  <pubdate>2010</pubdate>
+  <volume>11</volume>
+  <fpage>310</fpage>
+</bibl>
+
+<bibl id="B61">
+  <title><p>{{E}volutionary expressed sequence tag analysis of {D}rosophila
+  female reproductive tracts identifies genes subjected to positive
+  selection}</p></title>
+  <aug>
+    <au><snm>Swanson</snm><fnm>W. J.</fnm></au>
+    <au><snm>Wong</snm><fnm>A.</fnm></au>
+    <au><snm>Wolfner</snm><fnm>M. F.</fnm></au>
+    <au><snm>Aquadro</snm><fnm>C. F.</fnm></au>
+  </aug>
+  <source>Genetics</source>
+  <pubdate>2004</pubdate>
+  <volume>168</volume>
+  <fpage>1457</fpage>
+  <lpage>-1465</lpage>
+</bibl>
+
+<bibl id="B62">
+  <title><p>{{M}olecular evolution of m{R}{N}{A}: a method for estimating
+  evolutionary rates of synonymous and amino acid substitutions from homologous
+  nucleotide sequences and its application}</p></title>
+  <aug>
+    <au><snm>Miyata</snm><fnm>T.</fnm></au>
+    <au><snm>Yasunaga</snm><fnm>T.</fnm></au>
+  </aug>
+  <source>J. Mol. Evol.</source>
+  <pubdate>1980</pubdate>
+  <volume>16</volume>
+  <fpage>23</fpage>
+  <lpage>-36</lpage>
+</bibl>
+
+<bibl id="B63">
+  <title><p>{{E}volutionary {E}{S}{T} analysis identifies rapidly evolving male
+  reproductive proteins in {D}rosophila}</p></title>
+  <aug>
+    <au><snm>Swanson</snm><fnm>W. J.</fnm></au>
+    <au><snm>Clark</snm><fnm>A. G.</fnm></au>
+    <au><snm>Waldrip Dail</snm><fnm>H. M.</fnm></au>
+    <au><snm>Wolfner</snm><fnm>M. F.</fnm></au>
+    <au><snm>Aquadro</snm><fnm>C. F.</fnm></au>
+  </aug>
+  <source>Proc. Natl. Acad. Sci. U.S.A.</source>
+  <pubdate>2001</pubdate>
+  <volume>98</volume>
+  <fpage>7375</fpage>
+  <lpage>-7379</lpage>
+</bibl>
+
+<bibl id="B64">
+  <title><p>{{D}igital gene expression analysis of the zebra finch
+  genome}</p></title>
+  <aug>
+    <au><snm>Ekblom</snm><fnm>R.</fnm></au>
+    <au><snm>Balakrishnan</snm><fnm>C. N.</fnm></au>
+    <au><snm>Burke</snm><fnm>T.</fnm></au>
+    <au><snm>Slate</snm><fnm>J.</fnm></au>
+  </aug>
+  <source>BMC Genomics</source>
+  <pubdate>2010</pubdate>
+  <volume>11</volume>
+  <fpage>219</fpage>
+</bibl>
+
+<bibl id="B65">
+  <title><p>{{I}nterpopulation patterns of divergence and selection across the
+  transcriptome of the copepod {T}igriopus californicus}</p></title>
+  <aug>
+    <au><snm>Barreto</snm><fnm>F. S.</fnm></au>
+    <au><snm>Moy</snm><fnm>G. W.</fnm></au>
+    <au><snm>Burton</snm><fnm>R. S.</fnm></au>
+  </aug>
+  <source>Mol. Ecol.</source>
+  <pubdate>2011</pubdate>
+  <volume>20</volume>
+  <fpage>560</fpage>
+  <lpage>-572</lpage>
+</bibl>
+
+<bibl id="B66">
+  <title><p>{{C}haracterizing {A}ncylostoma caninum transcriptome and exploring
+  nematode parasitic adaptation}</p></title>
+  <aug>
+    <au><snm>Wang</snm><fnm>Z.</fnm></au>
+    <au><snm>Abubucker</snm><fnm>S.</fnm></au>
+    <au><snm>Martin</snm><fnm>J.</fnm></au>
+    <au><snm>Wilson</snm><fnm>R. K.</fnm></au>
+    <au><snm>Hawdon</snm><fnm>J.</fnm></au>
+    <au><snm>Mitreva</snm><fnm>M.</fnm></au>
+  </aug>
+  <source>BMC Genomics</source>
+  <pubdate>2010</pubdate>
+  <volume>11</volume>
+  <fpage>307</fpage>
+</bibl>
+
+<bibl id="B67">
+  <title><p>{{S}equencing, bioinformatic characterization and expression
+  pattern of a putative amino acid transporter from the parasitic cestode
+  {E}chinococcus granulosus}</p></title>
+  <aug>
+    <au><snm>Camicia</snm><fnm>F.</fnm></au>
+    <au><snm>Paredes</snm><fnm>R.</fnm></au>
+    <au><snm>Chalar</snm><fnm>C.</fnm></au>
+    <au><snm>Galanti</snm><fnm>N.</fnm></au>
+    <au><snm>Kamenetzky</snm><fnm>L.</fnm></au>
+    <au><snm>Gutierrez</snm><fnm>A.</fnm></au>
+    <au><snm>Rosenzvit</snm><fnm>M. C.</fnm></au>
+  </aug>
+  <source>Gene</source>
+  <pubdate>2008</pubdate>
+  <volume>411</volume>
+  <fpage>1</fpage>
+  <lpage>-9</lpage>
+</bibl>
+
+<bibl id="B68">
+  <title><p>Identification and characterization of the proteolytic enzymes in
+  the developmental stages of the eel-pathogenic nematode Anguillicola
+  crassus</p></title>
+  <aug>
+    <au><snm>Polzer</snm><fnm>M</fnm></au>
+    <au><snm>Taraschewski</snm><fnm>H</fnm></au>
+  </aug>
+  <source>Parasitology Research</source>
+  <pubdate>1993</pubdate>
+  <volume>79</volume>
+  <issue>1</issue>
+  <fpage>24</fpage>
+  <lpage>-7</lpage>
+  <url>http://www.ncbi.nlm.nih.gov/pubmed/7682326</url>
+</bibl>
+
+<bibl id="B69">
+  <title><p>{{P}hylogenetic relationships of fungi, plantae, and animalia
+  inferred from homologous comparison of ribosomal proteins}</p></title>
+  <aug>
+    <au><snm>Veuthey</snm><fnm>A. L.</fnm></au>
+    <au><snm>Bittar</snm><fnm>G.</fnm></au>
+  </aug>
+  <source>J. Mol. Evol.</source>
+  <pubdate>1998</pubdate>
+  <volume>47</volume>
+  <fpage>81</fpage>
+  <lpage>-92</lpage>
+</bibl>
+
+<bibl id="B70">
+  <title><p>Signal sequence analysis of expressed sequence tags from the
+  nematode Nippostrongylus brasiliensis and the evolution of secreted proteins
+  in parasites</p></title>
+  <aug>
+    <au><snm>Harcus</snm><fnm>Y</fnm></au>
+    <au><snm>Parkinson</snm><fnm>J</fnm></au>
+    <au><snm>Fernandez</snm><fnm>C</fnm></au>
+    <au><snm>Daub</snm><fnm>J</fnm></au>
+    <au><snm>Selkirk</snm><fnm>M</fnm></au>
+    <au><snm>Blaxter</snm><fnm>M</fnm></au>
+    <au><snm>Maizels</snm><fnm>R</fnm></au>
+  </aug>
+  <source>Genome Biology</source>
+  <pubdate>2004</pubdate>
+  <volume>5</volume>
+  <issue>6</issue>
+  <fpage>R39</fpage>
+  <url>http://genomebiology.com/2004/5/6/R39</url>
+</bibl>
+
+<bibl id="B71">
+  <title><p>Needles in the {EST} Haystack: {Large-Scale} Identification and
+  Analysis of {Excretory-Secretory} {(ES)} Proteins in Parasitic Nematodes
+  Using Expressed Sequence Tags {(ESTs)}</p></title>
+  <aug>
+    <au><snm>Nagaraj</snm><fnm>SH</fnm></au>
+    <au><snm>Gasser</snm><fnm>RB</fnm></au>
+    <au><snm>Ranganathan</snm><fnm>S</fnm></au>
+  </aug>
+  <source>{PLoS} Neglected Tropical Diseases</source>
+  <pubdate>2008</pubdate>
+  <volume>2</volume>
+  <issue>9</issue>
+  <fpage>e301</fpage>
+</bibl>
+
+<bibl id="B72">
+  <title><p>{{B}rugia malayi excreted/secreted proteins at the host/parasite
+  interface: stage- and gender-specific proteomic profiling}</p></title>
+  <aug>
+    <au><snm>Bennuru</snm><fnm>S.</fnm></au>
+    <au><snm>Semnani</snm><fnm>R.</fnm></au>
+    <au><snm>Meng</snm><fnm>Z.</fnm></au>
+    <au><snm>Ribeiro</snm><fnm>J. M.</fnm></au>
+    <au><snm>Veenstra</snm><fnm>T. D.</fnm></au>
+    <au><snm>Nutman</snm><fnm>T. B.</fnm></au>
+  </aug>
+  <source>PLoS Negl Trop Dis</source>
+  <pubdate>2009</pubdate>
+  <volume>3</volume>
+  <fpage>e410</fpage>
+</bibl>
+
+<bibl id="B73">
+  <title><p>{{S}tage- and gender-specific proteomic analysis of {B}rugia malayi
+  excretory-secretory products}</p></title>
+  <aug>
+    <au><snm>Moreno</snm><fnm>Y.</fnm></au>
+    <au><snm>Geary</snm><fnm>T. G.</fnm></au>
+  </aug>
+  <source>PLoS Negl Trop Dis</source>
+  <pubdate>2008</pubdate>
+  <volume>2</volume>
+  <fpage>e326</fpage>
+</bibl>
+
+<bibl id="B74">
+  <title><p>{{P}roteomic analysis of secretory products from the model
+  gastrointestinal nematode {H}eligmosomoides polygyrus reveals dominance of
+  {V}enom {A}llergen-{L}ike ({V}{A}{L}) proteins}</p></title>
+  <aug>
+    <au><snm>Hewitson</snm><fnm>J. P.</fnm></au>
+    <au><snm>Harcus</snm><fnm>Y.</fnm></au>
+    <au><snm>Murray</snm><fnm>J.</fnm></au>
+    <au><snm>Agtmaal</snm><fnm>M.</fnm></au>
+    <au><snm>Filbey</snm><fnm>K. J.</fnm></au>
+    <au><snm>Grainger</snm><fnm>J. R.</fnm></au>
+    <au><snm>Bridgett</snm><fnm>S.</fnm></au>
+    <au><snm>Blaxter</snm><fnm>M. L.</fnm></au>
+    <au><snm>Ashton</snm><fnm>P. D.</fnm></au>
+    <au><snm>Ashford</snm><fnm>D. A.</fnm></au>
+    <au><snm>Curwen</snm><fnm>R. S.</fnm></au>
+    <au><snm>Wilson</snm><fnm>R. A.</fnm></au>
+    <au><snm>Dowle</snm><fnm>A. A.</fnm></au>
+    <au><snm>Maizels</snm><fnm>R. M.</fnm></au>
+  </aug>
+  <source>J Proteomics</source>
+  <pubdate>2011</pubdate>
+  <volume>74</volume>
+  <fpage>1573</fpage>
+  <lpage>-1594</lpage>
 </bibl>
 
 </refgrp>

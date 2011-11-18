@@ -25,29 +25,21 @@ IPR.annot <- read.delim("/home/ele/Data/454/annotation/iprscan/MN.pep.fasta.iprs
 names(IPR.annot)[1] <- "pept_id"
 
 ## annotation with Bm orthologous sequence
-  
-BMblast <- read.blast.best("/home/ele/Data/454/annotation/blast/full_vs_bm.blt")
-names(BMblast)[names(BMblast)%in%c("V1", "V2", "V12")] <- c("contig", "Bm.hit", "Bm.bit")
-contig.df <- merge(contig.df, BMblast[, c("contig", "Bm.hit", "Bm.bit")], all.x=TRUE)
-
-all.bm.hit <- contig.df[contig.df$Ac, "Bm.hit"]
+all.bm.hit <- as.character(contig.df[contig.df$Ac, "Bm.hit"])
 all.bm.hit <- all.bm.hit[!is.na(all.bm.hit)]
 all.bm.hit <- gsub("UniRef100_", "", all.bm.hit)
 
 uniProt <- useMart("unimart", dataset="uniprot")
 all.bm.names <- getBM(attributes =c("name", "protein_name"),
                           filter="accession",values=all.bm.hit, mart=uniProt)
+
 all.bm.names$name <- gsub("_BRUMA", "", all.bm.names$name)
 all.bm.names$Bm.hit <- paste("UniRef100_", all.bm.names$name, sep="")
 names(all.bm.names)[names(all.bm.names)=="protein_name"] <- "Bm.annot"
 contig.df <- merge(all.bm.names[, 2:3], contig.df, by="Bm.hit", all.y=TRUE, sort=FALSE)
 
 ## anntoation with Ce orthologous sequence
-CEblast <- read.blast.best("/home/ele/Data/454/annotation/blast/full_vs_ce.blt")
-names(CEblast)[names(CEblast)%in%c("V1", "V2", "V12")] <- c("contig", "Ce.hit", "Ce.bit")
-contig.df <- merge(contig.df, CEblast[, c("contig", "Ce.hit", "Ce.bit")], all.x=TRUE)
-
-all.ce.hit <- contig.df[contig.df$Ac, "Ce.hit"]
+all.ce.hit <- as.character(contig.df[contig.df$Ac, "Ce.hit"])
 all.ce.hit <- all.ce.hit[!is.na(all.ce.hit)]
 
 WORMB <- useMart("WS220" , dataset="wormbase_gene")
@@ -65,6 +57,7 @@ ce.names <- ce.names[!duplicated(ce.names$Ce.hit), ]
 ce.names <- merge(ce.names, rnai, by.x="Ce.hit", by.y="row.names", all.x=TRUE)
 
 contig.df <- merge(contig.df, ce.names, by="Ce.hit", all.x=TRUE, sort=FALSE)
+
 
 ## anntoation with nempep descriptions
 nempep.nuc <- read.sequences("/home/ele/db/blastdb/nembase4/nembase4_nuc.fasta")
@@ -88,22 +81,25 @@ n.nempep <- length(contig.df[contig.df$Ac &
                              !is.na(contig.df$nempep.annot), "nempep.annot"])
 
 ## annotagion with uniprot-name of nr-orthologous sequence
-gis.nr <- unique(nr$gi.nr.blast)
-## bioIDMapping!!
-gi.uni.acc <- sapply(gis.nr, function (x) try(bio.convert(x, 1, 19), TRUE))
+gis.nr <- unique(as.character(nr$gi.nr.blast))
 
-gi.uni.acc <- gi.uni.acc[lapply(gi.uni.acc, length)>1]
-gi.uni.acc <- as.data.frame(do.call(rbind, gi.uni.acc))
+## write(gis.nr, "/home/ele/Data/454/annotation/all_gis.acc")
+gi2uniprot <- read.delim("/home/ele/Data/454/annotation/gi2uniprot.tab")
+names(gi2uniprot) <- c("gi", "uniprot")
+gi2uniprot$accession <- gsub("_.*", "", gi2uniprot$uniprot)
 
 gi.uni <- getBM(attributes = c("accession", "protein_name"),
-                filter="accession",values=gi.uni.acc$ACC, mart=uniProt)
+                filter="accession",values=gi2uniprot$accession, mart=uniProt)
 
-gi.uni.acc <- merge(gi.uni, gi.uni.acc, by.x="accession", by.y="ACC")
-names(gi.uni.acc)[2:3] <- c("nr.uniprot.annot", "gi.nr.blast")
-nr <- merge(nr, gi.uni.acc[,2:3], all.x=TRUE)
+gi.uni.acc <- merge(gi2uniprot, gi.uni)
+
+nr <- merge(nr, gi.uni.acc[,c(2, 4)], by.x="gi.nr.blast", by.y="gi", all.x=TRUE)
 nr <- nr[!duplicated(nr$V1),]
 
-names(nr)[names(nr)%in%c("V1", "V12")] <- c("contig", "nr.bit")
+names(nr)[names(nr)%in%c("V1")] <- "contig"
+names(nr)[names(nr)%in%c("V12")] <-  "nr.bit"
+names(nr)[names(nr)%in%c("protein_name")] <- "nr.uniprot.annot"
+
 contig.df <- merge(contig.df,
                    nr[, c("gi.nr.blast", "contig", "nr.bit", "nr.uniprot.annot")],
                    all.x=TRUE)
@@ -112,7 +108,7 @@ n.uniprot <- length(contig.df[contig.df$Ac & !is.na(contig.df$nr.uniprot.annot),
 
 @ 
 
-<<ann.venn, echo=FALSE>>=
+<<ann.venn, echo=FALSE, results=hide>>=
 GOannotations <- unique(GO.annot$pept_id[GO.annot$pept_id%in%contig.df[contig.df$Ac,"contig"]])
 nGO <- length(GOannotations)
 
@@ -126,11 +122,10 @@ nKEGG <- length(KEGGannotations)
 Allannotations <- unique(c(GOannotations, ECannotations, KEGGannotations))
 nallannotations <- length(Allannotations)
 
-venn.diagram(list(GO   = match(GOannotations, Allannotations),
-                  EC   = match(ECannotations, Allannotations),
-                  KEGG = match(KEGGannotations, Allannotations)),
-                  filename = "/home/ele/thesis/454/figures/annotataionVenn.tiff")
-
+annotationVenn <- venn.diagram(list(GO   = match(GOannotations, Allannotations),
+                                       EC   = match(ECannotations, Allannotations),
+                                       KEGG = match(KEGGannotations, Allannotations)),
+                                  filename = NULL)
 
 GOannotations.MN <- unique(GO.annot$pept_id[GO.annot$pept_id%in%contig.df[contig.df$AcMN,"contig"]])
 nGO.MN <- length(GOannotations.MN)
@@ -147,21 +142,32 @@ nIPR <- length(IPRannotations)
 
 Allannotations.MN <- unique(c(GOannotations.MN, ECannotations.MN, KEGGannotations.MN, IPRannotations))
 
-venn.diagram(list(GO   = match(GOannotations.MN, Allannotations.MN),
+annotationVennMN <- venn.diagram(list(GO   = match(GOannotations.MN, Allannotations.MN),
                   EC   = match(ECannotations.MN, Allannotations.MN),
                   KEGG = match(KEGGannotations.MN, Allannotations.MN),
                   IPR = match(IPRannotations, Allannotations.MN)),
-                  filename = "/home/ele/thesis/454/figures/annotataionVennMN.tiff")
+                                 filename = NULL)
 
-nIPRonly <- length(IPRannotations[!IPRannotations%in%GOannotations &
-                                  !IPRannotations%in%ECannotations &
-                                  !IPRannotations%in%KEGGannotations
-                                  ])
+not.annot <- nrow(contig.df[contig.df$Ac & !contig.df$contig%in%Allannotations,])
+not.annot.MN <- nrow(contig.df[contig.df$AcMN & !contig.df$contig%in%Allannotations.MN,])
 
-all.identifier <- length(contig.df[contig.df$Ac &
-                                   contig.df$contig%in%GOannotations &
-                                   contig.df$contig%in%ECannotations &
-                                   contig.df$contig%in%KEGGannotations 
-                                   , "contig"])
+png("/home/ele/thesis/454/figures/annotataionVenn.png", width=400, height=600)
+vp1 <- viewport(x=0.01, y=0.5, w=0.98, h=0.51,
+                just=c("left", "bottom"))
+vp2 <- viewport(x=0.01, y=0, w=0.98, h=0.49,
+                just=c("left", "bottom"))
+push.viewport(vp1)
+grid.roundrect()
+grid.text("a",x=unit(0,"npc"),y=unit(0.97,"npc"), gp=gpar(fontsize=18))
+grid.text(not.annot, x=unit(0.07,"npc"), y=unit(0.1,"npc"), gp=gpar(fontfamily="serif"))
+grid.draw(annotationVenn)
+pop.viewport()
+push.viewport(vp2)
+grid.roundrect()
+grid.text("b",x=unit(0,"npc"),y=unit(0.97,"npc"), gp=gpar(fontsize=18))
+grid.text(not.annot.MN, x=unit(0.07,"npc"), y=unit(0.1,"npc"), gp=gpar(fontfamily="serif"))
+grid.draw(annotationVennMN)
+pop.viewport()
+dev.off()            
 
 @ 

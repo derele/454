@@ -4,44 +4,44 @@ The style file: bmc_article.bst
 Reallocated wiz_functions (elt_size=4) to 6000 items from 240518171576.
 Database file #1: /home/ele/bibtex/master.bib
 Database file #2: /home/ele/bibtex/master2.bib
-You've used 75 entries,
+You've used 74 entries,
             3603 wiz_defined-function locations,
-            1167 strings with 25652 characters,
-and the built_in function-call counts, 218052 in all, are:
-= -- 19823
-> -- 1665
-< -- 603
-+ -- 1811
-- -- 530
-* -- 26124
-:= -- 36843
-add.period$ -- 150
-call.type$ -- 75
-change.case$ -- 536
+            1155 strings with 25157 characters,
+and the built_in function-call counts, 216157 in all, are:
+= -- 19694
+> -- 1595
+< -- 579
++ -- 1739
+- -- 507
+* -- 25760
+:= -- 36668
+add.period$ -- 148
+call.type$ -- 74
+change.case$ -- 510
 chr.to.int$ -- 0
-cite$ -- 75
-duplicate$ -- 13812
-empty$ -- 17281
-format.name$ -- 2177
-if$ -- 42531
+cite$ -- 74
+duplicate$ -- 13417
+empty$ -- 17230
+format.name$ -- 2086
+if$ -- 42200
 int.to.chr$ -- 0
-int.to.str$ -- 150
-missing$ -- 4347
-newline$ -- 1616
-num.names$ -- 151
-pop$ -- 2836
+int.to.str$ -- 148
+missing$ -- 4245
+newline$ -- 1580
+num.names$ -- 149
+pop$ -- 2786
 preamble$ -- 1
 purify$ -- 0
-quote$ -- 150
-skip$ -- 1334
+quote$ -- 148
+skip$ -- 1315
 stack$ -- 0
-substring$ -- 35424
-swap$ -- 3090
+substring$ -- 35691
+swap$ -- 3033
 text.length$ -- 145
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 8
+type$ -- 6
 warning$ -- 0
-while$ -- 1087
-width$ -- 77
-write$ -- 3600
+while$ -- 1064
+width$ -- 76
+write$ -- 3489

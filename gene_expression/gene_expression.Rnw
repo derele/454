@@ -1,20 +1,39 @@
 <<gene.expr, echo=FALSE, cache=TRUE, results=hide>>=
 
 ## read the 454 mapping first  
-SAM <- read.delim("/home/ele/Data/454/mapping/all_vs_full_imputed.sam", header=FALSE)
-names(SAM)[c(1,3)] <- c("read", "mapped")
+## alternative method using library(GenomicRanges) would be:
+## aligns <- readBamGappedAlignments("/home/ele/Data/RNAseq/mapping/AJ_T19M_1.bam")
+## ie. bam <- scanBam("/home/ele/Data/RNAseq/mapping/AJ_T19M_1.bam", param=param)
 
-## partition the sam in an easy part of reads with single matches and
-## a part with problematic reads with multiple matches
-easy <- !SAM$read%in%SAM$read[duplicated(SAM$read)]
-SAM <- SAM[easy,]
+## Rsamtools
+what <- c("rname")# , "strand", "pos", "qwidth", "seq")
+param <- ScanBamParam(what = what)
+  
+files <- list.files("/home/ele/Data/454/mapping/mapping_each_lib/", "*sorted.bam$")
 
-SAM <- merge(SAM, R[, c("read", "lib")], all.x=TRUE)
+counts.for.files <- function (files){
+  countsList <- list()
+  for (fi in files) {
+    bam <- scanBam(paste("/home/ele/Data/454/mapping/mapping_each_lib/", fi, sep=""), param=param)
+    counts <- table(bam[[1]]$rname)
+    counts.frame <- as.data.frame(counts)
+    countsList[[fi]] <- counts.frame
+  }
+  return(countsList)
+}
 
-n454.map <- length(unique(SAM$read))
-n454.Umap <- length(unique(SAM.easy$read))
+countsList <- counts.for.files(files)
 
-countsTable <- as.data.frame.matrix(table(SAM$mapped, SAM$lib))
+counts.frame.long <- melt(countsList, id.vars="Var1")
+counts.frame.long$variable <- NULL
+
+counts.frame.wide <- reshape(counts.frame.long, v.names="value",
+                             idvar="Var1", direction="wide", timevar="L1")
+names(counts.frame.wide) <- gsub("^value.final\\.", "", names(counts.frame.wide))
+names(counts.frame.wide) <- gsub("\\.sff.trimmed.sff.fasta.sorted.bam$", "", names(counts.frame.wide))
+row.names(counts.frame.wide) <- counts.frame.wide$Var1
+counts.frame.wide$Var1 <- NULL
+n454.map <- sum(rowSums(counts.frame.wide))
 
 ## read the solexa tag-counts
 what <- c("rname", "strand", "pos", "qwidth", "seq")
@@ -38,8 +57,16 @@ df <- do.call("DataFrame", lst)
 
 nUniqUMapped <- length(unique(df[is.na(df$rname), "seq"]))
 
-counts <- merge(counts, countsTable, by.x="contig", by.y="row.names")
-counts$all.reads <- apply(countsTable, 1, sum)
+counts <- merge(counts, counts.frame.wide, by.x="contig", by.y="row.names")
+
+names(counts) <- gsub("179F", "T1", names(counts))
+names(counts) <- gsub("10F", "T2", names(counts))
+names(counts) <- gsub("KS4F", "E1", names(counts))
+names(counts) <- gsub("UW07F", "E2", names(counts))
+names(counts) <- gsub("L2R3", "L2", names(counts))
+names(counts) <- gsub("M175", "M", names(counts))
+
+counts$all.reads <- apply(counts[,2:length(counts)], 1, sum)
 
 ### merge all counts into the main data
 contig.df <- merge(contig.df, counts, all.x=TRUE)
@@ -49,6 +76,7 @@ cst <- contig.df[contig.df$Ac, c("E1", "E2", "L2", "M", "T1", "T2")]
 rownames(cst) <- contig.df[contig.df$Ac, "contig"]
 
 cst <- cst[rowSums(cst)>48, ]
+cst <- cst[!is.na(cst$E1),]
 
 conds.eel <- factor(c("EU", "EU", "L2", "M", "TW", "TW"))
 conds.mf <- factor(c("F", "F", "L2", "M", "F", "F"))
@@ -81,6 +109,7 @@ bst <- contig.df[contig.df$Ac, c("Bm.hit", "E1", "E2", "L2", "M", "T1", "T2")]
 bst <- bst[!is.na(bst$Bm.hit),]
 bst <- do.call("rbind", by(bst, bst$Bm.hit, function (x) colSums(x[,2:7])))
 bst <- bst[rowSums(bst)>48, ]
+bst <- bst[!is.na(bst[,"E1"]),]
 
 bm.diff <- exp.get.3.diff(bst)
 
@@ -89,6 +118,7 @@ wst <- contig.df[contig.df$Ac, c("Ce.hit", "E1", "E2", "L2", "M", "T1", "T2")]
 wst <- wst[!is.na(wst$Ce.hit),]
 wst <- do.call("rbind", by(wst, wst$Ce.hit, function (x) colSums(x[,2:7])))
 wst <- wst[rowSums(bst)>48, ]
+wst <- wst[!is.na(wst[,"E1"]),]
 
 ce.diff <- exp.get.3.diff(wst)
 
@@ -119,36 +149,14 @@ eel <- merge(eel, ce.diff[[1]][,c("id", "padj")],
 
 
 
-resSig.ad <- subset(res.ad, padj < .1)
-sig.ad.contigs <- resSig.ad$id
-sig.ad.counts <- cst[sig.ad.contigs, ]
+## resSig.ad <- subset(res.ad, padj < .1)
+## sig.ad.contigs <- resSig.ad$id
+## sig.ad.counts <- cst[sig.ad.contigs, ]
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-vsd <- getVarianceStabilizedData( cds.mf )
-dists <- dist( t( vsd ) )
-idists <- as.matrix(dists)
+## vsd <- getVarianceStabilizedData( cds.mf )
+## dists <- dist( t( vsd ) )
+## idists <- as.matrix(dists)
 ##heatmap (idists , symm=TRUE, margins = c (7,7))
 
 @ 

@@ -1,7 +1,7 @@
 <<overrep, echo=FALSE, results=hide, cache=TRUE>>=
 
 ## subsets for contig.df and GO-annotation containing only dn.ds contigs
-dn.ds.df <- subset(contig.df, !is.na(dn.ds))
+dn.ds.df <- subset(contig.df, contig.df$Ac & !is.na(dn.ds))
 GO.dn.ds <- subset(GO.annot, pept_id%in%dn.ds.df$contig)
 
 ## the category of >.5 dn/ds contigs
@@ -78,26 +78,26 @@ peptidase.contigs <- unique(GO.dn.ds[GO.dn.ds$go_term%in%
                                             "pept_id"])
 
 ## consistent with mf.dn.ds results (count)
-peptidase.contigs.pos <- contig.df[contig.df$contig%in%peptidase.contigs &
+peptidase.contigs.pos <- contig.df[contig.df$Ac & contig.df$contig%in%peptidase.contigs &
                                    contig.df$dn.ds>0.5 , "contig"]
 
 
 ## just to test that results for quality-contigs only are consistent.
 mf.dn.ds.MN <- test.over.under.GOstats(subset(GO.dn.ds,
                                                  GO.dn.ds$pept_id%in%
-                                                 contig.df[contig.df$category%in%"MN",
+                                                 contig.df[contig.df$AcMN,
                                                            "contig"]),
                                           big05, "MF")
 
 bp.dn.ds.MN <- test.over.under.GOstats(subset(GO.dn.ds,
                                                  GO.dn.ds$pept_id%in%
-                                                 contig.df[contig.df$category%in%"MN",
+                                                 contig.df[contig.df$AcMN,
                                                            "contig"]),
                                           big05, "BP")
 
 cc.dn.ds.MN <- test.over.under.GOstats(subset(GO.dn.ds,
                                                  GO.dn.ds$pept_id%in%
-                                                 contig.df[contig.df$category%in%"MN",
+                                                 contig.df[contig.df$AcMN,
                                                            "contig"]),
                                           big05, "CC")
 
@@ -128,12 +128,22 @@ cc.dn.ds.MN <- test.over.under.GOstats(subset(GO.dn.ds,
 ### WTF!!
 
 dn.ds.df$sigP <- as.factor(dn.ds.df$sigP)
-
 ## this for the easy nn-data
-u.test <- wilcox.test(dn.ds ~ sigP, data=dn.ds.df, alternative="less")
+u.test <- wilcox.test(dn.ds ~ sigP, data=dn.ds.df, conf.int = TRUE)
+
+
+## sort the conservation according to breath 
+contig.df$novel.50 <- factor(contig.df$novel.50,
+                             levels=c("conserved", "novel.in.metazoa",
+                               "novel.in.nematoda", "novel.in.clade3",
+                               "novel.in.Ac"))
+
+contig.df$novel.80 <- factor(contig.df$novel.80,
+                             levels=c("conserved", "novel.in.metazoa",
+                               "novel.in.nematoda", "novel.in.clade3",
+                               "novel.in.Ac"))
 
 @   
-
 
 <<nn.dn.ds, echo=FALSE, results=hide>>=
 
@@ -144,26 +154,31 @@ sigP.box <- ggplot(dn.ds.df, aes(dn.ds.df$sigP, dn.ds.df$dn.ds)) +
                    breaks=levels(dn.ds.df$sigP),
                    labels=c("No signal peptide",
                      "Signal peptide")) +
-  opts(title = "SignalP neural networks prediction",
+  opts(title = "SignalP  prediction",
        axis.title.x = theme_text(size = 15), 
        axis.text.x = theme_text(size = 15)) +
-  geom_jitter()
+  theme_bw()
 
 ggsave("../figures/sigp_dn_ds.png", sigP.box)
 @ 
 
 <<novel.dn.ds, echo=FALSE, results=hide>>=
-novel.dn.ds.50 <- ggplot(subset(contig.df, !is.na(novel.50) & !is.na(dn.ds)),
+
+novel.dn.ds.50 <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.50) & !is.na(dn.ds)),
                          aes(novel.50, dn.ds)) +
   geom_boxplot() +
   scale_y_log10("dn/ds") +
-  scale_x_discrete("evolutionary conseravation at bitscore threshold of 50")
+  scale_x_discrete("") +
+  opts(title="evolutionary conseravation at bitsore threshold of 80") +
+  theme_bw()
 
-novel.dn.ds.80 <- ggplot(subset(contig.df, !is.na(novel.80) & !is.na(dn.ds)),
+novel.dn.ds.80 <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.80) & !is.na(dn.ds)),
                                 aes(novel.80, dn.ds)) +
   geom_boxplot() +
   scale_y_log10("dn/ds") +
-  scale_x_discrete("evolutionary conseravation at bitsore threshold of 80")
+  scale_x_discrete("") +
+  opts(title="evolutionary conseravation at bitsore threshold of 80") +
+  theme_bw()
 
 # Set up the page
 
@@ -176,6 +191,9 @@ vplayout <- function(x, y)
 # Make each plot, in the correct location
 print(novel.dn.ds.50, vp = vplayout(1, 1 ))
 print(novel.dn.ds.80, vp = vplayout(1, 2 ))
+
+grid.text("a", x=unit(0.01,"npc"), y=unit(0.99,"npc")) 
+grid.text("b", x=unit(0.51,"npc"), y=unit(0.99,"npc")) 
 
 dev.off() 
 
@@ -195,7 +213,6 @@ get.ndwd <- function(data.df, test.var, fac.var) {
   return(NDWD)
 }
 
-
 dn.ds.df$novel.50 <- as.factor(dn.ds.df$novel.50)
 dn.ds.df$novel.80 <- as.factor(dn.ds.df$novel.80)
 
@@ -205,44 +222,87 @@ novel.50.kw.ph <- pvalue(novel.50.ndwd, method = "single-step")
 novel.80.ndwd <- get.ndwd(dn.ds.df, dn.ds.df$dn.ds, dn.ds.df$novel.80)
 novel.80.kw.ph <- pvalue(novel.80.ndwd, method = "single-step")
 
-u.novel.50 <- wilcox.test(dn.ds.df$dn.ds~
-                          as.factor(dn.ds.df$novel.50%in%"novel.in.clade3"), alternative="less")
-
-u.novel.80 <- wilcox.test(dn.ds.df$dn.ds~
-                          as.factor(dn.ds.df$novel.80%in%"novel.in.clade3"), alternative="less")
 @ 
 
 <<novel.nn, echo=FALSE, results=hide>>=
 
-sigP.50 <- table(contig.df$novel.50=="novel.in.nematoda", grepl("Yes*", contig.df$sigP))
-sigP.80 <- table(contig.df$novel.80=="novel.in.nematoda", grepl("Yes*", contig.df$sigP))
+sigP.50 <- as.data.frame.matrix(table(contig.df[contig.df$Ac, "novel.50"],
+                                      grepl("Yes*", contig.df[contig.df$Ac, "sigP"])))
+names(sigP.50) <- c("No.Sigp", "Sigp")
+sigP.50 <- transform(sigP.50, proportion=(Sigp/(Sigp+No.Sigp))*100)
 
-sigP.50.p <- ggplot(subset(contig.df, !is.na(novel.50) & !is.na(sigP)),
+sigP.80 <- as.data.frame.matrix(table(contig.df[contig.df$Ac, "novel.80"],
+                                      grepl("Yes*", contig.df[contig.df$Ac, "sigP"])))
+names(sigP.80) <- c("No.Sigp", "Sigp")
+sigP.80 <- transform(sigP.80, proportion=(Sigp/(Sigp+No.Sigp))*100)
+
+sigP.con.test.50 <- fisher.test(contig.df[contig.df$Ac, "novel.50"]%in%
+                                c("novel.in.Ac", "novel.in.nematoda"),
+                                grepl("Yes*", contig.df[contig.df$Ac, "sigP"]))
+sigP.con.test.80 <- fisher.test(contig.df[contig.df$Ac, "novel.80"]%in%
+                                c("novel.in.Ac", "novel.in.nematoda"),
+                                grepl("Yes*", contig.df[contig.df$Ac, "sigP"]))
+
+
+sigP.50.p <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.50) & !is.na(sigP)),
               aes(novel.50, fill=sigP)) +
        geom_bar(position="fill") + coord_polar(theta="y") +
-  scale_y_continuous("evolutionary conseravation categories at bitsore threshold of 50") +
+  scale_y_continuous("") +
   scale_x_discrete("") +
-  opts(title="proportion of sequences in SignalP-nn category")
+  opts(title="proportion of TUGs in SignalP category\nby evolutionary conseravation categories at bitsore threshold of 50", plot.background = theme_blank()) +
+  theme_bw()
 
-
-sigP.80.p <- ggplot(subset(contig.df, !is.na(novel.80) & !is.na(sigP)),
+sigP.80.p <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.80) & !is.na(sigP)),
               aes(novel.80, fill=sigP)) +
   geom_bar(position="fill") + coord_polar(theta="y") +
-  scale_y_continuous("evolutionary conseravation categories at bitsore threshold of 80") +
+  scale_y_continuous("") +
   scale_x_discrete("") +
-  opts(title="proportion of sequences in SignalP-nn category")
+  opts(title="proportion of TUGs in SignalP category\nby evolutionary conseravation categories at bitsore threshold of 50", plot.background = theme_blank()) + 
+  theme_bw()
 
-png("../figures/signal_novel.png", width=2000, height=1000, res=144)
+sigP.50.p.MN <- ggplot(subset(contig.df, contig.df$AcMN & !is.na(novel.50) & !is.na(sigP)),
+              aes(novel.50, fill=sigP)) +
+       geom_bar(position="fill") + coord_polar(theta="y") +
+  scale_y_continuous("") +
+  scale_x_discrete("") +
+  opts(title="proportion of highCA contigs in SignalP category\nby evolutionary conseravation categories at bitsore threshold of 50", plot.background = theme_blank()) +
+  theme_bw()
+
+sigP.80.p.MN <- ggplot(subset(contig.df, contig.df$AcMN & !is.na(novel.80) & !is.na(sigP)),
+              aes(novel.80, fill=sigP)) +
+  geom_bar(position="fill") + coord_polar(theta="y") +
+  scale_y_continuous("") +
+  scale_x_discrete("") +
+  opts(title="proportion of highCA contigs in SignalP category\nby evolutionary conseravation categories at bitsore threshold of 80", plot.background = theme_blank()) + 
+  theme_bw()
+
+png("../figures/signal_novel.png", width=2000, height=2000, res=144)
 grid.newpage()
-pushViewport(viewport(layout = grid.layout(1, 2)))
+pushViewport(viewport(layout = grid.layout(2, 2)))
 vplayout <- function(x, y)
     viewport(layout.pos.row = x, layout.pos.col = y)
 
-# Make each plot, in the correct location
-print(sigP.50.p, vp = vplayout(1, 1 ))
-print(sigP.80.p, vp = vplayout(1, 2 ))
+
+vp1 <- viewport(width = 0.54, height = 0.54, x = 0.25, y = 0.24)
+vp2 <- viewport(width = 0.54, height = 0.54, x = 0.25, y = 0.72)
+vp3 <- viewport(width = 0.54, height = 0.54, x = 0.74, y = 0.24)
+vp4 <- viewport(width = 0.54, height = 0.54, x = 0.74, y = 0.72) 
+
+print(sigP.50.p, vp = vp1)
+print(sigP.80.p, vp = vp2)
+print(sigP.50.p.MN, vp = vp3)
+print(sigP.80.p.MN, vp = vp4)
+
+grid.text("a", x=unit(0.01,"npc"), y=unit(0.99,"npc")) 
+grid.text("b", x=unit(0.51,"npc"), y=unit(0.99,"npc")) 
+grid.text("c", x=unit(0.01,"npc"), y=unit(0.52,"npc")) 
+grid.text("d", x=unit(0.51,"npc"), y=unit(0.52,"npc")) 
 
 dev.off() 
 
+### tests for lethal Ce rnai
+rnai.contigs <- table(contig.df[contig.df$Ac, "Ce.rnai"])
+
+u.rnai <- wilcox.test(dn.ds ~ Ce.rnai, data=dn.ds.df, conf.int = TRUE)
 
 @ 

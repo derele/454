@@ -295,6 +295,179 @@ species. Here we report on the generation of a reference transcriptome
 for A. crassus based on Roche 454 data, and explore patterns of gene
 expression and diversity.
 
+
+%%%%%%%%%%%%%%%%%%
+\section*{Methods}
+
+
+\subsection*{Nematode samples, RNA extraction, cDNA synthesis and Sequencing}
+
+\textit{A. crassus} from \textit{An. japonica} were sampled from
+Kao-Ping river and an adjacent aquaculture in Taiwan as described in
+\cite{heitlinger_massive_2009}. Worms from An. anguilla were sampled
+in Sniardwy Lake, Poland (53.751959N, 21.730957E) and from the
+Linkenheimer Altrhein, Germany (49.0262N, 8.310556E). After
+determination of the sex of adult nematodes, they were stored in
+RNA-later (Quiagen, Hilden, Germany) until extraction of RNA. RNA was
+extracted from individual adult male and female nematodes and from a
+population of L2 larvae (Table 1). RNA was reverse transcribed and
+amplified into cDNA using the MINT-cDNA synthesis kit (Evrogen,
+Moscow, Russia).  For host contamination screening a liver-sample from
+an uninfected \textit{An. japonica} was also processed.  Emulsion PCR
+was performed for each cDNA library according to the manufacturer’s
+potocols (Roche/454 Life Sciences), and sequenced on a Roche 454
+Genome Sequencer FLX. All samples were sequenced using the FLX
+Titanium chemistry, except for the taiwanese female sample T2, which
+was sequenced using FLX standard chemistry, to generate between 99,000
+and 209,000 raw reads. For the L2 larval library, which had a larger
+number of non-\textit{A. crassus}, non-\textit{Anguilla} reads, we
+confirmed that these data were not laboratory contaminants by
+screening Roche 454 data produced on the same run in independent
+sequencing lanes.
+
+
+\subsection*{Trimming, quality control and assembly}
+
+Raw sequences were extracted in fasta format (with the corresponding
+qualities files) using sffinfo (Roche/454) and screened for adapter
+sequences of the MINT-amplification-kit using cross-match \cite{PHRAP}
+(with parameters -minscore 20 and -minmatch 10). Seqclean
+\cite{tgicl_pertea} was used to identify and remove poly-A-tails, low
+quality, repetitive and short (<100 base) sequences. All reads were
+compared to a set of screening databases using BLAST (expect value
+cutoff E<1e-5, low complexity filtering turned off: -F F). The
+databases used were (a) a host sequence database comprising an
+assembly of the \textit{An. japonica} Roche 454 data, a unpublished
+assembly of \textit{An. anguilla} Sanger dideoxy sequencesd expressed
+sequence tags (made available to us by Gordon Cramb, University of St
+Andrews) and transcripts from from EeelBase \cite{pmid21080939} a
+publically availble transcriptome database for the European eel; (b) a
+database of ribosomal RNA (rRNA) sequences from eel species derived
+from our Roche 454 data and EMBL-Bank; and (c) a database of rRNA
+sequences identified in our \textit{A. crassus} data by comparing the
+reads to known nematode rRNAs from EMBL-Bank. This last database
+notably also contained xenobiont rRNA sequences. Reads with matches to
+one of these databases over more than 80\% of their length and with
+greater than 95\% identity were removed from the dataset. Screening
+and trimming information was written back into sff-format using
+sfffile (Roche 454). The filtered and trimmed data were assembled
+using the combined assembly approach \cite{pmid20950480}: Two
+assemblies were generated, one using \texttt{Newbler v2.6}
+\cite{pmid16056220} (with parameters \texttt{-cdna -urt}) , the other
+using \texttt{Mira v3.2.1} \cite{miraEST} (with parameters
+\texttt{--job=denovo,est,accurate,454}). The resulting two assemblies
+were combined into one using Cap3 \cite{Cap3_Huang} at default
+settings and contigs were labeled by whether they derived from both
+assemblies or one assembly only.
+
+\subsection*{Post-assembly classification and taxonomic assignment of
+  contigs}
+
+After assembly contigs were assessed a second time for host and other
+contamination by comparing them (using \textit{BLAST}) to the three
+databases defined above, and also to nembase4, a nematode
+transcriptome database derived from whole genome sequencing and EST
+assemblies \cite{parkinson_nembase:resource_2004, pmid21550347}. For
+each contig, the highest-scoring match was recorded as long as it
+spanned more than 50\% of the contig. We also compared the contigs to
+the NCBI non-redundant nucleotide (NCBI-nt) and protein (NCBI-nr)
+databases, recording the taxonomy of all best matches with expect
+values better than 1e-05.
+
+\subsection*{Protein prediction and annotation}
+
+Protein translations were predicted from the contigs using prot4EST
+(version 3.0b) \cite{wasmuth_prot4est:_2004}. Proteins were predicted
+either by joining single high scoring segment pairs (HSPs) from a
+BLAST search of uniref100 \cite{pmid18836194}, or by ESTscan
+\cite{estscan}, using a training data the \textit{Brugia malayi}
+complete proteome back-translated using a codon usage table derived
+from the BLAST HSPs, or, if the first two methods failed, simply the
+longest ORF in the contig. For contigs where the proein prediction
+required insertion or deletion of bases in the original sequence, we
+also imputed an edited sequence for each affected contig. Annotations
+with Gene Ontology (GO), Enzyme Commission (EC) and Kyoto
+Encyclopaedia of Genes and Genomes (KEGG) terms were inferred for
+these proteins using Annot8r (version 1.1.1)
+\cite{schmid_annot8r:_2008}, using the annotated sequences available
+in uniref100 \cite{pmid18836194}. Up to 10 annotations based on a
+BLAST similarity bitscore cut-off of 55 were obtained for each
+annotation set. The complete \textit{B. malayi} proteome (as present
+in uniref100) and the complete \textit{C. elegans} proteome (as
+present in wormbase v.220) were also annotated in the same
+way. SignalP V4.0 \cite{pmid21959131} was used to predict signal
+peptide cleavage sites and signal anchor signatures for the
+\textit{A. crassus}-transcriptome and similarly again for the proteoms
+of the tow model-worms.  Additionally \texttt{InterProScan}
+\cite{pmid11590104} (command line utility \texttt{iprscan} version 4.6
+with options \texttt{-cli -format raw -iprlookup -seqtype p -goterms})
+was used to obtain domain based annotations for the high credibility
+assembly (highCA) derived contigs.
+
+We recorded the presence of a lethal rnai-phenotyp in the
+\textit{C. elegans} ortholog of each TUG using the biomart
+\cite{pmid22083790} interface to wormbase v. 220 through the R-package
+biomaRt \cite{pmid19617889}.
+
+\subsection*{Single nucleotide polymorphism analysis}
+
+We mapped the raw reads against the the complete set of contigs,
+replacing imputed sequences for originals where relevant, using ssaha2
+(with parameters -kmer 13 -skip 3 -seeds 6 -score 100 -cmatch 10
+-ckmer 6 -output sam -best 1). From the ssaha2 output, pileup-files
+were produced using samtools
+\cite{journals/bioinformatics/LiHWFRHMAD09}, discarding reads mapping
+to multiple regions. VarScan \cite{pmid19542151} (pileup2snp) was used
+with default parameters on pileup-files to output lists of single
+nucleotide polymorphisms (SNPs) and their locations.
+
+Using samtools mpileup we genotyped individual libraries for the list
+of previouse found overall SNPs. Genotype-calls were accepted at a
+phred-scaled genotype quality threshold of 10.  In addition to the
+relative heterozygosity (number of homozygous sites/ number of
+heterozygous sites) we used the R package Rhh \cite{pmid21565077} to
+calculate Internal relatedness \cite{pmid11571049}, homozygosity by
+loci \cite{pmid17107491} and standardized heterozygosity
+\cite{coltman81j} from this data.
+
+% This resulted in a list of 189 informative sites, where two alleles
+% were found in at least one assured genotype in one of the libraries
+% E1, E2,T1, T2, or MT.
+
+\subsection*{Gene-expression analysis}
+
+For Roche 454 data, read counts for each transcript were obtained from
+the mapping to imputed sequence performed for SNP
+analyses. Tag-sequences were mapped using BWA \cite{pmid19451168}. And
+read counts extracted using Samtools
+\cite{journals/bioinformatics/LiHWFRHMAD09}. For deepSAGE
+NlaIII-tag-sequencing, total RNA was prepared as described above from
+a female nematode from the Polish sampling site. A deepSAGE library
+was constructed following the protocol supplied by Illumina. Briefly
+after synthesis of cDNA on oligo(dT)-beads, cDNA was digested with the
+NlaIII (recognition site CATG), and the oligo(dT)-anchored 3' ends of
+mRNAs retained. After ligation of an adaptor containing an MmeI
+restriction site, the type II enzyme MmeI was used to cut 17 bases
+from the 3' end fragment, genrating a 21 base tag, expected to be
+unique for most mRNAs. The R-package DESeq \cite{pmid20979621} was
+used to normalize for library size and analyse statistical
+significance of differential expression of both Roche 454 and deepSAGE
+data. Spearman correlation coefficients were calculated for raw
+counts.
+
+\subsection*{General coding methods}
+
+The bulk of analysis (unless otherwise cited) presented in this paper
+was carried out in R \cite{R_project} using custom scripts. We used a
+method provided in the R-packages
+Sweave\cite{lmucs-papers:Leisch:2002} and Weaver\cite{weaver} for
+``reproducible research'' combining R and \LaTeX code in a single
+file. All intermediate data files needed to compile the present
+manuscript from data-sources are provided upon request. For
+visualistaion we used the R-packages ggplot2 \cite{ggplot-book} and
+VennDiagram \cite{pmid21269502}.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Results and Discussion %%
 %%
@@ -312,8 +485,7 @@ sampled from \textit{An. anguilla} in the river Rhein, one female worm
 from a lake in Poland. All adult worms were filled with large amounts
 of host-bood, therefore we anticipated abundand host-contamination in
 sequencing and decided to sequence a liver sample of an unifected
-\textit{An. japonica} for screening.
-
+textit{An. japonica} for screening.
 
  \subsection*{Sequencing, trimming and pre-assembly screening}
 
@@ -383,8 +555,8 @@ identified
   672 TUGs whith hits to plants and
   2002 hits to Protists (e.g. Trypanosomatidae,
   26 hits and Vahlkampfiidae, 38 hits), Bacteria (mostly
-  Proteobacteria, 484 hits) and Viruses (see also additional figure
-  phylum\_plots.png).
+  Proteobacteria, 484 hits; see also additional figure
+  phylum\_plots.png.
 
   No hits were found to Wolbachia or related Bacteria known as
   symbionts of Ecdyosozoans.
@@ -397,15 +569,855 @@ identified
   likely to derive from of \textit{A. crassus}.
 
 \subsection*{Protein prediction}
+con:
 
+imp:
 %% read P4EST output processed with
 %% coordinates_from_p4e.pl
 
+snp:
 %% SNP calling from VARSCAN output
 
 
 
 
+snp.pop:
+ann:
 %%% annotation.Rnw --- 
 
 %% Author: emanuelheitlinger@gmail.com
+
+\begin{Schunk}
+\begin{Soutput}
+pdf 
+  2 
+\end{Soutput}
+\end{Schunk}
+sig:
+
+
+brug:
+over:
+
+
+
+
+
+
+For
+32411
+TUGs a protein was predicted using prot4EST
+\cite{wasmuth_prot4est:_2004} (Table 2). The full open reading frame
+was obtained in
+353 TUGs, while
+while for 2683 the
+5’ end and for 8283
+the 3' end was complete. In 13379 TUGs the
+corrected sequence with the imputed ORF was slightly changed compared
+to the raw sequence.
+
+\subsection*{Annotation}
+
+We obtained basic annotations with orthologous sequences from
+\textit{C. elgeans} for
+9554 TUGs,
+from \textit{B. malayi} for
+9662 TUGs,
+from nempep \cite{parkinson_nembase:resource_2004, pmid21550347} for
+11617
+TUGs and whith uni-prot proteins for
+11113 TUGs.
+
+We used annot8r \cite{schmid_annot8r:_2008} to assign gene ontology
+(GO) terms for 6509 TUGs, Enzyme Commission (EC) numbers for
+2458 TUGs and Kyoto Encyclopaedia of Genes and Genomes (KEGG)
+pathway annotations for 3844 TUGs (Table 2). Additionally
+5125 highCA derived contigs were anntotated with GO terms
+through Interpro Scan \cite{pmid11590104}. Nearly one third
+(6987) of the \textit{A. crassus} TUGs were
+annotated with at least one identifier, and 1829 had
+GO, EC and KEGG annotations (Figure 1).
+
+We compared our \textit{A. crassus} GO annotations for high-level
+GO-slim terms to the annotations (obtained the same way) for the
+complete proteome of the filarial nematode \textit{B. malayi} and the
+complete proteome of \textit{C. elegans} (Figure 2).
+
+Correlation shows the occurence of terms for the partial transcriptome
+of \textit{A. crassus} to be more similar to the proteome of
+\textit{B. malayi} (0.95; Spearman
+correlation coefficient) than to the proteome of \textit{C. elegans}
+(0.9). Also the tow model-nematode compared
+ot each other (0.91) are less similar in the
+occurence of thems than the two parasites.
+
+We inferred presence of signal peptide cleavage sites in the predicted
+protein sequence using SignalP \cite{pmid21959131}. We predicted
+920 signal peptide cleavage sites and 65 signal
+peptides with a transmembrane signature. Again these predictions are
+more similar to predictions using the same methods for the proteome
+\textit{B. malayi} (742 signal peptide cleavage sites and
+41 with transmembrane anchor) than for the proteome of
+\textit{C. elegans} (4273 signal peptide cleavage sites
+and 154 with transmembrane anchor).
+
+We inferred the presence of a lethal rnai phenotype in the orthologous
+annotation of \textit{C. elegans}. For 257
+TUGs a non-lethal phenotype was inferred for
+6029 TUGs a lethal phenotype.
+
+\subsection*{Evolutionary conservation}
+
+Evolutionary conservation The A. crassus TUGs were classified as
+conserved, conserved in Metazoa, conserved in Nematoda, conserved in
+Spirurina or novel to A. crassus by comparing them to public databases
+and using two BLAST bit-score cutoffs to define relatedness.
+
+
+****Now describe the data, and reference table 3, add novel in
+A. crassus****
+ 
+\subsection*{Identification of single nucleotide polymorphisms}
+
+We called single nucleotide polymorphisms (SNPs) on the
+1099419 bases of the TUGs that had coverage of more then
+8-fold available using VARScan \cite{pmid19542151}. We excluded SNPs
+predicted to have more than 2 alleles or that mapped to an
+undertermined (N) base in the reference, and retained
+10458 SNPs. The ratio of transitions (ti;
+6890) to transversion (tv;
+3568) in this set was
+1.93 . Using the prot4EST
+prtedictions and the corrected sequences, 7153 of
+the SNPs were predicted to be inside an ORF, with
+2310 at codon first positons, 1819
+at second positions and 3024 at third positions. As
+expected ti/tv inside ORFs (tsv.raw.orf[2,3]) was higher than outside
+ORFs (tsv.raw.orf[1,3]). The ratio of synonymous polymorphisms per
+synonymous site to non-synonymous polymorphisms per non-synonymous
+site (dn/ds) was 0.42. We filtered these SNPs to exclude
+those that might be associated with analytical bias. As Roche 454
+sequences have well-known systematic errors associated with
+homopolymeric nucleotide sequences \cite{pmid21685085}, we analysed
+the effect of exclusion of SNPs in, or close to, homopolymer
+regions. We observed changes in ti/tv and in dn/ds when SNPs were
+discarded using different size thresholds for homoploymer runs and
+proximity thresholds (see Figure 3). Based on this we decided to
+exclude SNPs with a homopolymer-run as long as or longer than 4 bases
+inside a window of 11 bases (5 to bases to the right, 5 to the left)
+around the SNP. We also observed a relationship between TUG dn/ds and
+TUG coverage, associated with the presence of sites with low abundance
+minority alleles (less than 7\% of the allele calls), suggesting that
+some of these may be errors.  Removing low abundance minority allele
+SNPs from the set removed this effect.  Our filtered SNP dataset
+includes 5112 SNPs. We retained 4.65 SNPs
+per kb of contig sequence, with 8.37 synonymous SNPs
+per 1000 synonymous bases and 8.37 non-synonymous SNPs
+per 1000 non-synonymous bases. A mean dn/ds of
+0.231 was calculated for the
+859 TUGs (762
+highCA-derived contigs) containing at least one synonymous SNP.
+Overall dn/ds over all TUGs was 0.3.
+
+\subsection*{Polymorphisms associated with biological processes}
+
+We consolidated our annotation and polymorphism analyses by examining
+correlations between nonsynonymous variability and particular
+classifications. 
+
+Signal peptide containing proteins have been shown to have higher
+rates of evolution than cytosolic proteins in a number of nematode
+species. In \textit{A. crassus}, TUGs predicted to contain signal
+peptide cleavage sites in SignalP showed a trend towards higher dn/ds
+values than TUGs without signal peptide cleavage sites (p =
+0.074; two sided
+Mann-Whitney-test) %; Figure sigp\_dn\_ds.png.
+
+Proteins predicted to be novel to the Nematoda and novel in
+\textit{A. crassus} were significantly enriched in signal peptide
+annotation compared to conserved proteins, proteins novel in Metazoa
+and novel in CladeIII (Fisher's exact test p$<$0.001 ; Figure 4) .
+
+Positive selection can be inferred from dn/ds analyses, and we defined
+TUGs with a dn/ds higher than 0.5 as positively selected. We
+identified over- and under-represented GO ontology terms associated
+with these putatively positively selected genes (Table 3). Within the
+molecular function category, ``peptidase activity'' was the most
+significantly overrepresented term and had twelve TUGs supporting the
+overrrepresentation. The highlighted twelve peptidases annotated with
+eleven unique orthologs in \textit{C. elegans} and \textit{B. malayi}.
+The term ``structural constituent of ribosome'' was underrepresented.
+
+While the biological process and cellular compartment categories
+provide less information for a nematode (highlighting e.g. brain or
+pancreas development), unterrepresented terms in both were connected
+to ribosomal proteins, validating the analysis for the molecular
+function category.
+
+Other overrepresented terms abundant over categories pointed ot
+subunits of the respriratory chain e.g. ``heme-copper terminal oxidase
+activity'' and ``cytochrome-c oxidase activity'' in molecular function
+and ``mitochondrion'' in cellular compartment.
+
+At both bitscore thresholds contigs novel in clade III and novel in
+\textit{A. crassu} had a significantly higher dn/ds than other contigs.
+((novel.in.metazoa - novel.in.Ac, 0.005, 0.015; novel.in.nematoda -
+novel.in.Ac, 0.005, 0.002; novel.in.nematoda - novel.in.clade3, 0.207,
+0.045; comparison, p-value from bitscore of 50, p-value from bitscore
+of 80, Nemenyi-Damico-Wolfe-Dunn test, given only for significant
+comparisons; Figure 5).
+
+Orthologs of \textit{C. elegans} transcripts with lethal
+rnai-phenotype in are expected to evolve under stronger selective
+constraints. Indeed the values of dn/ds showed a non-significant trend
+towards lower values in TUGs with orthologs with a lethal phenotype
+comapred to a non-lethal phenotype 0.138.
+
+\subsection*{Polymorphisms associated with single libaries and
+  populations}
+
+
+
+
+
+\subsection*{Differential expression}
+                
+
+sing methods developed for sequencing data, we analyzed
+gene-expression inferred from mapping. Of the {length(raw.fasta)}
+reads 252388 mapped uniquely (with their best hit) to the
+fullest assembly (including the contigs of non \textit{A. crassus} as
+a filter to avoid false mappign) and were counted on a per library
+base.
+
+\subsection*{Comparison with tag-sequencing pilot data-set}
+
+5096312 of 6201930 (559824 unique) NlaIII-tags
+mapped to the fullest assembly. Only 1105618
+(317782 unique) tags did not map to any sequence in the
+fullest assembly.
+
+Table 9a gives correlations coefficients between tag-counts and
+454-libraries. Correlations-coefficients between 454-libraries were
+generally low, indicating a high proportion of noise or biological
+differences between samples. Correlation between expression-tags and
+454-read counts were even lower. However when only analyzing counts to
+good-quality contigs, correlation coefficients improved both between
+libraries and between 454-libraries and solexa-tags (see table 9b). No
+further improvements were made, when counts were limited to contigs
+surely \textit{A. crassus} (see table 9c). Correlations between
+library T2 and other 454-libraries, as well as with solexa-tag counts
+were lower than between other libraries.
+
+To gain power in statistical analysis we limited the set of
+gene-objects analyzed for differential expression to the good-quality
+contigs.
+
+\subsubsection*{Differential expression between male and female worms}
+
+Despite the lack of replicates for male worms we were able to identify
+xxx sequences being significantly
+over-expressed in male worms. In fact all these TUGs were nearly
+exclusively expressed in males. 
+
+\subsubsection*{Differential expression between adults and L2-larvae}
+
+For the L2-library we changed our approach and used gene-expression
+analysis rather to highlight the off-target data in this library. For
+this reason we used counts for the fullest assembly.
+
+xxx sequences being expressed exclusively
+in L2 library were strongly enriched in sequences being labeled as
+
+\subsubsection*{Differential expression between worms from the European
+  and Japanese eel}
+
+None of the TUGs in the present evaluation showed significant
+differential expression between worms from the European and Japanese
+Eel. Diagnostic plots provided by \texttt{DESeq} made clear, that both
+depth of sequencing and number of replicates have to be higher
+contrasting these conditions.
+
+However, comparing expression-analysis on the full data-set to analysis
+limited to the high quality of reliable \textit{A. crassus}-contigs it
+was clear that the quality-data-set reduces within-condition variance
+and results were closer to significance: The lowest adjusted p-values
+for the cleaned data-set were around 0.4, while on the full data-set
+only adjusted p-values above 0.8 could be obtained.
+
+
+
+\section*{Discussion}
+
+We have generated a de novo transcriptome for A. crassus an important
+invasive parasite that threatens wild stocks of the European eel
+An. anguilla. These data enable a broad spectrum of molecular research
+on this ecologically and economically important parasite. As
+A. crassus lives in close association with its host, we have used
+exhaustive filtering to attempt to remove all host-derived, and
+host-associated organism-derived contamination from the data. To do
+this we have also generated a transcriptome dataset from the
+definitive host An. japonica. The non-nematode, non-eel data
+identified, particularly in the L2 sample, showed highest identity to
+flagellate protists, which may have been parasitising the eel (or the
+nematode). Encapsulated objects observed in eel swim bladder walls
+\cite{heitlinger_massive_2009} could be due solely to immune attrition
+of A. crassus larvae or to other coinfections.
+
+A second examination of sequence origin was performed after assembly,
+employing higher stringency cutoffs.  Similar taxonomic screening was
+used in a garter snake transcriptome project \cite{pmid21138572}, and
+an analysis of lake sturgeon tested and rejected hypotheses of
+horizontal gene-transfer when xenobiont sequences were identified
+\cite{pmid20386959}. A custom pipeline for transcriptome assembly from
+pyrosequencing reads \cite{pmid20034392} proposed the use of EST3
+\cite{pmid17218127} to infer sequence origin based simply on
+nucleotide frequency. We were not able to use this approach
+successfully, probably due to the fact that xenobiont sequences in our
+data set derive from multiple sources with different GC content and
+codon usage.
+
+Compared to other NGS transcriptome sequencing projects
+[references???], the combined assembly approach generated a smaller
+number of contigs that had lower redundancy and higher
+completeness. Projects using the mira assembler often report
+substantially greater numbers of contigs for datasets of similar size
+(see e.g. \cite{pmid21364769}), comparable to the mira sub-assembly in
+our approach. The use of oligo(dT) to capture mRNAs probably explains
+the bias towards 3' end completeness and a relative lack of true
+initiation codons in our protein prediction. This bias is
+near-ubiquitous in deep transcriptome sequencing projects
+(e.g. \cite{pmid20331785}).
+
+We generated transcriptome data from multiple A. crassus of Taiwanese
+and European origin, and identified SNPs both within and between
+populations. Screening of SNPs in or adjacent to homopolymer regions
+improved overall measurements of SNP quality. The ratio of transitions
+to transversions (ti/tv) increased. Such an increase is explained by
+the removal of “noise” associated with common homopolymer errors
+[27]. The value of 2.38 (1.82 outside, 2.74 inside ORFs) is in good
+agreement with the overall ti/tv of humans (2.16 \cite{pmid21169219})
+or Drosophila (2.07 \cite{pmid21143862}). The ratio of non-synonymous
+SNPs per non-synonymous site to synonymous SNPs per synonymous site
+(dn/ds) decreased with removal of SNPs adjacent to homopolymer regions
+from 0.45 to 0.32 after full screening. The most plausible explanation
+is the removal of error, as unbiased error would lead to a dn/ds of
+1. While dn/ds is not unproblematic to interpret within populations
+\cite{pmid19081788}, the assumption of negative (purifying) selection
+on most protein-coding genes makes lower mean values seem more
+plausible. We used a threshold value for the minority allele of 7\%
+for exclusion of SNPs, based on an estimate that approximately 10
+haploid equivalents were sampled (5 individual worms plus an
+negligible contribution from L2 larvae in the L2 library and within
+the female adult worms). The benefit of this screening was mainly a
+reduction of non-synonymous SNPs in high coverage contigs, and a
+removal of the dependence of dn/ds on coverage. Working with an
+estimate of dn/ds independent of coverage, efforts to control for
+sampling a biased by sampling depth (i.e. coverage; see
+\cite{pmid18590545} and \cite{pmid20478048} ) could be avoided.
+
+
+ 
+
+
+***
+When the whole of coding sequences are studied, of which only a small
+subset of sites can be under diversifying selection, dn/ds of ~0.5 has
+been suggested as threshold for assuming diversifying selection
+\cite{pmid15579698} instead of the classical threshold of 1
+\cite{pmid6449605}. In the transcripts from the female reproductive
+tract of \textit{Drosophila} dn/ds was 0.15 \cite{pmid15579698} and in
+the 0.21 male reproductive tract \cite{pmid11404480} (although for ESTs
+specific to the male accessory gland were shown to have a higher dn/ds
+of 0.47). Pyrosequencing studies found dn/ds to be between 0.13 and
+0.27 (depending on tissue type genes were mainly expressed in) in the
+Zebra finch transcriptome \cite{pmid20359325}, 0.12 in the
+transcriptome of \textit{Tigriopus californicus} \cite{pmid21199025}
+and 0.3 in the parasitic nematode \textit{Ancylostoma canium}
+\cite{pmid20470405}. In comparison with these results even our
+estimate after screening seems high (although it should be noted, that
+the latter tree studies report a mean dn/ds over contigs - the
+\textit{A. canium} doesn't make clear what exactly is reported - and
+therefore the value has to be compared to our mean dn/ds over contigs
+of 0.23) and further
+investigation using deeper sequencing of more individuals on the
+solexa GAII platform will be used to fully exclude the possibility of
+this result being induced by sequencing error. Moreover such an
+experiment should try to test that divergence between populations is
+leading to positive selection on only the possibly diverging European
+populations. For such a study the set of SNPs found here are
+invaluable, as it can be used to define a gold standard set of SNPs
+found with both technologies.
+
+We were able to obtain high-quality annotations for a large set of
+TUGs. Comparison with protein sequence derived from \textit{B. malayi}
+showed a a remarkable degree of agreement regarding the occurrence of
+terms. This implies, that our transcriptome-data-set is a
+representative subset of a nematode-parasite
+genome. 
+
+Over-representation of GO-term in genes under diversifying selection
+(at a threshold of dn/ds>0.5, as established above) highlighted many
+interesting gene-products:
+
+In the molecular function category two amino acid transmembrane
+transporters (``Contig5699'' and ``Contig866'') - the only contigs
+with this annotation (or annotation, which is an offspring-term of
+this) and a dn/ds obtained - were found to have a dn/ds>0.5. Such
+transporter are thought to be important in the survival of parasites in
+a host \cite{pmid18272295}.
+
+Enrichment in the category ``peptidase activity'' highlighted twelve
+peptidases (from 43 with a dn/ds obtained). All twelve have orthologs
+in \textit{B. malayi} and \textit{C. elgans} and are conserved across
+kingdoms. Despite their conservation peptidases are thought to have
+have acquired new and prominent roles in host-parasite interaction
+compared to free living organisms: In \textit{A. crassus} a
+trypsin-like proteinase has been identified thought to be utilized by
+the tissue-dwelling L3 stage to penetrate host tissue and an aspartyl
+proteinase thought to be a digestive enzyme in adults
+\cite{polzer_identification_1993}.
+
+The under-representation of ribosomal proteins (term ``structural
+constituent of ribosome'') in disruptively selected contigs is in good
+agreement with the notion that ribosomal proteins are extremely
+conserved across kingdoms \cite{pmid9664699} and should be under under
+strong negative selection. 
+
+The additional prediction of signal sites for cleavage allowed
+interpretation and cross-validation of the results from SNP-calling:
+The detection of signal-peptides secretion using \textit{in silico}
+analysis of ESTs has been used to highlight candidate genes for
+example in \textit{Nippostrongylus brasiliensis}
+\cite{harcus_signal_2004} and in a large scale analysis across all
+nematode \cite{nagaraj_needles_2008} ESTs. Proteomic analysis in
+\textit{B. malayi} \cite{pmid19352421,pmid18958170} and
+\textit{Heligmosomoides polygyrus} \cite{pmid21722761} was able to
+find evidence for excretion for some of the protein-products and to
+highlight additional candidate genes.
+
+We found an elevated dn/ds for signal-positives. These result could be
+explained follow the logic of signal-positives being more likely to be
+secreted to the host-parasite interface and proteins involved in
+host-parasite interaction being more likely to be under disruptive
+selection. Signal-positive TUGs with high dn/ds constitute another set
+of genes worth further examination in future studies.
+
+TUGs predicted to be novel in the phylum nematoda contained the
+highest proportion of signal-positives. A interpretation of this
+findings could be a confirmation of a study on \textit{Nippostrongylus
+  brasiliensis} \cite{harcus_signal_2004}, where signal positives were
+reported as less conserved. In the present study we did not aim to
+identify ``novelty to \textit{A. crassus}'' as we believe in a deep
+sequencing project he absence of sequence similarity could be
+attributed to erroneous sequence instead of true novelty, and thereby
+blur analysis. However novelty in nematodes and to a lesser extend
+novelty in Spirurina seems to support the notion, that - if not
+diversified within nematoda to an extend leading to a complete loss of
+similarity, like suggested in the mentioned study - signal positives
+in nematodes could have taken a divergent evolutionary path from their
+orthologs in other phyla.
+
+It was within our expectation, that expression analysis failed to give
+conclusive results, as the present data-set is not fully adequate for
+this kind of analysis: First we did not include replicates for
+libraries of male adults as well as for L2-larvae. Second one of the
+replicates for female worms (library E1) resulted in a low amount of
+sequence mappable to protein-coding (non-rRNA) genes.
+However some of the results are still valuable:
+
+DESeq was able to report genes significantly differing in expression
+between male and female worms and between the L2 library and the all
+other worms. This was possible for male worms as well as for
+L2-larvae, were no replicated samples were obtained, due due the
+special features of this package \cite{pmid20979621}. However only
+over-expression in non-repeated samples can be detected, as obviously
+lack of expression in one sample can't validate
+
+Comparisons were lacking significance, as methods are designed for
+deeper sequencing and more importantly more replicates would be
+needed. Differences between the L2-library and other libraries were
+mainly due to off-target data, and TUGs solely found in the L2 library
+are ... 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\section*{Conclusions}
+
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Competing interests}
+The authors declare no competing interests.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Authors contributions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Acknowledgments}
+\ifthenelse{\boolean{publ}}{\small}{}
+
+The work of EGH is funded by
+Volkswagen Foundation, "F\"{o}rderinitiative Evolutionsbiologie".
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                  The Bibliography                       %%
+%%                                                         %%              
+%%  Bmc_article.bst  will be used to                       %%
+%%  create a .BBL file for submission, which includes      %%
+%%  XML structured for BMC.                                %%
+%%                                                         %%
+%%                                                         %%
+%%  Note that the displayed Bibliography will not          %% 
+%%  necessarily be rendered by Latex exactly as specified  %%
+%%  in the online Instructions for Authors.                %% 
+%%                                                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\ifthenelse{\boolean{publ}}{\footnotesize}{\small}
+  \bibliographystyle{bmc_article} % Style BST file
+  \bibliography{/home/ele/bibtex/master,/home/ele/bibtex/master2}
+} % Bibliography file (usually '*.bib' )
+
+%%%%%%%%%%%
+
+
+\ifthenelse{\boolean{publ}}{\end{multicols}}{}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                               %%
+%% Figures                       %%
+%%                               %%
+%% NB: this is for captions and  %%
+%% Titles. All graphics must be  %%
+%% submitted separately and NOT  %%
+%% included in the Tex document  %%
+%%                               %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%
+%% Do not use \listoffigures as most will included as separate files
+
+\section*{Figures}
+
+\subsection*{Figure 1 - Number of contigs annotated with different
+  methods}
+ 
+Number of annotations obtained for Gene Ontology (GO), Enzyme
+Commission (EC) and Kyoto Encyclopaedia of Genes and Genomes (KEGG)
+terms through Annot8r\cite{schmid_annot8r:_2008} for all TUGs (a) and
+for higCA derived contigs (b). The latter includes additional
+domain-based annotations obtained with interpro scan
+\cite{pmid11590104}.
+
+
+\subsection*{Figure 2 - Comparing high level GO-slim annotations}
+
+\subsection*{Figure 3 - Changes in ti/tv and dn/ds due to explusion of
+  homopolymer-runs}
+
+
+ 
+\subsection*{Figure 4 - Enrichment of Signal-positives for categories
+  of evolutionary conservations}
+
+Proportions of \texttt{SignalP}-predictions for each category of
+evolutionary conservation. Generally - across bit-score thresholds -
+sequences novel in nematodes contained the highest proportion of
+signal-positives.
+
+\subsection*{Figure 4 - Positive selection and evolutionary
+  conservation}
+
+
+\subsection*{Figure 5 - }
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                               %%
+%% Tables                        %%
+%%                               %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Use of \listoftables is discouraged.
+%%
+\section*{Tables}
+  \subsection*{Table 1 - Sampling, trimming and pre-assembly screening}
+
+% latex table generated in R 2.13.0 by xtable 1.5-6 package
+% Fri Nov 18 15:08:58 2011
+\begin{tabular}{lllllllllll}
+  \hline
+library & life.st & source.p & raw.reads & lowqal & AcrRNA & eelmRNA & eelrRNA & Cercozoa & valid & valid.span \\ 
+  \hline
+E1 & adult f & Europe R & 209325 & 92744 & 76403 & 4835 & 13112 & 0 & 22231 & 7167338 \\ 
+  E2 & adult f & Europe P & 111746 & 10903 & 11213 & 3613 & 69 & 0 & 85948 & 24046225 \\ 
+  L2 & L2 lavae & Europe R & 112718 & 15653 & 30654 & 1220 & 1603 & 5286 & 58302 & 16661548 \\ 
+  M & adult m & Asia C & 106726 & 15484 & 31351 & 1187 & 418 & 0 & 58286 & 17424408 \\ 
+  T1 & adult f & Asia C & 99482 & 7947 & 24929 & 7475 & 514 & 0 & 58617 & 14443123 \\ 
+  T2 & adult f & Asia W & 116366 & 27683 & 7233 & 11741 & 38 & 0 & 69671 & 20749177 \\ 
+  Eel & liver & Taiwan & 159370 & 24298 &  &  &  &  & 135072 & 34482916 \\ 
+   \hline
+\end{tabular}
+\subsection*{Table 2 - assembly classification and contig statistics}
+
+% latex table generated in R 2.13.0 by xtable 1.5-6 package
+% Fri Nov 18 15:08:59 2011
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{rrrr}
+  \hline
+ & lowCA & highCA & combined \\ 
+  \hline
+total.contigs & 26336 & 13851 & 40187 \\ 
+  rRNA.contigs & 556 & 34 & 590 \\ 
+  fish.contigs & 1776 & 708 & 2484 \\ 
+  xeno.contigs & 2332 & 742 & 3074 \\ 
+  remaining.contigs & 21147 & 11371 & 32518 \\ 
+  remaining.span & 8095986 & 7971550 & 16067536 \\ 
+  non.u.cov & 15 & 11 & 13 \\ 
+  cov & 2.443 & 6.838 & 4.624 \\ 
+  p4e.BLAST-similarity & 4356.000 & 5663.000 & 10019.000 \\ 
+  p4e.ESTScan & 8324 & 3597 & 11921 \\ 
+  p4e.LongestORF & 8347 & 2085 & 10432 \\ 
+  p4e.no-prediction & 93 & 14 & 107 \\ 
+  full.3p & 5906 & 2714 & 8620 \\ 
+  full.5p & 1484 & 1270 & 2754 \\ 
+  full.l & 104 & 185 & 289 \\ 
+  GO & 2635 & 3874 & 6509 \\ 
+  EC & 966 & 1492 & 2458 \\ 
+  KEGG & 1608 & 2236 & 3844 \\ 
+  IPR & 0 & 7557 & 7557 \\ 
+  nem.blast & 4868 & 5820 & 10688 \\ 
+  any.blast & 5106 & 6007 & 11113 \\ 
+   \hline
+\end{tabular}
+\end{center}
+\end{table}
+Summary statistics for contigs from different assembly-categories
+given in colums as highCA = high credibility assembly; lowCA = low
+credibility assembly, CA = complete assembly.
+
+Rows indicate summary statistics: total.contigs = numbers of total
+contigs, fish.contigs = number of contigs hitting eel-mRNA or Chordata
+in NCBI-nr or NCBI-nt (screened out), xeno.contigs = number of contigs
+with best hit (NCBI-nr and NCBI-nt) to non-eukaryote (screened out),
+remaining.contigs = number of contigs remaining after this screening,
+remaining.span = total length of remaining contigs, non.u.cov =
+non-unique mean base coverage of contigs, cov = unique mean base
+coverage of contigs, p4e.X = number protein predictions derived in
+p4e, where X describes the method of prediction (see Methods), full.3p
+= number of contigs complete at 3', full.5p = number of contigs
+complete at 5', GO = number of contigs with GO-anntotation, KEGG =
+number of contigs with KEGG-anntotation, EC = number of contigs with
+EC-anntotation, nem.blast = number of contigs with blast-hit to
+nematode in nr, any.blast = number of contigs with blast-hit to
+non-nematode (eukaryote non chordate) sequence in NCBI-nr.
+
+\subsection*{Table 3 - Evolutionary conservation }
+% latex table generated in R 2.13.0 by xtable 1.5-6 package
+% Fri Nov 18 15:09:00 2011
+\begin{tabular}{rrrrrr}
+  \hline
+ & conserved & novel.in.metazoa & novel.in.nematoda & novel.in.clade3 & novel.in.Ac \\ 
+  \hline
+bit.50.all & 5604 & 1713 & 2173 & 1485 & 21543 \\ 
+  bit.80.all & 3506 & 1382 & 2014 & 1525 & 24091 \\ 
+  bit.50.highCA & 3479 & 875 & 1010 & 601 & 5406 \\ 
+  bit.80.highCA & 2457 & 832 & 1084 & 716 & 6282 \\ 
+   \hline
+\end{tabular}
+\subsection*{Table 4 - Over- and under-representation of GO-terms in
+  positively selected}
+
+GO-terms over- or under-represented (direction) in contigs putatively
+under positive selection. Horizontal lines seratate categories of the
+GO-ontology. First category is molecular function, then biological
+process last cellular compartment. P values (Pval) for over- or
+under-representation are given along with the number of positively
+selected contigs (Count; dn/ds $>$ 0.5) and the number of contigs with
+this annotation for wich a dn/ds was obtained (Size) and the
+description of the GO-term (Term).
+
+% latex table generated in R 2.13.0 by xtable 1.5-6 package
+% Fri Nov 18 15:09:00 2011
+\begin{longtable}{rrrp{4cm}r}
+ Pvalue & Count & Size & Term & direction \\ 
+  \hline
+0.00 &  13 &  45 & peptidase activity & Over \\ 
+  0.01 &   7 &  18 & heme-copper terminal oxidase activity & Over \\ 
+  0.01 &   7 &  18 & oxidoreductase activity, acting on a heme group of donors & Over \\ 
+  0.01 &   7 &  18 & oxidoreductase activity, acting on a heme group of donors, oxygen as acceptor & Over \\ 
+  0.01 &   7 &  18 & cytochrome-c oxidase activity & Over \\ 
+  0.01 &  49 & 283 & catalytic activity & Over \\ 
+  0.02 &  13 &  52 & transmembrane transporter activity & Over \\ 
+  0.02 &   9 &  31 & monovalent inorganic cation transmembrane transporter activity & Over \\ 
+  0.02 &   2 &   2 & L-amino acid transmembrane transporter activity & Over \\ 
+  0.03 &   9 &  33 & inorganic cation transmembrane transporter activity & Over \\ 
+  0.03 &  23 & 117 & hydrolase activity & Over \\ 
+  0.03 &   8 &  29 & hydrogen ion transmembrane transporter activity & Over \\ 
+  0.04 &   3 &   6 & ribonucleoprotein binding & Over \\ 
+  0.04 &  13 &  58 & transporter activity & Over \\ 
+  0.05 &  11 &  47 & substrate-specific transmembrane transporter activity & Over \\ 
+  0.05 &  16 &  77 & oxidoreductase activity & Over \\ 
+  0.00 &   1 &  53 & structural constituent of ribosome & Under \\ 
+  0.03 &   7 &  93 & RNA binding & Under \\ 
+  0.04 &   2 &  44 & transition metal ion binding & Under \\ 
+  0.05 &   0 &  20 & protein binding transcription factor activity & Under \\ 
+  0.05 &   0 &  20 & transcription factor binding transcription factor activity & Under \\ 
+  0.05 &   0 &  20 & transcription cofactor activity & Under \\ 
+   \hline
+0.00 &  13 &  37 & brain development & Over \\ 
+  0.00 &  14 &  45 & central nervous system development & Over \\ 
+  0.00 &   6 &  12 & response to electrical stimulus & Over \\ 
+  0.00 &   3 &   3 & branched chain family amino acid metabolic process & Over \\ 
+  0.00 &   3 &   3 & branched chain family amino acid catabolic process & Over \\ 
+  0.00 &  11 &  36 & ATP synthesis coupled electron transport & Over \\ 
+  0.00 &  11 &  36 & mitochondrial ATP synthesis coupled electron transport & Over \\ 
+  0.01 &   7 &  18 & mitochondrial electron transport, cytochrome c to oxygen & Over \\ 
+  0.01 &  22 & 101 & nervous system development & Over \\ 
+  0.01 &  11 &  38 & oxidative phosphorylation & Over \\ 
+  0.01 &   6 &  15 & response to starvation & Over \\ 
+  0.01 &  12 &  45 & cellular amino acid metabolic process & Over \\ 
+  0.01 &   7 &  20 & positive regulation of cell cycle process & Over \\ 
+  0.01 &  14 &  58 & amine metabolic process & Over \\ 
+  0.01 &   4 &   8 & positive regulation of organelle organization & Over \\ 
+  0.01 &   4 &   8 & spermatid development & Over \\ 
+  0.01 &   4 &   8 & spermatid differentiation & Over \\ 
+  0.01 &   5 &  12 & hindbrain development & Over \\ 
+  0.01 &   5 &  12 & cerebellum development & Over \\ 
+  0.01 &   5 &  12 & metencephalon development & Over \\ 
+  0.01 &   5 &  12 & response to methylmercury & Over \\ 
+  0.01 &   5 &  12 & autophagy & Over \\ 
+  0.02 &  36 & 203 & response to stress & Over \\ 
+  0.02 &   2 &   2 & embryonic body morphogenesis & Over \\ 
+  0.02 &   2 &   2 & xylulose metabolic process & Over \\ 
+  0.02 &   2 &   2 & L-amino acid transport & Over \\ 
+  0.02 &   2 &   2 & neuromuscular process controlling balance & Over \\ 
+  0.02 &   2 &   2 & response to sucrose stimulus & Over \\ 
+  0.02 &   2 &   2 & NADP metabolic process & Over \\ 
+  0.02 &   2 &   2 & response to disaccharide stimulus & Over \\ 
+  0.02 &   2 &   2 & pentose metabolic process & Over \\ 
+  0.02 &  15 &  66 & behavior & Over \\ 
+  0.02 &   8 &  27 & interphase & Over \\ 
+  0.02 &   8 &  27 & interphase of mitotic cell cycle & Over \\ 
+  0.02 &  11 &  43 & electron transport chain & Over \\ 
+  0.02 &  11 &  43 & respiratory electron transport chain & Over \\ 
+  0.02 &  29 & 156 & catabolic process & Over \\ 
+  0.02 &   3 &   5 & positive regulation of mitosis & Over \\ 
+  0.02 &   3 &   5 & positive regulation of nuclear division & Over \\ 
+  0.02 &  13 &  56 & cellular amine metabolic process & Over \\ 
+  0.02 &  20 &  99 & aging & Over \\ 
+  0.02 &  10 &  39 & regulation of cell cycle process & Over \\ 
+  0.03 &  17 &  81 & apoptosis & Over \\ 
+  0.03 &  16 &  75 & regulation of molecular function & Over \\ 
+  0.03 &  13 &  57 & regulation of cell cycle & Over \\ 
+  0.03 &   5 &  14 & mitotic cell cycle G1/S transition DNA damage checkpoint & Over \\ 
+  0.03 &   5 &  14 & sleep & Over \\ 
+  0.03 &   4 &  10 & cellular amino acid catabolic process & Over \\ 
+  0.03 &  10 &  41 & reproductive structure development & Over \\ 
+  0.03 &   3 &   6 & microtubule organizing center organization & Over \\ 
+  0.03 &   3 &   6 & RNA catabolic process & Over \\ 
+  0.03 &   3 &   6 & centrosome organization & Over \\ 
+  0.03 &   8 &  30 & muscle organ development & Over \\ 
+  0.04 &  11 &  47 & cellular respiration & Over \\ 
+  0.04 &  13 &  59 & energy derivation by oxidation of organic compounds & Over \\ 
+  0.04 &   7 &  25 & regulation of catabolic process & Over \\ 
+  0.04 &   5 &  15 & signal transduction in response to DNA damage & Over \\ 
+  0.04 &   5 &  15 & G1/S transition of mitotic cell cycle & Over \\ 
+  0.04 &   5 &  15 & regulation of G1/S transition of mitotic cell cycle & Over \\ 
+  0.04 &   5 &  15 & mitotic cell cycle G1/S transition checkpoint & Over \\ 
+  0.04 &   5 &  15 & G1/S transition checkpoint & Over \\ 
+  0.04 &   5 &  15 & DNA damage response, signal transduction by p53 class mediator & Over \\ 
+  0.04 &   5 &  15 & regulation of cellular amine metabolic process & Over \\ 
+  0.04 &   6 &  20 & response to copper ion & Over \\ 
+  0.04 &  24 & 131 & cellular catabolic process & Over \\ 
+  0.05 &   4 &  11 & imaginal disc development & Over \\ 
+  0.05 &   4 &  11 & amine catabolic process & Over \\ 
+  0.05 &   4 &  11 & skeletal muscle organ development & Over \\ 
+  0.05 &  11 &  49 & mRNA metabolic process & Over \\ 
+  0.05 &   2 &   3 & nuclear mRNA cis splicing, via spliceosome & Over \\ 
+  0.05 &   2 &   3 & germ cell migration & Over \\ 
+  0.05 &   2 &   3 & positive regulation of mitotic metaphase/anaphase transition & Over \\ 
+  0.05 &   2 &   3 & mitotic centrosome separation & Over \\ 
+  0.05 &   2 &   3 & oligosaccharide catabolic process & Over \\ 
+  0.05 &   2 &   3 & spliceosomal conformational changes to generate catalytic conformation & Over \\ 
+  0.05 &   2 &   3 & amino acid transport & Over \\ 
+  0.05 &   2 &   3 & negative regulation of reproductive process & Over \\ 
+  0.05 &   2 &   3 & centrosome duplication & Over \\ 
+  0.05 &   2 &   3 & centrosome separation & Over \\ 
+  0.05 &   2 &   3 & protein tetramerization & Over \\ 
+  0.05 &   2 &   3 & protein homotetramerization & Over \\ 
+  0.00 &  15 & 201 & gene expression & Under \\ 
+  0.00 &   1 &  57 & cellular protein complex disassembly & Under \\ 
+  0.00 &   1 &  57 & macromolecular complex disassembly & Under \\ 
+  0.00 &   1 &  57 & protein complex disassembly & Under \\ 
+  0.00 &   1 &  57 & cellular macromolecular complex disassembly & Under \\ 
+  0.00 &   1 &  55 & pancreas development & Under \\ 
+  0.00 &   1 &  55 & endocrine pancreas development & Under \\ 
+  0.00 &   1 &  55 & endocrine system development & Under \\ 
+  0.00 &   1 &  55 & viral genome expression & Under \\ 
+  0.00 &   1 &  55 & viral transcription & Under \\ 
+  0.00 &   8 & 131 & transcription & Under \\ 
+  0.00 &   1 &  54 & translational termination & Under \\ 
+  0.00 &   4 &  89 & translation & Under \\ 
+  0.00 &   2 &  66 & cellular component disassembly & Under \\ 
+  0.00 &   2 &  66 & cellular component disassembly at cellular level & Under \\ 
+  0.01 &  14 & 178 & cellular macromolecule biosynthetic process & Under \\ 
+  0.01 &  22 & 243 & biosynthetic process & Under \\ 
+  0.01 &  22 & 240 & cellular biosynthetic process & Under \\ 
+  0.01 &  15 & 181 & macromolecule biosynthetic process & Under \\ 
+  0.01 &   2 &  57 & viral reproductive process & Under \\ 
+  0.01 &   2 &  57 & viral infectious cycle & Under \\ 
+  0.02 &   0 &  26 & positive regulation of intracellular protein kinase cascade & Under \\ 
+  0.03 &   1 &  38 & positive regulation of response to stimulus & Under \\ 
+  0.03 &   0 &  24 & oocyte differentiation & Under \\ 
+  0.03 &   0 &  23 & oocyte development & Under \\ 
+  0.03 &   0 &  23 & cation transport & Under \\ 
+  0.04 &   0 &  22 & positive regulation of MAPKKK cascade & Under \\ 
+  0.05 &  24 & 234 & growth & Under \\ 
+   \hline
+0.01 &   4 &   7 & small nuclear ribonucleoprotein complex & Over \\ 
+  0.01 &  31 & 164 & mitochondrion & Over \\ 
+  0.02 &   2 &   2 & Cajal body & Over \\ 
+  0.02 &   2 &   2 & U5 snRNP & Over \\ 
+  0.02 &   2 &   2 & U4/U6 x U5 tri-snRNP complex & Over \\ 
+  0.03 &  17 &  80 & mitochondrial part & Over \\ 
+  0.04 &   3 &   6 & nuclear speck & Over \\ 
+  0.04 &   5 &  15 & nuclear body & Over \\ 
+  0.04 &  14 &  65 & mitochondrial membrane & Over \\ 
+  0.05 &  14 &  66 & mitochondrial envelope & Over \\ 
+  0.05 &   2 &   3 & clathrin sculpted vesicle & Over \\ 
+  0.05 &   2 &   3 & plasma membrane respiratory chain complex I & Over \\ 
+  0.05 &   2 &   3 & plasma membrane respiratory chain & Over \\ 
+  0.05 &   2 &   3 & basement membrane & Over \\ 
+  0.05 &   2 &   3 & plant-type cell wall & Over \\ 
+  0.00 &   0 &  37 & large ribosomal subunit & Under \\ 
+  0.01 &   0 &  35 & cytosolic large ribosomal subunit & Under \\ 
+  0.01 &  28 & 280 & nucleus & Under \\ 
+  0.02 &  19 & 201 & non-membrane-bounded organelle & Under \\ 
+  0.02 &  19 & 201 & intracellular non-membrane-bounded organelle & Under \\ 
+  0.02 &   4 &  71 & nucleolus & Under \\ 
+  0.02 &   3 &  60 & cytosolic ribosome & Under \\ 
+  0.02 &   1 &  38 & plastid & Under \\ 
+  0.03 &   4 &  68 & cytosolic part & Under \\ 
+  0.03 &   1 &  36 & chloroplast & Under \\ 
+  0.05 &   5 &  73 & ribosome & Under \\ 
+   \hline
+\hline
+\end{longtable}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                               %%
+%% Additional Files              %%
+%%                               %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection*{Additional Files}
+
+File A\_crassus\_contigs\_full.csv lists all data computed on the contig
+level, including sequences (raw, coding, imputed). File
+A\_crassus\_contigs\_readable.csv lists only the metadata not including
+sequences.
+
+\end{bmcformat}
+\end{document}
