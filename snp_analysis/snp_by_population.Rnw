@@ -84,37 +84,14 @@ super.geno <- function (VCF.obj, snp.qual, gt.qual, sum=TRUE){
                           2, relative.h))}
   else {return(VAR.pop)}
 }
-
-
-## consistently over heterozygoszy-calling-thresholds european samples
-## are less heterozygot
-
-## super.geno(VCF, 0, 30)
-## super.geno(VCF, 0, 40)
-## super.geno(VCF, 0, 50)
-## super.geno(VCF, 0, 60)
-
-## super.geno(VCF, 10, 30)
-## super.geno(VCF, 10, 40)
-## super.geno(VCF, 10, 50)
-## super.geno(VCF, 10, 60)
-
-## super.geno(VCF, 30, 30)
-## super.geno(VCF, 30, 40)
-## super.geno(VCF, 30, 50)
   
 het.table <- as.data.frame(super.geno(VCF, 10, 10, TRUE))
 VAR.pop <- super.geno(VCF, 10, 10, FALSE)
 
-sep.gt <- function (gt.col){
-  l <- strsplit(as.character(gt.col), "/")
-  s <- lapply(l, function (x) {if (is.na(x[1])){ rep(x,2)}
-              else{x}})
-  unlist(s)}
-
 Rh <- VAR.pop[, c("10F", "179F", "KS4F", "M175", "UW07F")]
-### remove loci with only one allele
+rownames(Rh) <- paste(VAR.pop$contig, VAR.pop$base, sep=".")
 
+### remove loci with only one allele
 ## like this internal relationship does not work
 ## Rh <- Rh[ apply(Rh, 1, function (x) ("0/1"%in%x ) | ("0/0"%in%x & "1/1"%in%x) ), ]
 
@@ -123,7 +100,13 @@ Rh <- Rh[ apply(Rh, 1, function (x) ("0/1"%in%x & "0/0"%in%x  ) |
                 ("0/0"%in%x & "1/1"%in%x)|
                 ("0/1"%in%x & "1/1"%in%x)), ]
 
-number.hetero.info.snps <- nrow(Rh)
+geno.contigs <- length(unique(gsub("\\..*","",rownames(Rh))))
+
+sep.gt <- function (gt.col){
+  l <- strsplit(as.character(gt.col), "/")
+  s <- lapply(l, function (x) {if (is.na(x[1])){ rep(x,2)}
+              else{x}})
+  unlist(s)}
 
 Rh.data <- as.data.frame(rbind(sep.gt(Rh$"10F"),
                                sep.gt(Rh$"179F"),
@@ -132,9 +115,9 @@ Rh.data <- as.data.frame(rbind(sep.gt(Rh$"10F"),
                                sep.gt(Rh$"UW07F")))
 
 ## shows that it worked:
-ir.test <- hh(Rh.data, 100, "ir")
-hl.test <- hh(Rh.data, 100, "hl")
-hh.test <- hh(Rh.data, 100, "sh")
+ir.test <- hh(Rh.data, 1000, "ir")
+hl.test <- hh(Rh.data, 1000, "hl")
+hh.test <- hh(Rh.data, 1000, "sh")
 
 ## mean(ir.test)
 ## quantile(ir.test, probs=c(0.025, 0.975))
@@ -162,5 +145,13 @@ het.table <- cbind(het.table, hl(Rh.data))
 ## population. Evolution 53:1259-1267
 het.table <- cbind(het.table, sh(Rh.data))
 names(het.table) <- c("rel.het", "int.rel", "ho.loci", "std.het")
+
+rownames(het.table) <- gsub("179F", "T1", rownames(het.table))
+rownames(het.table) <- gsub("10F", "T2", rownames(het.table))
+rownames(het.table) <- gsub("KS4F", "E1", rownames(het.table))
+rownames(het.table) <- gsub("UW07F", "E2", rownames(het.table))
+rownames(het.table) <- gsub("M175", "M", rownames(het.table))
+
+het.table <- round(het.table,3)
 
 @ 

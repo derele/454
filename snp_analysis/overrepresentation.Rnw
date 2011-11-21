@@ -182,7 +182,7 @@ novel.dn.ds.80 <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.80) & !is
 
 # Set up the page
 
-png("../figures/conservation_dn_ds.png", width=2000, height=1000, res=144)
+png("../figures/Figure_5.png", width=2000, height=1000, res=144)
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(1, 2)))
 vplayout <- function(x, y)
@@ -276,12 +276,9 @@ sigP.80.p.MN <- ggplot(subset(contig.df, contig.df$AcMN & !is.na(novel.80) & !is
   opts(title="proportion of highCA contigs in SignalP category\nby evolutionary conseravation categories at bitsore threshold of 80", plot.background = theme_blank()) + 
   theme_bw()
 
-png("../figures/signal_novel.png", width=2000, height=2000, res=144)
+png("../figures/Figure_6.png", width=2000, height=2000, res=144)
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(2, 2)))
-vplayout <- function(x, y)
-    viewport(layout.pos.row = x, layout.pos.col = y)
-
 
 vp1 <- viewport(width = 0.54, height = 0.54, x = 0.25, y = 0.24)
 vp2 <- viewport(width = 0.54, height = 0.54, x = 0.25, y = 0.72)
@@ -304,5 +301,14 @@ dev.off()
 rnai.contigs <- table(contig.df[contig.df$Ac, "Ce.rnai"])
 
 u.rnai <- wilcox.test(dn.ds ~ Ce.rnai, data=dn.ds.df, conf.int = TRUE)
+
+f.rnai <- chisq.test(contig.df[contig.df$Ac, "novel.50"]%in%"conserved",
+                     contig.df[contig.df$Ac, "Ce.rnai"])
+
+con.rnai <- as.data.frame.matrix(table(contig.df[contig.df$Ac, "novel.50"]%in%"conserved",
+                                       contig.df[contig.df$Ac, "Ce.rnai"]))
+names(con.rnai) <- c("non.lethal","lethal")
+con.rnai <- round(transform(con.rnai, proportion=lethal/(non.lethal+lethal)*100),2)
+rownames(con.rnai) <- c("conserved", "other")
 
 @ 

@@ -106,12 +106,15 @@ trans.vers.parameter.plot <- ggplot(T, aes(ratioTS.TV,
                                            transversions+transitions,
                                            shape=as.factor(size),
                                            color=as.factor((width*2)+1))) +
-  geom_point(size=4) +
+  geom_point(size=4 ) +
   geom_smooth(aes(group = size<4), se=FALSE, method="lm") +
-  scale_x_continuous("ratio transistions/transversions") +
-  scale_y_continuous("total numter of snps found") +
-  scale_color_discrete("width of screening\nwindow around snp") +
-  scale_shape_discrete("homopolymer length\nthreshold for exclusion") #+
+  scale_x_continuous("ratio transistions/transversions (ti/tv)", legend=FALSE) +
+  scale_y_continuous("total numter of snps found", legend=FALSE,
+                     breaks=3:10*1000,  limits=c(2500, 11000)) +
+  scale_color_discrete("width of screening\nwindow around snp", legend=FALSE) +
+  scale_shape_discrete("homopolymer length\nthreshold for exclusion", legend=FALSE) +
+  theme_bw()
+
 ##  opts(title="Effect of parameters for homopolymer\nexclusion on the number of snps found and transversion/transition ratio")
 
 ## ## BASE ONTOLOGY
@@ -419,12 +422,14 @@ dn.ds.parameter.plot <- ggplot(T, aes(dn.ds,
                                       transversions+transitions,
                                       shape=as.factor(size),
                                       color=as.factor(width*2+1))) +
-                               geom_point(size=4) +
-                               geom_smooth(aes(group = size<4), se=FALSE, method="lm") +
-                               scale_x_reverse("ratio non-synonymous/synonymous snps") +
-                               scale_y_continuous("total numter of snps found") +
-                               scale_color_discrete("width of screening\nwindow around snp") +
-                               scale_shape_discrete("homopolymer length\nthreshold for exclusion")
+  geom_point(size=4) +
+  geom_smooth(aes(group = size<4), se=FALSE, method="lm") +
+  scale_x_reverse("ratio non-synonymous/synonymous snps (dn/ds)") +
+  scale_y_continuous("", breaks=3:10*1000, labels=rep("",8), limits=c(2500, 11000)) +
+  scale_color_discrete("width of screening\nwindow around snp") +
+  scale_shape_discrete("homopolymer length\nthreshold for exclusion") +
+  theme_bw()
+
                                ## opts(title="Effect of parameters for
                                ## homopolymer\nexclusion on the number
                                ## of snps found and\nratio of non-synonymous/synonymous snps")
@@ -443,7 +448,9 @@ position.perc.plot <- ggplot(VARq.plot[!is.na(VARq.plot$inFRAME),], aes(x = perc
                      breaks= seq(0, 52, by=2),
                      labels = c(seq(0, 48, by=2), ">50", "")) +
   scale_y_continuous("number of snps found") +
-  scale_fill_discrete("position in frame")
+  scale_fill_discrete("position in frame") +
+  theme_bw()
+
 
 effect.perc.plot <- ggplot(VARq.plot[!is.na(VARq.plot$effect),], aes(x = perc, fill = effect)) +
   stat_bin(binwidth=1, color="black", breaks=seq(0, 52, by=2),
@@ -452,7 +459,9 @@ effect.perc.plot <- ggplot(VARq.plot[!is.na(VARq.plot$effect),], aes(x = perc, f
                      breaks= seq(0, 52, by=2),
                      labels = c(seq(0, 48, by=2), ">50", "")) +
   scale_y_continuous("number of snps found") +
-  scale_fill_discrete("effect of snp")
+  scale_fill_discrete("effect of snp") +
+  theme_bw()
+
 
 VARq.plot$fromto <- VARq.plot$nfrom + VARq.plot$nto
 VARq.plot$fromto[VARq.plot$fromto>100] <- 101
@@ -464,7 +473,8 @@ position.cov.plot <- ggplot(VARq.plot[!is.na(VARq.plot$inFRAME),], aes(x = fromt
                      breaks = seq(0, 105, by=5),
                      labels = c(seq(0, 95, by=5), ">100", "")) +
   scale_y_continuous("number of snps found") +
-  scale_fill_discrete("position in frame")
+  scale_fill_discrete("position in frame") +
+  theme_bw()
 
 effect.cov.plot <- ggplot(VARq.plot[!is.na(VARq.plot$effect),], aes(x = fromto, fill = effect)) +
   stat_bin(binwidth=1, color="black", breaks=seq(0, 105, by=5),
@@ -473,7 +483,8 @@ effect.cov.plot <- ggplot(VARq.plot[!is.na(VARq.plot$effect),], aes(x = fromto, 
                      breaks = seq(0, 105, by=5),
                      labels = c(seq(0, 95, by=5), ">100", "")) +
   scale_y_continuous("number of snps found") +
-  scale_fill_discrete("effect of snp")
+  scale_fill_discrete("effect of snp") +
+  theme_bw()
 
 #### discard snps with <7% minority allel
 VARqp <- VARq[VARq$perc>7, ]
@@ -498,13 +509,19 @@ contig.df.wo <- merge(contig.df.wo, sy.per, by.x="contig", by.y="row.names", all
 
 dn.ds.coverage.plot.wo <- ggplot(contig.df.wo, aes(x = dn.ds, y= imputed.coverage)) +
   geom_point() +
-  scale_y_log10() +
-  stat_smooth(method="lm")
+  scale_y_log10("coverage of TUG") +
+  scale_x_continuous("ratio non-synonymous/synonymous snps (dn/ds)", breaks=1:8/2, limits=c(0,4)) + 
+  stat_smooth(method="lm") +
+  theme_bw()
+
+cov.lm.raw <- summary(lm(dn.ds ~ imputed.coverage, data=contig.df.wo))
 
 dn.ds.total.snps.plot.wo <- ggplot(contig.df.wo, aes(y=transversions+transitions, x=dn.ds)) +
   geom_point() +
   scale_y_continuous("total number of snps in contig") +
-  stat_smooth(method="lm")
+  stat_smooth(method="lm") +
+  theme_bw()
+
 
 ## With screening the percentage
 
@@ -527,18 +544,26 @@ contig.df <- merge(contig.df, sy.per, by.x="contig", by.y="row.names", all.x=TRU
 
 dn.ds.coverage.plot <- ggplot(contig.df, aes(x = dn.ds, y= imputed.coverage)) +
   geom_point() +
-  scale_y_log10() +
-  stat_smooth(method="lm")
+  scale_y_log10("coverage of TUG") +
+  scale_x_continuous("ratio non-synonymous/synonymous snps (dn/ds)", breaks=1:8/2, limits=c(0,4)) +
+  stat_smooth(method="lm") +
+  theme_bw()
+
+cov.lm <- summary(lm(dn.ds ~ imputed.coverage, data=contig.df))
 
 dn.ds.total.snps.plot <- ggplot(contig.df, aes(y=transversions+transitions, x=dn.ds)) +
   geom_point() +
   scale_y_continuous("total number of snps in contig") +
-  stat_smooth(method="lm")
+  stat_smooth(method="lm") +
+  theme_bw()
+
 
 ### The contigs looking like TS.TV~30 are the infinite values!
 
 dens.dn.ds <- ggplot(contig.df[!is.na(contig.df$dn.ds),],
-                     aes(dn.ds, ..count..)) + geom_bar(binwidth=0.1)
+                     aes(dn.ds, ..count..)) + geom_bar(binwidth=0.1) +
+  theme_bw()
+
 
 
 ## no need to  beta calc from http://www.biomedcentral.com/1471-2164/11/310
@@ -548,23 +573,24 @@ dens.dn.ds <- ggplot(contig.df[!is.na(contig.df$dn.ds),],
 
 <<echo=FALSE, results=hide>>=
 
-png("../figures/snp_ex_parameter_plots.png", width=2000, height=1000, res=144)
+png("../figures/Figure_3.png", width=2000, height=1000, res=144)
 
 # Set up the page
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(1, 2)))
-vplayout <- function(x, y)
-    viewport(layout.pos.row = x, layout.pos.col = y)
+
+vp1 <- viewport(width = 0.46,  height=0.98, x = 0.22, y = 0.5)
+vp2 <- viewport(width = 0.56,  height=0.98, x = 0.73, y = 0.5)
 
 # Make each plot, in the correct location
-print(trans.vers.parameter.plot, vp = vplayout(1, 1 ))
-print(dn.ds.parameter.plot, vp = vplayout(1, 2 ))
+print(trans.vers.parameter.plot, vp = vp1)
+print(dn.ds.parameter.plot, vp = vp2)
+grid.text("a", x=unit(0.01,"npc"), y=unit(0.98,"npc")) 
+grid.text("b", x=unit(0.46,"npc"), y=unit(0.98,"npc")) 
 
 dev.off() 
 
-
-png("../figures/snp_pos_eff_plots.png", width=5000, height=3000, res=288)
-
+png("../figures/Figure_4.png", width=5000, height=3000, res=288)
 # Set up the page
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(2, 2)))
@@ -573,30 +599,19 @@ vplayout <- function(x, y)
 
 # Make each plot, in the correct location
 print(position.perc.plot, vp = vplayout(1, 1 ))
-print(position.cov.plot, vp =vplayout(1, 2 ))
 print(effect.perc.plot, vp = vplayout(2, 1 ))
-print(effect.cov.plot, vp = vplayout(2, 2 ))
+print(dn.ds.coverage.plot.wo, vp = vplayout(1, 2 ))
+print(dn.ds.coverage.plot, vp = vplayout(2, 2 ))
+
+grid.text("a", x=unit(0.01,"npc"), y=unit(0.99,"npc")) 
+grid.text("b", x=unit(0.51,"npc"), y=unit(0.99,"npc")) 
+grid.text("c", x=unit(0.01,"npc"), y=unit(0.52,"npc")) 
+grid.text("d", x=unit(0.51,"npc"), y=unit(0.52,"npc")) 
+
 dev.off() 
 
 ggsave("../figures/dens_dn_ds.png", dens.dn.ds)
 
-
-png("../figures/dn_ds_scales.png", width=2000, height=1000, res=144)
-
-# Set up the page
-grid.newpage()
-pushViewport(viewport(layout = grid.layout(2, 2)))
-vplayout <- function(x, y)
-    viewport(layout.pos.row = x, layout.pos.col = y)
-
-# Make each plot, in the correct location
-print(dn.ds.total.snps.plot.wo, vp = vplayout(1, 1 ))
-print(dn.ds.coverage.plot.wo, vp = vplayout(1, 2 ))
-
-print(dn.ds.total.snps.plot, vp = vplayout(2, 1 ))
-print(dn.ds.coverage.plot, vp = vplayout(2, 2 ))
-
-dev.off() 
 @ 
 
 

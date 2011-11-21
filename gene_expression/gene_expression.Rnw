@@ -6,14 +6,14 @@
 ## ie. bam <- scanBam("/home/ele/Data/RNAseq/mapping/AJ_T19M_1.bam", param=param)
 
 ## Rsamtools
-what <- c("rname")# , "strand", "pos", "qwidth", "seq")
-param <- ScanBamParam(what = what)
+what <- c("rname")
+param <- ScanBamParam(what = what) # , "strand", "pos", "qwidth", "seq")
   
 files <- list.files("/home/ele/Data/454/mapping/mapping_each_lib/", "*sorted.bam$")
 
-counts.for.files <- function (files){
+counts.for.files <- function (f){
   countsList <- list()
-  for (fi in files) {
+  for (fi in f) {
     bam <- scanBam(paste("/home/ele/Data/454/mapping/mapping_each_lib/", fi, sep=""), param=param)
     counts <- table(bam[[1]]$rname)
     counts.frame <- as.data.frame(counts)
@@ -72,8 +72,8 @@ counts$all.reads <- apply(counts[,2:length(counts)], 1, sum)
 contig.df <- merge(contig.df, counts, all.x=TRUE)
 
 ## discard all non Ac matches
-cst <- contig.df[contig.df$Ac, c("E1", "E2", "L2", "M", "T1", "T2")]
-rownames(cst) <- contig.df[contig.df$Ac, "contig"]
+cst <- contig.df[contig.df$AcMN, c("E1", "E2", "L2", "M", "T1", "T2")]
+rownames(cst) <- contig.df[contig.df$AcMN, "contig"]
 
 cst <- cst[rowSums(cst)>48, ]
 cst <- cst[!is.na(cst$E1),]
@@ -117,43 +117,61 @@ bm.diff <- exp.get.3.diff(bst)
 wst <- contig.df[contig.df$Ac, c("Ce.hit", "E1", "E2", "L2", "M", "T1", "T2")]
 wst <- wst[!is.na(wst$Ce.hit),]
 wst <- do.call("rbind", by(wst, wst$Ce.hit, function (x) colSums(x[,2:7])))
-wst <- wst[rowSums(bst)>48, ]
+wst <- wst[rowSums(wst)>48, ]
 wst <- wst[!is.na(wst[,"E1"]),]
 
 ce.diff <- exp.get.3.diff(wst)
 
-mf <- merge(contig.df[,c("contig", "Bm.hit", "Ce.hit")],
-             contig.diff[[2]][,c("id", "padj")],
-             by.x="contig", by.y="id")
+mf <- merge(contig.df[,c("contig", "Bm.hit", "Bm.annot",  "Ce.hit",  "Ce.annot",
+                         "T1", "T2","E1", "E2")],
+            contig.diff[[2]][,c("id", "padj", "log2FoldChange")],
+            by.x="contig", by.y="id")
 
-mf <- merge(mf, bm.diff[[2]][,c("id", "padj")],
+mf <- merge(mf, bm.diff[[2]][,c("id", "padj", "log2FoldChange")],
             by.x="Bm.hit", by.y="id", 
-            all.x=TRUE)
+            all=TRUE)
 
 mf <- merge(mf, ce.diff[[2]][,c("id", "padj")],
             by.x="Ce.hit", by.y="id", 
-            all.x=TRUE)
+            all=TRUE)
 
+the22 <- head(mf[order(mf$padj.x), ], n=22)
 
-eel <- merge(contig.df[,c("contig", "Bm.hit", "Ce.hit", "Bm.annot", "Ce.annot")],
-             contig.diff[[1]][,c("id", "padj")],
+eel <- merge(contig.df[,c("contig", "Bm.hit", "Bm.annot",  "Ce.hit",  "Ce.annot",
+                          "T1", "T2","E1", "E2")],
+             contig.diff[[1]][,c("id", "padj", "log2FoldChange")],
              by.x="contig", by.y="id")
 
-eel <- merge(eel, bm.diff[[1]][,c("id", "padj")],
+eel <- merge(eel,bm.diff[[1]][,c("id", "padj", "log2FoldChange")],
             by.x="Bm.hit", by.y="id", 
-            all.x=TRUE)
+            all=TRUE)
 
-eel <- merge(eel, ce.diff[[1]][,c("id", "padj")],
+eel <- merge(eel, ce.diff[[1]][,c("id", "padj", "log2FoldChange")],
             by.x="Ce.hit", by.y="id", 
-            all.x=TRUE)
+            all=TRUE)
 
 
 
-## resSig.ad <- subset(res.ad, padj < .1)
-## sig.ad.contigs <- resSig.ad$id
-## sig.ad.counts <- cst[sig.ad.contigs, ]
+## the orthologous groups...
+## collagens
+## col.pep <- contig.df[contig.df$Bm.hit%in%"UniRef100_A8NIG1", c("Ac.pep")]
+## names(col.pep) <- contig.df[contig.df$Bm.hit%in%"UniRef100_A8NIG1", c("contig")]
+## write.sequence(col.pep, "/home/ele/colpep.fasta")
 
+## col.nuc <- contig.df[contig.df$Bm.hit%in%"UniRef100_A8NIG1", c("seq")]
+## names(col.nuc) <- contig.df[contig.df$Bm.hit%in%"UniRef100_A8NIG1", c("contig")]
+## write.sequence(col.nuc, "/home/ele/colnuc.fasta")
 
+## Phosphoenolpyruvate carboxykinase
+## pcarb.pep <- contig.df[contig.df$Bm.hit%in%"UniRef100_A8PGZ3", c("Ac.pep")]
+## names(pcarb.pep) <- contig.df[contig.df$Bm.hit%in%"UniRef100_A8PGZ3", c("contig")]
+## write.sequence(pcarb.pep, "/home/ele/pcarbpep.fasta")
+
+## pcarb.nuc <- contig.df[contig.df$Bm.hit%in%"UniRef100_A8PGZ3", c("seq")]
+## names(pcarb.nuc) <- contig.df[contig.df$Bm.hit%in%"UniRef100_A8PGZ3", c("contig")]
+## write.sequence(pcarb.nuc, "/home/ele/pcarbnuc.fasta")
+
+## look at correlations
 ## vsd <- getVarianceStabilizedData( cds.mf )
 ## dists <- dist( t( vsd ) )
 ## idists <- as.matrix(dists)

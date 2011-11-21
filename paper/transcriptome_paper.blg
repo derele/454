@@ -4,44 +4,48 @@ The style file: bmc_article.bst
 Reallocated wiz_functions (elt_size=4) to 6000 items from 240518171576.
 Database file #1: /home/ele/bibtex/master.bib
 Database file #2: /home/ele/bibtex/master2.bib
-You've used 74 entries,
+Warning--you've exceeded 5000, the global-string-size, for entry pmid21653522
+while executing--line 3737 of file bmc_article.bst
+*Please notify the bibstyle designer*
+You've used 73 entries,
             3603 wiz_defined-function locations,
-            1155 strings with 25157 characters,
-and the built_in function-call counts, 216157 in all, are:
-= -- 19694
-> -- 1595
-< -- 579
-+ -- 1739
-- -- 507
-* -- 25760
-:= -- 36668
-add.period$ -- 148
-call.type$ -- 74
-change.case$ -- 510
+            1151 strings with 36227 characters,
+and the built_in function-call counts, 322212 in all, are:
+= -- 28340
+> -- 3808
+< -- 1316
++ -- 3950
+- -- 1245
+* -- 41845
+:= -- 51458
+add.period$ -- 146
+call.type$ -- 73
+change.case$ -- 1248
 chr.to.int$ -- 0
-cite$ -- 74
-duplicate$ -- 13417
-empty$ -- 17230
-format.name$ -- 2086
-if$ -- 42200
+cite$ -- 73
+duplicate$ -- 23962
+empty$ -- 24415
+format.name$ -- 5036
+if$ -- 61679
 int.to.chr$ -- 0
-int.to.str$ -- 148
-missing$ -- 4245
-newline$ -- 1580
-num.names$ -- 149
-pop$ -- 2786
+int.to.str$ -- 146
+missing$ -- 6422
+newline$ -- 2314
+num.names$ -- 147
+pop$ -- 3470
 preamble$ -- 1
 purify$ -- 0
-quote$ -- 148
-skip$ -- 1315
+quote$ -- 146
+skip$ -- 1284
 stack$ -- 0
-substring$ -- 35691
-swap$ -- 3033
-text.length$ -- 145
+substring$ -- 46723
+swap$ -- 4509
+text.length$ -- 143
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 6
 warning$ -- 0
-while$ -- 1064
-width$ -- 76
-write$ -- 3489
+while$ -- 1797
+width$ -- 75
+write$ -- 6435
+(There was 1 warning)

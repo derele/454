@@ -151,7 +151,7 @@ annotationVennMN <- venn.diagram(list(GO   = match(GOannotations.MN, Allannotati
 not.annot <- nrow(contig.df[contig.df$Ac & !contig.df$contig%in%Allannotations,])
 not.annot.MN <- nrow(contig.df[contig.df$AcMN & !contig.df$contig%in%Allannotations.MN,])
 
-png("/home/ele/thesis/454/figures/annotataionVenn.png", width=400, height=600)
+png("/home/ele/thesis/454/figures/Figure_1.png", width=400, height=600)
 vp1 <- viewport(x=0.01, y=0.5, w=0.98, h=0.51,
                 just=c("left", "bottom"))
 vp2 <- viewport(x=0.01, y=0, w=0.98, h=0.49,
@@ -170,4 +170,31 @@ grid.draw(annotationVennMN)
 pop.viewport()
 dev.off()            
 
+
+all.identifier <- length(contig.df[contig.df$Ac & contig.df$contig%in%GOannotations &
+                                   contig.df$contig%in%ECannotations &
+                                   contig.df$contig%in%KEGGannotations, "contig"
+                                   ])
+
+any.blast.annot <- nrow(contig.df[contig.df$Ac &
+                                  (!is.na(contig.df$Bm.hit) |
+                                   !is.na(contig.df$Ce.hit) |
+                                   !is.na(contig.df$nempep.hit) |
+                                   !is.na(contig.df$nr.bit)), ])
+
+perc.any.annot <- (any.blast.annot/nrow(contig.df[contig.df$Ac,]))*100
+
+any.blast.annot.MN <- nrow(contig.df[contig.df$AcMN &
+                                  (!is.na(contig.df$Bm.hit) |
+                                   !is.na(contig.df$Ce.hit) |
+                                   !is.na(contig.df$nempep.hit) |
+                                   !is.na(contig.df$nr.bit)), ])
+
+perc.any.annot.MN <- (any.blast.annot.MN/nrow(contig.df[contig.df$AcMN,]))*100
+
+
+
+
+summary.factor(contig.df[contig.df$Ac & 
+!contig.df$contig%in%Allannotations, "contig"]%in%contig.df[contig.df$Ac & (!is.na(contig.df$Bm.hit) | !is.na(contig.df$Ce.hit) | !is.na(contig.df$nempep.hit) | !is.na(contig.df$nr.bit)),"contig"])
 @ 
