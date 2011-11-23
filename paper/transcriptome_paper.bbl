@@ -530,6 +530,13 @@ Veuthey AL, Bittar G: \textbf{{{P}hylogenetic relationships of fungi, plantae,
   and animalia inferred from homologous comparison of ribosomal proteins}}.
   \emph{J. Mol. Evol.} 1998, \textbf{47}:81--92.
 
+\bibitem{wielgoss_population_2008}
+Wielgoss S, Taraschewski H, Meyer A, Wirth T: \textbf{Population structure of
+  the parasitic nematode Anguillicola crassus, an invader of declining North
+  Atlantic eel stocks}. \emph{Molecular Ecology} 2008,
+  \textbf{17}(15):3478--95,
+  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/18727770]}.
+
 \bibitem{pmid15275275}
 Scott AL: \textbf{{{N}ematode sperm}}. \emph{Parasitol. Today (Regul. Ed.)}
   1996, \textbf{12}:425--430.
@@ -2727,6 +2734,24 @@ d=1279744</url>
 </bibl>
 
 <bibl id="B76">
+  <title><p>Population structure of the parasitic nematode Anguillicola
+  crassus, an invader of declining North Atlantic eel stocks</p></title>
+  <aug>
+    <au><snm>Wielgoss</snm><fnm>S</fnm></au>
+    <au><snm>Taraschewski</snm><fnm>H</fnm></au>
+    <au><snm>Meyer</snm><fnm>A</fnm></au>
+    <au><snm>Wirth</snm><fnm>T</fnm></au>
+  </aug>
+  <source>Molecular Ecology</source>
+  <pubdate>2008</pubdate>
+  <volume>17</volume>
+  <issue>15</issue>
+  <fpage>3478</fpage>
+  <lpage>-95</lpage>
+  <url>http://www.ncbi.nlm.nih.gov/pubmed/18727770</url>
+</bibl>
+
+<bibl id="B77">
   <title><p>{{N}ematode sperm}</p></title>
   <aug>
     <au><snm>Scott</snm><fnm>A. L.</fnm></au>

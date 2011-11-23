@@ -162,15 +162,11 @@ n.fish <- nrow(contig.df[contig.df$contamination%in%c("eelmRNA", "eelrRNA") |
                  contig.df$phylum.nr=="Chordata"|
                  contig.df$phylum.nt=="Chordata", ])
 
-other.king <- summary.factor(contig.df[!contig.df$Ac &
-                                       !contig.df$seq.origin%in%c("Nematoda", "No_hit",
-                                                                  "eelmRNA", "Chordata", "AcrRNA"),
-                             "kingdom.nr"])
-
-other.phyl <- summary.factor(contig.df[!contig.df$Ac &
-                                       !contig.df$seq.origin%in%c("Nematoda", "No_hit",
-                                                                  "eelmRNA", "Chordata", "AcrRNA"),
-                             "phylum.nr"])
+other.king <- table(contig.df[!(contig.df$contamination%in%c("eelmRNA", "eelrRNA", "AcrRNA") |
+                                contig.df$phylum.nr%in%c("Chordata") |
+                                contig.df$phylum.nt%in%c("Chordata")) & 
+                              !(contig.df$kingdom.nt%in%c("Metazoa", "No_hit") &
+                                contig.df$kingdom.nr%in%c("Metazoa", "No_hit")), "kingdom.nr"])
 
 ## table(contig.df[contig.df$superkingdom.nr%in%"Bacteria",
 ##                 c( "phylum.nr")])

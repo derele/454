@@ -7,45 +7,45 @@ Database file #2: /home/ele/bibtex/master2.bib
 Warning--you've exceeded 5000, the global-string-size, for entry pmid21653522
 while executing--line 3737 of file bmc_article.bst
 *Please notify the bibstyle designer*
-You've used 76 entries,
+You've used 77 entries,
             3603 wiz_defined-function locations,
-            1166 strings with 36631 characters,
-and the built_in function-call counts, 326911 in all, are:
-= -- 28785
-> -- 3826
-< -- 1324
-+ -- 3974
-- -- 1250
-* -- 42341
-:= -- 52284
-add.period$ -- 152
-call.type$ -- 76
-change.case$ -- 1256
+            1172 strings with 36919 characters,
+and the built_in function-call counts, 329654 in all, are:
+= -- 29040
+> -- 3839
+< -- 1329
++ -- 3989
+- -- 1254
+* -- 42663
+:= -- 52765
+add.period$ -- 154
+call.type$ -- 77
+change.case$ -- 1260
 chr.to.int$ -- 0
-cite$ -- 76
-duplicate$ -- 24251
-empty$ -- 24774
-format.name$ -- 5058
-if$ -- 62617
+cite$ -- 77
+duplicate$ -- 24394
+empty$ -- 25001
+format.name$ -- 5075
+if$ -- 63155
 int.to.chr$ -- 0
-int.to.str$ -- 152
-missing$ -- 6547
-newline$ -- 2358
-num.names$ -- 153
-pop$ -- 3580
+int.to.str$ -- 154
+missing$ -- 6596
+newline$ -- 2378
+num.names$ -- 155
+pop$ -- 3611
 preamble$ -- 1
 purify$ -- 0
-quote$ -- 152
-skip$ -- 1346
+quote$ -- 154
+skip$ -- 1361
 stack$ -- 0
-substring$ -- 47432
-swap$ -- 4583
-text.length$ -- 148
+substring$ -- 47933
+swap$ -- 4623
+text.length$ -- 150
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 8
 warning$ -- 0
-while$ -- 1821
-width$ -- 78
-write$ -- 6508
+while$ -- 1833
+width$ -- 79
+write$ -- 6546
 (There was 1 warning)

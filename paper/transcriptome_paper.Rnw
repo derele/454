@@ -703,9 +703,9 @@ Ectocarpaceae, 180 hits) and Stramenopiles (Albuginaceae, 63 hits) to
 Kinetoplasitda (Trypanosomatidae, 26 hits) and Heterolobosea
 (Vahlkampfiidae, 38 hits).
 
-Additionally we found \Sexpr{other.king["Fungi"]} TUGs with hits to
+Additionally we found \Sexpr{other.king[["Fungi"]]} TUGs with hits to
 fungi (e.g Ajellomycetaceae, 53 hits) and
-\Sexpr{other.king["Viridiplantae"]} TUGs with hits to plants.
+\Sexpr{other.king[["Viridiplantae"]]} TUGs with hits to plants.
 
 Hits outside the Eukaryota were mainly to Bacteria (825 hits) and
 within those mostly to members of the Proteobacteria (484 hits). No
@@ -842,10 +842,11 @@ an undetermined (N) base in the reference, and retained
 \Sexpr{round(raw.ts.tv[["ratioTS.TV"]],2)} . Using the prot4EST
 predictions and the corrected sequences, \Sexpr{nrawOrf[["TRUE"]]} of
 the SNPs were predicted to be inside an ORF, with
-\Sexpr{nrawFrame[[1]]} at codon first positions, \Sexpr{nrawFrame[[2]]}
-at second positions and \Sexpr{nrawFrame[[3]]} at third positions. As
-expected ti/tv inside ORFs (tsv.raw.orf[2,3]) was higher than outside
-ORFs (tsv.raw.orf[1,3]). The ratio of synonymous polymorphisms per
+\Sexpr{nrawFrame[[1]]} at codon first positions,
+\Sexpr{nrawFrame[[2]]} at second positions and \Sexpr{nrawFrame[[3]]}
+at third positions. As expected ti/tv inside ORFs
+(\Sexpr{tsv.raw.orf[2,3]}) was higher than outside ORFs
+(\Sexpr{tsv.raw.orf[1,3]}). The ratio of synonymous polymorphisms per
 synonymous site to non-synonymous polymorphisms per non-synonymous
 site (dn/ds) was \Sexpr{raw.dn.ds}. We filtered these SNPs to exclude
 those that might be associated with analytical bias. As Roche 454
@@ -1096,7 +1097,7 @@ truly a representative partial genome
 \cite{parkinson_partigene--constructing_2004} of a parasitic nematode.
 
 Analysis of conservation identified more sequence novel in Nematode
-than in the eukaryote kingdom or in Clade III this is in agreement
+than in the eukaryote kingdom or in clade III this is in agreement
 with prevalence of genic novelty in the Nematoda
 \cite{wasmuth_extent_2008}. Furthermore the basal position of
 \textit{A. crassus} in clade III could be leading to most novelty in
@@ -1135,28 +1136,29 @@ between populations. Screening of SNPs in or adjacent to homopolymer
 regions improved overall measurements of SNP quality. The ratio of
 transitions to transversions (ti/tv) increased. Such an increase is
 explained by the removal of “noise” associated with common homopolymer
-errors \cite{pmid21685085}. The value of raw.ts.tv[,3]
-(tsv.raw.orf[1,3] outside, tsv.raw.orf[2,3] inside ORFs) is in good
-agreement with the overall ti/tv of humans (2.16 \cite{pmid21169219})
-or \textit{Drosophila} (2.07 \cite{pmid21143862}). The ratio of
-non-synonymous SNPs per non-synonymous site to synonymous SNPs per
-synonymous site (dn/ds) decreased with removal of SNPs adjacent to
-homopolymer regions from \Sexpr{raw.dn.ds} to
-\Sexpr{round(mean(dn.ds.df$dn.ds),3)#$} after full screening. The most
-plausible explanation is the removal of error, as unbiased error would
-lead to a dn/ds of 1. While dn/ds is not unproblematic to interpret
-within populations \cite{pmid19081788}, the assumption of negative
-(purifying) selection on most protein-coding genes makes lower mean
-values seem more plausible. We used a threshold value for the minority
-allele of 7\% for exclusion of SNPs, based on an estimate that
-approximately 10 haploid equivalents were sampled (5 individual worms
-plus an negligible contribution from L2 larvae in the L2 library and
-within the female adult worms). The benefit of this screening was
-mainly a reduction of non-synonymous SNPs in high coverage contigs,
-and a removal of the dependence of dn/ds on coverage. Working with an
-estimate of dn/ds independent of coverage, efforts to control for
-sampling biased by depth (i.e. coverage; see \cite{pmid18590545} and
-\cite{pmid20478048}) could be avoided.
+errors \cite{pmid21685085}. The value of \Sexpr{raw.ts.tv[,3]}
+(\Sexpr{tsv.raw.orf[1,3]} outside, \Sexpr{tsv.raw.orf[2,3]} inside
+ORFs) is in good agreement with the overall ti/tv of humans (2.16
+\cite{pmid21169219}) or \textit{Drosophila} (2.07
+\cite{pmid21143862}). The ratio of non-synonymous SNPs per
+non-synonymous site to synonymous SNPs per synonymous site (dn/ds)
+decreased with removal of SNPs adjacent to homopolymer regions from
+\Sexpr{raw.dn.ds} to \Sexpr{round(mean(dn.ds.df$dn.ds),3)#$} after
+full screening. The most plausible explanation is the removal of
+error, as unbiased error would lead to a dn/ds of 1. While dn/ds is
+not unproblematic to interpret within populations \cite{pmid19081788},
+the assumption of negative (purifying) selection on most
+protein-coding genes makes lower mean values seem more plausible. We
+used a threshold value for the minority allele of 7\% for exclusion of
+SNPs, based on an estimate that approximately 10 haploid equivalents
+were sampled (5 individual worms plus an negligible contribution from
+L2 larvae in the L2 library and within the female adult worms). The
+benefit of this screening was mainly a reduction of non-synonymous
+SNPs in high coverage contigs, and a removal of the dependence of
+dn/ds on coverage. Working with an estimate of dn/ds independent of
+coverage, efforts to control for sampling biased by depth
+(i.e. coverage; see \cite{pmid18590545} and \cite{pmid20478048}) could
+be avoided.
 
 *** you corrected up to her last time
 
@@ -1201,9 +1203,9 @@ strong negative selection.
 Genotyping of individual worms identified a set of \Sexpr{nrow(Rh)}
 SNPs with highest credibility and a high information content for
 population-genetic studies. Levels of genome-wide heterozygosity found
-for the 5 adult worms examined in our study are in agreement with a
-microsattelite data showing reduced heterozygosity in European
-populations of \textit{A. crassus}. 
+for the 5 adult worms examined in our study are in agreement with
+microsattelite data \cite{wielgoss_population_2008} showing reduced
+heterozygosity in European populations of \textit{A. crassus}.
 
 We were able to use the DESeq \cite{pmid20979621} to report
 transcripts significantly differing in expression between male and
@@ -1597,7 +1599,7 @@ print(xtable(het.table))
 \tiny
 <<echo=FALSE, results=tex>>=
 the.tab <- xtable(the22)
-align(the.tab) <- "llllp{3cm}p{3cm}rrrrrrrrrrr"
+align(the.tab) <- "llllp{2cm}p{2cm}rrrrrrrrrrr"
 
 print(the.tab, include.rownames=FALSE, floating.environment = "sidewaystable")
 @ 
