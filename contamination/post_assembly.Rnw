@@ -68,11 +68,12 @@ nt <- cbind(nt, gi.nt.blast)
 
 gis.nt <- unique(gi.nt.blast)
 write(as.character(gis.nt), "/home/ele/Data/454/post_assembly_screening/tmp-nt.acc")
-taxa.nt <- read.delim( pipe ("/home/ele/thesis/454/tax4gi_nt.pl /home/ele/Data/454/post_assembly_screening/tmp-nt.acc"), header=FALSE, sep=",", as.is=TRUE)
-names(taxa.nt) <- c("gi.nt.blast", "taxid.nt", "family.nt", "phylum.nt", "kingdom.nt")
+taxa.nt <- read.delim( pipe("/home/ele/thesis/454/tax4gi_nt.pl /home/ele/Data/454/post_assembly_screening/tmp-nt.acc"), header=FALSE, sep=",", as.is=TRUE)
+names(taxa.nt) <- c("gi.nt.blast", "taxid.nt", "family.nt", "phylum.nt",
+                    "kingdom.nt", "superkingdom.nt")
 nt <- merge(nt, taxa.nt, all.x=TRUE)
 
-contig.df <- merge(contig.df, nt[, c(2, 14:17)], by.x="contig", by.y="V1", all.x=TRUE)
+contig.df <- merge(contig.df, nt[, c(2, 14:18)], by.x="contig", by.y="V1", all.x=TRUE)
 contig.df[is.na(contig.df$taxid.nt) | contig.df$taxid.nt==0,
           (length(contig.df)-2):length(contig.df)] <- "No_hit"
 
@@ -85,14 +86,15 @@ nr <- cbind(nr, gi.nr.blast)
 gis.nr <- unique(gi.nr.blast)
 write(as.character(gis.nr), "/home/ele/Data/454/post_assembly_screening/tmp-nr.acc")
 
-taxa.nr <- read.delim( pipe ("/home/ele/thesis/454/tax4gi_nr.pl /home/ele/Data/454/post_assembly_screening/tmp-nr.acc"), header=FALSE, sep=",", as.is=TRUE)
+taxa.nr <- read.delim( pipe("/home/ele/thesis/454/tax4gi_nr.pl /home/ele/Data/454/post_assembly_screening/tmp-nr.acc"), header=FALSE, sep=",", as.is=TRUE)
 ## 1 entry changed from my blast to taxonomy version
 ## -> no information available, moved to "no-hit category"
 taxa.nr[taxa.nr$taxid.nr==0, c(3:5)] <- NA
-names(taxa.nr) <- c("gi.nr.blast", "taxid.nr", "family.nr", "phylum.nr", "kingdom.nr")
+names(taxa.nr) <- c("gi.nr.blast", "taxid.nr", "family.nr", "phylum.nr",
+                    "kingdom.nr", "superkingdom.nr")
 nr <- merge(nr, taxa.nr, all.x=TRUE)
 
-contig.df <- merge(contig.df, nr[, c(2, 14:17)], by.x="contig", by.y="V1", all.x=TRUE)
+contig.df <- merge(contig.df, nr[, c(2, 14:18)], by.x="contig", by.y="V1", all.x=TRUE)
 contig.df[is.na(contig.df$taxid.nr) | contig.df$taxid.nr==0,
           (length(contig.df)-2):length(contig.df)] <- "No_hit"
 
@@ -156,8 +158,9 @@ contig.df$AcMN <- select_AC_MN
 n_su_Ac <- nrow(contig.df[contig.df$Ac, ])
 n_suMN_Ac <- nrow(contig.df[contig.df$AcMN, ])
 
-contig.df$seq.origin <- contig.df$contamination
-contig.df[!contig.df$phylum.nr%in%c("Nematoda", "No_hit"),  "seq.origin"] <- contig.df[!contig.df$phylum.nr%in%c("Nematoda", "No_hit"), "phylum.nr"]
+n.fish <- nrow(contig.df[contig.df$contamination%in%c("eelmRNA", "eelrRNA") |
+                 contig.df$phylum.nr=="Chordata"|
+                 contig.df$phylum.nt=="Chordata", ])
 
 other.king <- summary.factor(contig.df[!contig.df$Ac &
                                        !contig.df$seq.origin%in%c("Nematoda", "No_hit",
@@ -168,5 +171,23 @@ other.phyl <- summary.factor(contig.df[!contig.df$Ac &
                                        !contig.df$seq.origin%in%c("Nematoda", "No_hit",
                                                                   "eelmRNA", "Chordata", "AcrRNA"),
                              "phylum.nr"])
+
+## table(contig.df[contig.df$superkingdom.nr%in%"Bacteria",
+##                 c( "phylum.nr")])
+
+## table(contig.df[!contig.df$superkingdom.nr%in%"Eukaryota",
+##                 c( "superkingdom.nr")])
+
+
+## table(contig.df[contig.df$superkingdom.nr%in%"Eukaryota"&
+##                 contig.df$kingdom.nr%in%"undef"&
+##                 contig.df$phylum.nr%in%"undef",
+##                 c("family.nr")])
+
+## table(contig.df[!contig.df$superkingdom.nr%in%"Eukaryota",
+##                 c("superkingdom.nr")])
+
+## write.sequence(contig.df[contig.df$superkingdom.nr%in%"Viruses", "seq"],
+## "/home/ele/virus.fasta")
 
 @ 

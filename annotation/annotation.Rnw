@@ -194,7 +194,4 @@ perc.any.annot.MN <- (any.blast.annot.MN/nrow(contig.df[contig.df$AcMN,]))*100
 
 
 
-
-summary.factor(contig.df[contig.df$Ac & 
-!contig.df$contig%in%Allannotations, "contig"]%in%contig.df[contig.df$Ac & (!is.na(contig.df$Bm.hit) | !is.na(contig.df$Ce.hit) | !is.na(contig.df$nempep.hit) | !is.na(contig.df$nr.bit)),"contig"])
 @ 

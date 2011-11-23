@@ -260,6 +260,10 @@ Koboldt DC, Chen K, Wylie T, Larson DE, McLellan MD, Mardis ER, Weinstock GM,
   parallel sequencing of individual and pooled samples}}. \emph{Bioinformatics}
   2009, \textbf{25}:2283--2285.
 
+\bibitem{pmid17098774}
+Falcon S, Gentleman R: \textbf{{{U}sing {G}{O}stats to test gene lists for
+  {G}{O} term association}}. \emph{Bioinformatics} 2007, \textbf{23}:257--258.
+
 \bibitem{pmid21653522}
 Danecek P, Auton A, Abecasis G, Albers CA, Banks E, DePristo MA, Handsaker RE,
   Lunter G, Marth GT, Sherry ST, McVean G, Durbin R, Durbin R, Altshuler D,
@@ -350,6 +354,16 @@ ColtMan W, G PJ, A SJ, ton JM P: \textbf{Parasite-mediated selection against
   inbred Soay sheep in a free-living, island population}. \emph{Evolution}
   1999, \textbf{81}:1259--1267.
 
+\bibitem{rsamtools}
+Morgan M, Pag\`es H: \emph{{R}samtools: Import aligned BAM file format
+  sequences into R /
+  Bioconductor}\urlprefix\url{[http://bioconductor.org/packages/release/bioc/h%
+tml/Rsamtools.html]}. [R package version 1.4.3].
+
+\bibitem{pmid20979621}
+Anders S, Huber W: \textbf{{{D}ifferential expression analysis for sequence
+  count data}}. \emph{Genome Biol.} 2010, \textbf{11}:R106.
+
 \bibitem{R_project}
 {R Development Core Team}: \emph{R: A language and environment for statistical
   computing}. R Foundation for Statistical Computing, Vienna, Austria 2009,
@@ -382,10 +396,6 @@ Balzer S, Malde K, Jonassen I: \textbf{{{S}ystematic exploration of error
   sources in pyrosequencing flowgram data}}. \emph{Bioinformatics} 2011,
   \textbf{27}:i304--309.
 
-\bibitem{pmid20979621}
-Anders S, Huber W: \textbf{{{D}ifferential expression analysis for sequence
-  count data}}. \emph{Genome Biol.} 2010, \textbf{11}:R106.
-
 \bibitem{pmid21138572}
 Schwartz TS, Tae H, Yang Y, Mockaitis K, Van~Hemert JL, Proulx SR, Choi JH,
   Bronikowski AM: \textbf{{{A} garter snake transcriptome: pyrosequencing, de
@@ -408,6 +418,12 @@ Emmersen J, Rudd S, Mewes HW, Tetko IV: \textbf{{{S}eparation of sequences from
   host-pathogen interface using triplet nucleotide frequencies}}. \emph{Fungal
   Genet. Biol.} 2007, \textbf{44}:231--241,
   \urlprefix\url{[http://dx.doi.org/10.1016/j.fgb.2006.11.010]}.
+
+\bibitem{pmid20478048}
+O'Neil ST, Dzurisin JD, Carmichael RD, Lobo NF, Emrich SJ, Hellmann JJ:
+  \textbf{{{P}opulation-level transcriptome sequencing of nonmodel organisms
+  {E}rynnis propertius and {P}apilio zelicaon}}. \emph{BMC Genomics} 2010,
+  \textbf{11}:310.
 
 \bibitem{pmid21364769}
 Gregory R, Darby AC, Irving H, Coulibaly MB, Hughes M, Koekemoer LL, Coetzee M,
@@ -466,12 +482,6 @@ Novaes E, Drost DR, Farmerie WG, Pappas GJ, Grattapaglia D, Sederoff RR, Kirst
   grandis, an uncharacterized genome}}. \emph{BMC Genomics} 2008,
   \textbf{9}:312.
 
-\bibitem{pmid20478048}
-O'Neil ST, Dzurisin JD, Carmichael RD, Lobo NF, Emrich SJ, Hellmann JJ:
-  \textbf{{{P}opulation-level transcriptome sequencing of nonmodel organisms
-  {E}rynnis propertius and {P}apilio zelicaon}}. \emph{BMC Genomics} 2010,
-  \textbf{11}:310.
-
 \bibitem{pmid15579698}
 Swanson WJ, Wong A, Wolfner MF, Aquadro CF: \textbf{{{E}volutionary expressed
   sequence tag analysis of {D}rosophila female reproductive tracts identifies
@@ -519,6 +529,10 @@ Moln\'{a}r K: \textbf{Formation of parasitic nodules in the swimbladder and
 Veuthey AL, Bittar G: \textbf{{{P}hylogenetic relationships of fungi, plantae,
   and animalia inferred from homologous comparison of ribosomal proteins}}.
   \emph{J. Mol. Evol.} 1998, \textbf{47}:81--92.
+
+\bibitem{pmid15275275}
+Scott AL: \textbf{{{N}ematode sperm}}. \emph{Parasitol. Today (Regul. Ed.)}
+  1996, \textbf{12}:425--430.
 
 \end{thebibliography}
 
@@ -1371,6 +1385,20 @@ d=1279744</url>
 </bibl>
 
 <bibl id="B40">
+  <title><p>{{U}sing {G}{O}stats to test gene lists for {G}{O} term
+  association}</p></title>
+  <aug>
+    <au><snm>Falcon</snm><fnm>S.</fnm></au>
+    <au><snm>Gentleman</snm><fnm>R.</fnm></au>
+  </aug>
+  <source>Bioinformatics</source>
+  <pubdate>2007</pubdate>
+  <volume>23</volume>
+  <fpage>257</fpage>
+  <lpage>-258</lpage>
+</bibl>
+
+<bibl id="B41">
   <title><p>{{T}he variant call format and {V}{C}{F}tools}</p></title>
   <aug>
     <au><snm>Danecek</snm><fnm>P.</fnm></au>
@@ -2136,7 +2164,7 @@ d=1279744</url>
   <lpage>-2158</lpage>
 </bibl>
 
-<bibl id="B41">
+<bibl id="B42">
   <title><p>{{R}hh: an {R} extension for estimating multilocus heterozygosity
   and heterozygosity-heterozygosity correlation}</p></title>
   <aug>
@@ -2151,7 +2179,7 @@ d=1279744</url>
   <lpage>-722</lpage>
 </bibl>
 
-<bibl id="B42">
+<bibl id="B43">
   <title><p>{{T}he influence of parental relatedness on reproductive
   success}</p></title>
   <aug>
@@ -2170,7 +2198,7 @@ d=1279744</url>
   <lpage>-2027</lpage>
 </bibl>
 
-<bibl id="B43">
+<bibl id="B44">
   <title><p>{{W}hat should we weigh to estimate heterozygosity, alleles or
   loci?}</p></title>
   <aug>
@@ -2185,7 +2213,7 @@ d=1279744</url>
   <lpage>-4665</lpage>
 </bibl>
 
-<bibl id="B44">
+<bibl id="B45">
   <title><p>Parasite-mediated selection against inbred Soay sheep in a
   free-living, island population</p></title>
   <aug>
@@ -2201,7 +2229,31 @@ d=1279744</url>
   <lpage>-1267</lpage>
 </bibl>
 
-<bibl id="B45">
+<bibl id="B46">
+  <title><p>{R}samtools: Import aligned BAM file format sequences into R /
+  Bioconductor</p></title>
+  <aug>
+    <au><snm>Morgan</snm><fnm>M</fnm></au>
+    <au><snm>Pag\`es</snm><fnm>H</fnm></au>
+  </aug>
+  <url>http://bioconductor.org/packages/release/bioc/html/Rsamtools.html</url>
+  <note>R package version 1.4.3</note>
+</bibl>
+
+<bibl id="B47">
+  <title><p>{{D}ifferential expression analysis for sequence count
+  data}</p></title>
+  <aug>
+    <au><snm>Anders</snm><fnm>S.</fnm></au>
+    <au><snm>Huber</snm><fnm>W.</fnm></au>
+  </aug>
+  <source>Genome Biol.</source>
+  <pubdate>2010</pubdate>
+  <volume>11</volume>
+  <fpage>R106</fpage>
+</bibl>
+
+<bibl id="B48">
   <title><p>R: A language and environment for statistical computing</p></title>
   <aug>
     <au><cnm>{R Development Core Team}</cnm></au>
@@ -2211,7 +2263,7 @@ d=1279744</url>
   <url>http://www.R-project.org</url>
 </bibl>
 
-<bibl id="B46">
+<bibl id="B49">
   <title><p>Sweave: Dynamic Generation of Statistical Reports Using Literate
   Data Analysis</p></title>
   <aug>
@@ -2227,7 +2279,7 @@ d=1279744</url>
   <note>ISBN 3-7908-1517-9</note>
 </bibl>
 
-<bibl id="B47">
+<bibl id="B50">
   <title><p>Caching code chunks in dynamic documents</p></title>
   <aug>
     <au><snm>Falcon</snm><fnm>S</fnm></au>
@@ -2241,7 +2293,7 @@ d=1279744</url>
   <url>http://www.springerlink.com/content/55411257n1473414</url>
 </bibl>
 
-<bibl id="B48">
+<bibl id="B51">
   <title><p>ggplot2: elegant graphics for data analysis</p></title>
   <aug>
     <au><snm>Wickham</snm><fnm>H</fnm></au>
@@ -2251,7 +2303,7 @@ d=1279744</url>
   <url>http://had.co.nz/ggplot2/book</url>
 </bibl>
 
-<bibl id="B49">
+<bibl id="B52">
   <title><p>{{V}enn{D}iagram: a package for the generation of
   highly-customizable {V}enn and {E}uler diagrams in {R}}</p></title>
   <aug>
@@ -2264,7 +2316,7 @@ d=1279744</url>
   <fpage>35</fpage>
 </bibl>
 
-<bibl id="B50">
+<bibl id="B53">
   <title><p>{{S}ystematic exploration of error sources in pyrosequencing
   flowgram data}</p></title>
   <aug>
@@ -2279,20 +2331,7 @@ d=1279744</url>
   <lpage>-309</lpage>
 </bibl>
 
-<bibl id="B51">
-  <title><p>{{D}ifferential expression analysis for sequence count
-  data}</p></title>
-  <aug>
-    <au><snm>Anders</snm><fnm>S.</fnm></au>
-    <au><snm>Huber</snm><fnm>W.</fnm></au>
-  </aug>
-  <source>Genome Biol.</source>
-  <pubdate>2010</pubdate>
-  <volume>11</volume>
-  <fpage>R106</fpage>
-</bibl>
-
-<bibl id="B52">
+<bibl id="B54">
   <title><p>{{A} garter snake transcriptome: pyrosequencing, de novo assembly,
   and sex-specific differences}</p></title>
   <aug>
@@ -2311,7 +2350,7 @@ d=1279744</url>
   <fpage>694</fpage>
 </bibl>
 
-<bibl id="B53">
+<bibl id="B55">
   <title><p>{{D}iscovery and evaluation of candidate sex-determining genes and
   xenobiotics in the gonads of lake sturgeon ({A}cipenser
   fulvescens)}</p></title>
@@ -2327,7 +2366,7 @@ d=1279744</url>
   <lpage>-756</lpage>
 </bibl>
 
-<bibl id="B54">
+<bibl id="B56">
   <title><p>{{N}ext generation transcriptomes for next generation genomes using
   est2assembly}</p></title>
   <aug>
@@ -2342,7 +2381,7 @@ d=1279744</url>
   <fpage>447</fpage>
 </bibl>
 
-<bibl id="B55">
+<bibl id="B57">
   <title><p>{{S}eparation of sequences from host-pathogen interface using
   triplet nucleotide frequencies}</p></title>
   <aug>
@@ -2359,7 +2398,24 @@ d=1279744</url>
   <url>http://dx.doi.org/10.1016/j.fgb.2006.11.010</url>
 </bibl>
 
-<bibl id="B56">
+<bibl id="B58">
+  <title><p>{{P}opulation-level transcriptome sequencing of nonmodel organisms
+  {E}rynnis propertius and {P}apilio zelicaon}</p></title>
+  <aug>
+    <au><snm>O'Neil</snm><fnm>S. T.</fnm></au>
+    <au><snm>Dzurisin</snm><fnm>J. D.</fnm></au>
+    <au><snm>Carmichael</snm><fnm>R. D.</fnm></au>
+    <au><snm>Lobo</snm><fnm>N. F.</fnm></au>
+    <au><snm>Emrich</snm><fnm>S. J.</fnm></au>
+    <au><snm>Hellmann</snm><fnm>J. J.</fnm></au>
+  </aug>
+  <source>BMC Genomics</source>
+  <pubdate>2010</pubdate>
+  <volume>11</volume>
+  <fpage>310</fpage>
+</bibl>
+
+<bibl id="B59">
   <title><p>{{A} {D}e {N}ovo {E}xpression {P}rofiling of {A}nopheles funestus,
   {M}alaria {V}ector in {A}frica, {U}sing 454 {P}yrosequencing}</p></title>
   <aug>
@@ -2381,7 +2437,7 @@ d=1279744</url>
   <fpage>e17418</fpage>
 </bibl>
 
-<bibl id="B57">
+<bibl id="B60">
   <title><p>{{C}omparative genomics based on massive parallel transcriptome
   sequencing reveals patterns of substitution and selection across 10 bird
   species}</p></title>
@@ -2407,7 +2463,7 @@ d=1279744</url>
   <lpage>-276</lpage>
 </bibl>
 
-<bibl id="B58">
+<bibl id="B61">
   <title><p>{PartiGene--constructing} partial genomes</p></title>
   <aug>
     <au><snm>Parkinson</snm><fnm>J</fnm></au>
@@ -2427,7 +2483,7 @@ d=1279744</url>
 </url>
 </bibl>
 
-<bibl id="B59">
+<bibl id="B62">
   <title><p>On the Extent and Origins of Genic Novelty in the Phylum
   Nematoda</p></title>
   <aug>
@@ -2444,7 +2500,7 @@ d=1279744</url>
   <url>http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2432500</url>
 </bibl>
 
-<bibl id="B60">
+<bibl id="B63">
   <title><p>Signal sequence analysis of expressed sequence tags from the
   nematode Nippostrongylus brasiliensis and the evolution of secreted proteins
   in parasites</p></title>
@@ -2465,7 +2521,7 @@ d=1279744</url>
   <url>http://genomebiology.com/2004/5/6/R39</url>
 </bibl>
 
-<bibl id="B61">
+<bibl id="B64">
   <title><p>{{C}ompletely phased genome sequencing through chromosome
   sorting}</p></title>
   <aug>
@@ -2480,7 +2536,7 @@ d=1279744</url>
   <lpage>-17</lpage>
 </bibl>
 
-<bibl id="B62">
+<bibl id="B65">
   <title><p>{Rapid, low-input, low-bias construction of shotgun fragment
   libraries by high-density in vitro transposition}</p></title>
   <aug>
@@ -2509,7 +2565,7 @@ d=1279744</url>
   <fpage>R119</fpage>
 </bibl>
 
-<bibl id="B63">
+<bibl id="B66">
   <title><p>{{T}he population genetics of d{N}/d{S}}</p></title>
   <aug>
     <au><snm>Kryazhimskiy</snm><fnm>S.</fnm></au>
@@ -2521,7 +2577,7 @@ d=1279744</url>
   <fpage>e1000304</fpage>
 </bibl>
 
-<bibl id="B64">
+<bibl id="B67">
   <title><p>{{H}igh-throughput gene and {S}{N}{P} discovery in {E}ucalyptus
   grandis, an uncharacterized genome}</p></title>
   <aug>
@@ -2539,24 +2595,7 @@ d=1279744</url>
   <fpage>312</fpage>
 </bibl>
 
-<bibl id="B65">
-  <title><p>{{P}opulation-level transcriptome sequencing of nonmodel organisms
-  {E}rynnis propertius and {P}apilio zelicaon}</p></title>
-  <aug>
-    <au><snm>O'Neil</snm><fnm>S. T.</fnm></au>
-    <au><snm>Dzurisin</snm><fnm>J. D.</fnm></au>
-    <au><snm>Carmichael</snm><fnm>R. D.</fnm></au>
-    <au><snm>Lobo</snm><fnm>N. F.</fnm></au>
-    <au><snm>Emrich</snm><fnm>S. J.</fnm></au>
-    <au><snm>Hellmann</snm><fnm>J. J.</fnm></au>
-  </aug>
-  <source>BMC Genomics</source>
-  <pubdate>2010</pubdate>
-  <volume>11</volume>
-  <fpage>310</fpage>
-</bibl>
-
-<bibl id="B66">
+<bibl id="B68">
   <title><p>{{E}volutionary expressed sequence tag analysis of {D}rosophila
   female reproductive tracts identifies genes subjected to positive
   selection}</p></title>
@@ -2573,7 +2612,7 @@ d=1279744</url>
   <lpage>-1465</lpage>
 </bibl>
 
-<bibl id="B67">
+<bibl id="B69">
   <title><p>{{E}volutionary {E}{S}{T} analysis identifies rapidly evolving male
   reproductive proteins in {D}rosophila}</p></title>
   <aug>
@@ -2590,7 +2629,7 @@ d=1279744</url>
   <lpage>-7379</lpage>
 </bibl>
 
-<bibl id="B68">
+<bibl id="B70">
   <title><p>{{C}haracterizing {A}ncylostoma caninum transcriptome and exploring
   nematode parasitic adaptation}</p></title>
   <aug>
@@ -2607,7 +2646,7 @@ d=1279744</url>
   <fpage>307</fpage>
 </bibl>
 
-<bibl id="B69">
+<bibl id="B71">
   <title><p>{{M}olecular evolution of m{R}{N}{A}: a method for estimating
   evolutionary rates of synonymous and amino acid substitutions from homologous
   nucleotide sequences and its application}</p></title>
@@ -2622,7 +2661,7 @@ d=1279744</url>
   <lpage>-36</lpage>
 </bibl>
 
-<bibl id="B70">
+<bibl id="B72">
   <title><p>Identification and characterization of the proteolytic enzymes in
   the developmental stages of the eel-pathogenic nematode Anguillicola
   crassus</p></title>
@@ -2639,7 +2678,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/7682326</url>
 </bibl>
 
-<bibl id="B71">
+<bibl id="B73">
   <title><p>Migratory response of European eel {(Anguilla} anguilla) phagocytes
   to the eel swimbladder nematode Anguillicola crassus</p></title>
   <aug>
@@ -2658,7 +2697,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/18311570</url>
 </bibl>
 
-<bibl id="B72">
+<bibl id="B74">
   <title><p>Formation of parasitic nodules in the swimbladder and intestinal
   walls of the eel Anguilla anguilla due to infections with larval stages of
   Anguillicola crassus</p></title>
@@ -2673,7 +2712,7 @@ d=1279744</url>
   <lpage>-170</lpage>
 </bibl>
 
-<bibl id="B73">
+<bibl id="B75">
   <title><p>{{P}hylogenetic relationships of fungi, plantae, and animalia
   inferred from homologous comparison of ribosomal proteins}</p></title>
   <aug>
@@ -2685,6 +2724,18 @@ d=1279744</url>
   <volume>47</volume>
   <fpage>81</fpage>
   <lpage>-92</lpage>
+</bibl>
+
+<bibl id="B76">
+  <title><p>{{N}ematode sperm}</p></title>
+  <aug>
+    <au><snm>Scott</snm><fnm>A. L.</fnm></au>
+  </aug>
+  <source>Parasitol. Today (Regul. Ed.)</source>
+  <pubdate>1996</pubdate>
+  <volume>12</volume>
+  <fpage>425</fpage>
+  <lpage>-430</lpage>
 </bibl>
 
 </refgrp>

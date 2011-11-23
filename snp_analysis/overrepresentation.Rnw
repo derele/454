@@ -169,7 +169,7 @@ novel.dn.ds.50 <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.50) & !is
   geom_boxplot() +
   scale_y_log10("dn/ds") +
   scale_x_discrete("") +
-  opts(title="evolutionary conseravation at bitsore threshold of 80") +
+  opts(title="evolutionary conseravation at bitsore threshold of 50") +
   theme_bw()
 
 novel.dn.ds.80 <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.80) & !is.na(dn.ds)),

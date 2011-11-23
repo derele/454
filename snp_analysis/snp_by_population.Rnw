@@ -119,14 +119,14 @@ ir.test <- hh(Rh.data, 1000, "ir")
 hl.test <- hh(Rh.data, 1000, "hl")
 hh.test <- hh(Rh.data, 1000, "sh")
 
-## mean(ir.test)
-## quantile(ir.test, probs=c(0.025, 0.975))
+ ## mean(ir.test)
+ ## quantile(ir.test, probs=c(0.025, 0.975))
 
-## mean(hl.test)
-## quantile(hl.test, probs=c(0.025, 0.975))
+ ## mean(hl.test)
+ ## quantile(hl.test, probs=c(0.025, 0.975))
 
-## mean(hh.test)
-## quantile(hh.test, probs=c(0.025, 0.975))
+ ## mean(hh.test)
+ ## quantile(hh.test, probs=c(0.025, 0.975))
 
 ## Internal relatedness, a multilocus heterozygosity measure developed
 ## by Amos et al. (2001): Amos W, Worthington Wilmer J, Fullard K et

@@ -108,8 +108,7 @@ contig.diff <- exp.get.3.diff(cst)
 bst <- contig.df[contig.df$Ac, c("Bm.hit", "E1", "E2", "L2", "M", "T1", "T2")]
 bst <- bst[!is.na(bst$Bm.hit),]
 bst <- do.call("rbind", by(bst, bst$Bm.hit, function (x) colSums(x[,2:7])))
-bst <- bst[rowSums(bst)>48, ]
-bst <- bst[!is.na(bst[,"E1"]),]
+bst <- subset(bst, rowSums(bst)>48)
 
 bm.diff <- exp.get.3.diff(bst)
 
@@ -117,25 +116,24 @@ bm.diff <- exp.get.3.diff(bst)
 wst <- contig.df[contig.df$Ac, c("Ce.hit", "E1", "E2", "L2", "M", "T1", "T2")]
 wst <- wst[!is.na(wst$Ce.hit),]
 wst <- do.call("rbind", by(wst, wst$Ce.hit, function (x) colSums(x[,2:7])))
-wst <- wst[rowSums(wst)>48, ]
-wst <- wst[!is.na(wst[,"E1"]),]
+wst <- subset(wst, rowSums(wst)>48)
 
 ce.diff <- exp.get.3.diff(wst)
 
 mf <- merge(contig.df[,c("contig", "Bm.hit", "Bm.annot",  "Ce.hit",  "Ce.annot",
-                         "T1", "T2","E1", "E2")],
+                         "T1", "T2","M", "E1", "E2")],
             contig.diff[[2]][,c("id", "padj", "log2FoldChange")],
             by.x="contig", by.y="id")
 
 mf <- merge(mf, bm.diff[[2]][,c("id", "padj", "log2FoldChange")],
             by.x="Bm.hit", by.y="id", 
-            all=TRUE)
+            all=TRUE, suffixes=c("",".Bm"))
 
-mf <- merge(mf, ce.diff[[2]][,c("id", "padj")],
+mf <- merge(mf, ce.diff[[2]][,c("id", "padj", "log2FoldChange")],
             by.x="Ce.hit", by.y="id", 
-            all=TRUE)
+            all=TRUE, suffixes=c("", ".Ce"))
 
-the22 <- head(mf[order(mf$padj.x), ], n=22)
+the22 <- head(mf[order(mf$padj), ], n=22)
 
 eel <- merge(contig.df[,c("contig", "Bm.hit", "Bm.annot",  "Ce.hit",  "Ce.annot",
                           "T1", "T2","E1", "E2")],
@@ -144,13 +142,11 @@ eel <- merge(contig.df[,c("contig", "Bm.hit", "Bm.annot",  "Ce.hit",  "Ce.annot"
 
 eel <- merge(eel,bm.diff[[1]][,c("id", "padj", "log2FoldChange")],
             by.x="Bm.hit", by.y="id", 
-            all=TRUE)
+            all=TRUE, suffixes=c("", ".Bm"))
 
 eel <- merge(eel, ce.diff[[1]][,c("id", "padj", "log2FoldChange")],
             by.x="Ce.hit", by.y="id", 
-            all=TRUE)
-
-
+            all=TRUE, suffixes=c("", ".Ce"))
 
 ## the orthologous groups...
 ## collagens

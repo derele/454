@@ -32,8 +32,9 @@ while (<>) {
   my $family = $taxDB->get_term_at_level($taxid,"family");
   my $phylum = $taxDB->get_term_at_level($taxid,"phylum");
   my $kingdom = $taxDB->get_term_at_level($taxid,"kingdom");
+  my $superkingdom = $taxDB->get_term_at_level($taxid,"superkingdom");
 
-  print "$_,$taxid,$family,$phylum,$kingdom\n";
+  print "$_,$taxid,$family,$phylum,$kingdom,$superkingdom\n";
 }
 
 

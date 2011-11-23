@@ -27,7 +27,8 @@ GO.bm.com <- ggplot(slim, aes(x=description, fill=species, weight=value)) +
                           "and nucleic acid\nmetabolic process",
                           gsub(" ", "\n", slim$description)))) +
   facet_wrap(~ontology, ncol=1, scales="free") +
-    opts(legend.text = theme_text(face="italic"))
+    opts(legend.text = theme_text(face="italic")) +
+  theme_bw()
 
 ggsave("/home/ele/thesis/454/figures/Figure_2.png", GO.bm.com, width=16, height=16)
 
