@@ -3,49 +3,46 @@ The top-level auxiliary file: transcriptome_paper.aux
 The style file: bmc_article.bst
 Reallocated wiz_functions (elt_size=4) to 6000 items from 240518171576.
 Database file #1: /home/ele/bibtex/master.bib
-Database file #2: /home/ele/bibtex/master2.bib
-Warning--you've exceeded 5000, the global-string-size, for entry pmid21653522
-while executing--line 3737 of file bmc_article.bst
-*Please notify the bibstyle designer*
-You've used 77 entries,
+Warning--I didn't find a database entry for "wrtz_histopathological_2000"
+You've used 76 entries,
             3603 wiz_defined-function locations,
-            1172 strings with 36919 characters,
-and the built_in function-call counts, 329654 in all, are:
-= -- 29040
-> -- 3839
-< -- 1329
-+ -- 3989
-- -- 1254
-* -- 42663
-:= -- 52765
-add.period$ -- 154
-call.type$ -- 77
-change.case$ -- 1260
+            1200 strings with 26510 characters,
+and the built_in function-call counts, 214967 in all, are:
+= -- 19545
+> -- 1588
+< -- 578
++ -- 1736
+- -- 504
+* -- 25940
+:= -- 36400
+add.period$ -- 152
+call.type$ -- 76
+change.case$ -- 510
 chr.to.int$ -- 0
-cite$ -- 77
-duplicate$ -- 24394
-empty$ -- 25001
-format.name$ -- 5075
-if$ -- 63155
+cite$ -- 76
+duplicate$ -- 13517
+empty$ -- 17026
+format.name$ -- 2074
+if$ -- 41899
 int.to.chr$ -- 0
-int.to.str$ -- 154
-missing$ -- 6596
-newline$ -- 2378
-num.names$ -- 155
-pop$ -- 3611
+int.to.str$ -- 152
+missing$ -- 4309
+newline$ -- 1647
+num.names$ -- 153
+pop$ -- 2774
 preamble$ -- 1
 purify$ -- 0
-quote$ -- 154
-skip$ -- 1361
+quote$ -- 152
+skip$ -- 1277
 stack$ -- 0
-substring$ -- 47933
-swap$ -- 4623
-text.length$ -- 150
+substring$ -- 34852
+swap$ -- 3126
+text.length$ -- 148
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 8
 warning$ -- 0
-while$ -- 1833
-width$ -- 79
-write$ -- 6546
+while$ -- 1075
+width$ -- 78
+write$ -- 3594
 (There was 1 warning)

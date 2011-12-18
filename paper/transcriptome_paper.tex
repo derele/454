@@ -106,7 +106,7 @@
 
 
 % Begin ...
-\usepackage{/usr/share/R/texmf/tex/latex/Sweave}
+\usepackage{/usr/local/lib64/R/share/texmf/tex/latex/Sweave}
 \begin{document}
 \begin{bmcformat}
 
@@ -202,11 +202,12 @@
   conserved in Nematoda and novel in \textit{A. crassus}. We
   identified 5112 high quality Single nucleotide polymorphisms (SNPs)
   and suggest 199 of them as most suitable markers for
-  population-genetic studies. GO-term analysis identified 13
-  proteinases under positive selection. Comparing male and female as
-  well as Asian and European \textit{A. crassus} we developed a method
-  for future work with this transcriptome as a reference in mapping
-  experiments.
+  population-genetic studies. GO-term analysis identified enrichment
+  of peptidases and subunits of the respiratory chain to be enriched
+  for transcritps under positive selection. Comparing male and female
+  as well as Asian and European \textit{A. crassus} we developed a
+  method for future work with this transcriptome as a reference in
+  mapping experiments.
   \paragraph*{Conclusions:}
   The transcriptome of \textit{A. crassus} is a basis for molecular
   research on this important species. It furthermore provides unique
@@ -402,6 +403,11 @@ databases, recording the taxonomy of all best matches with expect
 values better than 1e-05. TUGs with a best hit to non-Metazoans and to
 Chordata within Metazoa were additionally excluded from further
 analysis.
+
+%% nrow(contig.df[!contig.df$Ac &
+%% contig.df$contamination%in%"eelmRNA" & contig.df$phylum.nr%in%"Nematoda", ])
+%% investigate if these (149) should not be included rather as
+%% Ac-origin DONE!!! The eelmRNA hits are _all_ much better!
 
 \subsection*{Protein prediction and annotation}
 
@@ -724,8 +730,8 @@ and novel in clade III (Fisher's exact test p$<$0.001 ; Figure 5) .
 
 The proportion of lethal rnai phenotypes was significantly higher for
 orthologs of conserved TUGs
-(94.65\%) than for orthologs of
-TUGs not conserved (97.23\%) across
+(97.23\%) than for orthologs of
+TUGs not conserved (94.65\%) across
 kingdoms (p$<$0.001, Fisher's exact test).
 
 \subsection*{Identification of single nucleotide polymorphisms}
@@ -782,7 +788,7 @@ rates of evolution than cytosolic proteins in a number of nematode
 species. In \textit{A. crassus}, TUGs predicted to contain signal
 peptide cleavage sites in SignalP showed a trend towards higher dn/ds
 values than TUGs without signal peptide cleavage sites (p =
-0.074; two sided
+0.187; two sided
 Mann-Whitney-test) %; Figure sigp\_dn\_ds.png.
 
 Positive selection can be inferred from dn/ds analyses, and we defined
@@ -848,71 +854,71 @@ by loci and standardised heterozygosity). Using a higher number of
 genotyped individuals these markers would allow to asses the amount of
 inbreeding in populations of \textit{A. crassus}..
 
-\subsection*{Differential expression}
+%% \subsection*{Differential expression}
                 
 
-Using methods developed for sequencing data in the R-package DESeq
-\cite{pmid20979621}, we analysed gene-expression inferred from
-mapping. Of the 353055 reads 252388
-(71.49\%) mapped uniquely
-(with their best hit) to the fullest assembly (including the all
-assembled contigs as a ``filter'' later removing screened out
-sequences for analysis).
+% % Using methods developed for sequencing data in the R-package DESeq
+% % \cite{pmid20979621}, we analysed gene-expression inferred from
+% % mapping. Of the Sexpr{length(raw.fasta)} reads Sexpr{n454.map}
+% % (Sexpr{round((n454.map/length(raw.fasta))*100,2)}\%) mapped uniquely
+% % (with their best hit) to the fullest assembly (including the all
+% % assembled contigs as a ``filter'' later removing screened out
+% % sequences for analysis).
 
-22 Contigs were clearly over-expressed at adjusted p-values $<$ 0.001
-in the male worm compared to the female worms.
-7 of these were
-annotated as ``Major sperm protein'', all with different orthologs in
-\textit{B. malayi} and with
-5
-different orthologs in \textit{C. elegans}. Other annotation were
-``putative P40'' for ``Contig2545'' and ``Contig94'', ``MFP2'' for
-``Contig437'', ``KH domain containing protein'' for ``Contig96'',
-``Protein kinase domain containing protein'' for ``Contig96'',
-``Protein-tyrosine phosphatase containing protein'' for ``Contig382''
-and ``PDZ domain containing protein'' for ``Contig106''. For all these
-contigs read-sums for orthologous groups in the two model nematodes
-also showed significant over-expression in the same direction.
+% % 22 Contigs were clearly over-expressed at adjusted p-values $<$ 0.001
+% % in the male worm compared to the female worms.
+% % Sexpr{nrow(the22[grepl("sperm",the22$Bm.annot),])#$} of these were
+% % annotated as ``Major sperm protein'', all with different orthologs in
+% % \textit{B. malayi} and with
+% % Sexpr{length(unique(the22[grepl("sperm",the22$Bm.annot),"Ce.hit"]))#$}
+% % different orthologs in \textit{C. elegans}. Other annotation were
+% % ``putative P40'' for ``Contig2545'' and ``Contig94'', ``MFP2'' for
+% % ``Contig437'', ``KH domain containing protein'' for ``Contig96'',
+% % ``Protein kinase domain containing protein'' for ``Contig96'',
+% % ``Protein-tyrosine phosphatase containing protein'' for ``Contig382''
+% % and ``PDZ domain containing protein'' for ``Contig106''. For all these
+% % contigs read-sums for orthologous groups in the two model nematodes
+% % also showed significant over-expression in the same direction.
 
-An exception was ``Contig194'' (``Phosphoenolpyruvate
-carboxykinase''), for which the sums of orthologous-counts for both
-model-nematodes did not show a significant over-expression in the
-male.
+% % An exception was ``Contig194'' (``Phosphoenolpyruvate
+% % carboxykinase''), for which the sums of orthologous-counts for both
+% % model-nematodes did not show a significant over-expression in the
+% % male.
 
-Comparing libraries from European worms to Taiwanese worms, two
-contigs were observed at adjusted p-values $<$ 0.001: ``Contig5250''
-was only expressed in library E2 and was annotated as an ortholog of
-alpha tubulin in both \textit{C. elegans} and \textit{Brugia
-  malayi}. This annotation was shared with
-18 and 16
-  contigs respectively. Contrary to the identified contig, the sums of
-  the read counts for this orthologous groups showed a non-significant
-  trend towards higher expression in the the Asian
-  libraries. ``Contig13931''was only expressed in sample E1 and showed
-  high similarity to \textit{Ascaris lumbricoides} small nuclear RNAs.
+% % Comparing libraries from European worms to Taiwanese worms, two
+% % contigs were observed at adjusted p-values $<$ 0.001: ``Contig5250''
+% % was only expressed in library E2 and was annotated as an ortholog of
+% % alpha tubulin in both \textit{C. elegans} and \textit{Brugia
+% %   malayi}. This annotation was shared with
+% % Sexpr{nrow(contig.df[contig.df$Ce.hit%in%"C44B11.3",])#$} and Sexpr{nrow(contig.df[contig.df$Bm.hit%in%"UniRef100_A8PYK7",])#$}
+% %   contigs respectively. Contrary to the identified contig, the sums of
+% %   the read counts for this orthologous groups showed a non-significant
+% %   trend towards higher expression in the the Asian
+% %   libraries. ``Contig13931''was only expressed in sample E1 and showed
+% %   high similarity to \textit{Ascaris lumbricoides} small nuclear RNAs.
 
-  Two contigs were identified as differentially expressed at adjusted
-  p-values below 0.2 and were expressed highly in library E2:
-  ``Contig5320'' shared annotation as ortholog of ``Cuticle collagen
-  7'' in both model-nematodes with
-  5 contigs.
-    Counts for the orthologous groups showed a non-significant
-    opposite trend of over-expression in the in the Taiwanese libraries.
-    ``Contig200'' shared similarity only with one predicted protein
-    from \textit{C. elegans}.   
+% %   Two contigs were identified as differentially expressed at adjusted
+% %   p-values below 0.2 and were expressed highly in library E2:
+% %   ``Contig5320'' shared annotation as ortholog of ``Cuticle collagen
+% %   7'' in both model-nematodes with
+% %   Sexpr{nrow(contig.df[contig.df$Ce.hit%in%"F58F6.1", ])#$} contigs.
+% %     Counts for the orthologous groups showed a non-significant
+% %     opposite trend of over-expression in the in the Taiwanese libraries.
+% %     ``Contig200'' shared similarity only with one predicted protein
+% %     from \textit{C. elegans}.   
 
-    This was followed by a set of
-    9 contigs
-    over-expressed at exactly 20\% false discovery rate. They were all
-    found only in Taiwanese libraries and the ortholog-groups showed a
-    tendency towards expression in the same direction. Three of these
-    are worth further notice: ``Contig5164'' annotated as
-    ``galactoside binding lectin'' was not only expressed in one of
-    the Taiwaneselibraries, but in both. ``Contig110'' (``cysteine
-    protease'') had adjusted p-values `$<$ 1 and ``Contig6355''
-    (``Trypsin family protein'') nearly significant adjusted p-values
-    $<$ 0.4 for orthologous groups in \textit{C. elegans} and
-    \textit{B. malayi}.
+% %     This was followed by a set of
+% %     Sexpr{nrow(subset(eel,padj<0.21&eel$padj>0.19))#$} contigs
+% %     over-expressed at exactly 20\% false discovery rate. They were all
+% %     found only in Taiwanese libraries and the ortholog-groups showed a
+% %     tendency towards expression in the same direction. Three of these
+% %     are worth further notice: ``Contig5164'' annotated as
+% %     ``galactoside binding lectin'' was not only expressed in one of
+% %     the Taiwaneselibraries, but in both. ``Contig110'' (``cysteine
+% %     protease'') had adjusted p-values `$<$ 1 and ``Contig6355''
+% %     (``Trypsin family protein'') nearly significant adjusted p-values
+% %     $<$ 0.4 for orthologous groups in \textit{C. elegans} and
+% %     \textit{B. malayi}.
 
 
 \section*{Discussion}
@@ -1099,38 +1105,38 @@ under-expression. Genes over-expressed in male \textit{A. crassus}
 comprise major sperm proteins well known for their high expression in
 nematode sperm \cite{pmid15275275}.
 
-We developed a method to assess the possible influence of
-fragmentation of our reference-transcriptome on mapping. Using the
-annotation with orthologous sequences of \textit{C. elegans} and
-\textit{B. malayi} it is possible to highlight problems: For example a
-contig annotated as ``Phosphoenolpyruvate carboxykinase'' showed
-significant over-expression in the male. The 8 other contigs with this
-annotation however, were nearly identical for the middle region of
-their predicted proteins, had a high amount of homopolymeric regions in
-their nucleotide sequence and attracted the missing reads mapping from
-the other libraries. Our orthologous-collapsing method for read-counts
-following manual inspection, could thus exclude this contig as a
-false-positive.
+% We developed a method to assess the possible influence of
+% fragmentation of our reference-transcriptome on mapping. Using the
+% annotation with orthologous sequences of \textit{C. elegans} and
+% \textit{B. malayi} it is possible to highlight problems: For example a
+% contig annotated as ``Phosphoenolpyruvate carboxykinase'' showed
+% significant over-expression in the male. The 8 other contigs with this
+% annotation however, were nearly identical for the middle region of
+% their predicted proteins, had a high amount of homopolymeric regions in
+% their nucleotide sequence and attracted the missing reads mapping from
+% the other libraries. Our orthologous-collapsing method for read-counts
+% following manual inspection, could thus exclude this contig as a
+% false-positive.
 
-In the comparison of European with Asian libraries most
-differentially expressed contigs could be debunked as false positives
-with this method. From the 6 remaining contigs one was annotated with
-only one ortholog (`Contig200''), 3 were lacking any annotation
-(``Contig4'', ``Contig5311'' and ``Contig40''). The only contig with
-differential expression fully validated by our method (``Contig6355'')
-was annotated as (``Trypsin family protein''). The identification of
-another proteinase (it is not among those under positive selection) is
-highlighting the interesting nature of these molecules in
-\textit{A. crassus}.
+% In the comparison of European with Asian libraries most
+% differentially expressed contigs could be debunked as false positives
+% with this method. From the 6 remaining contigs one was annotated with
+% only one ortholog (`Contig200''), 3 were lacking any annotation
+% (``Contig4'', ``Contig5311'' and ``Contig40''). The only contig with
+% differential expression fully validated by our method (``Contig6355'')
+% was annotated as (``Trypsin family protein''). The identification of
+% another proteinase (it is not among those under positive selection) is
+% highlighting the interesting nature of these molecules in
+% \textit{A. crassus}.
 
-Analysis of the expression data made clear what data is required to
-analyse the differences in European vs. Asian nematodes: As variance
-is high in outbred individuals from natural populations both
-replication and depth of analysis have to be high. Furthermore it is
-important to disentangle the influence of the host and the nematode
-population e.g. in a co-inoculation experiment. The last approach
-would also allow the analysis of transcriptomes roughly synchronised
-for the time of development.
+% Analysis of the expression data made clear what data is required to
+% analyse the differences in European vs. Asian nematodes: As variance
+% is high in outbred individuals from natural populations both
+% replication and depth of analysis have to be high. Furthermore it is
+% important to disentangle the influence of the host and the nematode
+% population e.g. in a co-inoculation experiment. The last approach
+% would also allow the analysis of transcriptomes roughly synchronised
+% for the time of development.
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1178,7 +1184,7 @@ The work of EGH is funded by Volkswagen Foundation,
 
 {\ifthenelse{\boolean{publ}}{\footnotesize}{\small}
   \bibliographystyle{bmc_article} % Style BST file
-  \bibliography{/home/ele/bibtex/master,/home/ele/bibtex/master2}
+  \bibliography{/home/ele/bibtex/master}
 } % Bibliography file (usually '*.bib' )
 
 %%%%%%%%%%%
@@ -1293,8 +1299,8 @@ assembly considered \textit{A. crassus} origin (see post-assembly
 screening). mapping.MN = number of reads mapping to the highCA-derived
 part of the assembly (and also \textit{A. crassus} origin).
 
-% latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Wed Nov 23 10:32:00 2011
+% latex table generated in R 2.14.0 by xtable 1.6-0 package
+% Sat Dec 17 16:09:20 2011
 \begin{tabular}{rllllll}
    \hline
 library & E1 & E2 & L2 & M & T1 & T2 \\ 
@@ -1338,8 +1344,8 @@ with \texttt{BLAST}-hit to non-nematode (eukaryote non chordate)
 sequence in NCBI-nr.
 
 
-% latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Wed Nov 23 10:32:01 2011
+% latex table generated in R 2.14.0 by xtable 1.6-0 package
+% Sat Dec 17 16:09:20 2011
 \begin{table}[ht]
 \begin{center}
 \begin{tabular}{rrrr}
@@ -1375,13 +1381,15 @@ total.contigs & 26336 & 13851 & 40187 \\
 
 The kingdom Metazoa (novel.in.metazoa), the phylum
 Nematoda(novel.in.nematoda) and clade III (Spirurina;
-novel.in.spirurina) were assessed for occurrences of \texttt{BLAST}-hits
-at two different bitscore thresholds (50 = bit.50 and 80 = bit.80).
-Both novelty and conservation can be derived from this (numbers for
+novel.in.spirurina) were assessed for occurrences of
+\texttt{BLAST}-hits at two different bitscore thresholds (50 = bit.50
+and 80 = bit.80). TUGs without any hit at a given threshold were
+categorized as novel in \textit{A. crssus} (novel.in.Ac).  Both
+novelty and conservation can be derived from this (numbers for
 conservation would be the cumulative sum of lower-level novelty).
 
-% latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Wed Nov 23 10:32:01 2011
+% latex table generated in R 2.14.0 by xtable 1.6-0 package
+% Sat Dec 17 16:09:20 2011
 \begin{tabular}{rrrrrr}
   \hline
  & conserved & novel.in.metazoa & novel.in.nematoda & novel.in.clade3 & novel.in.Ac \\ 
@@ -1395,179 +1403,52 @@ bit.50.all & 5604 & 1713 & 2173 & 1485 & 21543 \\
 \subsection*{Table 4 - Over- and under-representation of GO-terms in
   positively selected}
 
-GO-terms over- or under-represented (direction) in contigs putatively
-under positive selection. Horizontal lines separate categories of the
+GO-terms over-represented in contigs putatively under positive
+selection. Horizontal lines separate categories of the
 GO-ontology. First category is molecular function, second biological
-process, last cellular compartment. P values (Pval) for over- or
-under-representation are given along with the number of positively
-selected contigs (Count; dn/ds $>$ 0.5) and the number of contigs with
-this annotation for which a dn/ds was obtained (Size) and the
-description of the GO-term (Term).
+process, last cellular compartment. P values (classic) for
+over-representation are given along with the number of positively
+selected contigs (Significant; dn/ds $>$ 0.5) and the number of
+contigs with this annotation for which a dn/ds was obtained
+(Annotated) and the description of the GO-term (Term).
 
-% latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Wed Nov 23 10:32:01 2011
-\begin{longtable}{rrrp{7cm}r}
- Pvalue & Count & Size & Term & direction \\ 
+% latex table generated in R 2.14.0 by xtable 1.6-0 package
+% Sat Dec 17 16:09:20 2011
+\begin{longtable}{llrrrl}
+ GO.ID & Term & Annotated & Significant & Expected & classic \\ 
   \hline
-0.00 &  13 &  45 & peptidase activity & Over \\ 
-  0.01 &   7 &  18 & heme-copper terminal oxidase activity & Over \\ 
-  0.01 &   7 &  18 & oxidoreductase activity, acting on a heme group of donors & Over \\ 
-  0.01 &   7 &  18 & oxidoreductase activity, acting on a heme group of donors, oxygen as acceptor & Over \\ 
-  0.01 &   7 &  18 & cytochrome-c oxidase activity & Over \\ 
-  0.01 &  49 & 283 & catalytic activity & Over \\ 
-  0.02 &  13 &  52 & transmembrane transporter activity & Over \\ 
-  0.02 &   9 &  31 & monovalent inorganic cation transmembrane transporter activity & Over \\ 
-  0.02 &   2 &   2 & L-amino acid transmembrane transporter activity & Over \\ 
-  0.03 &   9 &  33 & inorganic cation transmembrane transporter activity & Over \\ 
-  0.03 &  23 & 117 & hydrolase activity & Over \\ 
-  0.03 &   8 &  29 & hydrogen ion transmembrane transporter activity & Over \\ 
-  0.04 &   3 &   6 & ribonucleoprotein binding & Over \\ 
-  0.04 &  13 &  58 & transporter activity & Over \\ 
-  0.05 &  11 &  47 & substrate-specific transmembrane transporter activity & Over \\ 
-  0.05 &  16 &  77 & oxidoreductase activity & Over \\ 
-  0.00 &   1 &  53 & structural constituent of ribosome & Under \\ 
-  0.03 &   7 &  93 & RNA binding & Under \\ 
-  0.04 &   2 &  44 & transition metal ion binding & Under \\ 
-  0.05 &   0 &  20 & protein binding transcription factor activity & Under \\ 
-  0.05 &   0 &  20 & transcription factor binding transcription factor activity & Under \\ 
-  0.05 &   0 &  20 & transcription cofactor activity & Under \\ 
+GO:0008233 & peptidase activity &  43 &  12 & 5.26 & 0.0028 \\ 
+  GO:0015179 & L-amino acid transmembrane transporter activity &   2 &   2 & 0.24 & 0.0147 \\ 
+  GO:0016787 & hydrolase activity & 110 &  20 & 13.45 & 0.0262 \\ 
+  GO:0043021 & ribonucleoprotein binding &   6 &   3 & 0.73 & 0.0266 \\ 
+  GO:0005102 & receptor binding &  26 &   7 & 3.18 & 0.0288 \\ 
+  GO:0046982 & protein heterodimerization activity &  16 &   5 & 1.96 & 0.0348 \\ 
+  GO:0004129 & cytochrome-c oxidase activity &   3 &   2 & 0.37 & 0.0407 \\ 
+  GO:0004540 & ribonuclease activity &   3 &   2 & 0.37 & 0.0407 \\ 
+  GO:0005275 & amine transmembrane transporter activity &   3 &   2 & 0.37 & 0.0407 \\ 
+  GO:0005342 & organic acid transmembrane transporter activity &   3 &   2 & 0.37 & 0.0407 \\ 
    \hline
-0.00 &  13 &  37 & brain development & Over \\ 
-  0.00 &  14 &  45 & central nervous system development & Over \\ 
-  0.00 &   6 &  12 & response to electrical stimulus & Over \\ 
-  0.00 &   3 &   3 & branched chain family amino acid metabolic process & Over \\ 
-  0.00 &   3 &   3 & branched chain family amino acid catabolic process & Over \\ 
-  0.00 &  11 &  36 & ATP synthesis coupled electron transport & Over \\ 
-  0.00 &  11 &  36 & mitochondrial ATP synthesis coupled electron transport & Over \\ 
-  0.01 &   7 &  18 & mitochondrial electron transport, cytochrome c to oxygen & Over \\ 
-  0.01 &  22 & 101 & nervous system development & Over \\ 
-  0.01 &  11 &  38 & oxidative phosphorylation & Over \\ 
-  0.01 &   6 &  15 & response to starvation & Over \\ 
-  0.01 &  12 &  45 & cellular amino acid metabolic process & Over \\ 
-  0.01 &   7 &  20 & positive regulation of cell cycle process & Over \\ 
-  0.01 &  14 &  58 & amine metabolic process & Over \\ 
-  0.01 &   4 &   8 & positive regulation of organelle organization & Over \\ 
-  0.01 &   4 &   8 & spermatid development & Over \\ 
-  0.01 &   4 &   8 & spermatid differentiation & Over \\ 
-  0.01 &   5 &  12 & hindbrain development & Over \\ 
-  0.01 &   5 &  12 & cerebellum development & Over \\ 
-  0.01 &   5 &  12 & metencephalon development & Over \\ 
-  0.01 &   5 &  12 & response to methylmercury & Over \\ 
-  0.01 &   5 &  12 & autophagy & Over \\ 
-  0.02 &  36 & 203 & response to stress & Over \\ 
-  0.02 &   2 &   2 & embryonic body morphogenesis & Over \\ 
-  0.02 &   2 &   2 & xylulose metabolic process & Over \\ 
-  0.02 &   2 &   2 & L-amino acid transport & Over \\ 
-  0.02 &   2 &   2 & neuromuscular process controlling balance & Over \\ 
-  0.02 &   2 &   2 & response to sucrose stimulus & Over \\ 
-  0.02 &   2 &   2 & NADP metabolic process & Over \\ 
-  0.02 &   2 &   2 & response to disaccharide stimulus & Over \\ 
-  0.02 &   2 &   2 & pentose metabolic process & Over \\ 
-  0.02 &  15 &  66 & behavior & Over \\ 
-  0.02 &   8 &  27 & interphase & Over \\ 
-  0.02 &   8 &  27 & interphase of mitotic cell cycle & Over \\ 
-  0.02 &  11 &  43 & electron transport chain & Over \\ 
-  0.02 &  11 &  43 & respiratory electron transport chain & Over \\ 
-  0.02 &  29 & 156 & catabolic process & Over \\ 
-  0.02 &   3 &   5 & positive regulation of mitosis & Over \\ 
-  0.02 &   3 &   5 & positive regulation of nuclear division & Over \\ 
-  0.02 &  13 &  56 & cellular amine metabolic process & Over \\ 
-  0.02 &  20 &  99 & aging & Over \\ 
-  0.02 &  10 &  39 & regulation of cell cycle process & Over \\ 
-  0.03 &  17 &  81 & apoptosis & Over \\ 
-  0.03 &  16 &  75 & regulation of molecular function & Over \\ 
-  0.03 &  13 &  57 & regulation of cell cycle & Over \\ 
-  0.03 &   5 &  14 & mitotic cell cycle G1/S transition DNA damage checkpoint & Over \\ 
-  0.03 &   5 &  14 & sleep & Over \\ 
-  0.03 &   4 &  10 & cellular amino acid catabolic process & Over \\ 
-  0.03 &  10 &  41 & reproductive structure development & Over \\ 
-  0.03 &   3 &   6 & microtubule organizing center organization & Over \\ 
-  0.03 &   3 &   6 & RNA catabolic process & Over \\ 
-  0.03 &   3 &   6 & centrosome organization & Over \\ 
-  0.03 &   8 &  30 & muscle organ development & Over \\ 
-  0.04 &  11 &  47 & cellular respiration & Over \\ 
-  0.04 &  13 &  59 & energy derivation by oxidation of organic compounds & Over \\ 
-  0.04 &   7 &  25 & regulation of catabolic process & Over \\ 
-  0.04 &   5 &  15 & signal transduction in response to DNA damage & Over \\ 
-  0.04 &   5 &  15 & G1/S transition of mitotic cell cycle & Over \\ 
-  0.04 &   5 &  15 & regulation of G1/S transition of mitotic cell cycle & Over \\ 
-  0.04 &   5 &  15 & mitotic cell cycle G1/S transition checkpoint & Over \\ 
-  0.04 &   5 &  15 & G1/S transition checkpoint & Over \\ 
-  0.04 &   5 &  15 & DNA damage response, signal transduction by p53 class mediator & Over \\ 
-  0.04 &   5 &  15 & regulation of cellular amine metabolic process & Over \\ 
-  0.04 &   6 &  20 & response to copper ion & Over \\ 
-  0.04 &  24 & 131 & cellular catabolic process & Over \\ 
-  0.05 &   4 &  11 & imaginal disc development & Over \\ 
-  0.05 &   4 &  11 & amine catabolic process & Over \\ 
-  0.05 &   4 &  11 & skeletal muscle organ development & Over \\ 
-  0.05 &  11 &  49 & mRNA metabolic process & Over \\ 
-  0.05 &   2 &   3 & nuclear mRNA cis splicing, via spliceosome & Over \\ 
-  0.05 &   2 &   3 & germ cell migration & Over \\ 
-  0.05 &   2 &   3 & positive regulation of mitotic metaphase/anaphase transition & Over \\ 
-  0.05 &   2 &   3 & mitotic centrosome separation & Over \\ 
-  0.05 &   2 &   3 & oligosaccharide catabolic process & Over \\ 
-  0.05 &   2 &   3 & spliceosomal conformational changes to generate catalytic conformation & Over \\ 
-  0.05 &   2 &   3 & amino acid transport & Over \\ 
-  0.05 &   2 &   3 & negative regulation of reproductive process & Over \\ 
-  0.05 &   2 &   3 & centrosome duplication & Over \\ 
-  0.05 &   2 &   3 & centrosome separation & Over \\ 
-  0.05 &   2 &   3 & protein tetramerization & Over \\ 
-  0.05 &   2 &   3 & protein homotetramerization & Over \\ 
-  0.00 &  15 & 201 & gene expression & Under \\ 
-  0.00 &   1 &  57 & cellular protein complex disassembly & Under \\ 
-  0.00 &   1 &  57 & macromolecular complex disassembly & Under \\ 
-  0.00 &   1 &  57 & protein complex disassembly & Under \\ 
-  0.00 &   1 &  57 & cellular macromolecular complex disassembly & Under \\ 
-  0.00 &   1 &  55 & pancreas development & Under \\ 
-  0.00 &   1 &  55 & endocrine pancreas development & Under \\ 
-  0.00 &   1 &  55 & endocrine system development & Under \\ 
-  0.00 &   1 &  55 & viral genome expression & Under \\ 
-  0.00 &   1 &  55 & viral transcription & Under \\ 
-  0.00 &   8 & 131 & transcription & Under \\ 
-  0.00 &   1 &  54 & translational termination & Under \\ 
-  0.00 &   4 &  89 & translation & Under \\ 
-  0.00 &   2 &  66 & cellular component disassembly & Under \\ 
-  0.00 &   2 &  66 & cellular component disassembly at cellular level & Under \\ 
-  0.01 &  14 & 178 & cellular macromolecule biosynthetic process & Under \\ 
-  0.01 &  22 & 243 & biosynthetic process & Under \\ 
-  0.01 &  22 & 240 & cellular biosynthetic process & Under \\ 
-  0.01 &  15 & 181 & macromolecule biosynthetic process & Under \\ 
-  0.01 &   2 &  57 & viral reproductive process & Under \\ 
-  0.01 &   2 &  57 & viral infectious cycle & Under \\ 
-  0.02 &   0 &  26 & positive regulation of intracellular protein kinase cascade & Under \\ 
-  0.03 &   1 &  38 & positive regulation of response to stimulus & Under \\ 
-  0.03 &   0 &  24 & oocyte differentiation & Under \\ 
-  0.03 &   0 &  23 & oocyte development & Under \\ 
-  0.03 &   0 &  23 & cation transport & Under \\ 
-  0.04 &   0 &  22 & positive regulation of MAPKKK cascade & Under \\ 
-  0.05 &  24 & 234 & growth & Under \\ 
+GO:0009081 & branched chain family amino acid metabolic process &   3 &   3 & 0.36 & 0.0017 \\ 
+  GO:0009083 & branched chain family amino acid catabolic process &   3 &   3 & 0.36 & 0.0017 \\ 
+  GO:0042594 & response to starvation &  15 &   6 & 1.82 & 0.0052 \\ 
+  GO:0006914 & autophagy &  12 &   5 & 1.45 & 0.0090 \\ 
+  GO:0006520 & cellular amino acid metabolic process &  44 &  11 & 5.33 & 0.0102 \\ 
+  GO:0007281 & germ cell development &  17 &   6 & 2.06 & 0.0105 \\ 
+  GO:0090068 & positive regulation of cell cycle process &  17 &   6 & 2.06 & 0.0105 \\ 
+  GO:0009308 & amine metabolic process &  57 &  13 & 6.90 & 0.0118 \\ 
+  GO:0051325 & interphase &  23 &   7 & 2.79 & 0.0139 \\ 
+  GO:0051329 & interphase of mitotic cell cycle &  23 &   7 & 2.79 & 0.0139 \\ 
    \hline
-0.01 &   4 &   7 & small nuclear ribonucleoprotein complex & Over \\ 
-  0.01 &  31 & 164 & mitochondrion & Over \\ 
-  0.02 &   2 &   2 & Cajal body & Over \\ 
-  0.02 &   2 &   2 & U5 snRNP & Over \\ 
-  0.02 &   2 &   2 & U4/U6 x U5 tri-snRNP complex & Over \\ 
-  0.03 &  17 &  80 & mitochondrial part & Over \\ 
-  0.04 &   3 &   6 & nuclear speck & Over \\ 
-  0.04 &   5 &  15 & nuclear body & Over \\ 
-  0.04 &  14 &  65 & mitochondrial membrane & Over \\ 
-  0.05 &  14 &  66 & mitochondrial envelope & Over \\ 
-  0.05 &   2 &   3 & clathrin sculpted vesicle & Over \\ 
-  0.05 &   2 &   3 & plasma membrane respiratory chain complex I & Over \\ 
-  0.05 &   2 &   3 & plasma membrane respiratory chain & Over \\ 
-  0.05 &   2 &   3 & basement membrane & Over \\ 
-  0.05 &   2 &   3 & plant-type cell wall & Over \\ 
-  0.00 &   0 &  37 & large ribosomal subunit & Under \\ 
-  0.01 &   0 &  35 & cytosolic large ribosomal subunit & Under \\ 
-  0.01 &  28 & 280 & nucleus & Under \\ 
-  0.02 &  19 & 201 & non-membrane-bounded organelle & Under \\ 
-  0.02 &  19 & 201 & intracellular non-membrane-bounded organelle & Under \\ 
-  0.02 &   4 &  71 & nucleolus & Under \\ 
-  0.02 &   3 &  60 & cytosolic ribosome & Under \\ 
-  0.02 &   1 &  38 & plastid & Under \\ 
-  0.03 &   4 &  68 & cytosolic part & Under \\ 
-  0.03 &   1 &  36 & chloroplast & Under \\ 
-  0.05 &   5 &  73 & ribosome & Under \\ 
+GO:0030532 & small nuclear ribonucleoprotein complex &   7 &   4 & 0.84 & 0.005 \\ 
+  GO:0005682 & U5 snRNP &   2 &   2 & 0.24 & 0.014 \\ 
+  GO:0015030 & Cajal body &   2 &   2 & 0.24 & 0.014 \\ 
+  GO:0046540 & U4/U6 x U5 tri-snRNP complex &   2 &   2 & 0.24 & 0.014 \\ 
+  GO:0016607 & nuclear speck &   6 &   3 & 0.72 & 0.025 \\ 
+  GO:0005739 & mitochondrion & 136 &  23 & 16.35 & 0.031 \\ 
+  GO:0005604 & basement membrane &   3 &   2 & 0.36 & 0.039 \\ 
+  GO:0060198 & clathrin sculpted vesicle &   3 &   2 & 0.36 & 0.039 \\ 
+  GO:0016604 & nuclear body &  13 &   4 & 1.56 & 0.059 \\ 
+  GO:0008021 & synaptic vesicle &   9 &   3 & 1.08 & 0.082 \\ 
    \hline
 \hline
 \end{longtable}
@@ -1587,8 +1468,8 @@ least heterozygous individual. Heterozygote-heterozygote correlation
 \cite{pmid21565077} confirmed the genome-wide significance of these
 markers.
 
-% latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Wed Nov 23 10:32:01 2011
+% latex table generated in R 2.14.0 by xtable 1.6-0 package
+% Sat Dec 17 16:09:20 2011
 \begin{table}[ht]
 \begin{center}
 \begin{tabular}{rrrrr}
@@ -1606,41 +1487,14 @@ T2 & 0.45 & -0.73 & 0.59 & 1.00 \\
 \end{table}
 \subsection{Table 6 - Expression analysis for contigs and orthologous groups}
 
-\tiny
-% latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Wed Nov 23 10:32:01 2011
-\begin{sidewaystable}[ht]
-\begin{center}
-\begin{tabular}{lllp{2cm}p{2cm}rrrrrrrrrrr}
-  \hline
-Ce.hit & Bm.hit & contig & Bm.annot & Ce.annot & T1 & T2 & M & E1 & E2 & padj & log2FoldChange & padj.Bm & log2FoldChange.Bm & padj.Ce & log2FoldChange.Ce \\ 
-  \hline
-C04G2.9 & UniRef100\_A8NU76 & Contig2545 & P40, putative &  &   0 &   0 & 160 &   0 &   0 & 0.00 & -Inf & 0.00 & -9.34 & 0.00 & -6.13 \\ 
-  ZK354.7 & UniRef100\_A8Q9H4 & Contig6616 & Major sperm protein &  &   0 &   0 & 105 &   0 &   0 & 0.00 & -Inf & 0.00 & -10.10 & 0.00 & -8.40 \\ 
-   &  & Contig308 &  &  &   0 &   0 & 100 &   0 &   0 & 0.00 & -Inf &  &  &  &  \\ 
-  F55C5.1 & UniRef100\_A8QGS4 & Contig4500 & Major sperm protein &  &   0 &   0 & 142 &   0 &   1 & 0.00 & -10.78 & 0.00 & -6.93 & 0.00 & -8.54 \\ 
-  ZC168.6 & UniRef100\_A8P5F6 & Contig7939 & Major sperm protein 3, putative &  &   0 &   0 &  81 &   0 &   0 & 0.00 & -Inf & 0.00 & -Inf & 0.00 & -Inf \\ 
-  F44D12.7 & UniRef100\_A8QGS4 & Contig7241 & Major sperm protein &  &   0 &   0 &  73 &   0 &   0 & 0.00 & -Inf & 0.00 & -6.93 & 0.00 & -7.09 \\ 
-  T13F2.11 & UniRef100\_A8P0Q6 & Contig7870 & Major sperm protein & major sperm protein &   0 &   0 & 213 &   0 &   2 & 0.00 & -10.37 & 0.00 & -6.80 & 0.00 & -7.78 \\ 
-   &  & Contig5567 &  &  &   0 &   0 &  66 &   0 &   0 & 0.00 & -Inf &  &  &  &  \\ 
-  T13F2.11 & UniRef100\_A8P0Q6 & Contig3218 & Major sperm protein & major sperm protein &   0 &   1 & 139 &   0 &   2 & 0.00 & -8.96 & 0.00 & -6.80 & 0.00 & -7.78 \\ 
-  R11A5.4a & UniRef100\_A8PGZ3 & Contig194 & Phosphoenolpyruvate carboxykinase [GTP] , putative & phosphoenolpyruvate carboxykinase &   0 &   0 &  56 &   0 &   0 & 0.00 & -Inf & 1.00 & 0.42 & 1.00 & -1.04 \\ 
-  C39H7.1 & UniRef100\_A8NZK6 & Contig5552 & Protein kinase domain containing protein &  &   0 &   0 &  82 &   0 &   1 & 0.00 & -9.99 & 0.01 & -5.21 & 0.00 & -6.79 \\ 
-  T21G5.5d & UniRef100\_A8PLE0 & Contig96 & KH domain containing protein &  &   0 &   1 &  89 &   1 &   0 & 0.00 & -7.04 & 0.00 & -6.25 & 0.00 & -6.38 \\ 
-  Y37D8A.5 & UniRef100\_A8PHE3 & Contig6036 & Putative uncharacterized protein &  &   0 &   0 &  51 &   0 &   0 & 0.00 & -Inf & 0.02 & -4.67 & 0.00 & -Inf \\ 
-   &  & Contig6077 &  &  &   0 &   0 &  53 &   0 &   0 & 0.00 & -Inf &  &  &  &  \\ 
-  T13F2.11 & UniRef100\_A8P0Q4 & Contig5248 & Major sperm protein & major sperm protein &   0 &   0 &  49 &   0 &   0 & 0.00 & -Inf & 0.00 & -6.16 & 0.00 & -7.78 \\ 
-  Y69E1A.2 & UniRef100\_A8NF47 & Contig94 & P40, putative &  &   0 &   6 & 255 &   0 &   0 & 0.00 & -8.50 & 0.00 & -8.43 & 0.00 & -8.60 \\ 
-  ZK265.3 & UniRef100\_A8PVX0 & Contig437 & MFP2, putative &  &   0 &   1 & 117 &   3 &   0 & 0.00 & -6.02 & 0.00 & -5.89 & 0.00 & -6.00 \\ 
-   & UniRef100\_A8P9A8 & Contig90 & Putative uncharacterized protein &  &   0 &   0 &  70 &   0 &   1 & 0.00 & -9.76 & 0.00 & -9.90 &  &  \\ 
-  C02B10.6 & UniRef100\_A8NYB5 & Contig382 & Protein-tyrosine phosphatase containing protein &  &   0 &   1 &  51 &   0 &   0 & 0.00 & -8.76 & 0.02 & -4.60 & 0.00 & -8.86 \\ 
-  C25G4.6 & UniRef100\_A8PC25 & Contig106 & PDZ domain containing protein &  &   1 &   3 &  84 &   0 &   1 & 0.00 & -7.16 & 0.01 & -5.04 & 0.00 & -7.23 \\ 
-  F49E2.5k & UniRef100\_A8PPU4 & Contig644 & Putative uncharacterized protein &  &   1 &   0 &  83 &   2 &   5 & 0.00 & -5.63 & 0.00 & -5.54 & 0.00 & -5.68 \\ 
-   &  & Contig1551 &  &  &   1 &   0 &  55 &   0 &   3 & 0.00 & -7.12 &  &  &  &  \\ 
-   \hline
-\end{tabular}
-\end{center}
-\end{sidewaystable}
+%% \tiny
+%% <<echo=FALSE, results=tex>>=
+% ## the.tab <- xtable(the22)
+% ## align(the.tab) <- "llllp{2cm}p{2cm}rrrrrrrrrrr"
+
+% ## print(the.tab, include.rownames=FALSE, floating.environment = "sidewaystable")
+%% @ 
+
 \normalsize
 
 

@@ -30,7 +30,7 @@ GO.bm.com <- ggplot(slim, aes(x=description, fill=species, weight=value)) +
     opts(legend.text = theme_text(face="italic")) +
   theme_bw()
 
-ggsave("/home/ele/thesis/454/figures/Figure_2.png", GO.bm.com, width=16, height=16)
+ggsave("/home/ele/thesis/454/figures/Figure_2.pdf", GO.bm.com, width=16, height=16)
 
 Go.rep.Ac.Bm <- cor(Ac.slim$value, Bm.slim$value, method="spearman")
 Go.rep.Ac.Ce <- cor(Ac.slim$value, Ce.slim$value, method="spearman")

@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.9.20)  23 NOV 2011 10:32
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.9.20)  17 DEC 2011 16:09
 entering extended mode
  %&-line parsing enabled.
 **\nonstopmode \input{/home/ele/thesis/454/paper/transcriptome_paper.tex}
@@ -353,10 +353,10 @@ File: pdftex.def 2007/01/08 v0.04d Graphics/color for pdfTeX
 \c@r@tfl@t=\count103
 \rot@float@box=\box56
 )
-(/usr/share/R/texmf/tex/latex/Sweave.sty
+(/usr/local/lib64/R/share/texmf/tex/latex/Sweave.sty
 
-LaTeX Warning: You have requested package `/usr/share/R/texmf/tex/latex/Sweave'
-,
+LaTeX Warning: You have requested package `/usr/local/lib64/R/share/texmf/tex/l
+atex/Sweave',
                but the package provides `Sweave'.
 
 Package: Sweave 
@@ -598,176 +598,57 @@ LaTeX Font Info:    Font shape `T1/aess/m/it' in size <10> not available
 [1
 
 {/usr/share/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-LaTeX Font Info:    Try loading font information for T1+aett on input line 356.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 357.
 
 
 (/usr/share/texmf/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 ) [3] [4] [5] [6] [7] [8] [9] [10]
-[11] [12] [13] [14] [15] [16]
-(/home/ele/thesis/454/paper/transcriptome_paper.bbl
+[11] [12] [13] [14] (/home/ele/thesis/454/paper/transcriptome_paper.bbl
+[15]
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line 32.
- [17] [18] [19] [20]
-[21]) [22] [23] [24] [25] [26] [27]
-Underfull \hbox (badness 10000) in paragraph at lines 1506--1506
-[]|\T1/aer/m/n/10 positive reg-u-la-tion of mi-totic
- []
+ [16] [17]
 
-[28]
-Underfull \hbox (badness 1082) in paragraph at lines 1530--1530
-[]|\T1/aer/m/n/10 cellular com-po-nent dis-as-sem-bly at cel-lu-lar
- []
+! Package inputenc Error: Unicode char \u8:â,A not set up for use with LaTeX.
 
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.273 Danecek P, Auton â, A
+                           becasis G, CA A, Banks E, DePristo M, RE H, G L, ...
 
-Underfull \hbox (badness 10000) in paragraph at lines 1564--1564
-[]|\T1/aer/m/n/10 intracellular non-membrane-bounded or-
- []
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-[29] [30]
-Underfull \hbox (badness 10000) in paragraph at lines 1618--1618
-[]\T1/aer/m/n/10 P40, pu-ta-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1622--1622
-\T1/aer/m/n/10 pro-tein 3,
+[18] [19]) [20] [21] [22] [23] [24]
+Overfull \hbox (44.73447pt too wide) in alignment at lines 1417--1440
+ [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (36.56334pt too wide) in paragraph at lines 1627--1627
-[]\T1/aer/m/n/10 Phosphoenolpyruvate
+Overfull \hbox (44.73447pt too wide) in alignment at lines 1440--1454
+ [] [] [] [] [] [] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 1627--1627
-\T1/aer/m/n/10 car-boxyk-i-
- []
-
-
-Overfull \hbox (35.31334pt too wide) in paragraph at lines 1627--1627
-[]\T1/aer/m/n/10 phosphoenolpyruvate
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1627--1627
-\T1/aer/m/n/10 car-boxyk-i-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1628--1628
-[]\T1/aer/m/n/10 Protein ki-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1628--1628
-\T1/aer/m/n/10 con-tain-ing
- []
-
-
-Underfull \hbox (badness 4981) in paragraph at lines 1629--1629
-[]\T1/aer/m/n/10 KH do-main
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1629--1629
-\T1/aer/m/n/10 con-tain-ing
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1630--1630
-[]\T1/aer/m/n/10 Putative
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1630--1630
-\T1/aer/m/n/10 un-char-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1630--1630
-\T1/aer/m/n/10 ac-ter-ized
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1633--1633
-[]\T1/aer/m/n/10 P40, pu-ta-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1635--1635
-[]\T1/aer/m/n/10 Putative
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1635--1635
-\T1/aer/m/n/10 un-char-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1635--1635
-\T1/aer/m/n/10 ac-ter-ized
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1636--1636
-[]\T1/aer/m/n/10 Protein-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1636--1636
-\T1/aer/m/n/10 tyrosine
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1636--1636
-\T1/aer/m/n/10 phos-phatase
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1636--1636
-\T1/aer/m/n/10 con-tain-ing
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1637--1637
-\T1/aer/m/n/10 con-tain-ing
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1638--1638
-[]\T1/aer/m/n/10 Putative
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1638--1638
-\T1/aer/m/n/10 un-char-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1638--1638
-\T1/aer/m/n/10 ac-ter-ized
- []
-
-
-Overfull \hbox (272.20273pt too wide) in paragraph at lines 1614--1642
- [] 
- []
-
-Adding sideways figure on  right hand page [31] [32]
-(/home/ele/thesis/454/paper/transcriptome_paper.aux)
+[25] [26] (/home/ele/thesis/454/paper/transcriptome_paper.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 2617 strings out of 256216
- 33727 string characters out of 1917072
- 159642 words of memory out of 1500000
- 5810 multiletter control sequences out of 10000+200000
- 47828 words of font info for 83 fonts, out of 1200000 for 2000
+ 2615 strings out of 256216
+ 33784 string characters out of 1917072
+ 120673 words of memory out of 1500000
+ 5809 multiletter control sequences out of 10000+200000
+ 46339 words of font info for 82 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
- 36i,11n,21p,282b,412s stack positions out of 5000i,500n,6000p,200000b,15000s
+ 36i,7n,21p,281b,412s stack positions out of 5000i,500n,6000p,200000b,15000s
 </usr/share/texmf/fonts/type1/bluesky/cm/cmbx9.pfb></usr/share/texmf/fonts/ty
 pe1/bluesky/cm/cmmi10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi7.pfb></
 usr/share/texmf/fonts/type1/bluesky/cm/cmmi8.pfb></usr/share/texmf/fonts/type1/
@@ -781,9 +662,9 @@ si10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy6.pfb></usr/share/texmf/f
 onts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmti10
 .pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmti9.pfb></usr/share/texmf/fonts
 /type1/bluesky/cm/cmtt10.pfb>
-Output written on transcriptome_paper.pdf (32 pages, 237481 bytes).
+Output written on transcriptome_paper.pdf (26 pages, 220148 bytes).
 PDF statistics:
- 181 PDF objects out of 1000 (max. 8388607)
+ 162 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

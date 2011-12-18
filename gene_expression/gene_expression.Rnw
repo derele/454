@@ -71,106 +71,94 @@ counts$all.reads <- apply(counts[,2:length(counts)], 1, sum)
 ### merge all counts into the main data
 contig.df <- merge(contig.df, counts, all.x=TRUE)
 
-## discard all non Ac matches
-cst <- contig.df[contig.df$AcMN, c("E1", "E2", "L2", "M", "T1", "T2")]
-rownames(cst) <- contig.df[contig.df$AcMN, "contig"]
+raw.counts <- contig.df[contig.df$AcMN, c("E1", "E2", "T1", "T2")]
+rownames(raw.counts) <- contig.df[contig.df$AcMN, "contig"]
+counts <- subset(raw.counts, rowSums(counts)>64)
 
-cst <- cst[rowSums(cst)>48, ]
-cst <- cst[!is.na(cst$E1),]
 
-conds.eel <- factor(c("EU", "EU", "L2", "M", "TW", "TW"))
-conds.mf <- factor(c("F", "F", "L2", "M", "F", "F"))
-conds.ad <- factor(c("Ad", "Ad", "L2", "Ad", "Ad", "Ad"))
+ideg6 <- read.delim("/home/ele/thesis/454/gene_expression/output_ideg6.csv", skip=21, header=TRUE)
 
-exp.get.3.diff <- function (countsFrame) {
-  cds.eel <- newCountDataSet(countsFrame, conds.eel)
-  cds.eel <- estimateSizeFactors(cds.eel)
-  cds.eel <- estimateVarianceFunctions(cds.eel)
-  res.eel <- nbinomTest(cds.eel, "TW", "EU")
 
-  cds.mf <- newCountDataSet(countsFrame, conds.mf)
-  cds.mf <- estimateSizeFactors(cds.mf)
-  cds.mf <- estimateVarianceFunctions(cds.mf)
-  res.mf <- nbinomTest(cds.mf, "M", "F")
+## counts <- as.data.frame(t(apply(counts, 1,
+##                                 function (x) c(sum(x[1:2]), sum(x[3:4])))))
 
-  cds.ad <- newCountDataSet(countsFrame, conds.ad)
-  cds.ad <- estimateSizeFactors(cds.ad)
-  cds.ad <- estimateVarianceFunctions(cds.ad)
-  res.ad <- nbinomTest(cds.ad, "Ad", "L2")
+## con.DE <- newCountDataSet(counts, as.factor(c("E", "T")))
+## con.DE <- estimateSizeFactors(con.DE)
+## con.norm <- counts( con.DE, normalized=TRUE )
+## colnames(con.norm) <- c("E", "T")
 
-  return(list(res.eel, res.mf, res.ad))
-}
+## multi.f.test <- function (two.col.exp){
+##   raw.p <- sapply(1:nrow(two.col.exp), function (i) {
+##     fisher.test(matrix(c(two.col.exp[i,1], sum(two.col.exp[,1]),
+##                          two.col.exp[i,2], sum(two.col.exp[,2])), nrow=2))$p.value})
+##   logFC <- apply(two.col.exp, 1, function (x) log(x[1]/x[2]))
+##   data.frame( logFC, FDR=p.adjust(raw.p))}
 
-## for the contig-counts
-contig.diff <- exp.get.3.diff(cst)
+## res <- multi.f.test(con.norm)
 
-## collapsed for Bm orthologs 
-bst <- contig.df[contig.df$Ac, c("Bm.hit", "E1", "E2", "L2", "M", "T1", "T2")]
-bst <- bst[!is.na(bst$Bm.hit),]
-bst <- do.call("rbind", by(bst, bst$Bm.hit, function (x) colSums(x[,2:7])))
-bst <- subset(bst, rowSums(bst)>48)
+## ## collapsed for Bm orthologs 
+## bst <- contig.df[contig.df$Ac, c("Bm.hit", "E1", "E2", "T1", "T2")]
+## bst <- bst[!is.na(bst$Bm.hit),]
+## bst <- do.call("rbind", by(bst, bst$Bm.hit, function (x) colSums(x[,2:5])))
+## bst <- subset(bst, rowSums(bst)>64)
+## bst <- as.data.frame(t(apply(bst, 1,
+##                                 function (x) c(sum(x[1:2]), sum(x[3:4])))))
 
-bm.diff <- exp.get.3.diff(bst)
+## bst.DE <- newCountDataSet(bst, as.factor(c("E", "T")))
+## bst.DE <- estimateSizeFactors(bst.DE)
+## bst.norm <- counts( bst.DE, normalized=TRUE )
 
-## Collapsed for Ce orthologs
-wst <- contig.df[contig.df$Ac, c("Ce.hit", "E1", "E2", "L2", "M", "T1", "T2")]
-wst <- wst[!is.na(wst$Ce.hit),]
-wst <- do.call("rbind", by(wst, wst$Ce.hit, function (x) colSums(x[,2:7])))
-wst <- subset(wst, rowSums(wst)>48)
+## res.bst <- multi.f.test(bst.norm)
 
-ce.diff <- exp.get.3.diff(wst)
+## ## collapsed for Ce orhtologs
+## cst <- contig.df[contig.df$Ac, c("Ce.hit", "E1", "E2", "T1", "T2")]
+## cst <- cst[!is.na(cst$Ce.hit),]
+## cst <- do.call("rbind", by(cst, cst$Ce.hit, function (x) colSums(x[,2:5])))
+## cst <- subset(cst, rowSums(cst)>64)
+## cst <- as.data.frame(t(apply(cst, 1,
+##                                 function (x) c(sum(x[1:2]), sum(x[3:4])))))
 
-mf <- merge(contig.df[,c("contig", "Bm.hit", "Bm.annot",  "Ce.hit",  "Ce.annot",
-                         "T1", "T2","M", "E1", "E2")],
-            contig.diff[[2]][,c("id", "padj", "log2FoldChange")],
-            by.x="contig", by.y="id")
+## cst.DE <- newCountDataSet(cst, as.factor(c("E", "T")))
+## cst.DE <- estimateSizeFactors(cst.DE)
+## cst.norm <- counts( cst.DE, normalized=TRUE )
 
-mf <- merge(mf, bm.diff[[2]][,c("id", "padj", "log2FoldChange")],
-            by.x="Bm.hit", by.y="id", 
-            all=TRUE, suffixes=c("",".Bm"))
+## res.cst <- multi.f.test(cst.norm)
 
-mf <- merge(mf, ce.diff[[2]][,c("id", "padj", "log2FoldChange")],
-            by.x="Ce.hit", by.y="id", 
-            all=TRUE, suffixes=c("", ".Ce"))
+## OC <- merge(res, contig.df[, c("contig", "Bm.hit", "Ce.hit")],
+##             by.x="row.names", by.y="contig" )
 
-the22 <- head(mf[order(mf$padj), ], n=22)
+## OC <- merge(OC, res.bst, by.x="Bm.hit", by.y="row.names",
+##             all.x=TRUE, suffixes=c(".Con", ".Bm"))
 
-eel <- merge(contig.df[,c("contig", "Bm.hit", "Bm.annot",  "Ce.hit",  "Ce.annot",
-                          "T1", "T2","E1", "E2")],
-             contig.diff[[1]][,c("id", "padj", "log2FoldChange")],
-             by.x="contig", by.y="id")
+## OC <- merge(OC, res.cst, by.x="Ce.hit", by.y="row.names",
+##             all.x=TRUE, suffixes=c("", "", ".Ce"))
+## names(OC)[(ncol(OC)-1):ncol(OC)] <- c("logFC.Ce", "FDR.Ce")
 
-eel <- merge(eel,bm.diff[[1]][,c("id", "padj", "log2FoldChange")],
-            by.x="Bm.hit", by.y="id", 
-            all=TRUE, suffixes=c("", ".Bm"))
+## rownames(OC) <- OC$Row.names
+## OC$Row.names <- NULL
 
-eel <- merge(eel, ce.diff[[1]][,c("id", "padj", "log2FoldChange")],
-            by.x="Ce.hit", by.y="id", 
-            all=TRUE, suffixes=c("", ".Ce"))
+## SignifOC <- subset(OC, FDR.Con<0.01 & FDR.Bm<0.01 &  FDR.Ce<0.01)
 
-## the orthologous groups...
-## collagens
-## col.pep <- contig.df[contig.df$Bm.hit%in%"UniRef100_A8NIG1", c("Ac.pep")]
-## names(col.pep) <- contig.df[contig.df$Bm.hit%in%"UniRef100_A8NIG1", c("contig")]
-## write.sequence(col.pep, "/home/ele/colpep.fasta")
+## ## SignifOC[order(SignifOC$FDR.Con),]
 
-## col.nuc <- contig.df[contig.df$Bm.hit%in%"UniRef100_A8NIG1", c("seq")]
-## names(col.nuc) <- contig.df[contig.df$Bm.hit%in%"UniRef100_A8NIG1", c("contig")]
-## write.sequence(col.nuc, "/home/ele/colnuc.fasta")
+## OC.454.c <- rownames(SignifOC)
 
-## Phosphoenolpyruvate carboxykinase
-## pcarb.pep <- contig.df[contig.df$Bm.hit%in%"UniRef100_A8PGZ3", c("Ac.pep")]
-## names(pcarb.pep) <- contig.df[contig.df$Bm.hit%in%"UniRef100_A8PGZ3", c("contig")]
-## write.sequence(pcarb.pep, "/home/ele/pcarbpep.fasta")
+## pData <- cbind(c("E1", "E2", "T1", "T2")w)
+## rownames(pData) <- c("E1", "E2", "T1", "T2")
+## pData <- as.data.frame(pData)
+## names(pData) <- c("origin")
 
-## pcarb.nuc <- contig.df[contig.df$Bm.hit%in%"UniRef100_A8PGZ3", c("seq")]
-## names(pcarb.nuc) <- contig.df[contig.df$Bm.hit%in%"UniRef100_A8PGZ3", c("contig")]
-## write.sequence(pcarb.nuc, "/home/ele/pcarbnuc.fasta")
+## phenoData <- new("AnnotatedDataFrame", data = pData)
 
-## look at correlations
-## vsd <- getVarianceStabilizedData( cds.mf )
-## dists <- dist( t( vsd ) )
-## idists <- as.matrix(dists)
-##heatmap (idists , symm=TRUE, margins = c (7,7))
+## NORM <- newCountDataSet(raw.counts, as.factor(c("E","E", "T", "T")))
+## NORM <- estimateSizeFactors(NORM)
+## NORM <- counts( NORM, normalized=TRUE )
+
+## allSet <- new("ExpressionSet",
+##               exprs=as.matrix(NORM),
+##               phenoData = phenoData)
+
+## ann.heat.454 = annHeatmap2(exprs(allSet[OC.454.c]),
+##   ann=list(Col=list(data=pData(allSet[OC.454.c]), inclRef=FALSE)))
 
 @ 

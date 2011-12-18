@@ -573,7 +573,7 @@ dens.dn.ds <- ggplot(contig.df[!is.na(contig.df$dn.ds),],
 
 <<echo=FALSE, results=hide>>=
 
-png("../figures/Figure_3.png", width=2000, height=1000, res=144)
+pdf("../figures/Figure_3.pdf", width=20, height=10)
 
 # Set up the page
 grid.newpage()
@@ -590,7 +590,7 @@ grid.text("b", x=unit(0.46,"npc"), y=unit(0.98,"npc"))
 
 dev.off() 
 
-png("../figures/Figure_4.png", width=5000, height=3000, res=288)
+pdf("../figures/Figure_4.pdf", width=50, height=30)
 # Set up the page
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(2, 2)))
@@ -610,7 +610,7 @@ grid.text("d", x=unit(0.51,"npc"), y=unit(0.52,"npc"))
 
 dev.off() 
 
-ggsave("../figures/dens_dn_ds.png", dens.dn.ds)
+ggsave("../figures/dens_dn_ds.pdf", dens.dn.ds)
 
 @ 
 

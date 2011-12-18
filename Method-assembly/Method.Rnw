@@ -23,12 +23,12 @@ library(lattice)
 library(ggplot2)
 library(MASS)
 library(xtable)
-library(Design)
+
+## library(Design)
 library(limma)
 library(VennDiagram)
 source("/home/ele/thesis/454/common_R_functions.R")
 @ 
-
 
 <<functions_read, echo=FALSE, cache=TRUE>>=
 
@@ -183,10 +183,11 @@ n25d$new.split[n25d$new.split==1] <- 0
 MERGED <- merge(MERGED, n25d, by.x="read",
                 by.y="Var1", all=TRUE)
 
-n25.dist <- ggplot(MERGED, aes(x=new.split, y=..count..+1)) +
+n25.dist <- ggplot(MERGED, aes(x=new.split, y=..count..)) +
   geom_bar(binwidth=2, color="white") +
-  scale_y_log10("number of occurances") +
-  scale_x_continuous("number of contigs/isotigs a read is appearing in")
+  scale_y_continuous("number of reads") +
+  scale_x_continuous("number of contigs/isotigs a read is appearing in") +
+  theme_bw()
 
 @ 
 
@@ -473,15 +474,16 @@ and finally also in one second-order contig by \texttt{Cap3}.
 c.p.SndO.plot <- ggplot(contig.df,
                         aes(x=Newbler_contigs, y=Mira_contigs)) +
         geom_jitter(size=1) + 
-        scale_y_log10() +
-        scale_x_log10()
+        scale_y_log10("number of newbler contigs") +
+        scale_x_log10("number of mira contigs") +
+        theme_bw()
 
 r.p.SndO.plot <- ggplot(contig.df,
                         aes(x=reads_through_Newbler, y=reads_through_Mira)) +
        geom_point(size=1) +
-       scale_x_log10() +
-       scale_y_log10()
-
+       scale_x_log10("reads trough newber") +
+       scale_y_log10("reads trough mira") +
+       theme_bw()
 @ 
 
 \begin{figure}[H]
@@ -615,23 +617,31 @@ suj.sum <- merge(suj.sum, as.data.frame(bases), by.x="assembly", by.y="row.names
 text.base <- ggplot(suj.sum, aes(x=bases, y=base_cov, label=assembly)) +
              geom_text(hjust=0, vjust=0, angle = 315, size=2) +
              geom_point() +
-             facet_wrap(~species, scales="free_y", nrow=2) +
-             scale_y_continuous("percent refference-bases covered") +
-             scale_x_continuous("bases in assembly")
+             facet_grid(species ~ ., scales="free_y") +
+             scale_y_continuous("percent database-bases covered") +
+             scale_x_continuous("bases in assembly") +
+             opts(strip.text.y = theme_text(face="italic")) +
+             theme_bw()
 
 text.prot <- ggplot(suj.sum, aes(x=bases, y=prot_cov, label=assembly)) +
              geom_text(hjust=0, vjust=0, angle = 315, size=2) +
              geom_point() +
-             facet_wrap(~species, scales="free_y", nrow=2) +
-             scale_y_continuous("percent reffereence-proteins hit") +
-             scale_x_continuous("bases in assembly")
+             facet_grid(species ~ ., scales="free_y") +
+             scale_y_continuous("percent database-proteins hit") +
+             scale_x_continuous("bases in assembly")+
+             opts(strip.text.y = theme_text(face="italic")) +
+             theme_bw()
+
+## italic strip does not work somehow !!!
 
 text.prot80 <- ggplot(suj.sum, aes(x=bases, y=prot_cov80p, label=assembly)) +
                geom_text(hjust=0, vjust=1.1, angle = 328, size=2) +
                geom_point() +
-               facet_wrap(~species, scales="free_y", nrow=2) +
-               scale_y_continuous("percent refference-proteins covered > 80% length") +
-               scale_x_continuous("bases in assembly")
+               facet_grid(species ~., scales="free_y") +
+               scale_y_continuous("percent database-proteins covered > 80% length") +
+               scale_x_continuous("bases in assembly") +
+               opts(strip.text.y = theme_text(face="italic")) +
+               theme_bw()
 
 @
 

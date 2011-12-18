@@ -68,7 +68,7 @@ ucov.mir.plot <- ggplot(contig.df, aes(reads_through_Mira, uniq_coverage)) +
 
 <<plot.coverage, echo=FALSE>>=
 
-png("../figures/coverage_per_contig.png", width=2000, height=1000, res=144)
+pdf("../figures/coverage_per_contig.pdf", width=20, height=10)
 
 # Set up the page
 grid.newpage()
@@ -83,7 +83,7 @@ print(per.con.uniq.plot, vp = vplayout(1, 2 ))
 dev.off() 
 
 
-png("../figures/coverage_plots.png", width=1000, height=1000, res=144)
+pdf("../figures/coverage_plots.pdf", width=20, height=20)
 # Set up the page
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(2, 2)))

@@ -201,11 +201,12 @@
   conserved in Nematoda and novel in \textit{A. crassus}. We
   identified 5112 high quality Single nucleotide polymorphisms (SNPs)
   and suggest 199 of them as most suitable markers for
-  population-genetic studies. GO-term analysis identified 13
-  proteinases under positive selection. Comparing male and female as
-  well as Asian and European \textit{A. crassus} we developed a method
-  for future work with this transcriptome as a reference in mapping
-  experiments.
+  population-genetic studies. GO-term analysis identified enrichment
+  of peptidases and subunits of the respiratory chain to be enriched
+  for transcritps under positive selection. Comparing male and female
+  as well as Asian and European \textit{A. crassus} we developed a
+  method for future work with this transcriptome as a reference in
+  mapping experiments.
   \paragraph*{Conclusions:}
   The transcriptome of \textit{A. crassus} is a basis for molecular
   research on this important species. It furthermore provides unique
@@ -402,6 +403,11 @@ values better than 1e-05. TUGs with a best hit to non-Metazoans and to
 Chordata within Metazoa were additionally excluded from further
 analysis.
 
+%% nrow(contig.df[!contig.df$Ac &
+%% contig.df$contamination%in%"eelmRNA" & contig.df$phylum.nr%in%"Nematoda", ])
+%% investigate if these (149) should not be included rather as
+%% Ac-origin DONE!!! The eelmRNA hits are _all_ much better!
+
 \subsection*{Protein prediction and annotation}
 
 Protein translations were predicted from the contigs using
@@ -513,6 +519,7 @@ library(ggplot2)
 library(GSEABase)
 library(GOstats)
 library(GO.db)
+library(topGO)
 
 library(limma)
 library(XML)
@@ -526,6 +533,7 @@ library(biomaRt)
 library(BioIDMapper)
 
 library(Rhh)
+library(Heatplus)
 
 source("/home/ele/thesis/454/common_R_functions.R")
 @ 
@@ -949,72 +957,72 @@ by loci and standardised heterozygosity). Using a higher number of
 genotyped individuals these markers would allow to asses the amount of
 inbreeding in populations of \textit{A. crassus}..
 
-\subsection*{Differential expression}
+%% \subsection*{Differential expression}
                 
 \SweaveInput{../gene_expression/gene_expression.Rnw}
 
-Using methods developed for sequencing data in the R-package DESeq
-\cite{pmid20979621}, we analysed gene-expression inferred from
-mapping. Of the \Sexpr{length(raw.fasta)} reads \Sexpr{n454.map}
-(\Sexpr{round((n454.map/length(raw.fasta))*100,2)}\%) mapped uniquely
-(with their best hit) to the fullest assembly (including the all
-assembled contigs as a ``filter'' later removing screened out
-sequences for analysis).
+% % Using methods developed for sequencing data in the R-package DESeq
+% % \cite{pmid20979621}, we analysed gene-expression inferred from
+% % mapping. Of the Sexpr{length(raw.fasta)} reads Sexpr{n454.map}
+% % (Sexpr{round((n454.map/length(raw.fasta))*100,2)}\%) mapped uniquely
+% % (with their best hit) to the fullest assembly (including the all
+% % assembled contigs as a ``filter'' later removing screened out
+% % sequences for analysis).
 
-22 Contigs were clearly over-expressed at adjusted p-values $<$ 0.001
-in the male worm compared to the female worms.
-\Sexpr{nrow(the22[grepl("sperm",the22$Bm.annot),])#$} of these were
-annotated as ``Major sperm protein'', all with different orthologs in
-\textit{B. malayi} and with
-\Sexpr{length(unique(the22[grepl("sperm",the22$Bm.annot),"Ce.hit"]))#$}
-different orthologs in \textit{C. elegans}. Other annotation were
-``putative P40'' for ``Contig2545'' and ``Contig94'', ``MFP2'' for
-``Contig437'', ``KH domain containing protein'' for ``Contig96'',
-``Protein kinase domain containing protein'' for ``Contig96'',
-``Protein-tyrosine phosphatase containing protein'' for ``Contig382''
-and ``PDZ domain containing protein'' for ``Contig106''. For all these
-contigs read-sums for orthologous groups in the two model nematodes
-also showed significant over-expression in the same direction.
+% % 22 Contigs were clearly over-expressed at adjusted p-values $<$ 0.001
+% % in the male worm compared to the female worms.
+% % Sexpr{nrow(the22[grepl("sperm",the22$Bm.annot),])#$} of these were
+% % annotated as ``Major sperm protein'', all with different orthologs in
+% % \textit{B. malayi} and with
+% % Sexpr{length(unique(the22[grepl("sperm",the22$Bm.annot),"Ce.hit"]))#$}
+% % different orthologs in \textit{C. elegans}. Other annotation were
+% % ``putative P40'' for ``Contig2545'' and ``Contig94'', ``MFP2'' for
+% % ``Contig437'', ``KH domain containing protein'' for ``Contig96'',
+% % ``Protein kinase domain containing protein'' for ``Contig96'',
+% % ``Protein-tyrosine phosphatase containing protein'' for ``Contig382''
+% % and ``PDZ domain containing protein'' for ``Contig106''. For all these
+% % contigs read-sums for orthologous groups in the two model nematodes
+% % also showed significant over-expression in the same direction.
 
-An exception was ``Contig194'' (``Phosphoenolpyruvate
-carboxykinase''), for which the sums of orthologous-counts for both
-model-nematodes did not show a significant over-expression in the
-male.
+% % An exception was ``Contig194'' (``Phosphoenolpyruvate
+% % carboxykinase''), for which the sums of orthologous-counts for both
+% % model-nematodes did not show a significant over-expression in the
+% % male.
 
-Comparing libraries from European worms to Taiwanese worms, two
-contigs were observed at adjusted p-values $<$ 0.001: ``Contig5250''
-was only expressed in library E2 and was annotated as an ortholog of
-alpha tubulin in both \textit{C. elegans} and \textit{Brugia
-  malayi}. This annotation was shared with
-\Sexpr{nrow(contig.df[contig.df$Ce.hit%in%"C44B11.3",])#$} and \Sexpr{nrow(contig.df[contig.df$Bm.hit%in%"UniRef100_A8PYK7",])#$}
-  contigs respectively. Contrary to the identified contig, the sums of
-  the read counts for this orthologous groups showed a non-significant
-  trend towards higher expression in the the Asian
-  libraries. ``Contig13931''was only expressed in sample E1 and showed
-  high similarity to \textit{Ascaris lumbricoides} small nuclear RNAs.
+% % Comparing libraries from European worms to Taiwanese worms, two
+% % contigs were observed at adjusted p-values $<$ 0.001: ``Contig5250''
+% % was only expressed in library E2 and was annotated as an ortholog of
+% % alpha tubulin in both \textit{C. elegans} and \textit{Brugia
+% %   malayi}. This annotation was shared with
+% % Sexpr{nrow(contig.df[contig.df$Ce.hit%in%"C44B11.3",])#$} and Sexpr{nrow(contig.df[contig.df$Bm.hit%in%"UniRef100_A8PYK7",])#$}
+% %   contigs respectively. Contrary to the identified contig, the sums of
+% %   the read counts for this orthologous groups showed a non-significant
+% %   trend towards higher expression in the the Asian
+% %   libraries. ``Contig13931''was only expressed in sample E1 and showed
+% %   high similarity to \textit{Ascaris lumbricoides} small nuclear RNAs.
 
-  Two contigs were identified as differentially expressed at adjusted
-  p-values below 0.2 and were expressed highly in library E2:
-  ``Contig5320'' shared annotation as ortholog of ``Cuticle collagen
-  7'' in both model-nematodes with
-  \Sexpr{nrow(contig.df[contig.df$Ce.hit%in%"F58F6.1", ])#$} contigs.
-    Counts for the orthologous groups showed a non-significant
-    opposite trend of over-expression in the in the Taiwanese libraries.
-    ``Contig200'' shared similarity only with one predicted protein
-    from \textit{C. elegans}.   
+% %   Two contigs were identified as differentially expressed at adjusted
+% %   p-values below 0.2 and were expressed highly in library E2:
+% %   ``Contig5320'' shared annotation as ortholog of ``Cuticle collagen
+% %   7'' in both model-nematodes with
+% %   Sexpr{nrow(contig.df[contig.df$Ce.hit%in%"F58F6.1", ])#$} contigs.
+% %     Counts for the orthologous groups showed a non-significant
+% %     opposite trend of over-expression in the in the Taiwanese libraries.
+% %     ``Contig200'' shared similarity only with one predicted protein
+% %     from \textit{C. elegans}.   
 
-    This was followed by a set of
-    \Sexpr{nrow(subset(eel,padj<0.21&eel$padj>0.19))#$} contigs
-    over-expressed at exactly 20\% false discovery rate. They were all
-    found only in Taiwanese libraries and the ortholog-groups showed a
-    tendency towards expression in the same direction. Three of these
-    are worth further notice: ``Contig5164'' annotated as
-    ``galactoside binding lectin'' was not only expressed in one of
-    the Taiwaneselibraries, but in both. ``Contig110'' (``cysteine
-    protease'') had adjusted p-values `$<$ 1 and ``Contig6355''
-    (``Trypsin family protein'') nearly significant adjusted p-values
-    $<$ 0.4 for orthologous groups in \textit{C. elegans} and
-    \textit{B. malayi}.
+% %     This was followed by a set of
+% %     Sexpr{nrow(subset(eel,padj<0.21&eel$padj>0.19))#$} contigs
+% %     over-expressed at exactly 20\% false discovery rate. They were all
+% %     found only in Taiwanese libraries and the ortholog-groups showed a
+% %     tendency towards expression in the same direction. Three of these
+% %     are worth further notice: ``Contig5164'' annotated as
+% %     ``galactoside binding lectin'' was not only expressed in one of
+% %     the Taiwaneselibraries, but in both. ``Contig110'' (``cysteine
+% %     protease'') had adjusted p-values `$<$ 1 and ``Contig6355''
+% %     (``Trypsin family protein'') nearly significant adjusted p-values
+% %     $<$ 0.4 for orthologous groups in \textit{C. elegans} and
+% %     \textit{B. malayi}.
 
 <<save, echo=FALSE>>=
 ## write the MN.peptide sequence for iprscan prediction
@@ -1217,38 +1225,38 @@ under-expression. Genes over-expressed in male \textit{A. crassus}
 comprise major sperm proteins well known for their high expression in
 nematode sperm \cite{pmid15275275}.
 
-We developed a method to assess the possible influence of
-fragmentation of our reference-transcriptome on mapping. Using the
-annotation with orthologous sequences of \textit{C. elegans} and
-\textit{B. malayi} it is possible to highlight problems: For example a
-contig annotated as ``Phosphoenolpyruvate carboxykinase'' showed
-significant over-expression in the male. The 8 other contigs with this
-annotation however, were nearly identical for the middle region of
-their predicted proteins, had a high amount of homopolymeric regions in
-their nucleotide sequence and attracted the missing reads mapping from
-the other libraries. Our orthologous-collapsing method for read-counts
-following manual inspection, could thus exclude this contig as a
-false-positive.
+% We developed a method to assess the possible influence of
+% fragmentation of our reference-transcriptome on mapping. Using the
+% annotation with orthologous sequences of \textit{C. elegans} and
+% \textit{B. malayi} it is possible to highlight problems: For example a
+% contig annotated as ``Phosphoenolpyruvate carboxykinase'' showed
+% significant over-expression in the male. The 8 other contigs with this
+% annotation however, were nearly identical for the middle region of
+% their predicted proteins, had a high amount of homopolymeric regions in
+% their nucleotide sequence and attracted the missing reads mapping from
+% the other libraries. Our orthologous-collapsing method for read-counts
+% following manual inspection, could thus exclude this contig as a
+% false-positive.
 
-In the comparison of European with Asian libraries most
-differentially expressed contigs could be debunked as false positives
-with this method. From the 6 remaining contigs one was annotated with
-only one ortholog (`Contig200''), 3 were lacking any annotation
-(``Contig4'', ``Contig5311'' and ``Contig40''). The only contig with
-differential expression fully validated by our method (``Contig6355'')
-was annotated as (``Trypsin family protein''). The identification of
-another proteinase (it is not among those under positive selection) is
-highlighting the interesting nature of these molecules in
-\textit{A. crassus}.
+% In the comparison of European with Asian libraries most
+% differentially expressed contigs could be debunked as false positives
+% with this method. From the 6 remaining contigs one was annotated with
+% only one ortholog (`Contig200''), 3 were lacking any annotation
+% (``Contig4'', ``Contig5311'' and ``Contig40''). The only contig with
+% differential expression fully validated by our method (``Contig6355'')
+% was annotated as (``Trypsin family protein''). The identification of
+% another proteinase (it is not among those under positive selection) is
+% highlighting the interesting nature of these molecules in
+% \textit{A. crassus}.
 
-Analysis of the expression data made clear what data is required to
-analyse the differences in European vs. Asian nematodes: As variance
-is high in outbred individuals from natural populations both
-replication and depth of analysis have to be high. Furthermore it is
-important to disentangle the influence of the host and the nematode
-population e.g. in a co-inoculation experiment. The last approach
-would also allow the analysis of transcriptomes roughly synchronised
-for the time of development.
+% Analysis of the expression data made clear what data is required to
+% analyse the differences in European vs. Asian nematodes: As variance
+% is high in outbred individuals from natural populations both
+% replication and depth of analysis have to be high. Furthermore it is
+% important to disentangle the influence of the host and the nematode
+% population e.g. in a co-inoculation experiment. The last approach
+% would also allow the analysis of transcriptomes roughly synchronised
+% for the time of development.
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1296,7 +1304,7 @@ The work of EGH is funded by Volkswagen Foundation,
 
 {\ifthenelse{\boolean{publ}}{\footnotesize}{\small}
   \bibliographystyle{bmc_article} % Style BST file
-  \bibliography{/home/ele/bibtex/master,/home/ele/bibtex/master2}
+  \bibliography{/home/ele/bibtex/master}
 } % Bibliography file (usually '*.bib' )
 
 %%%%%%%%%%%
@@ -1531,9 +1539,11 @@ print(T2.tab)
 
 The kingdom Metazoa (novel.in.metazoa), the phylum
 Nematoda(novel.in.nematoda) and clade III (Spirurina;
-novel.in.spirurina) were assessed for occurrences of \texttt{BLAST}-hits
-at two different bitscore thresholds (50 = bit.50 and 80 = bit.80).
-Both novelty and conservation can be derived from this (numbers for
+novel.in.spirurina) were assessed for occurrences of
+\texttt{BLAST}-hits at two different bitscore thresholds (50 = bit.50
+and 80 = bit.80). TUGs without any hit at a given threshold were
+categorized as novel in \textit{A. crssus} (novel.in.Ac).  Both
+novelty and conservation can be derived from this (numbers for
 conservation would be the cumulative sum of lower-level novelty).
 
 <<echo=FALSE, results=tex>>=
@@ -1550,28 +1560,22 @@ print(xtable(nov.tab), floating=FALSE)
 \subsection*{Table 4 - Over- and under-representation of GO-terms in
   positively selected}
 
-GO-terms over- or under-represented (direction) in contigs putatively
-under positive selection. Horizontal lines separate categories of the
+GO-terms over-represented in contigs putatively under positive
+selection. Horizontal lines separate categories of the
 GO-ontology. First category is molecular function, second biological
-process, last cellular compartment. P values (Pval) for over- or
-under-representation are given along with the number of positively
-selected contigs (Count; dn/ds $>$ 0.5) and the number of contigs with
-this annotation for which a dn/ds was obtained (Size) and the
-description of the GO-term (Term).
+process, last cellular compartment. P values (classic) for
+over-representation are given along with the number of positively
+selected contigs (Significant; dn/ds $>$ 0.5) and the number of
+contigs with this annotation for which a dn/ds was obtained
+(Annotated) and the description of the GO-term (Term).
 
 <<echo=FALSE, results=tex>>=
-mf <- mf.dn.ds[, c(2, 5:8)]
-bp <- bp.dn.ds[, c(2, 5:8)]
-cc <- cc.dn.ds[, c(2, 5:8)]
-nhlines <- c(0, nrow(mf), nrow(mf) + nrow(bp), nrow(mf) + nrow(bp) + nrow(cc))
 
-onto.tab <- xtable(rbind(mf, bp, cc))
-
-align(onto.tab) <- "rrrrp{7cm}r"
-
-print(onto.tab, tabular.environment="longtable",
+print(xtable(GO.over.dn.ds), tabular.environment="longtable",
       floating=FALSE,
-      hline.after=nhlines, include.rownames=FALSE)
+      hline.after=c(0, 10, 20, 30), include.rownames=FALSE)
+
+
 @ 
 
 \subsection{Table 5 - Measurements of multi-locus heterozygosity for
@@ -1596,13 +1600,13 @@ print(xtable(het.table))
 
 \subsection{Table 6 - Expression analysis for contigs and orthologous groups}
 
-\tiny
-<<echo=FALSE, results=tex>>=
-the.tab <- xtable(the22)
-align(the.tab) <- "llllp{2cm}p{2cm}rrrrrrrrrrr"
+%% \tiny
+%% <<echo=FALSE, results=tex>>=
+% ## the.tab <- xtable(the22)
+% ## align(the.tab) <- "llllp{2cm}p{2cm}rrrrrrrrrrr"
 
-print(the.tab, include.rownames=FALSE, floating.environment = "sidewaystable")
-@ 
+% ## print(the.tab, include.rownames=FALSE, floating.environment = "sidewaystable")
+%% @ 
 
 \normalsize
 

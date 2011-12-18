@@ -42,7 +42,7 @@ rRNA.lib.bases <- ggplot(R, aes(lib, ..count.., fill=dbhit, weight=length)) +
 @ 
 
 <<plot.rRNA, echo=FALSE, results=hide>>=
-png("../figures/rRNA_plots.png", width=1000, height=1000, res=144)
+pdf("../figures/rRNA_plots.pdf", width=10, height=10)
 
 # Set up the page
 grid.newpage()
