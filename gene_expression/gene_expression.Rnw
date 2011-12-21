@@ -71,94 +71,167 @@ counts$all.reads <- apply(counts[,2:length(counts)], 1, sum)
 ### merge all counts into the main data
 contig.df <- merge(contig.df, counts, all.x=TRUE)
 
-raw.counts <- contig.df[contig.df$AcMN, c("E1", "E2", "T1", "T2")]
+all.counts <- contig.df[, c("E1", "E2", "T1", "T2", "M", "L2")]
+rownames(all.counts) <- contig.df[, "contig"]
+
+raw.counts <- contig.df[contig.df$AcMN, c("E1", "E2", "T1", "T2", "M")]
+
 rownames(raw.counts) <- contig.df[contig.df$AcMN, "contig"]
-counts <- subset(raw.counts, rowSums(counts)>64)
 
+counts <- subset(raw.counts, rowSums(raw.counts)>32)
 
-ideg6 <- read.delim("/home/ele/thesis/454/gene_expression/output_ideg6.csv", skip=21, header=TRUE)
+## ds <- model.matrix(~as.factor(c("E", "E", "T", "T", "T")))
 
+## FFF <- DGEList(counts, lib.size=colSums(counts), group=c("E", "E", "T", "T", "T"))
+## FFF <- calcNormFactors(FFF)
+## FFF <- estimateCommonDisp(FFF, ds)
+## et <- exactTest(FFF)
 
-## counts <- as.data.frame(t(apply(counts, 1,
-##                                 function (x) c(sum(x[1:2]), sum(x[3:4])))))
+## res <- topTags(et, n=nrow(counts))$table
 
-## con.DE <- newCountDataSet(counts, as.factor(c("E", "T")))
-## con.DE <- estimateSizeFactors(con.DE)
-## con.norm <- counts( con.DE, normalized=TRUE )
-## colnames(con.norm) <- c("E", "T")
-
-## multi.f.test <- function (two.col.exp){
-##   raw.p <- sapply(1:nrow(two.col.exp), function (i) {
-##     fisher.test(matrix(c(two.col.exp[i,1], sum(two.col.exp[,1]),
-##                          two.col.exp[i,2], sum(two.col.exp[,2])), nrow=2))$p.value})
-##   logFC <- apply(two.col.exp, 1, function (x) log(x[1]/x[2]))
-##   data.frame( logFC, FDR=p.adjust(raw.p))}
-
-## res <- multi.f.test(con.norm)
-
-## ## collapsed for Bm orthologs 
-## bst <- contig.df[contig.df$Ac, c("Bm.hit", "E1", "E2", "T1", "T2")]
+## collapsed for Bm orthologs 
+## bst <- contig.df[contig.df$AcMN, c("Bm.hit", "E1", "E2", "T1", "T2")]
 ## bst <- bst[!is.na(bst$Bm.hit),]
 ## bst <- do.call("rbind", by(bst, bst$Bm.hit, function (x) colSums(x[,2:5])))
-## bst <- subset(bst, rowSums(bst)>64)
-## bst <- as.data.frame(t(apply(bst, 1,
-##                                 function (x) c(sum(x[1:2]), sum(x[3:4])))))
+## bst <- subset(bst, rowSums(bst)>264)
 
-## bst.DE <- newCountDataSet(bst, as.factor(c("E", "T")))
-## bst.DE <- estimateSizeFactors(bst.DE)
-## bst.norm <- counts( bst.DE, normalized=TRUE )
+## FFF.Bm <- DGEList(bst, lib.size=colSums(bst), group=c("E", "E",  "T", "T"))
+## FFF.Bm <- calcNormFactors(FFF.Bm)
+## FFF.Bm <- estimateCommonDisp(FFF.Bm, ds)
+## et.Bm <- exactTest(FFF.Bm)
 
-## res.bst <- multi.f.test(bst.norm)
+## res.Bm <- topTags(et.Bm, n=nrow(bst))$table
 
-## ## collapsed for Ce orhtologs
-## cst <- contig.df[contig.df$Ac, c("Ce.hit", "E1", "E2", "T1", "T2")]
+## cst <- contig.df[contig.df$AcMN, c("Ce.hit", "E1", "E2", "T1", "T2")]
 ## cst <- cst[!is.na(cst$Ce.hit),]
 ## cst <- do.call("rbind", by(cst, cst$Ce.hit, function (x) colSums(x[,2:5])))
-## cst <- subset(cst, rowSums(cst)>64)
-## cst <- as.data.frame(t(apply(cst, 1,
-##                                 function (x) c(sum(x[1:2]), sum(x[3:4])))))
+## cst <- subset(cst, rowSums(cst)>264)
 
-## cst.DE <- newCountDataSet(cst, as.factor(c("E", "T")))
-## cst.DE <- estimateSizeFactors(cst.DE)
-## cst.norm <- counts( cst.DE, normalized=TRUE )
+## FFF.Ce <- DGEList(cst, lib.size=colSums(cst), group=c("E", "E", "T", "T"))
+## FFF.Ce <- calcNormFactors(FFF.Ce)
+## FFF.Ce <- estimateCommonDisp(FFF.Ce, ds)
+## et.Ce <- exactTest(FFF.Ce)
 
-## res.cst <- multi.f.test(cst.norm)
+## res.Ce <- topTags(et.Ce, n=nrow(cst))$table
 
 ## OC <- merge(res, contig.df[, c("contig", "Bm.hit", "Ce.hit")],
 ##             by.x="row.names", by.y="contig" )
 
-## OC <- merge(OC, res.bst, by.x="Bm.hit", by.y="row.names",
+## OC <- merge(OC, res.Bm, by.x="Bm.hit", by.y="row.names",
 ##             all.x=TRUE, suffixes=c(".Con", ".Bm"))
 
-## OC <- merge(OC, res.cst, by.x="Ce.hit", by.y="row.names",
+## OC <- merge(OC, res.Ce, by.x="Ce.hit", by.y="row.names",
 ##             all.x=TRUE, suffixes=c("", "", ".Ce"))
-## names(OC)[(ncol(OC)-1):ncol(OC)] <- c("logFC.Ce", "FDR.Ce")
 
 ## rownames(OC) <- OC$Row.names
 ## OC$Row.names <- NULL
+## names(OC)[(ncol(OC)-3):ncol(OC)] <- paste(names(OC)[(ncol(OC)-3):ncol(OC)],
+##                                           ".Ce", sep="")
 
-## SignifOC <- subset(OC, FDR.Con<0.01 & FDR.Bm<0.01 &  FDR.Ce<0.01)
+## SignifOC <- subset(OC, adj.P.Val.Con<0.1)
 
 ## ## SignifOC[order(SignifOC$FDR.Con),]
 
 ## OC.454.c <- rownames(SignifOC)
 
-## pData <- cbind(c("E1", "E2", "T1", "T2")w)
-## rownames(pData) <- c("E1", "E2", "T1", "T2")
-## pData <- as.data.frame(pData)
-## names(pData) <- c("origin")
+## ideg6 rather ##################################################
+##################################################################
 
-## phenoData <- new("AnnotatedDataFrame", data = pData)
+## for all
+ideg6.counts <- subset(raw.counts, rowSums(raw.counts)>32)
+ideg6.counts <- cbind(UNIQID=rownames(ideg6.counts), Description=NA, ideg6.counts)
+names(ideg6.counts)[3:7] <- colSums(ideg6.counts[,3:7])
 
-## NORM <- newCountDataSet(raw.counts, as.factor(c("E","E", "T", "T")))
-## NORM <- estimateSizeFactors(NORM)
-## NORM <- counts( NORM, normalized=TRUE )
+## write.table(ideg6.counts,
+##             "/home/ele/thesis/454/gene_expression/input_ideg6.csv",
+##             quote=FALSE, row.names=FALSE, sep="\t")
 
-## allSet <- new("ExpressionSet",
-##               exprs=as.matrix(NORM),
-##               phenoData = phenoData)
 
-## ann.heat.454 = annHeatmap2(exprs(allSet[OC.454.c]),
-##   ann=list(Col=list(data=pData(allSet[OC.454.c]), inclRef=FALSE)))
+ideg6 <- read.delim("/home/ele/thesis/454/gene_expression/output_ideg6.csv", skip=21, header=TRUE)
+ideg6$Description <- NULL
+ideg6$X <- NULL
+ideg6[, 2:length(ideg6)] <- lapply(ideg6[, 2:length(ideg6)],
+                                   function (x) as.numeric(as.character(x)))
+
+ID.eel.sig <- subset(ideg6, AC.3.4>0.01 &
+                     AC.2.3<0.01 & AC.2.4<0.01 )
+
+get.log.FC <- function(x, c1, c2) log(mean(as.numeric(as.character(x[c1])))/
+                                      mean(as.numeric(as.character(x[c2]))))
+
+ID.eel.sig$LogFC <- apply(ID.eel.sig, 1, get.log.FC,
+                          c1="normLib2", c2=c("normLib3", "normLib4"))
+
+
+ID.eel.sig.c <- ID.eel.sig$UNIQID
+express.eel.sig <- ID.eel.sig[,c("normLib2", "normLib3", "normLib4", "LogFC")]
+rownames(express.eel.sig) <- ID.eel.sig.c
+## heatmap(as.matrix(express.eel.sig))
+
+ID.sex.sig <- subset(ideg6,
+                     AC.2.3>0 & AC.3.4>0 & AC.3.4 >0 & AC.2.4 >0 &
+                     AC.2.5<0.01 & AC.3.5<0.01 &  AC.4.5<0.01)
+
+ID.sex.sig$LogFC <- apply(ID.sex.sig, 1, get.log.FC,
+                          c1=c("normLib2", "normLib3", "normLib4"), c2="normLib5")
+
+ID.sex.sig.c <- ID.sex.sig$UNIQID
+express.sex.sig <- ID.sex.sig[,c("normLib2", "normLib3", "normLib4", "normLib5", "LogFC")]
+rownames(express.sex.sig) <- ID.sex.sig.c
+## heatmap(as.matrix(express.sex.sig))
+
+## Bm
+## ideg6.bm <- contig.df[contig.df$Ac, c("Bm.hit", "E1", "E2", "T1", "T2", "M")]
+## ideg6.bm <- ideg6.bm[!is.na(ideg6.bm$Bm.hit),]
+## ideg6.bm <- do.call("rbind", by(ideg6.bm, ideg6.bm$Bm.hit, function (x) colSums(x[,2:6])))
+## ideg6.bm <- subset(ideg6.bm, rowSums(ideg6.bm)>32)
+
+## ideg6.bm.counts <- as.data.frame(cbind(UNIQID=rownames(ideg6.bm),
+##                                        Description=NA, ideg6.bm))
+## ideg6.bm.counts[,3:7] <- lapply(ideg6.bm.counts[, 3:7], function (x) as.numeric(x))
+## names(ideg6.bm.counts)[3:7] <- colSums(ideg6.bm.counts[,3:7])
+
+## write.table(ideg6.bm.counts,
+##             "/home/ele/thesis/454/gene_expression/input_ideg6_bm.csv",
+##             quote=FALSE, row.names=FALSE, sep="\t")
+
+
+## ideg6.bm <- read.delim("/home/ele/thesis/454/gene_expression/output_ideg6_bm.csv", skip=21, header=TRUE)
+## ideg6.bm$Description <- NULL
+## ideg6.bm$X <- NULL
+## ideg6.bm[, 2:length(ideg6.bm)] <- lapply(ideg6.bm[, 2:length(ideg6.bm)],
+##                                    function (x) as.numeric(as.character(x)))
+
+## ID.bm.eel.sig <- subset(ideg6.bm, AC.3.4>0.01 &
+##                      AC.2.3<0.01 & AC.2.4<0.01 )
+
+## ID.bm.eel.sig <- transform(ID.bm.eel.sig, LogFC=log((normLib2)/mean(c(normLib3, normLib4))))
+## ID.bm.eel.sig.c <- ID.bm.eel.sig$UNIQID
+## express.eel.sig.bm <- ID.bm.eel.sig[,c("normLib2", "normLib3", "normLib4", "LogFC")]
+## rownames(express.eel.sig.bm) <- ID.bm.eel.sig.c
+## ## heatmap(as.matrix(express.eel.sig))
+
+## ID.bm.sex.sig <- subset(ideg6.bm,
+##                      AC.2.3>0 & AC.3.4>0 & AC.3.4 >0 & AC.2.4 >0 &
+##                      AC.2.5<0.01 & AC.3.5<0.01 &  AC.4.5<0.01)
+
+## ID.bm.sex.sig <- transform(ID.bm.sex.sig,
+##                         LogFC=log(mean(c(normLib2, normLib3, normLib4))/(normLib5)))
+
+## ID.bm.sex.sig.c <- ID.bm.sex.sig$UNIQID
+## express.sex.sig.bm <- ID.bm.sex.sig[,c("normLib2", "normLib3",
+##                                        "normLib4", "normLib5", "LogFC")]
+
+## rownames(express.sex.sig.bm) <- ID.bm.sex.sig.c
+## ##heatmap(as.matrix(express.sex.sig))
+
+
+## ID.sex <- merge(express.sex.sig, contig.df[, c("contig", "Bm.hit")],
+##                 by.x="row.names", by.y="contig" )
+
+## ID.sex <- merge(ID.sex, express.sex.sig.bm, by.x="Bm.hit", by.y="row.names",
+##                 all.x=TRUE, suffixes=c(".Con", ".Bm"))
+
+
 
 @ 

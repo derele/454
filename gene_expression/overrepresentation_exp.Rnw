@@ -1,0 +1,188 @@
+<<over.exp, echo=FALSE, cache=TRUE>>=
+
+## ID.sex.sig.c and ID.eel.sig.c are lists of significant contigs
+## ideg6 holds the general list
+
+exp.df <- subset(contig.df, contig.df$contig %in% ideg6$UNIQID)
+GO.exp <- subset(GO.annot, pept_id%in%ideg6$UNIQID)
+
+exp.mapping <- GO.exp[,c("pept_id", "go_term")]
+
+## produce a AnnotationDbi object 
+goframeD.exp <- as.data.frame(cbind(frame.go_id=as.character(exp.mapping$go_term),
+                                     frame.Evidence="IEA",
+                                     frame.gene_id=as.character(exp.mapping$pept_id)))
+
+goF.exp <- GOFrame(goframeD.exp, organism="Anguillicola crassus")
+
+## produce an full GO-mapping
+goAllF.exp <- GOAllFrame(goF.exp)
+all.mapping.exp <- as.data.frame(cbind(pept_id=goAllF.exp@data$gene_id,
+                                       go_term=goAllF.exp@data$go_id))
+
+GO2c.exp <- by(all.mapping.exp, all.mapping.exp$pept_id,
+                function (x) c(as.character(x$go_term)))
+geneN.exp <- names(GO2c.exp)
+
+
+ont <- c("MF", "BP", "CC")
+sex.over <- lapply(ont, function (on) TOGO.all.onto (on, ID.sex.sig.c, geneN.exp))
+
+GO.over.sex <- do.call("rbind", lapply(1:3, function (i) {
+  GenTable(sex.over[[i]][[1]], p.value = sex.over[[i]][[2]], 
+  orderBy = "classic",  topNodes=500, numChar=100)
+                                         }))
+
+GO.over.sex <- subset(GO.over.sex, p.value<0.05)
+
+GO.over.sex.lines <- unlist(lapply(sex.over,
+                                   function (x) length(x[[2]]@score[x[[2]]@score<0.05])))
+
+GO.over.sex.lines[2] <- GO.over.sex.lines[1]+GO.over.sex.lines[2]
+GO.over.sex.lines[3] <- GO.over.sex.lines[3]+GO.over.sex.lines[2]
+
+## WTF the above does'not work somehow too long...
+GO.over.sex.lines[3] <- nrow(GO.over.sex)
+
+
+eel.over <- lapply(ont, function (on) TOGO.all.onto (on, ID.eel.sig.c, geneN.exp))
+
+GO.over.eel <-   do.call("rbind", lapply(1:3, function (i) {
+  GenTable(eel.over[[i]][[1]], p.value = eel.over[[i]][[2]], 
+  orderBy = "classic", topNodes=500, numChar=100)
+}))
+
+GO.over.eel <- subset(GO.over.eel, p.value<0.05)
+GO.over.eel.lines <- unlist(lapply(eel.over,
+                                   function (x) length(x[[2]]@score[x[[2]]@score<0.05])))
+
+GO.over.eel.lines[2] <- GO.over.eel.lines[1]+GO.over.eel.lines[2]
+GO.over.eel.lines[3] <- GO.over.eel.lines[3]+GO.over.eel.lines[2]
+
+
+##  SIGNAL-PEPTIDES
+## sex Not enriched for signal-peptides in general
+f.test.sex.sigP <- fisher.test( exp.df$contig%in%ID.sex.sig.c , grepl("Yes", exp.df$sigP))
+f.test.eel.sigP <- fisher.test( exp.df$contig%in%ID.eel.sig.c , grepl("Yes", exp.df$sigP))
+
+## not female
+f.test.female.sigP <- fisher.test(exp.df$contig%in%
+                                  rownames(express.sex.sig[express.sex.sig$LogFC>0,]) ,
+                                           grepl("Yes", exp.df$sigP))
+
+## not male
+f.test.male.sigP <- fisher.test(exp.df$contig%in%
+                                rownames(express.sex.sig[express.sex.sig$LogFC<0,]) ,
+                                grepl("Yes", exp.df$sigP))
+
+## eel origin Not enriched for signal-peptides in general
+f.test.eel.sigP <- fisher.test( exp.df$contig%in%ID.eel.sig.c , grepl("Yes", exp.df$sigP))
+
+## not EU over
+f.test.EU.sigP <- fisher.test(exp.df$contig%in%
+                              rownames(express.eel.sig[express.eel.sig$LogFC<0,]) ,
+                              grepl("Yes", exp.df$sigP))
+
+## not TW over
+f.test.TW.sigP <- fisher.test(exp.df$contig%in%
+                              rownames(express.eel.sig[express.eel.sig$LogFC>0,]) ,
+                              grepl("Yes", exp.df$sigP))
+
+
+## Not higher dn.ds in differentially expressed according to sex
+u.test.dn.ds.sex <- wilcox.test( exp.df$dn.ds ~ as.factor(exp.df$contig%in%ID.sex.sig.c))
+
+## But higher in female overexpressed
+u.test.dn.ds.female <- wilcox.test( exp.df$dn.ds ~
+                                 as.factor(exp.df$contig%in%
+                                           rownames(express.sex.sig[express.sex.sig$LogFC>0,])))
+
+tapply( exp.df$dn.ds,
+       as.factor(exp.df$contig%in%rownames(express.sex.sig[express.sex.sig$LogFC>0,])),
+       median, na.rm=TRUE)
+
+## Lower in male overexpressed
+u.test.dn.ds.male <- wilcox.test( exp.df$dn.ds ~
+                                 as.factor(exp.df$contig%in%
+                                           rownames(express.sex.sig[express.sex.sig$LogFC<0,])))
+
+tapply( exp.df$dn.ds,
+       as.factor(exp.df$contig%in%rownames(express.sex.sig[express.sex.sig$LogFC<0,])),
+       median, na.rm=TRUE)
+
+
+## HIGHER dn.ds in differentially expressed according to pop!!!!!
+u.test.dn.ds.eel <- wilcox.test( exp.df$dn.ds ~ as.factor(exp.df$contig%in%ID.eel.sig.c))
+
+tapply( exp.df$dn.ds, as.factor(exp.df$contig%in%ID.eel.sig.c), median, na.rm=TRUE)
+
+## In both directions higher!!!
+u.test.dn.ds.EU <- wilcox.test( exp.df$dn.ds ~
+                               as.factor(exp.df$contig%in%
+                                         rownames(express.eel.sig[express.eel.sig$LogFC<0,])))
+
+u.test.dn.ds.TW <- wilcox.test( exp.df$dn.ds ~
+                               as.factor(exp.df$contig%in%
+                                         rownames(express.eel.sig[express.eel.sig$LogFC>0,])))
+
+## Sex DE not less conserved
+fisher.test( exp.df$contig%in%ID.sex.sig.c , exp.df$novel.50%in%"conserved")
+fisher.test( exp.df$contig%in%ID.sex.sig.c , exp.df$novel.80%in%"conserved")
+
+f.test.female.conserved50 <- fisher.test(exp.df$contig%in%
+                                       rownames(express.sex.sig[express.sex.sig$LogFC>0,]) ,
+                                       exp.df$novel.50%in%"conserved")
+
+f.test.male.conserved50 <- fisher.test(exp.df$contig%in%
+                                     rownames(express.sex.sig[express.sex.sig$LogFC<0,]) ,
+                                     exp.df$novel.50%in%"conserved")
+
+f.test.female.conserved80 <- fisher.test(exp.df$contig%in%
+                                       rownames(express.sex.sig[express.sex.sig$LogFC>0,]) ,
+                                       exp.df$novel.80%in%"conserved")
+
+f.test.male.conserved80 <- fisher.test(exp.df$contig%in%
+                                     rownames(express.sex.sig[express.sex.sig$LogFC<0,]) ,
+                                     exp.df$novel.80%in%"conserved")
+
+## Eel DE not less conserved
+fisher.test( exp.df$contig%in%ID.eel.sig.c , exp.df$novel.50%in%"conserved")
+
+fisher.test( exp.df$contig%in%ID.eel.sig.c , exp.df$novel.50%in%"conserved")
+
+
+fisher.test( exp.df$contig%in%ID.eel.sig.c , exp.df$novel.50%in%"conserved")
+
+
+fisher.test( exp.df$contig%in%ID.eel.sig.c , exp.df$novel.80%in%"conserved")
+
+
+## Sex DE not differing in rnai proportion
+fisher.test( exp.df$contig%in%ID.sex.sig.c , exp.df$Ce.rnai)
+
+## Eel DE not differeent in rnai proportion
+fisher.test( exp.df$contig%in%ID.eel.sig.c , exp.df$Ce.rnai)
+
+@ 
+
+<<plot.over.exp, echo=FALSE>>=
+
+setwd("/home/ele/thesis/454/figures/")
+for(o in 1:3){
+  printGraph(sex.over[[o]][[1]],
+             sex.over[[o]][[2]], firstSigNodes = 10,
+             fn.prefix = paste("tGO", "SEX_EXP", ont[o], sep="_"),
+             useInfo = "all", pdfSW = TRUE)
+}
+
+for(o in 1:3){
+  printGraph(eel.over[[o]][[1]],
+             eel.over[[o]][[2]], firstSigNodes = 10,
+             fn.prefix = paste("tGO", "EEL_EXP", ont[o], sep="_"),
+             useInfo = "all", pdfSW = TRUE)
+}
+
+setwd("/home/ele/thesis/454/paper/")
+
+
+@ 

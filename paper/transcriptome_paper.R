@@ -1,15 +1,16 @@
+### R code from vignette source '/home/ele/thesis/454/paper/transcriptome_paper.Rnw'
+### Encoding: UTF-8
+
 ###################################################
-### chunk number 1: load.libs
+### code chunk number 1: load.libs
 ###################################################
-#line 476 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 library(VennDiagram)
 library(xtable)
 library(reshape)
 library(ggplot2)
 
-library(GSEABase)
-library(GOstats)
-library(GO.db)
+library(AnnotationDbi)
+library(topGO)
 
 library(limma)
 library(XML)
@@ -17,20 +18,21 @@ library(coin)
 library(multcomp)
 
 library(DESeq)
+library(edgeR)
 library(ShortRead)
 library(biomaRt)
 
 library(BioIDMapper)
 
 library(Rhh)
+library(Heatplus)
 
 source("/home/ele/thesis/454/common_R_functions.R")
 
 
 ###################################################
-### chunk number 2: trim
+### code chunk number 2: trim
 ###################################################
-#line 517 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 trimdat <- readLines("/home/ele/Data/454/trimmed/trimming.stats")
 trimfile <-  grep("Trimming sff file *", trimdat, value=TRUE)
 trimfile <- sapply(strsplit(trimfile, " |,"), function (x) basename(x[4]))
@@ -62,9 +64,8 @@ rownames(TRIM) <- gsub("M175", "M", rownames(TRIM))
 
 
 ###################################################
-### chunk number 3: read.libs
+### code chunk number 3: read.libs
 ###################################################
-#line 548 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 RE <- list()
 for (l in (c("10F", "179F", "M175", "L2R3", "KS4F", "UW07F"))){
@@ -101,9 +102,8 @@ eel.contigs <- read.sequences("/home/ele/Data/454/Li68_assembly/Aj_liver.fasta")
 
 
 ###################################################
-### chunk number 4: load.cobl
+### code chunk number 4: load.cobl
 ###################################################
-#line 584 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 eelmRNA <- read.blast.best("/home/ele/Data/454/pre_assembly_screening/trimmed_all_vs_eelmRNA.blt")
 eelmRNA$dbhit <- "eelmRNA"
@@ -147,10 +147,9 @@ rRNA.lib.bases <- ggplot(R, aes(lib, ..count.., fill=dbhit, weight=length)) +
 
 
 ###################################################
-### chunk number 5: plot.rRNA
+### code chunk number 5: plot.rRNA
 ###################################################
-#line 627 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
-png("../figures/rRNA_plots.png", width=1000, height=1000, res=144)
+pdf("../figures/rRNA_plots.pdf", width=10, height=10)
 
 # Set up the page
 grid.newpage()
@@ -166,9 +165,8 @@ dev.off()
 
 
 ###################################################
-### chunk number 6: count.screened
+### code chunk number 6: count.screened
 ###################################################
-#line 643 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 pre.screen.tab <- as.data.frame.matrix(table(R$lib, R$dbhit))
 pre.screen.span <- rbind( by(R, list(R$lib, R$dbhit), function (x) sum(nchar(x$seq))))
@@ -192,9 +190,8 @@ cerco <- cbind( sequence.identifier=as.character(AcrRNA_cerco$V2),
 
 
 ###################################################
-### chunk number 7: load.meth
+### code chunk number 7: load.meth
 ###################################################
-#line 688 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 load("/home/ele/thesis/454/Method-assembly/Method.Rdata")
 
 nMN <- nrow(contig.df[contig.df$category%in%"MN",])
@@ -206,9 +203,8 @@ nSing <- nrow(contig.df[contig.df$category%in%0,])
 
 
 ###################################################
-### chunk number 8: mean.cov
+### code chunk number 8: mean.cov
 ###################################################
-#line 720 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 cov.mn <- tapply(con.pile$coverage,
                  con.pile$contig%in%contig.df[contig.df$category=="MN", "contig"],
@@ -224,9 +220,8 @@ cov.u.total <- mean(con.pile.uniq$uniq_coverage)
 
 
 ###################################################
-### chunk number 9: host.screen
+### code chunk number 9: host.screen
 ###################################################
-#line 735 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 ## new style uncompromising screening 
 eelmRNA <- read.blast.best("/home/ele/Data/454/post_assembly_screening/fullest_vs_eelmRNA.blt")
@@ -296,11 +291,12 @@ nt <- cbind(nt, gi.nt.blast)
 
 gis.nt <- unique(gi.nt.blast)
 write(as.character(gis.nt), "/home/ele/Data/454/post_assembly_screening/tmp-nt.acc")
-taxa.nt <- read.delim( pipe ("/home/ele/thesis/454/tax4gi_nt.pl /home/ele/Data/454/post_assembly_screening/tmp-nt.acc"), header=FALSE, sep=",", as.is=TRUE)
-names(taxa.nt) <- c("gi.nt.blast", "taxid.nt", "family.nt", "phylum.nt", "kingdom.nt")
+taxa.nt <- read.delim( pipe("/home/ele/thesis/454/tax4gi_nt.pl /home/ele/Data/454/post_assembly_screening/tmp-nt.acc"), header=FALSE, sep=",", as.is=TRUE)
+names(taxa.nt) <- c("gi.nt.blast", "taxid.nt", "family.nt", "phylum.nt",
+                    "kingdom.nt", "superkingdom.nt")
 nt <- merge(nt, taxa.nt, all.x=TRUE)
 
-contig.df <- merge(contig.df, nt[, c(2, 14:17)], by.x="contig", by.y="V1", all.x=TRUE)
+contig.df <- merge(contig.df, nt[, c(2, 14:18)], by.x="contig", by.y="V1", all.x=TRUE)
 contig.df[is.na(contig.df$taxid.nt) | contig.df$taxid.nt==0,
           (length(contig.df)-2):length(contig.df)] <- "No_hit"
 
@@ -313,14 +309,15 @@ nr <- cbind(nr, gi.nr.blast)
 gis.nr <- unique(gi.nr.blast)
 write(as.character(gis.nr), "/home/ele/Data/454/post_assembly_screening/tmp-nr.acc")
 
-taxa.nr <- read.delim( pipe ("/home/ele/thesis/454/tax4gi_nr.pl /home/ele/Data/454/post_assembly_screening/tmp-nr.acc"), header=FALSE, sep=",", as.is=TRUE)
+taxa.nr <- read.delim( pipe("/home/ele/thesis/454/tax4gi_nr.pl /home/ele/Data/454/post_assembly_screening/tmp-nr.acc"), header=FALSE, sep=",", as.is=TRUE)
 ## 1 entry changed from my blast to taxonomy version
 ## -> no information available, moved to "no-hit category"
 taxa.nr[taxa.nr$taxid.nr==0, c(3:5)] <- NA
-names(taxa.nr) <- c("gi.nr.blast", "taxid.nr", "family.nr", "phylum.nr", "kingdom.nr")
+names(taxa.nr) <- c("gi.nr.blast", "taxid.nr", "family.nr", "phylum.nr",
+                    "kingdom.nr", "superkingdom.nr")
 nr <- merge(nr, taxa.nr, all.x=TRUE)
 
-contig.df <- merge(contig.df, nr[, c(2, 14:17)], by.x="contig", by.y="V1", all.x=TRUE)
+contig.df <- merge(contig.df, nr[, c(2, 14:18)], by.x="contig", by.y="V1", all.x=TRUE)
 contig.df[is.na(contig.df$taxid.nr) | contig.df$taxid.nr==0,
           (length(contig.df)-2):length(contig.df)] <- "No_hit"
 
@@ -360,9 +357,8 @@ dev.off()
 
 
 ###################################################
-### chunk number 10: post.con
+### code chunk number 10: post.con
 ###################################################
-#line 868 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 post.table <- rbind(table(contig.df$contamination),
                     rbind(tapply(contig.df$uniq_coverage, contig.df$contamination, mean)))
 
@@ -387,25 +383,39 @@ contig.df$AcMN <- select_AC_MN
 n_su_Ac <- nrow(contig.df[contig.df$Ac, ])
 n_suMN_Ac <- nrow(contig.df[contig.df$AcMN, ])
 
-contig.df$seq.origin <- contig.df$contamination
-contig.df[!contig.df$phylum.nr%in%c("Nematoda", "No_hit"),  "seq.origin"] <- contig.df[!contig.df$phylum.nr%in%c("Nematoda", "No_hit"), "phylum.nr"]
+n.fish <- nrow(contig.df[contig.df$contamination%in%c("eelmRNA", "eelrRNA") |
+                 contig.df$phylum.nr=="Chordata"|
+                 contig.df$phylum.nt=="Chordata", ])
 
-other.king <- summary.factor(contig.df[!contig.df$Ac &
-                                       !contig.df$seq.origin%in%c("Nematoda", "No_hit",
-                                                                  "eelmRNA", "Chordata", "AcrRNA"),
-                             "kingdom.nr"])
+other.king <- table(contig.df[!(contig.df$contamination%in%c("eelmRNA", "eelrRNA", "AcrRNA") |
+                                contig.df$phylum.nr%in%c("Chordata") |
+                                contig.df$phylum.nt%in%c("Chordata")) & 
+                              !(contig.df$kingdom.nt%in%c("Metazoa", "No_hit") &
+                                contig.df$kingdom.nr%in%c("Metazoa", "No_hit")), "kingdom.nr"])
 
-other.phyl <- summary.factor(contig.df[!contig.df$Ac &
-                                       !contig.df$seq.origin%in%c("Nematoda", "No_hit",
-                                                                  "eelmRNA", "Chordata", "AcrRNA"),
-                             "phylum.nr"])
+## table(contig.df[contig.df$superkingdom.nr%in%"Bacteria",
+##                 c( "phylum.nr")])
+
+## table(contig.df[!contig.df$superkingdom.nr%in%"Eukaryota",
+##                 c( "superkingdom.nr")])
+
+
+## table(contig.df[contig.df$superkingdom.nr%in%"Eukaryota"&
+##                 contig.df$kingdom.nr%in%"undef"&
+##                 contig.df$phylum.nr%in%"undef",
+##                 c("family.nr")])
+
+## table(contig.df[!contig.df$superkingdom.nr%in%"Eukaryota",
+##                 c("superkingdom.nr")])
+
+## write.sequence(contig.df[contig.df$superkingdom.nr%in%"Viruses", "seq"],
+## "/home/ele/virus.fasta")
 
 
 
 ###################################################
-### chunk number 11: conservation
+### code chunk number 11: conservation
 ###################################################
-#line 936 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 nr.all <- read.delim("/home/ele/Data/454/post_assembly_screening/fullest_vs_nr.blt", header=FALSE)
 
 gi.nr.all.blast <- sub("gi\\|(\\d+)\\|.*", "\\1", nr.all$V2)
@@ -566,9 +576,8 @@ contig.df$novel.80 <- ifelse(contig.df$conserved.clade.80%in%TRUE &
 
 
 ###################################################
-### chunk number 12: imputedP4E
+### code chunk number 12: imputedP4E
 ###################################################
-#line 1099 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 get.seq.and.orf <- function (filepath){
   IMPFAS <- read.sequences(filepath)
@@ -662,9 +671,8 @@ contig.df <- merge(contig.df, as.data.frame(Ac.pep), by.x="contig", by.y="row.na
 
 
 ###################################################
-### chunk number 13: snp
+### code chunk number 13: snp
 ###################################################
-#line 1193 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 read.var <- function (path) {
   VAR <- read.delim(path, header=FALSE, as.is=TRUE)
@@ -770,12 +778,15 @@ trans.vers.parameter.plot <- ggplot(T, aes(ratioTS.TV,
                                            transversions+transitions,
                                            shape=as.factor(size),
                                            color=as.factor((width*2)+1))) +
-  geom_point(size=4) +
+  geom_point(size=4 ) +
   geom_smooth(aes(group = size<4), se=FALSE, method="lm") +
-  scale_x_continuous("ratio transistions/transversions") +
-  scale_y_continuous("total numter of snps found") +
-  scale_color_discrete("width of screening\nwindow around snp") +
-  scale_shape_discrete("homopolymer length\nthreshold for exclusion") #+
+  scale_x_continuous("ratio transistions/transversions (ti/tv)", legend=FALSE) +
+  scale_y_continuous("total numter of snps found", legend=FALSE,
+                     breaks=3:10*1000,  limits=c(2500, 11000)) +
+  scale_color_discrete("width of screening\nwindow around snp", legend=FALSE) +
+  scale_shape_discrete("homopolymer length\nthreshold for exclusion", legend=FALSE) +
+  theme_bw()
+
 ##  opts(title="Effect of parameters for homopolymer\nexclusion on the number of snps found and transversion/transition ratio")
 
 ## ## BASE ONTOLOGY
@@ -1083,12 +1094,14 @@ dn.ds.parameter.plot <- ggplot(T, aes(dn.ds,
                                       transversions+transitions,
                                       shape=as.factor(size),
                                       color=as.factor(width*2+1))) +
-                               geom_point(size=4) +
-                               geom_smooth(aes(group = size<4), se=FALSE, method="lm") +
-                               scale_x_reverse("ratio non-synonymous/synonymous snps") +
-                               scale_y_continuous("total numter of snps found") +
-                               scale_color_discrete("width of screening\nwindow around snp") +
-                               scale_shape_discrete("homopolymer length\nthreshold for exclusion")
+  geom_point(size=4) +
+  geom_smooth(aes(group = size<4), se=FALSE, method="lm") +
+  scale_x_reverse("ratio non-synonymous/synonymous snps (dn/ds)") +
+  scale_y_continuous("", breaks=3:10*1000, labels=rep("",8), limits=c(2500, 11000)) +
+  scale_color_discrete("width of screening\nwindow around snp") +
+  scale_shape_discrete("homopolymer length\nthreshold for exclusion") +
+  theme_bw()
+
                                ## opts(title="Effect of parameters for
                                ## homopolymer\nexclusion on the number
                                ## of snps found and\nratio of non-synonymous/synonymous snps")
@@ -1107,7 +1120,9 @@ position.perc.plot <- ggplot(VARq.plot[!is.na(VARq.plot$inFRAME),], aes(x = perc
                      breaks= seq(0, 52, by=2),
                      labels = c(seq(0, 48, by=2), ">50", "")) +
   scale_y_continuous("number of snps found") +
-  scale_fill_discrete("position in frame")
+  scale_fill_discrete("position in frame") +
+  theme_bw()
+
 
 effect.perc.plot <- ggplot(VARq.plot[!is.na(VARq.plot$effect),], aes(x = perc, fill = effect)) +
   stat_bin(binwidth=1, color="black", breaks=seq(0, 52, by=2),
@@ -1116,7 +1131,9 @@ effect.perc.plot <- ggplot(VARq.plot[!is.na(VARq.plot$effect),], aes(x = perc, f
                      breaks= seq(0, 52, by=2),
                      labels = c(seq(0, 48, by=2), ">50", "")) +
   scale_y_continuous("number of snps found") +
-  scale_fill_discrete("effect of snp")
+  scale_fill_discrete("effect of snp") +
+  theme_bw()
+
 
 VARq.plot$fromto <- VARq.plot$nfrom + VARq.plot$nto
 VARq.plot$fromto[VARq.plot$fromto>100] <- 101
@@ -1128,7 +1145,8 @@ position.cov.plot <- ggplot(VARq.plot[!is.na(VARq.plot$inFRAME),], aes(x = fromt
                      breaks = seq(0, 105, by=5),
                      labels = c(seq(0, 95, by=5), ">100", "")) +
   scale_y_continuous("number of snps found") +
-  scale_fill_discrete("position in frame")
+  scale_fill_discrete("position in frame") +
+  theme_bw()
 
 effect.cov.plot <- ggplot(VARq.plot[!is.na(VARq.plot$effect),], aes(x = fromto, fill = effect)) +
   stat_bin(binwidth=1, color="black", breaks=seq(0, 105, by=5),
@@ -1137,7 +1155,8 @@ effect.cov.plot <- ggplot(VARq.plot[!is.na(VARq.plot$effect),], aes(x = fromto, 
                      breaks = seq(0, 105, by=5),
                      labels = c(seq(0, 95, by=5), ">100", "")) +
   scale_y_continuous("number of snps found") +
-  scale_fill_discrete("effect of snp")
+  scale_fill_discrete("effect of snp") +
+  theme_bw()
 
 #### discard snps with <7% minority allel
 VARqp <- VARq[VARq$perc>7, ]
@@ -1162,13 +1181,19 @@ contig.df.wo <- merge(contig.df.wo, sy.per, by.x="contig", by.y="row.names", all
 
 dn.ds.coverage.plot.wo <- ggplot(contig.df.wo, aes(x = dn.ds, y= imputed.coverage)) +
   geom_point() +
-  scale_y_log10() +
-  stat_smooth(method="lm")
+  scale_y_log10("coverage of TUG") +
+  scale_x_continuous("ratio non-synonymous/synonymous snps (dn/ds)", breaks=1:8/2, limits=c(0,4)) + 
+  stat_smooth(method="lm") +
+  theme_bw()
+
+cov.lm.raw <- summary(lm(dn.ds ~ imputed.coverage, data=contig.df.wo))
 
 dn.ds.total.snps.plot.wo <- ggplot(contig.df.wo, aes(y=transversions+transitions, x=dn.ds)) +
   geom_point() +
   scale_y_continuous("total number of snps in contig") +
-  stat_smooth(method="lm")
+  stat_smooth(method="lm") +
+  theme_bw()
+
 
 ## With screening the percentage
 
@@ -1191,18 +1216,26 @@ contig.df <- merge(contig.df, sy.per, by.x="contig", by.y="row.names", all.x=TRU
 
 dn.ds.coverage.plot <- ggplot(contig.df, aes(x = dn.ds, y= imputed.coverage)) +
   geom_point() +
-  scale_y_log10() +
-  stat_smooth(method="lm")
+  scale_y_log10("coverage of TUG") +
+  scale_x_continuous("ratio non-synonymous/synonymous snps (dn/ds)", breaks=1:8/2, limits=c(0,4)) +
+  stat_smooth(method="lm") +
+  theme_bw()
+
+cov.lm <- summary(lm(dn.ds ~ imputed.coverage, data=contig.df))
 
 dn.ds.total.snps.plot <- ggplot(contig.df, aes(y=transversions+transitions, x=dn.ds)) +
   geom_point() +
   scale_y_continuous("total number of snps in contig") +
-  stat_smooth(method="lm")
+  stat_smooth(method="lm") +
+  theme_bw()
+
 
 ### The contigs looking like TS.TV~30 are the infinite values!
 
 dens.dn.ds <- ggplot(contig.df[!is.na(contig.df$dn.ds),],
-                     aes(dn.ds, ..count..)) + geom_bar(binwidth=0.1)
+                     aes(dn.ds, ..count..)) + geom_bar(binwidth=0.1) +
+  theme_bw()
+
 
 
 ## no need to  beta calc from http://www.biomedcentral.com/1471-2164/11/310
@@ -1211,27 +1244,27 @@ dens.dn.ds <- ggplot(contig.df[!is.na(contig.df$dn.ds),],
 
 
 ###################################################
-### chunk number 14: 
+### code chunk number 14: snp_analysis.Rnw:574-614
 ###################################################
-#line 1739 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
-png("../figures/snp_ex_parameter_plots.png", width=2000, height=1000, res=144)
+pdf("../figures/Figure_3.pdf", width=20, height=10)
 
 # Set up the page
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(1, 2)))
-vplayout <- function(x, y)
-    viewport(layout.pos.row = x, layout.pos.col = y)
+
+vp1 <- viewport(width = 0.46,  height=0.98, x = 0.22, y = 0.5)
+vp2 <- viewport(width = 0.56,  height=0.98, x = 0.73, y = 0.5)
 
 # Make each plot, in the correct location
-print(trans.vers.parameter.plot, vp = vplayout(1, 1 ))
-print(dn.ds.parameter.plot, vp = vplayout(1, 2 ))
+print(trans.vers.parameter.plot, vp = vp1)
+print(dn.ds.parameter.plot, vp = vp2)
+grid.text("a", x=unit(0.01,"npc"), y=unit(0.98,"npc")) 
+grid.text("b", x=unit(0.46,"npc"), y=unit(0.98,"npc")) 
 
 dev.off() 
 
-
-png("../figures/snp_pos_eff_plots.png", width=5000, height=3000, res=288)
-
+pdf("../figures/Figure_4.pdf", width=50, height=30)
 # Set up the page
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(2, 2)))
@@ -1240,36 +1273,24 @@ vplayout <- function(x, y)
 
 # Make each plot, in the correct location
 print(position.perc.plot, vp = vplayout(1, 1 ))
-print(position.cov.plot, vp =vplayout(1, 2 ))
 print(effect.perc.plot, vp = vplayout(2, 1 ))
-print(effect.cov.plot, vp = vplayout(2, 2 ))
-dev.off() 
-
-ggsave("../figures/dens_dn_ds.png", dens.dn.ds)
-
-
-png("../figures/dn_ds_scales.png", width=2000, height=1000, res=144)
-
-# Set up the page
-grid.newpage()
-pushViewport(viewport(layout = grid.layout(2, 2)))
-vplayout <- function(x, y)
-    viewport(layout.pos.row = x, layout.pos.col = y)
-
-# Make each plot, in the correct location
-print(dn.ds.total.snps.plot.wo, vp = vplayout(1, 1 ))
 print(dn.ds.coverage.plot.wo, vp = vplayout(1, 2 ))
-
-print(dn.ds.total.snps.plot, vp = vplayout(2, 1 ))
 print(dn.ds.coverage.plot, vp = vplayout(2, 2 ))
 
+grid.text("a", x=unit(0.01,"npc"), y=unit(0.99,"npc")) 
+grid.text("b", x=unit(0.51,"npc"), y=unit(0.99,"npc")) 
+grid.text("c", x=unit(0.01,"npc"), y=unit(0.52,"npc")) 
+grid.text("d", x=unit(0.51,"npc"), y=unit(0.52,"npc")) 
+
 dev.off() 
 
+ggsave("../figures/dens_dn_ds.pdf", dens.dn.ds)
+
+
 
 ###################################################
-### chunk number 15: snps.again
+### code chunk number 15: snps.again
 ###################################################
-#line 1793 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 
 nCov8bases <- nrow(imp.pile[imp.pile$contig%in%contig.df[contig.df$Ac, "contig"] &
@@ -1297,9 +1318,8 @@ n.per.n.base <- round(nSNP/(n.base/1000), 2)
 
 
 ###################################################
-### chunk number 16: snp.by.population
+### code chunk number 16: snp.by.population
 ###################################################
-#line 1819 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 ## from within /home/ele/Data/454/mapping/mapping_each_lib:  
 ## /home/ele/tools/samtools/samtools mpileup -uf
@@ -1385,37 +1405,14 @@ super.geno <- function (VCF.obj, snp.qual, gt.qual, sum=TRUE){
                           2, relative.h))}
   else {return(VAR.pop)}
 }
-
-
-## consistently over heterozygoszy-calling-thresholds european samples
-## are less heterozygot
-
-## super.geno(VCF, 0, 30)
-## super.geno(VCF, 0, 40)
-## super.geno(VCF, 0, 50)
-## super.geno(VCF, 0, 60)
-
-## super.geno(VCF, 10, 30)
-## super.geno(VCF, 10, 40)
-## super.geno(VCF, 10, 50)
-## super.geno(VCF, 10, 60)
-
-## super.geno(VCF, 30, 30)
-## super.geno(VCF, 30, 40)
-## super.geno(VCF, 30, 50)
   
 het.table <- as.data.frame(super.geno(VCF, 10, 10, TRUE))
 VAR.pop <- super.geno(VCF, 10, 10, FALSE)
 
-sep.gt <- function (gt.col){
-  l <- strsplit(as.character(gt.col), "/")
-  s <- lapply(l, function (x) {if (is.na(x[1])){ rep(x,2)}
-              else{x}})
-  unlist(s)}
-
 Rh <- VAR.pop[, c("10F", "179F", "KS4F", "M175", "UW07F")]
-### remove loci with only one allele
+rownames(Rh) <- paste(VAR.pop$contig, VAR.pop$base, sep=".")
 
+### remove loci with only one allele
 ## like this internal relationship does not work
 ## Rh <- Rh[ apply(Rh, 1, function (x) ("0/1"%in%x ) | ("0/0"%in%x & "1/1"%in%x) ), ]
 
@@ -1424,7 +1421,13 @@ Rh <- Rh[ apply(Rh, 1, function (x) ("0/1"%in%x & "0/0"%in%x  ) |
                 ("0/0"%in%x & "1/1"%in%x)|
                 ("0/1"%in%x & "1/1"%in%x)), ]
 
-number.hetero.info.snps <- nrow(Rh)
+geno.contigs <- length(unique(gsub("\\..*","",rownames(Rh))))
+
+sep.gt <- function (gt.col){
+  l <- strsplit(as.character(gt.col), "/")
+  s <- lapply(l, function (x) {if (is.na(x[1])){ rep(x,2)}
+              else{x}})
+  unlist(s)}
 
 Rh.data <- as.data.frame(rbind(sep.gt(Rh$"10F"),
                                sep.gt(Rh$"179F"),
@@ -1433,18 +1436,18 @@ Rh.data <- as.data.frame(rbind(sep.gt(Rh$"10F"),
                                sep.gt(Rh$"UW07F")))
 
 ## shows that it worked:
-ir.test <- hh(Rh.data, 100, "ir")
-hl.test <- hh(Rh.data, 100, "hl")
-hh.test <- hh(Rh.data, 100, "sh")
+ir.test <- hh(Rh.data, 1000, "ir")
+hl.test <- hh(Rh.data, 1000, "hl")
+hh.test <- hh(Rh.data, 1000, "sh")
 
-## mean(ir.test)
-## quantile(ir.test, probs=c(0.025, 0.975))
+ ## mean(ir.test)
+ ## quantile(ir.test, probs=c(0.025, 0.975))
 
-## mean(hl.test)
-## quantile(hl.test, probs=c(0.025, 0.975))
+ ## mean(hl.test)
+ ## quantile(hl.test, probs=c(0.025, 0.975))
 
-## mean(hh.test)
-## quantile(hh.test, probs=c(0.025, 0.975))
+ ## mean(hh.test)
+ ## quantile(hh.test, probs=c(0.025, 0.975))
 
 ## Internal relatedness, a multilocus heterozygosity measure developed
 ## by Amos et al. (2001): Amos W, Worthington Wilmer J, Fullard K et
@@ -1464,12 +1467,19 @@ het.table <- cbind(het.table, hl(Rh.data))
 het.table <- cbind(het.table, sh(Rh.data))
 names(het.table) <- c("rel.het", "int.rel", "ho.loci", "std.het")
 
+rownames(het.table) <- gsub("179F", "T1", rownames(het.table))
+rownames(het.table) <- gsub("10F", "T2", rownames(het.table))
+rownames(het.table) <- gsub("KS4F", "E1", rownames(het.table))
+rownames(het.table) <- gsub("UW07F", "E2", rownames(het.table))
+rownames(het.table) <- gsub("M175", "M", rownames(het.table))
+
+het.table <- round(het.table,3)
+
 
 
 ###################################################
-### chunk number 17: annotation
+### code chunk number 17: annotation
 ###################################################
-#line 1988 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 GO.annot <- read.delim("/home/ele/Data/454/annotation/annot8r/output_Ac/GO.csv", sep=",", header=FALSE)
 names(GO.annot) <- c("pept_id", "go_term", "pcf", "descr", "slim", "besthit", "bestscore", "bestev", "hitnum", "maxhits", "fraction") 
 
@@ -1577,9 +1587,8 @@ n.uniprot <- length(contig.df[contig.df$Ac & !is.na(contig.df$nr.uniprot.annot),
 
 
 ###################################################
-### chunk number 18: ann.venn
+### code chunk number 18: ann.venn
 ###################################################
-#line 2095 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 GOannotations <- unique(GO.annot$pept_id[GO.annot$pept_id%in%contig.df[contig.df$Ac,"contig"]])
 nGO <- length(GOannotations)
 
@@ -1622,10 +1631,10 @@ annotationVennMN <- venn.diagram(list(GO   = match(GOannotations.MN, Allannotati
 not.annot <- nrow(contig.df[contig.df$Ac & !contig.df$contig%in%Allannotations,])
 not.annot.MN <- nrow(contig.df[contig.df$AcMN & !contig.df$contig%in%Allannotations.MN,])
 
-png("/home/ele/thesis/454/figures/annotataionVenn.png", width=400, height=600)
-vp1 <- viewport(x=0.01, y=0.5, w=0.98, h=0.51,
+pdf("/home/ele/thesis/454/figures/Figure_1.pdf", width=5, height=10)
+vp1 <- viewport(x=0.01, y=0.51, w=0.98, h=0.48,
                 just=c("left", "bottom"))
-vp2 <- viewport(x=0.01, y=0, w=0.98, h=0.49,
+vp2 <- viewport(x=0.01, y=0.01, w=0.98, h=0.48,
                 just=c("left", "bottom"))
 push.viewport(vp1)
 grid.roundrect()
@@ -1642,11 +1651,34 @@ pop.viewport()
 dev.off()            
 
 
+all.identifier <- length(contig.df[contig.df$Ac & contig.df$contig%in%GOannotations &
+                                   contig.df$contig%in%ECannotations &
+                                   contig.df$contig%in%KEGGannotations, "contig"
+                                   ])
+
+any.blast.annot <- nrow(contig.df[contig.df$Ac &
+                                  (!is.na(contig.df$Bm.hit) |
+                                   !is.na(contig.df$Ce.hit) |
+                                   !is.na(contig.df$nempep.hit) |
+                                   !is.na(contig.df$nr.bit)), ])
+
+perc.any.annot <- (any.blast.annot/nrow(contig.df[contig.df$Ac,]))*100
+
+any.blast.annot.MN <- nrow(contig.df[contig.df$AcMN &
+                                  (!is.na(contig.df$Bm.hit) |
+                                   !is.na(contig.df$Ce.hit) |
+                                   !is.na(contig.df$nempep.hit) |
+                                   !is.na(contig.df$nr.bit)), ])
+
+perc.any.annot.MN <- (any.blast.annot.MN/nrow(contig.df[contig.df$AcMN,]))*100
+
+
+
+
 
 ###################################################
-### chunk number 19: sigp
+### code chunk number 19: sigp
 ###################################################
-#line 2158 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 signalip <- as.data.frame(read.delim("/home/ele/Data/454/annotation/signalp/Ac_p4ePro.signalip4",
                                      skip=2, sep="", header=FALSE,
@@ -1693,9 +1725,8 @@ signalip.ce$sigP <- sum.sigP(signalip.ce)
 
 
 ###################################################
-### chunk number 20: signn.venn
+### code chunk number 20: signn.venn
 ###################################################
-#line 2205 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 nsigP <- length(contig.df[contig.df$Ac &  contig.df$sigP%in%"Yes-noTM", "sigP"])
 nsigPtm <- length(contig.df[contig.df$Ac &  contig.df$sigP%in%"Yes-TM", "sigP"])
@@ -1711,9 +1742,8 @@ nsigPtm.Ce <- nrow(signalip.bm[signalip.ce$sigP%in%"Yes-TM",])
 
 
 ###################################################
-### chunk number 21: annot.compare
+### code chunk number 21: annot.compare
 ###################################################
-#line 2219 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 slim.annot8r <- function (path, species){ 
   l <- list()
@@ -1742,9 +1772,10 @@ GO.bm.com <- ggplot(slim, aes(x=description, fill=species, weight=value)) +
                           "and nucleic acid\nmetabolic process",
                           gsub(" ", "\n", slim$description)))) +
   facet_wrap(~ontology, ncol=1, scales="free") +
-    opts(legend.text = theme_text(face="italic"))
+    opts(legend.text = theme_text(face="italic")) +
+  theme_bw()
 
-ggsave("/home/ele/thesis/454/figures/go_bm_com.png", GO.bm.com, width=16, height=16)
+ggsave("/home/ele/thesis/454/figures/Figure_2.pdf", GO.bm.com, width=16, height=16)
 
 Go.rep.Ac.Bm <- cor(Ac.slim$value, Bm.slim$value, method="spearman")
 Go.rep.Ac.Ce <- cor(Ac.slim$value, Ce.slim$value, method="spearman")
@@ -1753,136 +1784,60 @@ Go.rep.Bm.Ce <- cor(Bm.slim$value, Ce.slim$value, method="spearman")
 
 
 ###################################################
-### chunk number 22: overrep
+### code chunk number 22: overrep
 ###################################################
-#line 2257 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 ## subsets for contig.df and GO-annotation containing only dn.ds contigs
-dn.ds.df <- subset(contig.df, contig.df$Ac & !is.na(dn.ds))
+dn.ds.df <- subset(contig.df, contig.df$AcMN & !is.na(dn.ds))
 GO.dn.ds <- subset(GO.annot, pept_id%in%dn.ds.df$contig)
 
 ## the category of >.5 dn/ds contigs
 big05 <- dn.ds.df[dn.ds.df$dn.ds>0.5 &
                   dn.ds.df$contig%in%GO.dn.ds$pept_id, "contig"]
 
-## ## From the GOstats vignette
-test.over.under.GOstats <- function (annotation, set, ontology="MF") {
-  goframeData <- as.data.frame(cbind(frame.go_id=
-                                     as.character(gsub(" ", "",
-                                                       annotation[annotation$pcf%in%ontology,
-                                                               "go_term"])),
-                                     frame.Evidence="IEA",
-                                     frame.gene_id=annotation[annotation$pcf%in%ontology,
-                                       "pept_id"]))
-  goFrame <- GOFrame(goframeData, organism="Anguillicola crassus")
-  goAllFrame <- GOAllFrame(goFrame)
-  gsc <- GeneSetCollection(goAllFrame, setType = GOCollection())
-  over.params <- GSEAGOHyperGParams(name = "GSEA based annot arameters
-                                             for over-representation",
-                                    geneSetCollection = gsc,
-                                    geneIds = as.character(set),
-                                    universeGeneIds = unique(annotation[annotation$pcf%in%ontology,
-                                      "pept_id"]),
-                                    ontology = ontology,
-                                    pvalueCutoff = 0.05,
-                                    conditional = FALSE,
-                                    testDirection = "over") 
-  OVER <- hyperGTest(over.params)
-  Over <- summary(OVER)
-  if (nrow(Over)>0) Over <- cbind(Over, direction="Over") 
-  under.params <- GSEAGOHyperGParams(name = "GSEA based annot arameters
-                                             for under-representation",
-                                     geneSetCollection = gsc,
-                                     geneIds = as.character(set),
-                                     universeGeneIds = unique(annotation[annotation$pcf%in%ontology,
-                                       "pept_id"]),
-                                     ontology = ontology,
-                                     pvalueCutoff = 0.05,
-                                     conditional = FALSE,
-                                     testDirection = "under")
-  UNDER <- hyperGTest(under.params)
-  Under <- summary(UNDER)
-  if (nrow(Under)>0) Under <- cbind(Under, direction="Under") 
-  rbind(Over, Under)
+
+a.mapping <- GO.dn.ds[,c("pept_id", "go_term")]
+
+## produce a AnnotationDbi object 
+goframeD <- as.data.frame(cbind(frame.go_id=as.character(a.mapping$go_term),
+                                frame.Evidence="IEA",
+                                frame.gene_id=as.character(a.mapping$pept_id)))
+goF <- GOFrame(goframeD, organism="Anguillicola crassus")
+
+## produce an full GO-mapping
+goAllF <- GOAllFrame(goF)
+all.a.mapping <- as.data.frame(cbind(pept_id=goAllF@data$gene_id,
+                                       go_term=goAllF@data$go_id))
+
+
+GO2c <- by(all.a.mapping, all.a.mapping$pept_id,
+                function (x) c(as.character(x$go_term)))
+geneN <- names(GO2c)
+
+TOGO.all.onto <- function (o, gl, gN) {
+  g <- factor(as.integer(gN %in% gl))
+  names(g) <- gN
+  toGO <-  new("topGOdata", ontology = o, allGenes = g, annot = annFUN.gene2GO,
+               gene2GO = GO2c)
+  resultFis <- runTest(toGO, algorithm = "classic", statistic = "fisher")
+  list(toGO, resultFis) ## returns a list first data then result
 }
 
-## only for sure AC this time
-mf.dn.ds <- test.over.under.GOstats(GO.dn.ds, big05, "MF")
-bp.dn.ds <- test.over.under.GOstats(GO.dn.ds, big05, "BP")
-cc.dn.ds <- test.over.under.GOstats(GO.dn.ds, big05, "CC")
+ont <- c("MF", "BP", "CC")
 
-## make a list of offspring terms to allow finding of 
-GOMFOFF.list <- as.list(GOMFOFFSPRING)
-GOMFOFF.list <- GOMFOFF.list[!is.na(GOMFOFF.list)]
+dn.ds.over <-   lapply(ont, function (on) TOGO.all.onto (on, big05, geneN))
 
-## which are the amino acid transporter contigs (2) being in dn.ds>0.5
-amino.acid.transporter.go <- mf.dn.ds[grepl("acid transmembrane transporter",
-                                               mf.dn.ds$Term), 1]
-amino.acid.tr.off <- unlist(GOMFOFF.list[amino.acid.transporter.go])
+GO.over.dn.ds <-   do.call("rbind", lapply(1:3, function (i) {
+  GenTable(dn.ds.over[[i]][[1]], p.value = dn.ds.over[[i]][[2]], 
+  orderBy = "classic", topNodes = 100, numChar=100)}))
 
-## get the term-contigs plus their boffspring term-contigs
-## consistent with mf.dn.ds results (size)
-amino.acid.tr.contigs <- unique(GO.dn.ds[GO.dn.ds$go_term%in%
-                                            c(amino.acid.transporter.go, amino.acid.tr.off),
-                                            "pept_id"])
+GO.over.dn.ds <- subset(GO.over.dn.ds, p.value<0.05)
 
-peptidase.go <- mf.dn.ds[grepl("peptidase", mf.dn.ds$Term), 1]
-peptidase.off <- unlist(GOMFOFF.list[peptidase.go])
+GO.over.dn.ds.lines <- unlist(lapply(dn.ds.over,
+                                   function (x) length(x[[2]]@score[x[[2]]@score<0.05])))
 
-## consistent with mf.dn.ds results
-peptidase.contigs <- unique(GO.dn.ds[GO.dn.ds$go_term%in%
-                                        c(peptidase.go, peptidase.off),
-                                            "pept_id"])
-
-## consistent with mf.dn.ds results (count)
-peptidase.contigs.pos <- contig.df[contig.df$Ac & contig.df$contig%in%peptidase.contigs &
-                                   contig.df$dn.ds>0.5 , "contig"]
-
-
-## just to test that results for quality-contigs only are consistent.
-mf.dn.ds.MN <- test.over.under.GOstats(subset(GO.dn.ds,
-                                                 GO.dn.ds$pept_id%in%
-                                                 contig.df[contig.df$AcMN,
-                                                           "contig"]),
-                                          big05, "MF")
-
-bp.dn.ds.MN <- test.over.under.GOstats(subset(GO.dn.ds,
-                                                 GO.dn.ds$pept_id%in%
-                                                 contig.df[contig.df$AcMN,
-                                                           "contig"]),
-                                          big05, "BP")
-
-cc.dn.ds.MN <- test.over.under.GOstats(subset(GO.dn.ds,
-                                                 GO.dn.ds$pept_id%in%
-                                                 contig.df[contig.df$AcMN,
-                                                           "contig"]),
-                                          big05, "CC")
-
-## The same for KEGG doesn't work as I have not-uniqe annotations to a single contig
-## keggframeData = data.frame(frame.path_id=as.character(gsub("^ K", "", KEGG.annot$ko_id)),
-##   frame.gene_id=as.character(KEGG.annot$pept_id))
-
-## ## HS
-## keggframeData = data.frame(frame$path_id, frame$gene_id)
-## keggFrame = KEGGFrame(keggframeData, organism = "Homo sapiens")
-
-## keggFrame = KEGGFrame(keggframeData, organism = "Anguillicola crassus")
-
-## gsc <- GeneSetCollection(keggFrame, setType = KEGGCollection())
-
-## big05 <- as.character(keggframeData$frame.gene_id[1:500])
-## universe <- as.character(keggframeData$frame.gene_id)
-
-
-## kparams <- GSEAKEGGHyperGParams(name = "My Custom GSEA based annot Params",
-##                                 geneSetCollection = gsc,
-##                                 geneIds = big05, universeGeneIds = universe,
-##                                 pvalueCutoff = 0.05, testDirection = "over")
-
-
-## kOver <- hyperGTest(kparams)
-## head(summary(kOver))
-### WTF!!
+GO.over.dn.ds.lines[2] <- GO.over.dn.ds.lines[1]+GO.over.dn.ds.lines[2]
+GO.over.dn.ds.lines[3] <- GO.over.dn.ds.lines[3]+GO.over.dn.ds.lines[2]
 
 dn.ds.df$sigP <- as.factor(dn.ds.df$sigP)
 ## this for the easy nn-data
@@ -1903,9 +1858,8 @@ contig.df$novel.80 <- factor(contig.df$novel.80,
 
 
 ###################################################
-### chunk number 23: nn.dn.ds
+### code chunk number 23: nn.dn.ds
 ###################################################
-#line 2404 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 sigP.box <- ggplot(dn.ds.df, aes(dn.ds.df$sigP, dn.ds.df$dn.ds)) + 
   geom_boxplot() + 
@@ -1919,20 +1873,29 @@ sigP.box <- ggplot(dn.ds.df, aes(dn.ds.df$sigP, dn.ds.df$dn.ds)) +
        axis.text.x = theme_text(size = 15)) +
   theme_bw()
 
-ggsave("../figures/sigp_dn_ds.png", sigP.box)
+ggsave("../figures/sigp_dn_ds.pdf", sigP.box)
 
 
 ###################################################
-### chunk number 24: novel.dn.ds
+### code chunk number 24: novel.dn.ds
 ###################################################
-#line 2421 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
+setwd("/home/ele/thesis/454/figures/")
+for(o in 1:3){
+  printGraph(dn.ds.over[[o]][[1]],
+             dn.ds.over[[o]][[2]], firstSigNodes = 10,
+             fn.prefix = paste("tGO", "DN_DS", ont[o], sep="_"),
+             useInfo = "all", pdfSW = TRUE)
+}
+setwd("/home/ele/thesis/454/paper/")
+
+  
 novel.dn.ds.50 <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.50) & !is.na(dn.ds)),
                          aes(novel.50, dn.ds)) +
   geom_boxplot() +
   scale_y_log10("dn/ds") +
   scale_x_discrete("") +
-  opts(title="evolutionary conseravation at bitsore threshold of 80") +
+  opts(title="evolutionary conseravation at bitsore threshold of 50") +
   theme_bw()
 
 novel.dn.ds.80 <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.80) & !is.na(dn.ds)),
@@ -1945,7 +1908,7 @@ novel.dn.ds.80 <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.80) & !is
 
 # Set up the page
 
-png("../figures/conservation_dn_ds.png", width=2000, height=1000, res=144)
+pdf("../figures/Figure_5.pdf", width=20, height=10)
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(1, 2)))
 vplayout <- function(x, y)
@@ -1963,9 +1926,8 @@ dev.off()
 
 
 ###################################################
-### chunk number 25: novel.dn.ds.test
+### code chunk number 25: novel.dn.ds.test
 ###################################################
-#line 2458 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 ### Nemenyi-Damico-Wolfe-Dunn test (joint ranking)
   ### Hollander & Wolfe (1999), page 244
@@ -1991,9 +1953,8 @@ novel.80.kw.ph <- pvalue(novel.80.ndwd, method = "single-step")
 
 
 ###################################################
-### chunk number 26: novel.nn
+### code chunk number 26: novel.nn
 ###################################################
-#line 2483 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 sigP.50 <- as.data.frame.matrix(table(contig.df[contig.df$Ac, "novel.50"],
                                       grepl("Yes*", contig.df[contig.df$Ac, "sigP"])))
@@ -2045,12 +2006,9 @@ sigP.80.p.MN <- ggplot(subset(contig.df, contig.df$AcMN & !is.na(novel.80) & !is
   opts(title="proportion of highCA contigs in SignalP category\nby evolutionary conseravation categories at bitsore threshold of 80", plot.background = theme_blank()) + 
   theme_bw()
 
-png("../figures/signal_novel.png", width=2000, height=2000, res=144)
+pdf("../figures/Figure_6.pdf", width=20, height=20)
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(2, 2)))
-vplayout <- function(x, y)
-    viewport(layout.pos.row = x, layout.pos.col = y)
-
 
 vp1 <- viewport(width = 0.54, height = 0.54, x = 0.25, y = 0.24)
 vp2 <- viewport(width = 0.54, height = 0.54, x = 0.25, y = 0.72)
@@ -2074,12 +2032,23 @@ rnai.contigs <- table(contig.df[contig.df$Ac, "Ce.rnai"])
 
 u.rnai <- wilcox.test(dn.ds ~ Ce.rnai, data=dn.ds.df, conf.int = TRUE)
 
+f.rnai <- chisq.test(contig.df[contig.df$Ac, "novel.50"]%in%"conserved",
+                     contig.df[contig.df$Ac, "Ce.rnai"])
+
+f.rnai.80 <- chisq.test(contig.df[contig.df$Ac, "novel.80"]%in%"conserved",
+                     contig.df[contig.df$Ac, "Ce.rnai"])
+
+con.rnai <- as.data.frame.matrix(table(contig.df[contig.df$Ac, "novel.50"]%in%"conserved",
+                                       contig.df[contig.df$Ac, "Ce.rnai"]))
+names(con.rnai) <- c("non.lethal","lethal")
+con.rnai <- round(transform(con.rnai, proportion=lethal/(non.lethal+lethal)*100),2)
+rownames(con.rnai) <- c("other", "conserved")
+
 
 
 ###################################################
-### chunk number 27: gene.expr
+### code chunk number 27: gene.expr
 ###################################################
-#line 2745 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 
 ## read the 454 mapping first  
 ## alternative method using library(GenomicRanges) would be:
@@ -2087,14 +2056,14 @@ u.rnai <- wilcox.test(dn.ds ~ Ce.rnai, data=dn.ds.df, conf.int = TRUE)
 ## ie. bam <- scanBam("/home/ele/Data/RNAseq/mapping/AJ_T19M_1.bam", param=param)
 
 ## Rsamtools
-what <- c("rname")# , "strand", "pos", "qwidth", "seq")
-param <- ScanBamParam(what = what)
+what <- c("rname")
+param <- ScanBamParam(what = what) # , "strand", "pos", "qwidth", "seq")
   
 files <- list.files("/home/ele/Data/454/mapping/mapping_each_lib/", "*sorted.bam$")
 
-counts.for.files <- function (files){
+counts.for.files <- function (f){
   countsList <- list()
-  for (fi in files) {
+  for (fi in f) {
     bam <- scanBam(paste("/home/ele/Data/454/mapping/mapping_each_lib/", fi, sep=""), param=param)
     counts <- table(bam[[1]]$rname)
     counts.frame <- as.data.frame(counts)
@@ -2152,100 +2121,367 @@ counts$all.reads <- apply(counts[,2:length(counts)], 1, sum)
 ### merge all counts into the main data
 contig.df <- merge(contig.df, counts, all.x=TRUE)
 
-## discard all non Ac matches
-cst <- contig.df[contig.df$Ac, c("E1", "E2", "L2", "M", "T1", "T2")]
-rownames(cst) <- contig.df[contig.df$Ac, "contig"]
+all.counts <- contig.df[, c("E1", "E2", "T1", "T2", "M", "L2")]
+rownames(all.counts) <- contig.df[, "contig"]
 
-cst <- cst[rowSums(cst)>48, ]
-cst <- cst[!is.na(cst$E1),]
+raw.counts <- contig.df[contig.df$AcMN, c("E1", "E2", "T1", "T2", "M")]
 
-conds.eel <- factor(c("EU", "EU", "L2", "M", "TW", "TW"))
-conds.mf <- factor(c("F", "F", "L2", "M", "F", "F"))
-conds.ad <- factor(c("Ad", "Ad", "L2", "Ad", "Ad", "Ad"))
+rownames(raw.counts) <- contig.df[contig.df$AcMN, "contig"]
 
-exp.get.3.diff <- function (countsFrame) {
-  cds.eel <- newCountDataSet(countsFrame, conds.eel)
-  cds.eel <- estimateSizeFactors(cds.eel)
-  cds.eel <- estimateVarianceFunctions(cds.eel)
-  res.eel <- nbinomTest(cds.eel, "TW", "EU")
+counts <- subset(raw.counts, rowSums(raw.counts)>32)
 
-  cds.mf <- newCountDataSet(countsFrame, conds.mf)
-  cds.mf <- estimateSizeFactors(cds.mf)
-  cds.mf <- estimateVarianceFunctions(cds.mf)
-  res.mf <- nbinomTest(cds.mf, "M", "F")
+## ds <- model.matrix(~as.factor(c("E", "E", "T", "T", "T")))
 
-  cds.ad <- newCountDataSet(countsFrame, conds.ad)
-  cds.ad <- estimateSizeFactors(cds.ad)
-  cds.ad <- estimateVarianceFunctions(cds.ad)
-  res.ad <- nbinomTest(cds.ad, "Ad", "L2")
+## FFF <- DGEList(counts, lib.size=colSums(counts), group=c("E", "E", "T", "T", "T"))
+## FFF <- calcNormFactors(FFF)
+## FFF <- estimateCommonDisp(FFF, ds)
+## et <- exactTest(FFF)
 
-  return(list(res.eel, res.mf, res.ad))
-}
-
-## for the contig-counts
-contig.diff <- exp.get.3.diff(cst)
+## res <- topTags(et, n=nrow(counts))$table
 
 ## collapsed for Bm orthologs 
-bst <- contig.df[contig.df$Ac, c("Bm.hit", "E1", "E2", "L2", "M", "T1", "T2")]
-bst <- bst[!is.na(bst$Bm.hit),]
-bst <- do.call("rbind", by(bst, bst$Bm.hit, function (x) colSums(x[,2:7])))
-bst <- bst[rowSums(bst)>48, ]
-bst <- bst[!is.na(bst[,"E1"]),]
+## bst <- contig.df[contig.df$AcMN, c("Bm.hit", "E1", "E2", "T1", "T2")]
+## bst <- bst[!is.na(bst$Bm.hit),]
+## bst <- do.call("rbind", by(bst, bst$Bm.hit, function (x) colSums(x[,2:5])))
+## bst <- subset(bst, rowSums(bst)>264)
 
-bm.diff <- exp.get.3.diff(bst)
+## FFF.Bm <- DGEList(bst, lib.size=colSums(bst), group=c("E", "E",  "T", "T"))
+## FFF.Bm <- calcNormFactors(FFF.Bm)
+## FFF.Bm <- estimateCommonDisp(FFF.Bm, ds)
+## et.Bm <- exactTest(FFF.Bm)
 
-## Collapsed for Ce orthologs
-wst <- contig.df[contig.df$Ac, c("Ce.hit", "E1", "E2", "L2", "M", "T1", "T2")]
-wst <- wst[!is.na(wst$Ce.hit),]
-wst <- do.call("rbind", by(wst, wst$Ce.hit, function (x) colSums(x[,2:7])))
-wst <- wst[rowSums(bst)>48, ]
-wst <- wst[!is.na(wst[,"E1"]),]
+## res.Bm <- topTags(et.Bm, n=nrow(bst))$table
 
-ce.diff <- exp.get.3.diff(wst)
+## cst <- contig.df[contig.df$AcMN, c("Ce.hit", "E1", "E2", "T1", "T2")]
+## cst <- cst[!is.na(cst$Ce.hit),]
+## cst <- do.call("rbind", by(cst, cst$Ce.hit, function (x) colSums(x[,2:5])))
+## cst <- subset(cst, rowSums(cst)>264)
 
-mf <- merge(contig.df[,c("contig", "Bm.hit", "Ce.hit")],
-             contig.diff[[2]][,c("id", "padj")],
-             by.x="contig", by.y="id")
+## FFF.Ce <- DGEList(cst, lib.size=colSums(cst), group=c("E", "E", "T", "T"))
+## FFF.Ce <- calcNormFactors(FFF.Ce)
+## FFF.Ce <- estimateCommonDisp(FFF.Ce, ds)
+## et.Ce <- exactTest(FFF.Ce)
 
-mf <- merge(mf, bm.diff[[2]][,c("id", "padj")],
-            by.x="Bm.hit", by.y="id", 
-            all.x=TRUE)
+## res.Ce <- topTags(et.Ce, n=nrow(cst))$table
 
-mf <- merge(mf, ce.diff[[2]][,c("id", "padj")],
-            by.x="Ce.hit", by.y="id", 
-            all.x=TRUE)
+## OC <- merge(res, contig.df[, c("contig", "Bm.hit", "Ce.hit")],
+##             by.x="row.names", by.y="contig" )
+
+## OC <- merge(OC, res.Bm, by.x="Bm.hit", by.y="row.names",
+##             all.x=TRUE, suffixes=c(".Con", ".Bm"))
+
+## OC <- merge(OC, res.Ce, by.x="Ce.hit", by.y="row.names",
+##             all.x=TRUE, suffixes=c("", "", ".Ce"))
+
+## rownames(OC) <- OC$Row.names
+## OC$Row.names <- NULL
+## names(OC)[(ncol(OC)-3):ncol(OC)] <- paste(names(OC)[(ncol(OC)-3):ncol(OC)],
+##                                           ".Ce", sep="")
+
+## SignifOC <- subset(OC, adj.P.Val.Con<0.1)
+
+## ## SignifOC[order(SignifOC$FDR.Con),]
+
+## OC.454.c <- rownames(SignifOC)
+
+## ideg6 rather ##################################################
+##################################################################
+
+## for all
+ideg6.counts <- subset(raw.counts, rowSums(raw.counts)>32)
+ideg6.counts <- cbind(UNIQID=rownames(ideg6.counts), Description=NA, ideg6.counts)
+names(ideg6.counts)[3:7] <- colSums(ideg6.counts[,3:7])
+
+## write.table(ideg6.counts,
+##             "/home/ele/thesis/454/gene_expression/input_ideg6.csv",
+##             quote=FALSE, row.names=FALSE, sep="\t")
 
 
-eel <- merge(contig.df[,c("contig", "Bm.hit", "Ce.hit", "Bm.annot", "Ce.annot")],
-             contig.diff[[1]][,c("id", "padj")],
-             by.x="contig", by.y="id")
+ideg6 <- read.delim("/home/ele/thesis/454/gene_expression/output_ideg6.csv", skip=21, header=TRUE)
+ideg6$Description <- NULL
+ideg6$X <- NULL
+ideg6[, 2:length(ideg6)] <- lapply(ideg6[, 2:length(ideg6)],
+                                   function (x) as.numeric(as.character(x)))
 
-eel <- merge(eel, bm.diff[[1]][,c("id", "padj")],
-            by.x="Bm.hit", by.y="id", 
-            all.x=TRUE)
+ID.eel.sig <- subset(ideg6, AC.3.4>0.01 &
+                     AC.2.3<0.01 & AC.2.4<0.01 )
 
-eel <- merge(eel, ce.diff[[1]][,c("id", "padj")],
-            by.x="Ce.hit", by.y="id", 
-            all.x=TRUE)
+get.log.FC <- function(x, c1, c2) log(mean(as.numeric(as.character(x[c1])))/
+                                      mean(as.numeric(as.character(x[c2]))))
 
-
-
-## resSig.ad <- subset(res.ad, padj < .1)
-## sig.ad.contigs <- resSig.ad$id
-## sig.ad.counts <- cst[sig.ad.contigs, ]
+ID.eel.sig$LogFC <- apply(ID.eel.sig, 1, get.log.FC,
+                          c1="normLib2", c2=c("normLib3", "normLib4"))
 
 
-## vsd <- getVarianceStabilizedData( cds.mf )
-## dists <- dist( t( vsd ) )
-## idists <- as.matrix(dists)
-##heatmap (idists , symm=TRUE, margins = c (7,7))
+ID.eel.sig.c <- ID.eel.sig$UNIQID
+express.eel.sig <- ID.eel.sig[,c("normLib2", "normLib3", "normLib4", "LogFC")]
+rownames(express.eel.sig) <- ID.eel.sig.c
+## heatmap(as.matrix(express.eel.sig))
+
+ID.sex.sig <- subset(ideg6,
+                     AC.2.3>0 & AC.3.4>0 & AC.3.4 >0 & AC.2.4 >0 &
+                     AC.2.5<0.01 & AC.3.5<0.01 &  AC.4.5<0.01)
+
+ID.sex.sig$LogFC <- apply(ID.sex.sig, 1, get.log.FC,
+                          c1=c("normLib2", "normLib3", "normLib4"), c2="normLib5")
+
+ID.sex.sig.c <- ID.sex.sig$UNIQID
+express.sex.sig <- ID.sex.sig[,c("normLib2", "normLib3", "normLib4", "normLib5", "LogFC")]
+rownames(express.sex.sig) <- ID.sex.sig.c
+## heatmap(as.matrix(express.sex.sig))
+
+## Bm
+## ideg6.bm <- contig.df[contig.df$Ac, c("Bm.hit", "E1", "E2", "T1", "T2", "M")]
+## ideg6.bm <- ideg6.bm[!is.na(ideg6.bm$Bm.hit),]
+## ideg6.bm <- do.call("rbind", by(ideg6.bm, ideg6.bm$Bm.hit, function (x) colSums(x[,2:6])))
+## ideg6.bm <- subset(ideg6.bm, rowSums(ideg6.bm)>32)
+
+## ideg6.bm.counts <- as.data.frame(cbind(UNIQID=rownames(ideg6.bm),
+##                                        Description=NA, ideg6.bm))
+## ideg6.bm.counts[,3:7] <- lapply(ideg6.bm.counts[, 3:7], function (x) as.numeric(x))
+## names(ideg6.bm.counts)[3:7] <- colSums(ideg6.bm.counts[,3:7])
+
+## write.table(ideg6.bm.counts,
+##             "/home/ele/thesis/454/gene_expression/input_ideg6_bm.csv",
+##             quote=FALSE, row.names=FALSE, sep="\t")
+
+
+## ideg6.bm <- read.delim("/home/ele/thesis/454/gene_expression/output_ideg6_bm.csv", skip=21, header=TRUE)
+## ideg6.bm$Description <- NULL
+## ideg6.bm$X <- NULL
+## ideg6.bm[, 2:length(ideg6.bm)] <- lapply(ideg6.bm[, 2:length(ideg6.bm)],
+##                                    function (x) as.numeric(as.character(x)))
+
+## ID.bm.eel.sig <- subset(ideg6.bm, AC.3.4>0.01 &
+##                      AC.2.3<0.01 & AC.2.4<0.01 )
+
+## ID.bm.eel.sig <- transform(ID.bm.eel.sig, LogFC=log((normLib2)/mean(c(normLib3, normLib4))))
+## ID.bm.eel.sig.c <- ID.bm.eel.sig$UNIQID
+## express.eel.sig.bm <- ID.bm.eel.sig[,c("normLib2", "normLib3", "normLib4", "LogFC")]
+## rownames(express.eel.sig.bm) <- ID.bm.eel.sig.c
+## ## heatmap(as.matrix(express.eel.sig))
+
+## ID.bm.sex.sig <- subset(ideg6.bm,
+##                      AC.2.3>0 & AC.3.4>0 & AC.3.4 >0 & AC.2.4 >0 &
+##                      AC.2.5<0.01 & AC.3.5<0.01 &  AC.4.5<0.01)
+
+## ID.bm.sex.sig <- transform(ID.bm.sex.sig,
+##                         LogFC=log(mean(c(normLib2, normLib3, normLib4))/(normLib5)))
+
+## ID.bm.sex.sig.c <- ID.bm.sex.sig$UNIQID
+## express.sex.sig.bm <- ID.bm.sex.sig[,c("normLib2", "normLib3",
+##                                        "normLib4", "normLib5", "LogFC")]
+
+## rownames(express.sex.sig.bm) <- ID.bm.sex.sig.c
+## ##heatmap(as.matrix(express.sex.sig))
+
+
+## ID.sex <- merge(express.sex.sig, contig.df[, c("contig", "Bm.hit")],
+##                 by.x="row.names", by.y="contig" )
+
+## ID.sex <- merge(ID.sex, express.sex.sig.bm, by.x="Bm.hit", by.y="row.names",
+##                 all.x=TRUE, suffixes=c(".Con", ".Bm"))
+
+
 
 
 
 ###################################################
-### chunk number 28: save
+### code chunk number 28: over.exp
 ###################################################
-#line 2971 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
+
+## ID.sex.sig.c and ID.eel.sig.c are lists of significant contigs
+## ideg6 holds the general list
+
+exp.df <- subset(contig.df, contig.df$contig %in% ideg6$UNIQID)
+GO.exp <- subset(GO.annot, pept_id%in%ideg6$UNIQID)
+
+exp.mapping <- GO.exp[,c("pept_id", "go_term")]
+
+## produce a AnnotationDbi object 
+goframeD.exp <- as.data.frame(cbind(frame.go_id=as.character(exp.mapping$go_term),
+                                     frame.Evidence="IEA",
+                                     frame.gene_id=as.character(exp.mapping$pept_id)))
+
+goF.exp <- GOFrame(goframeD.exp, organism="Anguillicola crassus")
+
+## produce an full GO-mapping
+goAllF.exp <- GOAllFrame(goF.exp)
+all.mapping.exp <- as.data.frame(cbind(pept_id=goAllF.exp@data$gene_id,
+                                       go_term=goAllF.exp@data$go_id))
+
+GO2c.exp <- by(all.mapping.exp, all.mapping.exp$pept_id,
+                function (x) c(as.character(x$go_term)))
+geneN.exp <- names(GO2c.exp)
+
+
+ont <- c("MF", "BP", "CC")
+sex.over <- lapply(ont, function (on) TOGO.all.onto (on, ID.sex.sig.c, geneN.exp))
+
+GO.over.sex <- do.call("rbind", lapply(1:3, function (i) {
+  GenTable(sex.over[[i]][[1]], p.value = sex.over[[i]][[2]], 
+  orderBy = "classic",  topNodes=500, numChar=100)
+                                         }))
+
+GO.over.sex <- subset(GO.over.sex, p.value<0.05)
+
+GO.over.sex.lines <- unlist(lapply(sex.over,
+                                   function (x) length(x[[2]]@score[x[[2]]@score<0.05])))
+
+GO.over.sex.lines[2] <- GO.over.sex.lines[1]+GO.over.sex.lines[2]
+GO.over.sex.lines[3] <- GO.over.sex.lines[3]+GO.over.sex.lines[2]
+
+## WTF the above does'not work somehow too long...
+GO.over.sex.lines[3] <- nrow(GO.over.sex)
+
+
+eel.over <- lapply(ont, function (on) TOGO.all.onto (on, ID.eel.sig.c, geneN.exp))
+
+GO.over.eel <-   do.call("rbind", lapply(1:3, function (i) {
+  GenTable(eel.over[[i]][[1]], p.value = eel.over[[i]][[2]], 
+  orderBy = "classic", topNodes=500, numChar=100)
+}))
+
+GO.over.eel <- subset(GO.over.eel, p.value<0.05)
+GO.over.eel.lines <- unlist(lapply(eel.over,
+                                   function (x) length(x[[2]]@score[x[[2]]@score<0.05])))
+
+GO.over.eel.lines[2] <- GO.over.eel.lines[1]+GO.over.eel.lines[2]
+GO.over.eel.lines[3] <- GO.over.eel.lines[3]+GO.over.eel.lines[2]
+
+
+##  SIGNAL-PEPTIDES
+## sex Not enriched for signal-peptides in general
+f.test.sex.sigP <- fisher.test( exp.df$contig%in%ID.sex.sig.c , grepl("Yes", exp.df$sigP))
+f.test.eel.sigP <- fisher.test( exp.df$contig%in%ID.eel.sig.c , grepl("Yes", exp.df$sigP))
+
+## not female
+f.test.female.sigP <- fisher.test(exp.df$contig%in%
+                                  rownames(express.sex.sig[express.sex.sig$LogFC>0,]) ,
+                                           grepl("Yes", exp.df$sigP))
+
+## not male
+f.test.male.sigP <- fisher.test(exp.df$contig%in%
+                                rownames(express.sex.sig[express.sex.sig$LogFC<0,]) ,
+                                grepl("Yes", exp.df$sigP))
+
+## eel origin Not enriched for signal-peptides in general
+f.test.eel.sigP <- fisher.test( exp.df$contig%in%ID.eel.sig.c , grepl("Yes", exp.df$sigP))
+
+## not EU over
+f.test.EU.sigP <- fisher.test(exp.df$contig%in%
+                              rownames(express.eel.sig[express.eel.sig$LogFC<0,]) ,
+                              grepl("Yes", exp.df$sigP))
+
+## not TW over
+f.test.TW.sigP <- fisher.test(exp.df$contig%in%
+                              rownames(express.eel.sig[express.eel.sig$LogFC>0,]) ,
+                              grepl("Yes", exp.df$sigP))
+
+
+## Not higher dn.ds in differentially expressed according to sex
+u.test.dn.ds.sex <- wilcox.test( exp.df$dn.ds ~ as.factor(exp.df$contig%in%ID.sex.sig.c))
+
+## But higher in female overexpressed
+u.test.dn.ds.female <- wilcox.test( exp.df$dn.ds ~
+                                 as.factor(exp.df$contig%in%
+                                           rownames(express.sex.sig[express.sex.sig$LogFC>0,])))
+
+tapply( exp.df$dn.ds,
+       as.factor(exp.df$contig%in%rownames(express.sex.sig[express.sex.sig$LogFC>0,])),
+       median, na.rm=TRUE)
+
+## Lower in male overexpressed
+u.test.dn.ds.male <- wilcox.test( exp.df$dn.ds ~
+                                 as.factor(exp.df$contig%in%
+                                           rownames(express.sex.sig[express.sex.sig$LogFC<0,])))
+
+tapply( exp.df$dn.ds,
+       as.factor(exp.df$contig%in%rownames(express.sex.sig[express.sex.sig$LogFC<0,])),
+       median, na.rm=TRUE)
+
+
+## HIGHER dn.ds in differentially expressed according to pop!!!!!
+u.test.dn.ds.eel <- wilcox.test( exp.df$dn.ds ~ as.factor(exp.df$contig%in%ID.eel.sig.c))
+
+tapply( exp.df$dn.ds, as.factor(exp.df$contig%in%ID.eel.sig.c), median, na.rm=TRUE)
+
+## In both directions higher!!!
+u.test.dn.ds.EU <- wilcox.test( exp.df$dn.ds ~
+                               as.factor(exp.df$contig%in%
+                                         rownames(express.eel.sig[express.eel.sig$LogFC<0,])))
+
+u.test.dn.ds.TW <- wilcox.test( exp.df$dn.ds ~
+                               as.factor(exp.df$contig%in%
+                                         rownames(express.eel.sig[express.eel.sig$LogFC>0,])))
+
+## Sex DE not less conserved
+fisher.test( exp.df$contig%in%ID.sex.sig.c , exp.df$novel.50%in%"conserved")
+fisher.test( exp.df$contig%in%ID.sex.sig.c , exp.df$novel.80%in%"conserved")
+
+f.test.female.conserved50 <- fisher.test(exp.df$contig%in%
+                                       rownames(express.sex.sig[express.sex.sig$LogFC>0,]) ,
+                                       exp.df$novel.50%in%"conserved")
+
+f.test.male.conserved50 <- fisher.test(exp.df$contig%in%
+                                     rownames(express.sex.sig[express.sex.sig$LogFC<0,]) ,
+                                     exp.df$novel.50%in%"conserved")
+
+f.test.female.conserved80 <- fisher.test(exp.df$contig%in%
+                                       rownames(express.sex.sig[express.sex.sig$LogFC>0,]) ,
+                                       exp.df$novel.80%in%"conserved")
+
+f.test.male.conserved80 <- fisher.test(exp.df$contig%in%
+                                     rownames(express.sex.sig[express.sex.sig$LogFC<0,]) ,
+                                     exp.df$novel.80%in%"conserved")
+
+## Eel DE not less conserved
+fisher.test( exp.df$contig%in%ID.eel.sig.c , exp.df$novel.50%in%"conserved")
+
+fisher.test( exp.df$contig%in%ID.eel.sig.c , exp.df$novel.50%in%"conserved")
+
+
+fisher.test( exp.df$contig%in%ID.eel.sig.c , exp.df$novel.50%in%"conserved")
+
+
+fisher.test( exp.df$contig%in%ID.eel.sig.c , exp.df$novel.80%in%"conserved")
+
+
+## Sex DE not differing in rnai proportion
+fisher.test( exp.df$contig%in%ID.sex.sig.c , exp.df$Ce.rnai)
+
+## Eel DE not differeent in rnai proportion
+fisher.test( exp.df$contig%in%ID.eel.sig.c , exp.df$Ce.rnai)
+
+
+
+###################################################
+### code chunk number 29: plot.over.exp
+###################################################
+
+setwd("/home/ele/thesis/454/figures/")
+for(o in 1:3){
+  printGraph(sex.over[[o]][[1]],
+             sex.over[[o]][[2]], firstSigNodes = 10,
+             fn.prefix = paste("tGO", "SEX_EXP", ont[o], sep="_"),
+             useInfo = "all", pdfSW = TRUE)
+}
+
+for(o in 1:3){
+  printGraph(eel.over[[o]][[1]],
+             eel.over[[o]][[2]], firstSigNodes = 10,
+             fn.prefix = paste("tGO", "EEL_EXP", ont[o], sep="_"),
+             useInfo = "all", pdfSW = TRUE)
+}
+
+setwd("/home/ele/thesis/454/paper/")
+
+
+
+
+###################################################
+### code chunk number 30: save
+###################################################
 ## write the MN.peptide sequence for iprscan prediction
 MN.pep.fasta <- as.character(contig.df[contig.df$AcMN, "Ac.pep"])
 names(MN.pep.fasta) <- as.character(contig.df[contig.df$AcMN, "contig"])
@@ -2263,9 +2499,8 @@ save.image("/home/ele/thesis/454/paper/paper.Rdata")
 
 
 ###################################################
-### chunk number 29: 
+### code chunk number 31: transcriptome_paper.Rnw:1498-1537
 ###################################################
-#line 3285 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 ## print(xtable(TRIM, display=rep("d", times=7)), floating=FALSE)
 trim_mark <- transform(TRIM, lowqal = short+lowq+dust+shortq)[1:6, ]
 trim_mark <- trim_mark[,c(1,7)]
@@ -2283,28 +2518,53 @@ trim_mark[7,] <- c("Eel", "", "", "", "", length(eel.clean), sum(nchar(eel.clean
                    length(eel.all), length(eel.all)-length(eel.clean), "liver", "Taiwan")
 
 trim_mark <- trim_mark[, c(1, 10, 11,  8, 9, 2, 4, 5, 3, 6, 7 )]
-
 names(trim_mark)[c(1, 4)] <- c("library", "raw.reads")
+
+
+trim_mark <- merge(trim_mark, colSums(all.counts), by.x="library", by.y="row.names")
+names(trim_mark)[length(trim_mark)] <- "mapping.unique"
+
+sum.Ac <- colSums(all.counts[rownames(all.counts)%in%contig.df[contig.df$Ac, "contig"], ])
+trim_mark <- merge(trim_mark, sum.Ac, by.x="library", by.y="row.names")
+names(trim_mark)[length(trim_mark)] <- "mapping.Ac"
+
+sum.Ac.MN <- colSums(all.counts[rownames(all.counts)%in%contig.df[contig.df$AcMN, "contig"], ])
+trim_mark <- merge(trim_mark, sum.Ac.MN, by.x="library", by.y="row.names")
+names(trim_mark)[length(trim_mark)] <- "mapping.MN"
+
+sum.o.32 <- colSums(counts[rownames(counts)%in%contig.df[contig.df$AcMN, "contig"], ])
+trim_mark <- merge(trim_mark, sum.o.32, by.x="library", by.y="row.names")
+names(trim_mark)[length(trim_mark)] <- "over.32"
 
 write.csv(trim_mark, "/home/ele/thesis/454/paper/table1.csv")
 
-trim_mark.tab <- xtable(trim_mark)
-print(trim_mark.tab, floating=FALSE, include.rownames=FALSE)
+trim_mark.tab <- xtable(t(trim_mark))
+print(trim_mark.tab, floating=FALSE, include.colnames=FALSE, hline.after = c(0,1, nrow(trim_mark)))
 
 
 ###################################################
-### chunk number 30: 
+### code chunk number 32: transcriptome_paper.Rnw:1564-1615
 ###################################################
-#line 3314 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 T2 <- as.data.frame.array(tapply(contig.df$contig, contig.df$category%in%"MN", length))
 rownames(T2) <- c("lowCA", "highCA")
 names(T2) <- "total.contigs"
-T2$rRNA.contigs <- table(contig.df$category%in%"MN", contig.df$seq.origin%in%"AcrRNA")[, 2]
+
+T2$rRNA.contigs <- table(contig.df$category%in%"MN", contig.df$contamination%in%"AcrRNA" &
+                         !(contig.df$phylum.nr%in%c("Chordata") |
+                          contig.df$phylum.nt%in%c("Chordata")))[, 2]
+
 T2$fish.contigs <- table(contig.df$category%in%"MN",
-                         contig.df$seq.origin%in%c("eelmRNA", "Chordata"))[, 2]
+                         contig.df$contamination%in%c("eelmRNA", "eelrRNA" ) |
+                         contig.df$phylum.nr%in%c("Chordata") |
+                         contig.df$phylum.nt%in%c("Chordata"))[, 2]
+
 T2$xeno.contigs <- table(contig.df$category%in%"MN",
-                         !contig.df$seq.origin%in%c("Nematoda", "No_hit",
-                                                  "eelmRNA", "Chordata", "AcrRNA"))[, 1]
+                         !(contig.df$contamination%in%c("eelmRNA", "eelrRNA", "AcrRNA") |
+                           contig.df$phylum.nr%in%c("Chordata") |
+                           contig.df$phylum.nt%in%c("Chordata")) & 
+                         !(contig.df$kingdom.nt%in%c("Metazoa", "No_hit") &
+                           contig.df$kingdom.nr%in%c("Metazoa", "No_hit")))[,2]
+ 
 T2$remaining.contigs <- table(contig.df$category%in%"MN", contig.df$Ac)[, 2]
 T2$remaining.span <- tapply(contig.df$seq,
                             contig.df$category%in%"MN",
@@ -2332,16 +2592,15 @@ T2 <- transform(T2, combined=lowCA+highCA)
 T2["non.u.cov", "combined"] <- cov.nu.total
 T2["cov", "combined"] <- cov.u.total
 
-dig <- t(matrix(c(rep(0,28), rep(c(0, 3 , 3, 3), 2), rep(0,48)), nrow=4))
+dig <- t(matrix(c(rep(0,24), rep(c(0, 3 , 3, 3), 2), rep(0,52)), nrow=4))
 T2.tab <- xtable(T2, digits=dig)
 
 print(T2.tab)
 
 
 ###################################################
-### chunk number 31: 
+### code chunk number 33: transcriptome_paper.Rnw:1629-1637
 ###################################################
-#line 3378 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
 nov.tab <- rbind(summary.factor(contig.df[contig.df$Ac, "novel.50"]), 
                  summary.factor(contig.df[contig.df$Ac, "novel.80"]))
 nov.tab.MN <- rbind(summary.factor(contig.df[contig.df$AcMN, "novel.50"]), 
@@ -2353,20 +2612,56 @@ print(xtable(nov.tab), floating=FALSE)
 
 
 ###################################################
-### chunk number 32: 
+### code chunk number 34: transcriptome_paper.Rnw:1653-1662
 ###################################################
-#line 3401 "/home/ele/thesis/454/paper/transcriptome_paper.Rnw"
-mf <- mf.dn.ds[, c(2, 5:8)]
-bp <- bp.dn.ds[, c(2, 5:8)]
-cc <- cc.dn.ds[, c(2, 5:8)]
-nhlines <- c(0, nrow(mf), nrow(mf) + nrow(bp), nrow(mf) + nrow(bp) + nrow(cc))
 
-onto.tab <- xtable(rbind(mf, bp, cc))
+GO.over.dn.ds.tab <- xtable(GO.over.dn.ds)
 
-align(onto.tab) <- "rrrrp{4cm}r"
+align(GO.over.dn.ds.tab) <- "llp{3cm}llll"
 
-print(onto.tab, tabular.environment="longtable",
-      floating=FALSE,
-      hline.after=nhlines, include.rownames=FALSE)
+print(GO.over.dn.ds.tab, tabular.environment="longtable",
+      floating=FALSE, 
+      hline.after=c(0, GO.over.dn.ds.lines), include.rownames=FALSE)
+
+
+
+###################################################
+### code chunk number 35: transcriptome_paper.Rnw:1681-1682
+###################################################
+print(xtable(het.table))
+
+
+###################################################
+### code chunk number 36: transcriptome_paper.Rnw:1701-1710
+###################################################
+
+GO.over.sex.tab <- xtable(GO.over.sex)
+
+align(GO.over.sex.tab) <- "llp{3cm}llll"
+
+print(GO.over.sex.tab, tabular.environment="longtable",
+      floating=FALSE, 
+      hline.after=c(0, GO.over.sex.lines), include.rownames=FALSE)
+
+
+
+###################################################
+### code chunk number 37: transcriptome_paper.Rnw:1715-1724
+###################################################
+
+GO.over.eel.tab <- xtable(GO.over.eel)
+
+align(GO.over.eel.tab) <- "llp{3cm}llll"
+
+print(GO.over.eel.tab, tabular.environment="longtable",
+      floating=FALSE, 
+      hline.after=c(0, GO.over.eel.lines), include.rownames=FALSE)
+
+
+
+###################################################
+### code chunk number 38: transcriptome_paper.Rnw:1728-1729
+###################################################
+print(xtable(het.table))
 
 
