@@ -520,11 +520,11 @@ universal gene-set (all contigs with dn/ds values or all contigs
 analysed for gene-exprssion) with the ``classic'' method and Fisher's
 exact test.
 
-We used non-paramentric Mann-Whitney u-tests to test the influence of
-factors on dn/ds values, when multiple contrasts between groups
-(facotrs) were investigated we used Nemenyi-Damico-Wolfe-Dunn
-tests. For overrepresentation of one group (factor) in other groups
-(factors) we used Fisher's exact test.
+We used Mann-Whitney u-tests to test the influence of factors on dn/ds
+values, when multiple contrasts between groups (facotrs) were
+investigated we used Nemenyi-Damico-Wolfe-Dunn tests. For
+overrepresentation of one group (factor) in other groups (factors) we
+used Fisher's exact test.
 
 \subsection*{General coding methods}
 

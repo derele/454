@@ -56,6 +56,9 @@ names(ce.names) <- c("Ce.hit", "Ce.annot")
 ce.names <- ce.names[!duplicated(ce.names$Ce.hit), ]
 ce.names <- merge(ce.names, rnai, by.x="Ce.hit", by.y="row.names", all.x=TRUE)
 
+## there would be other ids in this:
+##ce.add.names <- names(read.sequences("/home/ele/db/blastdb/wormpep220/wormpep220_named.fasta"))
+
 contig.df <- merge(contig.df, ce.names, by="Ce.hit", all.x=TRUE, sort=FALSE)
 
 

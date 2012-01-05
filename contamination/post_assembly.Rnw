@@ -13,6 +13,10 @@ AcrRNA$dbhit <- "AcrRNA"
 nempep4.nuc <- read.blast.best("/home/ele/Data/454/post_assembly_screening/fullest_vs_nembase_nuc.blt")
 nempep4.nuc$dbhit <- "nempep4"
 
+### PATCH
+### OMG: >isotig00018_gene=isogroup00015_length=680_numContigs=1_No_annot hit  18_AcrRNA.fasta is NADH4
+AcrRNA <- subset(AcrRNA, !V2%in%"18_AcrRNA.fasta")
+
 ## looking at best across dbs using nempep to rescue 
 E <- rbind(eelmRNA, eelrRNA, AcrRNA, nempep4.nuc)
 E <- E[, c(1, 3, 7, 8, 12, 13)]

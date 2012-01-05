@@ -163,6 +163,14 @@ fisher.test( exp.df$contig%in%ID.sex.sig.c , exp.df$Ce.rnai)
 ## Eel DE not differeent in rnai proportion
 fisher.test( exp.df$contig%in%ID.eel.sig.c , exp.df$Ce.rnai)
 
+
+foo <- merge(contig.df[,c("contig", "dn.ds")], express.eel.sig, by.x="contig", by.y="row.names")
+foo <- subset(foo, !is.na(dn.ds) & !is.infinite(LogFC))
+
+## Not regression of dn.ds and LogFC
+## summary(lm(dn.ds~ I(abs(LogFC)),data=foo ))
+## summary(lm(dn.ds~ LogFC,data=foo ))
+
 @ 
 
 <<plot.over.exp, echo=FALSE>>=

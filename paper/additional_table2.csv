@@ -2377,6 +2377,7 @@
 "Contig5252",932,"T","G",14,2,12.5,"TRUE","3","Nonsynonymous"
 "Contig5252",966,"A","G",23,2,8,"TRUE","1","Nonsynonymous"
 "Contig5252",1600,"A","T",75,8,9.64,"TRUE","2","Nonsynonymous"
+"Contig5257",741,"C","A",61,65,51.59,"TRUE","1","Synonymous"
 "Contig526",135,"T","C",23,2,8,"FALSE",NA,"outside ORF"
 "Contig526",146,"T","C",23,2,8,"FALSE",NA,"outside ORF"
 "Contig526",191,"T","C",14,11,44,"FALSE",NA,"outside ORF"
