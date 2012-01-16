@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.9.20)  5 JAN 2012 11:54
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.9.20)  14 JAN 2012 12:51
 entering extended mode
  %&-line parsing enabled.
 **\nonstopmode \input{/home/ele/thesis/454/paper/transcriptome_paper.tex}
@@ -594,1176 +594,200 @@ Overfull \hbox (9.98987pt too wide) in paragraph at lines 164--164
  []
 
 LaTeX Font Info:    Font shape `T1/aess/m/it' in size <10> not available
-(Font)              Font shape `T1/aess/m/sl' tried instead on input line 185.
+(Font)              Font shape `T1/aess/m/sl' tried instead on input line 184.
 [1
 
-{/usr/share/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
-LaTeX Font Info:    Try loading font information for T1+aett on input line 365.
-
-
-(/usr/share/texmf/tex/latex/ae/t1aett.fd
-File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-) [4] [5] [6] [7] [8] [9] [10] [11]
-[12] [13] [14] [15] [16] [17]
+{/usr/share/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5]
+[6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17]
 (/home/ele/thesis/454/paper/transcriptome_paper.bbl [18]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 32.
+(Font)              <9> on input line 26.
  [19] [20]
-LaTeX Font Info:    Try loading font information for TS1+aer on input line 280.
+LaTeX Font Info:    Try loading font information for TS1+aer on input line 299.
 
-LaTeX Font Info:    No file TS1aer.fd. on input line 280.
+LaTeX Font Info:    No file TS1aer.fd. on input line 299.
 
 
 LaTeX Font Warning: Font shape `TS1/aer/m/n' undefined
 (Font)              using `TS1/cmr/m/n' instead
-(Font)              for symbol `textdagger' on input line 280.
+(Font)              for symbol `textdagger' on input line 299.
 
-[21] [22]) [23] [24] [25] [26] [27]
-Underfull \hbox (badness 10000) in paragraph at lines 1513--1513
-[]|\T1/aer/m/n/10 L-amino acid
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1513--1513
-\T1/aer/m/n/10 trans-mem-brane
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1515--1515
-[]|\T1/aer/m/n/10 ribonucleoprotein
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1517--1517
-[]|\T1/aer/m/n/10 protein het-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1517--1517
-\T1/aer/m/n/10 erodimer-iza-tion
- []
-
-
+[21] [22] [23]) [24] [25] [26] [27] [28]
 Underfull \hbox (badness 10000) in paragraph at lines 1518--1518
-[]|\T1/aer/m/n/10 cytochrome-c
- []
-
-
-Underfull \hbox (badness 1377) in paragraph at lines 1519--1519
-[]|\T1/aer/m/n/10 ribonuclease ac-tiv-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1520--1520
-[]|\T1/aer/m/n/10 amine trans-mem-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1520--1520
-\T1/aer/m/n/10 brane trans-porter
+[]|\T1/aer/m/n/10 protein het-erodimer-iza-tion
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1521--1521
-\T1/aer/m/n/10 mem-brane trans-
+[]|\T1/aer/m/n/10 testosterone de-hy-dro-ge-nase
  []
 
 
-Underfull \hbox (badness 1783) in paragraph at lines 1523--1523
-[]|\T1/aer/m/n/10 amino acid trans-
+Underfull \hbox (badness 10000) in paragraph at lines 1522--1522
+\T1/aer/m/n/10 trans-mem-brane trans-porter
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1523--1523
-\T1/aer/m/n/10 mem-brane trans-
+Underfull \hbox (badness 1342) in paragraph at lines 1540--1540
+[]|\T1/aer/m/n/10 neuromuscular pro-cess con-
  []
 
 
-Underfull \hbox (badness 2393) in paragraph at lines 1524--1524
-[]|\T1/aer/m/n/10 oxidoreductase ac-
+Underfull \hbox (badness 6725) in paragraph at lines 1548--1548
+[]|\T1/aer/m/n/10 positive reg-u-la-tion of or-
  []
 
 
-Underfull \hbox (badness 7851) in paragraph at lines 1524--1524
-\T1/aer/m/n/10 tiv-ity, act-ing on
+Underfull \hbox (badness 4608) in paragraph at lines 1550--1550
+[]|\T1/aer/m/n/10 'de novo' post-trans-la-tional
  []
 
 
-Underfull \hbox (badness 2486) in paragraph at lines 1524--1524
-\T1/aer/m/n/10 a heme group of
+Underfull \hbox (badness 3646) in paragraph at lines 1552--1552
+[]|\T1/aer/m/n/10 spliceosomal con-for-ma-tional
  []
 
-
-Underfull \hbox (badness 2393) in paragraph at lines 1525--1525
-[]|\T1/aer/m/n/10 oxidoreductase ac-
- []
-
-
-Underfull \hbox (badness 7851) in paragraph at lines 1525--1525
-\T1/aer/m/n/10 tiv-ity, act-ing on
- []
-
-
-Underfull \hbox (badness 2486) in paragraph at lines 1525--1525
-\T1/aer/m/n/10 a heme group of
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1526--1526
-[]|\T1/aer/m/n/10 carboxylic acid
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1526--1526
-\T1/aer/m/n/10 trans-mem-brane
- []
-
-
-Underfull \hbox (badness 4391) in paragraph at lines 1527--1527
-[]|\T1/aer/m/n/10 testosterone de-hy-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1528--1528
-[]|\T1/aer/m/n/10 monovalent in-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1528--1528
-\T1/aer/m/n/10 or-ganic cation
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1528--1528
-\T1/aer/m/n/10 trans-mem-brane
- []
-
-
-Underfull \hbox (badness 4024) in paragraph at lines 1529--1529
-[]|\T1/aer/m/n/10 peptidase ac-tiv-ity,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1531--1531
-[]|\T1/aer/m/n/10 branched chain
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1532--1532
-[]|\T1/aer/m/n/10 branched chain
- []
-
-
-Underfull \hbox (badness 2042) in paragraph at lines 1537--1537
-[]|\T1/aer/m/n/10 positive reg-u-la-tion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1538--1538
-[]|\T1/aer/m/n/10 amine metabolic
- []
-
-
-Underfull \hbox (badness 4108) in paragraph at lines 1540--1540
-[]|\T1/aer/m/n/10 interphase of mi-
- []
-
-
-Underfull \hbox (badness 5147) in paragraph at lines 1541--1541
-[]|\T1/aer/m/n/10 regulation of cell
- []
-
-
-Underfull \hbox (badness 5147) in paragraph at lines 1542--1542
-[]|\T1/aer/m/n/10 regulation of cell
- []
-
-
-Underfull \hbox (badness 2080) in paragraph at lines 1544--1544
-[]|\T1/aer/m/n/10 xylulose metabolic
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1545--1545
-[]|\T1/aer/m/n/10 NADP metabolic
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1547--1547
-[]|\T1/aer/m/n/10 embryonic body
- []
-
-
-Underfull \hbox (badness 6808) in paragraph at lines 1549--1549
-[]|\T1/aer/m/n/10 pentose metabolic
- []
-
-
-Underfull \hbox (badness 1270) in paragraph at lines 1550--1550
-[]|\T1/aer/m/n/10 response to dis-ac-
- []
-
-[28]
-Underfull \hbox (badness 4543) in paragraph at lines 1553--1553
-[]|\T1/aer/m/n/10 mitotic cell cy-cle
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1553--1553
-\T1/aer/m/n/10 G1/S tran-si-tion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1553--1553
-\T1/aer/m/n/10 DNA dam-age
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1554--1554
-[]|\T1/aer/m/n/10 cellular amine
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1557--1557
-[]|\T1/aer/m/n/10 DNA dam-age
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1557--1557
-\T1/aer/m/n/10 re-sponse, sig-nal
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1557--1557
-\T1/aer/m/n/10 trans-duc-tion by
- []
-
-
-Underfull \hbox (badness 4543) in paragraph at lines 1558--1558
-[]|\T1/aer/m/n/10 mitotic cell cy-cle
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1558--1558
-\T1/aer/m/n/10 G1/S tran-si-tion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1561--1561
-[]|\T1/aer/m/n/10 G1/S tran-si-tion
- []
-
-
-Underfull \hbox (badness 7433) in paragraph at lines 1563--1563
-\T1/aer/m/n/10 tran-si-tion of mi-
- []
-
-
-Underfull \hbox (badness 2042) in paragraph at lines 1565--1565
-[]|\T1/aer/m/n/10 positive reg-u-la-tion
- []
-
-
-Underfull \hbox (badness 1983) in paragraph at lines 1567--1567
-[]|\T1/aer/m/n/10 regulation of pro-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1568--1568
-[]|\T1/aer/m/n/10 amine catabolic
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1569--1569
-\T1/aer/m/n/10 la-tional pro-tein
- []
-
-[29]
-Underfull \hbox (badness 10000) in paragraph at lines 1572--1572
-[]|\T1/aer/m/n/10 programmed cell
- []
-
-
-Underfull \hbox (badness 5147) in paragraph at lines 1573--1573
-[]|\T1/aer/m/n/10 regulation of cell
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1574--1574
-[]|\T1/aer/m/n/10 spliceosomal
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1574--1574
-\T1/aer/m/n/10 con-for-ma-tional
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1574--1574
-\T1/aer/m/n/10 changes to gen-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1574--1574
-\T1/aer/m/n/10 er-ate cat-alytic
- []
-
-
-Underfull \hbox (badness 1783) in paragraph at lines 1576--1576
-[]|\T1/aer/m/n/10 amino acid trans-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1577--1577
-[]|\T1/aer/m/n/10 oligosaccharide
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1578--1578
-[]|\T1/aer/m/n/10 microtubule or-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1578--1578
-\T1/aer/m/n/10 ga-niz-ing cen-ter
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1579--1579
-[]|\T1/aer/m/n/10 nuclear mRNA
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1579--1579
-\T1/aer/m/n/10 cis splic-ing, via
- []
-
-
-Underfull \hbox (badness 2042) in paragraph at lines 1580--1580
-[]|\T1/aer/m/n/10 positive reg-u-la-tion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1581--1581
-[]|\T1/aer/m/n/10 protein tetramer-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1582--1582
-[]|\T1/aer/m/n/10 protein ho-mote-
- []
-
-
-Underfull \hbox (badness 2042) in paragraph at lines 1584--1584
-[]|\T1/aer/m/n/10 positive reg-u-la-tion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1589--1589
-[]|\T1/aer/m/n/10 mRNA metabolic
- []
-
-
-Underfull \hbox (badness 4467) in paragraph at lines 1590--1590
-[]|\T1/aer/m/n/10 'de novo' pro-tein
- []
-
-[30]
-Underfull \hbox (badness 10000) in paragraph at lines 1593--1593
-[]|\T1/aer/m/n/10 small nu-clear ri-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1593--1593
-\T1/aer/m/n/10 bonu-cle-o-pro-tein
- []
-
-
-Underfull \hbox (badness 2080) in paragraph at lines 1596--1596
-[]|\T1/aer/m/n/10 U4/U6 x U5 tri-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1599--1599
-[]|\T1/aer/m/n/10 basement mem-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1600--1600
-[]|\T1/aer/m/n/10 clathrin sculpted
- []
-
-[31] [32]
-Underfull \hbox (badness 2393) in paragraph at lines 1659--1659
-[]|\T1/aer/m/n/10 oxidoreductase ac-
- []
-
-
-Underfull \hbox (badness 7851) in paragraph at lines 1659--1659
-\T1/aer/m/n/10 tiv-ity, act-ing on
- []
-
-
-Underfull \hbox (badness 2393) in paragraph at lines 1660--1660
-[]|\T1/aer/m/n/10 oxidoreductase ac-
- []
-
-
-Underfull \hbox (badness 7851) in paragraph at lines 1660--1660
-\T1/aer/m/n/10 tiv-ity, act-ing on
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1661--1661
-[]|\T1/aer/m/n/10 procollagen-proline
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1661--1661
-\T1/aer/m/n/10 4-dioxygenase
+[29] [30]
+Underfull \hbox (badness 10000) in paragraph at lines 1633--1633
+[]|\T1/aer/m/n/10 procollagen-proline 4-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1662--1662
-[]|\T1/aer/m/n/10 procollagen-proline
+Underfull \hbox (badness 1609) in paragraph at lines 1635--1635
+[]|\T1/aer/m/n/10 cellular ni-tro-gen com-pound
  []
 
 
-Underfull \hbox (badness 3396) in paragraph at lines 1662--1662
-\T1/aer/m/n/10 dioxy-ge-nase ac-tiv-
+Underfull \hbox (badness 10000) in paragraph at lines 1643--1643
+[]|\T1/aer/m/n/10 nucleobase-containing com-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1663--1663
-[]|\T1/aer/m/n/10 peptidyl-proline
+[]|\T1/aer/m/n/10 peptidyl-proline hy-drox-y-la-
  []
 
 
-Underfull \hbox (badness 3396) in paragraph at lines 1663--1663
-\T1/aer/m/n/10 dioxy-ge-nase ac-tiv-
+Underfull \hbox (badness 2573) in paragraph at lines 1664--1664
+[]|\T1/aer/m/n/10 positive reg-u-la-tion of hor-
  []
 
-
-Underfull \hbox (badness 1769) in paragraph at lines 1664--1664
-[]|\T1/aer/m/n/10 peptidyl-proline 4-
- []
-
-
-Underfull \hbox (badness 3396) in paragraph at lines 1664--1664
-\T1/aer/m/n/10 dioxygenase ac-tiv-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1665--1665
-[]|\T1/aer/m/n/10 cellular ni-tro-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1665--1665
-\T1/aer/m/n/10 gen com-pound
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1667--1667
-[]|\T1/aer/m/n/10 system de-vel-op-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1668--1668
-[]|\T1/aer/m/n/10 cellular macro-
- []
-
-
-Underfull \hbox (badness 1418) in paragraph at lines 1668--1668
-\T1/aer/m/n/10 molec-u-lar com-plex
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1668--1668
-\T1/aer/m/n/10 sub-unit or-ga-ni-za-
- []
-
-
-Underfull \hbox (badness 7186) in paragraph at lines 1670--1670
-[]|\T1/aer/m/n/10 RNA biosyn-thetic
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1671--1671
-[]|\T1/aer/m/n/10 protein com-plex
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1671--1671
-\T1/aer/m/n/10 sub-unit or-ga-ni-za-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1672--1672
-[]|\T1/aer/m/n/10 macromolecular
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1672--1672
-\T1/aer/m/n/10 com-plex sub-unit
- []
-
-
+[31]
 Underfull \hbox (badness 10000) in paragraph at lines 1673--1673
-[]|\T1/aer/m/n/10 mitotic spin-dle
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1675--1675
-[]|\T1/aer/m/n/10 small molecule
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1676--1676
-[]|\T1/aer/m/n/10 nucleobase-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1676--1676
-\T1/aer/m/n/10 containing com-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1676--1676
-\T1/aer/m/n/10 pound metabolic
+[]|\T1/aer/m/n/10 ribonucleoprotein com-plex
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1677--1677
-[]|\T1/aer/m/n/10 anatomical struc-
- []
-
-
-Underfull \hbox (badness 1442) in paragraph at lines 1678--1678
-\T1/aer/m/n/10 gen-e-sis at cel-lu-lar
+[]|\T1/aer/m/n/10 cellular macro-molecule
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1679--1679
-[]|\T1/aer/m/n/10 nucleic acid
+[]|\T1/aer/m/n/10 cellular pro-tein metabolic
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1679--1679
-\T1/aer/m/n/10 metabolic pro-
+Underfull \hbox (badness 1590) in paragraph at lines 1683--1683
+[]|\T1/aer/m/n/10 intracellular non-membrane-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1681--1681
-[]|\T1/aer/m/n/10 RNA metabolic
+Underfull \hbox (badness 10000) in paragraph at lines 1685--1685
+[]|\T1/aer/m/n/10 intracellular membrane-
  []
 
-
-Underfull \hbox (badness 2837) in paragraph at lines 1683--1683
-[]|\T1/aer/m/n/10 regulation of bi-o-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1684--1684
-[]|\T1/aer/m/n/10 ribosomal small
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1687--1687
-[]|\T1/aer/m/n/10 reproductive pro-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1688--1688
-[]|\T1/aer/m/n/10 lipoprotein
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1688--1688
-\T1/aer/m/n/10 metabolic pro-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1689--1689
-[]|\T1/aer/m/n/10 spindle or-ga-ni-za-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1691--1691
-[]|\T1/aer/m/n/10 regulation of
- []
-
-
-Underfull \hbox (badness 2042) in paragraph at lines 1692--1692
-[]|\T1/aer/m/n/10 positive reg-u-la-tion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1693--1693
-[]|\T1/aer/m/n/10 molting cy-cle,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1693--1693
-\T1/aer/m/n/10 protein-based
- []
-
-[33]
-Underfull \hbox (badness 6110) in paragraph at lines 1699--1699
-[]|\T1/aer/m/n/10 response to light
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1701--1701
-[]|\T1/aer/m/n/10 fibroblast growth
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1701--1701
-\T1/aer/m/n/10 fac-tor re-cep-tor
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1702--1702
-[]|\T1/aer/m/n/10 peptidyl-proline
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1703--1703
-[]|\T1/aer/m/n/10 4-hydroxyproline
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1704--1704
-[]|\T1/aer/m/n/10 peptidyl-proline
- []
-
-
-Underfull \hbox (badness 2042) in paragraph at lines 1705--1705
-[]|\T1/aer/m/n/10 positive reg-u-la-tion
- []
-
-
-Underfull \hbox (badness 1596) in paragraph at lines 1705--1705
-\T1/aer/m/n/10 of hor-mone se-cre-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1708--1708
-[]|\T1/aer/m/n/10 embryo de-vel-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1708--1708
-\T1/aer/m/n/10 op-ment end-ing
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1708--1708
-\T1/aer/m/n/10 in birth or egg
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1710--1710
-[]|\T1/aer/m/n/10 purine ri-bonu-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1710--1710
-\T1/aer/m/n/10 cleotide biosyn-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1711--1711
-[]|\T1/aer/m/n/10 ribonucleotide
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1711--1711
-\T1/aer/m/n/10 biosyn-thetic pro-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1715--1715
-[]|\T1/aer/m/n/10 ribonucleoprotein
- []
-
-
+[32] [33]
 Underfull \hbox (badness 10000) in paragraph at lines 1716--1716
-[]|\T1/aer/m/n/10 biological reg-u-la-
- []
-
-
-Underfull \hbox (badness 5147) in paragraph at lines 1717--1717
-[]|\T1/aer/m/n/10 cytoskeleton or-ga-
- []
-
-[34]
-Underfull \hbox (badness 2042) in paragraph at lines 1718--1718
-[]|\T1/aer/m/n/10 positive reg-u-la-tion
- []
-
-
-Underfull \hbox (badness 2042) in paragraph at lines 1720--1720
-[]|\T1/aer/m/n/10 positive reg-u-la-tion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1721--1721
-[]|\T1/aer/m/n/10 cellular macro-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1721--1721
-\T1/aer/m/n/10 molecule biosyn-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1722--1722
-[]|\T1/aer/m/n/10 microtubule cy-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1722--1722
-\T1/aer/m/n/10 toskele-ton or-ga-ni-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1723--1723
-[]|\T1/aer/m/n/10 microtubule-based
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1725--1725
-[]|\T1/aer/m/n/10 cellular pro-tein
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1727--1727
-[]|\T1/aer/m/n/10 macromolecule
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1727--1727
-\T1/aer/m/n/10 biosyn-thetic pro-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1728--1728
-[]|\T1/aer/m/n/10 ribonucleoprotein
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1729--1729
-[]|\T1/aer/m/n/10 non-membrane-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1730--1730
-[]|\T1/aer/m/n/10 intracellular
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1730--1730
-\T1/aer/m/n/10 non-membrane-
+[]|\T1/aer/m/n/10 acetyl-CoA C-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1732--1732
-[]|\T1/aer/m/n/10 membrane-
+[]|\T1/aer/m/n/10 regulation of nucleobase-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1733--1733
-[]|\T1/aer/m/n/10 intracellular
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1733--1733
-\T1/aer/m/n/10 membrane-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1737--1737
-[]|\T1/aer/m/n/10 intracellular or-
+Underfull \hbox (badness 10000) in paragraph at lines 1732--1732
+\T1/aer/m/n/10 containing com-pound
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1739--1739
-[]|\T1/aer/m/n/10 intracellular or-
+[]|\T1/aer/m/n/10 carboxylic acid metabolic
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1740--1740
-[]|\T1/aer/m/n/10 external en-cap-su-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1741--1741
-[]|\T1/aer/m/n/10 intracellular or-
- []
-
-
-Underfull \hbox (badness 1596) in paragraph at lines 1745--1745
-[]|\T1/aer/m/n/10 cytosolic small ri-
+Underfull \hbox (badness 3189) in paragraph at lines 1741--1741
+[]|\T1/aer/m/n/10 regulation of tran-scrip-tion,
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1746--1746
-[]|\T1/aer/m/n/10 membrane-enclosed
+[]|\T1/aer/m/n/10 monocarboxylic acid
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1750--1750
-[]|\T1/aer/m/n/10 small ri-bo-so-mal
+Underfull \hbox (badness 1270) in paragraph at lines 1751--1751
+[]|\T1/aer/m/n/10 multicellular or-gan-is-mal re-
  []
 
 
-Underfull \hbox (badness 1087) in paragraph at lines 1753--1753
-[]|\T1/aer/m/n/10 rough en-do-plas-mic
+Underfull \hbox (badness 2744) in paragraph at lines 1752--1752
+[]|\T1/aer/m/n/10 regulation of the force of
  []
 
-[35] [36]
+
+Underfull \hbox (badness 1221) in paragraph at lines 1755--1755
+[]|\T1/aer/m/n/10 response to tu-mor necro-sis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1759--1759
+[]|\T1/aer/m/n/10 regulation of choles-terol
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1760--1760
+[]|\T1/aer/m/n/10 positive reg-u-la-tion of
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1760--1760
+\T1/aer/m/n/10 sequence-specific DNA
+ []
+
+
+Underfull \hbox (badness 1019) in paragraph at lines 1760--1760
+\T1/aer/m/n/10 bind-ing tran-scrip-tion fac-tor
+ []
+
+
+Underfull \hbox (badness 4036) in paragraph at lines 1764--1764
+[]|\T1/aer/m/n/10 homeostasis of num-ber of
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 1766--1766
-[]|\T1/aer/m/n/10 C-acyltransferase
+[]|\T1/aer/m/n/10 transcription, DNA-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1767--1767
-[]|\T1/aer/m/n/10 C-acetyltransferase
+Underfull \hbox (badness 6428) in paragraph at lines 1769--1769
+[]|\T1/aer/m/n/10 regulation of tran-scrip-tion
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 1768--1768
-[]|\T1/aer/m/n/10 acetyltransferase
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1769--1769
-\T1/aer/m/n/10 trans-fer-ring acyl
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1771--1771
-\T1/aer/m/n/10 trans-fer-ring acyl
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1774--1774
-[]|\T1/aer/m/n/10 acetyl-CoA C-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1774--1774
-\T1/aer/m/n/10 acetyltransferase
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1775--1775
-[]|\T1/aer/m/n/10 acetyl-CoA C-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1775--1775
-\T1/aer/m/n/10 acyltransferase
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1777--1777
-[]|\T1/aer/m/n/10 polysaccharide
- []
-
-
-Underfull \hbox (badness 1077) in paragraph at lines 1778--1778
-[]|\T1/aer/m/n/10 transcription coac-
- []
-
-
-Underfull \hbox (badness 1132) in paragraph at lines 1779--1779
-[]|\T1/aer/m/n/10 phospholipid bind-
- []
-
-
-Underfull \hbox (badness 3281) in paragraph at lines 1784--1784
-[]|\T1/aer/m/n/10 sterol biosyn-thetic
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1786--1786
-[]|\T1/aer/m/n/10 sterol metabolic
- []
-
-
-Underfull \hbox (badness 2334) in paragraph at lines 1789--1789
-[]|\T1/aer/m/n/10 cholesterol biosyn-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1790--1790
-[]|\T1/aer/m/n/10 cholesterol
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1790--1790
-\T1/aer/m/n/10 metabolic pro-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1791--1791
-[]|\T1/aer/m/n/10 small molecule
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1792--1792
-[]|\T1/aer/m/n/10 steroid metabolic
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1793--1793
-[]|\T1/aer/m/n/10 cellular ke-tone
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1795--1795
-[]|\T1/aer/m/n/10 regulation of
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1795--1795
-\T1/aer/m/n/10 nucleobase-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1795--1795
-\T1/aer/m/n/10 containing com-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1795--1795
-\T1/aer/m/n/10 pound metabolic
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1796--1796
-[]|\T1/aer/m/n/10 urogenital sys-tem
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1797--1797
-[]|\T1/aer/m/n/10 kidney de-vel-op-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1799--1799
-[]|\T1/aer/m/n/10 neuromuscular
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1799--1799
-\T1/aer/m/n/10 junc-tion de-vel-op-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1801--1801
-\T1/aer/m/n/10 of post-embryonic
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1802--1802
-[]|\T1/aer/m/n/10 skeletal mus-cle
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1803--1803
-[]|\T1/aer/m/n/10 synaptic growth
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1803--1803
-\T1/aer/m/n/10 at neu-ro-mus-cu-lar
- []
-
-[37]
-Underfull \hbox (badness 10000) in paragraph at lines 1806--1806
-[]|\T1/aer/m/n/10 organic acid
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1806--1806
-\T1/aer/m/n/10 metabolic pro-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1807--1807
-[]|\T1/aer/m/n/10 carboxylic acid
- []
-
-
-Underfull \hbox (badness 6927) in paragraph at lines 1808--1808
-[]|\T1/aer/m/n/10 oxoacid metabolic
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1810--1810
-[]|\T1/aer/m/n/10 regulation of
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1810--1810
-\T1/aer/m/n/10 tran-scrip-tion,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1813--1813
-[]|\T1/aer/m/n/10 regulation of ni-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1813--1813
-\T1/aer/m/n/10 tro-gen com-pound
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1815--1815
-[]|\T1/aer/m/n/10 monocarboxylic
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1815--1815
-\T1/aer/m/n/10 acid metabolic
- []
-
-
-Underfull \hbox (badness 2837) in paragraph at lines 1818--1818
-[]|\T1/aer/m/n/10 regulation of bi-o-
- []
-
-
-Underfull \hbox (badness 1997) in paragraph at lines 1821--1821
-\T1/aer/m/n/10 is-mal re-pro-duc-tive
- []
-
-
-Underfull \hbox (badness 5862) in paragraph at lines 1822--1822
-[]|\T1/aer/m/n/10 regulation of the
- []
-
-
-Underfull \hbox (badness 1466) in paragraph at lines 1824--1824
-[]|\T1/aer/m/n/10 salivary gland de-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1830--1830
-[]|\T1/aer/m/n/10 steroid hor-mone
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1830--1830
-\T1/aer/m/n/10 re-cep-tor sig-nal-ing
- []
-
-
-Underfull \hbox (badness 3536) in paragraph at lines 1831--1831
-\T1/aer/m/n/10 tor me-di-ated sig-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1832--1832
-[]|\T1/aer/m/n/10 mammary gland
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1835--1835
-\T1/aer/m/n/10 au-tophagic cell
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1839--1839
-[]|\T1/aer/m/n/10 regulation of
- []
-
-
-Underfull \hbox (badness 2334) in paragraph at lines 1839--1839
-\T1/aer/m/n/10 choles-terol biosyn-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1840--1840
-[]|\T1/aer/m/n/10 synapse or-ga-ni-za-
- []
-
-
-Underfull \hbox (badness 2042) in paragraph at lines 1841--1841
-[]|\T1/aer/m/n/10 positive reg-u-la-tion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1842--1842
-[]|\T1/aer/m/n/10 protein tetramer-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1843--1843
-[]|\T1/aer/m/n/10 protein ho-mote-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1844--1844
-[]|\T1/aer/m/n/10 regulation of
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1844--1844
-\T1/aer/m/n/10 choles-terol
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1844--1844
-\T1/aer/m/n/10 metabolic pro-
- []
-
-[38]
-Underfull \hbox (badness 10000) in paragraph at lines 1849--1849
-[]|\T1/aer/m/n/10 homeostasis of
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1851--1851
-[]|\T1/aer/m/n/10 transcription,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1852--1852
-[]|\T1/aer/m/n/10 amine metabolic
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1853--1853
-[]|\T1/aer/m/n/10 alcohol metabolic
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1861--1861
-[]|\T1/aer/m/n/10 cellular metabolic
- []
-
-[39]
-Underfull \hbox (badness 10000) in paragraph at lines 1869--1869
-[]|\T1/aer/m/n/10 mitochondrial
- []
-
-[40] [41] [42] (/home/ele/thesis/454/paper/transcriptome_paper.aux)
+[34] [35] [36] (/home/ele/thesis/454/paper/transcriptome_paper.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 2632 strings out of 256216
- 33959 string characters out of 1917072
- 133999 words of memory out of 1500000
- 5823 multiletter control sequences out of 10000+200000
- 46676 words of font info for 83 fonts, out of 1200000 for 2000
+ 2610 strings out of 256216
+ 33622 string characters out of 1917072
+ 135743 words of memory out of 1500000
+ 5806 multiletter control sequences out of 10000+200000
+ 46187 words of font info for 81 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  36i,7n,21p,281b,412s stack positions out of 5000i,500n,6000p,200000b,15000s
  </home/ele/.texlive2007/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0900.600pk
@@ -1778,11 +802,10 @@ s12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmss8.pfb></usr/share/texmf/fo
 nts/type1/bluesky/cm/cmssbx10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmss
 i10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy6.pfb></usr/share/texmf/fo
 nts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmti10.
-pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmti9.pfb></usr/share/texmf/fonts/
-type1/bluesky/cm/cmtt10.pfb>
-Output written on transcriptome_paper.pdf (42 pages, 254473 bytes).
+pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmti9.pfb>
+Output written on transcriptome_paper.pdf (36 pages, 236377 bytes).
 PDF statistics:
- 219 PDF objects out of 1000 (max. 8388607)
+ 194 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

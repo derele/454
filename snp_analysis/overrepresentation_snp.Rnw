@@ -46,11 +46,19 @@ GO.over.dn.ds <-   do.call("rbind", lapply(1:3, function (i) {
 
 GO.over.dn.ds <- subset(GO.over.dn.ds, p.value<0.05)
 
-GO.over.dn.ds.lines <- unlist(lapply(dn.ds.over,
-                                   function (x) length(x[[2]]@score[x[[2]]@score<0.05])))
+GO.table.uninf <- function (GO.over.obj){
+  uninformative <- sapply(GO.over.obj$GO.ID, function (term) {
+    sig <- GO.over.obj[GO.over.obj$GO.ID%in%term, "Significant"]
+    ancestors <- GO.over.obj[GO.over.obj$GO.ID%in%get.GO(term, "ANCESTOR"), "GO.ID" ]
+    ancestors <- unlist(ancestors[!ancestors%in%term])
+    GO.over.obj[GO.over.obj$GO.ID%in%ancestors & GO.over.obj$Significant==sig, "GO.ID"]
+  })
+  unique(unlist(uninformative))
+}
 
-GO.over.dn.ds.lines[2] <- GO.over.dn.ds.lines[1]+GO.over.dn.ds.lines[2]
-GO.over.dn.ds.lines[3] <- GO.over.dn.ds.lines[3]+GO.over.dn.ds.lines[2]
+GO.over.dn.ds <- GO.over.dn.ds[!GO.over.dn.ds$GO.ID%in%GO.table.uninf(GO.over.dn.ds), ]
+
+GO.over.dn.ds.lines <- table(sapply(GO.over.dn.ds$GO.ID, function (x) Ontology(x)))
 
 dn.ds.df$sigP <- as.factor(dn.ds.df$sigP)
 ## this for the easy nn-data
@@ -117,7 +125,7 @@ novel.dn.ds.80 <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.80) & !is
 
 # Set up the page
 
-pdf("../figures/Figure_5.pdf", width=20, height=10)
+pdf("../figures/Figure_5.pdf", width=14, height=6)
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(1, 2)))
 vplayout <- function(x, y)
@@ -211,7 +219,7 @@ sigP.80.p.MN <- ggplot(subset(contig.df, contig.df$AcMN & !is.na(novel.80) & !is
   opts(title="proportion of highCA contigs in SignalP category\nby evolutionary conservation categories at bitsore threshold of 80", plot.background = theme_blank()) + 
   theme_bw()
 
-pdf("../figures/Figure_6.pdf", width=20, height=20)
+pdf("../figures/Figure_6.pdf", width=15, height=15)
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(2, 2)))
 

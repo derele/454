@@ -297,7 +297,19 @@ base.ontology.decode = list(
     "Y" = NA, "S" = NA, "W" = NA,
     "K" = NA, "M" = NA, "B" = NA,
     "D" = NA, "H" = NA, "V" = NA,
-    "N" = NA, "X" = NA)
+    "N" = NA, "X" = NA),
+  "Y" = c("A" = "low coverage",  "C" = "low coverage",
+    "G" = "low coverage", "T" = "low coverage" , "R" = "low coverage",
+    "Y" = "low coverage", "S" = "low coverage", "W" = "low coverage",
+    "K" = "low coverage", "M" = "low coverage", "B" = "low coverage",
+    "D" = "low coverage", "H" = "low coverage", "V" = "low coverage",
+      "N" = "low coverage", "X" = "low coverage")
+  "Z" = c("A" = "outside ORF",  "C" = "outside ORF",
+    "G" = "outside ORF", "T" = "outside ORF" , "R" = "outside ORF",
+    "Y" = "outside ORF", "S" = "outside ORF", "W" = "outside ORF",
+    "K" = "outside ORF", "M" = "outside ORF", "B" = "outside ORF",
+    "D" = "outside ORF", "H" = "outside ORF", "V" = "outside ORF",
+    "N" = "outside ORF", "X" = "outside ORF")
   );
 
 contig.df$coding <- ifelse(!is.na(contig.df$mstrand) &
@@ -330,8 +342,6 @@ cov.df$coding.cov8 <- ifelse(!is.na(cov.df$mstrand) &
                                 revcom (gsub("[ACGTRYSWKMBDHVNX]", "", cov.df$seq.cov.8)),
                                 gsub("[ACGTRYSWKMBDHVNX]", "", cov.df$seq.cov.8)
                                 )
-
-
 
 add.ontology.sites <- function (contig.df.obj, cod.col.name){
   coding <- contig.df.obj[, cod.col.name]

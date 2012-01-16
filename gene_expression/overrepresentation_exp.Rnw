@@ -1,4 +1,4 @@
-<<over.exp, echo=FALSE, cache=TRUE>>=
+<<over.exp, echo=FALSE, cache=TRUE, results=hide>>=
 
 ## ID.sex.sig.c and ID.eel.sig.c are lists of significant contigs
 ## ideg6 holds the general list
@@ -35,14 +35,8 @@ GO.over.sex <- do.call("rbind", lapply(1:3, function (i) {
 
 GO.over.sex <- subset(GO.over.sex, p.value<0.05)
 
-GO.over.sex.lines <- unlist(lapply(sex.over,
-                                   function (x) length(x[[2]]@score[x[[2]]@score<0.05])))
-
-GO.over.sex.lines[2] <- GO.over.sex.lines[1]+GO.over.sex.lines[2]
-GO.over.sex.lines[3] <- GO.over.sex.lines[3]+GO.over.sex.lines[2]
-
-## WTF the above does'not work somehow too long...
-GO.over.sex.lines[3] <- nrow(GO.over.sex)
+GO.over.sex <- GO.over.sex[!GO.over.sex$GO.ID%in%GO.table.uninf(GO.over.sex), ]
+GO.over.sex.lines <- table(sapply(GO.over.sex$GO.ID, function (x) Ontology(x)))
 
 
 eel.over <- lapply(ont, function (on) TOGO.all.onto (on, ID.eel.sig.c, geneN.exp))
@@ -53,12 +47,8 @@ GO.over.eel <-   do.call("rbind", lapply(1:3, function (i) {
 }))
 
 GO.over.eel <- subset(GO.over.eel, p.value<0.05)
-GO.over.eel.lines <- unlist(lapply(eel.over,
-                                   function (x) length(x[[2]]@score[x[[2]]@score<0.05])))
-
-GO.over.eel.lines[2] <- GO.over.eel.lines[1]+GO.over.eel.lines[2]
-GO.over.eel.lines[3] <- GO.over.eel.lines[3]+GO.over.eel.lines[2]
-
+GO.over.eel <- GO.over.eel[!GO.over.eel$GO.ID%in%GO.table.uninf(GO.over.eel), ]
+GO.over.eel.lines <- table(sapply(GO.over.eel$GO.ID, function (x) Ontology(x)))
 
 ##  SIGNAL-PEPTIDES
 ## sex Not enriched for signal-peptides in general
@@ -164,8 +154,8 @@ fisher.test( exp.df$contig%in%ID.sex.sig.c , exp.df$Ce.rnai)
 fisher.test( exp.df$contig%in%ID.eel.sig.c , exp.df$Ce.rnai)
 
 
-foo <- merge(contig.df[,c("contig", "dn.ds")], express.eel.sig, by.x="contig", by.y="row.names")
-foo <- subset(foo, !is.na(dn.ds) & !is.infinite(LogFC))
+## foo <- merge(contig.df[,c("contig", "dn.ds")], express.eel.sig, by.x="contig", by.y="row.names")
+## foo <- subset(foo, !is.na(dn.ds) & !is.infinite(LogFC))
 
 ## Not regression of dn.ds and LogFC
 ## summary(lm(dn.ds~ I(abs(LogFC)),data=foo ))
@@ -173,24 +163,27 @@ foo <- subset(foo, !is.na(dn.ds) & !is.infinite(LogFC))
 
 @ 
 
-<<plot.over.exp, echo=FALSE>>=
 
-setwd("/home/ele/thesis/454/figures/")
-for(o in 1:3){
-  printGraph(sex.over[[o]][[1]],
-             sex.over[[o]][[2]], firstSigNodes = 10,
-             fn.prefix = paste("tGO", "SEX_EXP", ont[o], sep="_"),
-             useInfo = "all", pdfSW = TRUE)
-}
+<<plot.over.exp, echo=FALSE, results=hide>>=
 
-for(o in 1:3){
-  printGraph(eel.over[[o]][[1]],
-             eel.over[[o]][[2]], firstSigNodes = 10,
-             fn.prefix = paste("tGO", "EEL_EXP", ont[o], sep="_"),
-             useInfo = "all", pdfSW = TRUE)
-}
+## setwd("/home/ele/thesis/454/figures/")
+## for(o in 1:3){
+##   printGraph(sex.over[[o]][[1]],
+##              sex.over[[o]][[2]], firstSigNodes = 10,
+##              fn.prefix = paste("tGO", "SEX_EXP", ont[o], sep="_"),
+##              useInfo = "all", pdfSW = TRUE)
+## }
 
-setwd("/home/ele/thesis/454/paper/")
+## for(o in 1:3){
+##   printGraph(eel.over[[o]][[1]],
+##              eel.over[[o]][[2]], firstSigNodes = 10,
+##              fn.prefix = paste("tGO", "EEL_EXP", ont[o], sep="_"),
+##              useInfo = "all", pdfSW = TRUE)
+## }
+
+## setwd("/home/ele/thesis/454/paper/")
 
 
 @ 
+
+

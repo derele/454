@@ -10,25 +10,41 @@ slim.annot8r <- function (path, species){
   l[[1]]$ontology <- "Molecular Function"
   l[[2]]$ontology <- "Cellular compartment"
   l[[3]]$ontology <- "Biological process"
+
   melt(l)
 }
 
-Ac.slim <- slim.annot8r("/home/ele/Data/454/annotation/annot8r/output_Ac/", "Anguillicola crassus")
-Bm.slim <- slim.annot8r("/home/ele/Data/454/annotation/annot8r/output_Bm/", "Brugia malayi")
-Ce.slim <- slim.annot8r("/home/ele/Data/454/annotation/annot8r/output_Ce/", "Caenorhabditis elegans")
+Ac.slim <- slim.annot8r("/home/ele/Data/454/annotation/annot8r/output_Ac/",
+                        "Anguillicola crassus")
+Bm.slim <- slim.annot8r("/home/ele/Data/454/annotation/annot8r/output_Bm/",
+                        "Brugia malayi")
+Ce.slim <- slim.annot8r("/home/ele/Data/454/annotation/annot8r/output_Ce/",
+                        "Caenorhabditis elegans")
 
 slim <- rbind(Ac.slim, Bm.slim, Ce.slim)
+slim$species <- as.factor(slim$species)
 
-GO.bm.com <- ggplot(slim, aes(x=description, fill=species, weight=value)) +
+totals <- as.data.frame.matrix(by(slim,
+                                  list(slim$species, slim$ontology),
+                                  function(x) sum(x$value)))
+totals$species <- rownames(totals)
+totals <- melt(totals)
+names(totals) <- c("species", "ontology","total")
+
+slim <- merge(slim, totals, all.x=TRUE)
+
+GO.bm.com <- ggplot(slim, aes(x=description, fill=species,
+                              weight=(value/total)*100)) +
   geom_bar(position="dodge") +
   scale_x_discrete(breaks=slim$description,
                    label=gsub("^\n", "",
                      gsub("and\nnucleic\nacid\nmetabolic\nprocess",
                           "and nucleic acid\nmetabolic process",
                           gsub(" ", "\n", slim$description)))) +
+  scale_y_continuous("percent of occurrences in species and ontology category")+
   facet_wrap(~ontology, ncol=1, scales="free") +
-    opts(legend.text = theme_text(face="italic")) +
-  theme_bw()
+  theme_bw() +
+  opts(legend.text = theme_text(face='italic'))  
 
 ggsave("/home/ele/thesis/454/figures/Figure_2.pdf", GO.bm.com, width=16, height=16)
 

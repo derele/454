@@ -74,7 +74,7 @@ contig.df <- merge(contig.df, counts, all.x=TRUE)
 all.counts <- contig.df[, c("E1", "E2", "T1", "T2", "M", "L2")]
 rownames(all.counts) <- contig.df[, "contig"]
 
-raw.counts <- contig.df[contig.df$AcMN, c("E1", "E2", "T1", "T2", "M")]
+raw.counts <- contig.df[contig.df$AcMN, c("E1", "E2", "T1", "T2", "M", "L2")]
 
 rownames(raw.counts) <- contig.df[contig.df$AcMN, "contig"]
 
@@ -179,7 +179,6 @@ ID.sex.sig.c <- ID.sex.sig$UNIQID
 express.sex.sig <- ID.sex.sig[,c("normLib2", "normLib3", "normLib4", "normLib5", "LogFC")]
 rownames(express.sex.sig) <- ID.sex.sig.c
 ## heatmap(as.matrix(express.sex.sig))
-
 ## Bm
 ## ideg6.bm <- contig.df[contig.df$Ac, c("Bm.hit", "E1", "E2", "T1", "T2", "M")]
 ## ideg6.bm <- ideg6.bm[!is.na(ideg6.bm$Bm.hit),]

@@ -102,6 +102,10 @@ Rh <- Rh[ apply(Rh, 1, function (x) ("0/1"%in%x & "0/0"%in%x  ) |
 
 geno.contigs <- length(unique(gsub("\\..*","",rownames(Rh))))
 
+Rh.eff <- VAR.pop[, c("10F", "179F", "KS4F", "M175", "UW07F", "effect")]
+rownames(Rh.eff) <- paste(VAR.pop$contig, VAR.pop$base, sep=".")
+Rh.eff <- Rh.eff[rownames(Rh), ]
+
 sep.gt <- function (gt.col){
   l <- strsplit(as.character(gt.col), "/")
   s <- lapply(l, function (x) {if (is.na(x[1])){ rep(x,2)}
@@ -145,6 +149,8 @@ het.table <- cbind(het.table, hl(Rh.data))
 ## population. Evolution 53:1259-1267
 het.table <- cbind(het.table, sh(Rh.data))
 names(het.table) <- c("rel.het", "int.rel", "ho.loci", "std.het")
+het.table$inform.snps <- apply(Rh, 2,
+                              function (x) length(x[!is.na(x)]))[rownames(het.table)]
 
 rownames(het.table) <- gsub("179F", "T1", rownames(het.table))
 rownames(het.table) <- gsub("10F", "T2", rownames(het.table))

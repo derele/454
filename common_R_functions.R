@@ -47,3 +47,18 @@ give.annot <- function (contigs) {
   k <- KEGG.annot[KEGG.annot$pept_id%in%contigs, ]
   return(list(GO=as.character(g$descr), EC=as.character(e$descr), KEGG=as.character(k$descr)))
 }
+
+cn <- function (x) {
+  x <- as.character(x)
+  n <- nchar(x)
+  start <- seq(1,n,3)
+  parts <- rev(lapply(start, function (i){
+    strReverse(substr(strReverse(x), i, i+2))}))
+  paste(parts, collapse=",")
+}
+
+get.GO <- function (term, what){
+  require(AnnotationDbi)
+  ont <- Ontology(GOTERM[[as.character(term)]])
+  get(paste("GO", ont, what, sep=""))[[as.character(term)]]
+}
