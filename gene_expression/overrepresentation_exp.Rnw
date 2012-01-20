@@ -30,11 +30,10 @@ sex.over <- lapply(ont, function (on) TOGO.all.onto (on, ID.sex.sig.c, geneN.exp
 
 GO.over.sex <- do.call("rbind", lapply(1:3, function (i) {
   GenTable(sex.over[[i]][[1]], p.value = sex.over[[i]][[2]], 
-  orderBy = "classic",  topNodes=500, numChar=100)
+  orderBy = "classic",  topNodes=400, numChar=100)
                                          }))
 
 GO.over.sex <- subset(GO.over.sex, p.value<0.05)
-
 GO.over.sex <- GO.over.sex[!GO.over.sex$GO.ID%in%GO.table.uninf(GO.over.sex), ]
 GO.over.sex.lines <- table(sapply(GO.over.sex$GO.ID, function (x) Ontology(x)))
 
@@ -43,7 +42,7 @@ eel.over <- lapply(ont, function (on) TOGO.all.onto (on, ID.eel.sig.c, geneN.exp
 
 GO.over.eel <-   do.call("rbind", lapply(1:3, function (i) {
   GenTable(eel.over[[i]][[1]], p.value = eel.over[[i]][[2]], 
-  orderBy = "classic", topNodes=500, numChar=100)
+  orderBy = "classic", topNodes=400, numChar=100)
 }))
 
 GO.over.eel <- subset(GO.over.eel, p.value<0.05)
@@ -166,22 +165,22 @@ fisher.test( exp.df$contig%in%ID.eel.sig.c , exp.df$Ce.rnai)
 
 <<plot.over.exp, echo=FALSE, results=hide>>=
 
-## setwd("/home/ele/thesis/454/figures/")
-## for(o in 1:3){
-##   printGraph(sex.over[[o]][[1]],
-##              sex.over[[o]][[2]], firstSigNodes = 10,
-##              fn.prefix = paste("tGO", "SEX_EXP", ont[o], sep="_"),
-##              useInfo = "all", pdfSW = TRUE)
-## }
+setwd("/home/ele/thesis/454/figures/")
+for(o in 1:3){
+  printGraph(sex.over[[o]][[1]],
+             sex.over[[o]][[2]], firstSigNodes = 10,
+             fn.prefix = paste("tGO", "SEX_EXP", ont[o], sep="_"),
+             useInfo = "all", pdfSW = TRUE)
+}
 
-## for(o in 1:3){
-##   printGraph(eel.over[[o]][[1]],
-##              eel.over[[o]][[2]], firstSigNodes = 10,
-##              fn.prefix = paste("tGO", "EEL_EXP", ont[o], sep="_"),
-##              useInfo = "all", pdfSW = TRUE)
-## }
+for(o in 1:3){
+  printGraph(eel.over[[o]][[1]],
+             eel.over[[o]][[2]], firstSigNodes = 10,
+             fn.prefix = paste("tGO", "EEL_EXP", ont[o], sep="_"),
+             useInfo = "all", pdfSW = TRUE)
+}
 
-## setwd("/home/ele/thesis/454/paper/")
+setwd("/home/ele/thesis/454/paper/")
 
 
 @ 

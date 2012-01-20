@@ -181,8 +181,8 @@
 \begin{abstract}
   % Do not use inserted blank lines (ie \\) until main body of text.
   \paragraph*{Background:} \textit{Anguillicola crassus} is an
-  ecologically, economically and evolutionary interesting nematode. It
-  has been introduced from Asia, where it parasitises the Japanese eel
+  ecologically and evolutionary interesting nematode. It has been
+  introduced from Asia, where it parasitises the Japanese eel
   \textit{Angilla japonica}, to Europe 30 years ago. Today it infects
   stocks of the endangered, commercially exploited European eel
   \textit{Anguilla anguilla}, permitting and necessitating research in
@@ -199,14 +199,14 @@
   identified 5,112 high quality single nucleotide polymorphisms (SNPs)
   and suggest 199 of them as most suitable markers for
   population-genetic studies. The correlation between different
-  analyses provided further insights and confirmed biologicaly
+  analyses provided further insights and confirmed biologically
   relevant expectations: we found an overabundance of predicted signal
   peptide cleavage sites in sequence conserved in Nematoda and novel
   in \textit{A. crassus}, correlations between coding polymorphism and
   differential expression and between evolutionary conservation and
-  presence of ortholgs with lethal RNAi-phenotypes in
+  presence of orthologs with lethal RNAi-phenotypes in
   \textit{C. elegans}. GO-term analysis identified an enrichment of
-  peptidases and subunits of the respiratory chain for transcritps
+  peptidases and subunits of the respiratory chain for transcripts
   under positive selection. Enzymes for energy metabolism were also
   found enriched in genes differentially expressed between European
   and Asian \textit{A. crassus}.
@@ -253,17 +253,18 @@
 \section*{Background}
  
 
-The nematode Anguillicola crassus Kuwahara, Niimi et Itagaki, 1974
-\cite{kuwahara_Niimi_Itagaki_1974} is a parasite of freshwater eels of
-the genus Anguilla, and adults localise to the swim bladder where they
-feed on blood. Larvae are transmitted via crustacean intermediate
-hosts \cite{de_charleroy_life_1990}. Originally endemic to East-Asian
-populations of the Japanese eel (Anguilla japonica),
+The nematode \textit{Anguillicola crassus} Kuwahara, Niimi et Itagaki,
+1974 \cite{kuwahara_Niimi_Itagaki_1974} is a parasite of freshwater
+eels of the genus \textit{Anguilla}, and adults localise to the swim
+bladder where they feed on blood. Larvae are transmitted via
+crustacean intermediate hosts
+\cite{de_charleroy_life_1990}. Originally endemic to East-Asian
+populations of the Japanese eel (\textit{Anguilla japonica}),
 \textit{A. crassus} has attracted interest due to recent anthropogenic
 expansion of its geographic and host ranges to Europe and the European
-eel (Anguilla anguilla). Recorded for the first time in 1982 in
-North-West Germany \cite{fischer_teichwirt}, where it was most likely
-introduced through live-eel trade
+eel (\textit{Anguilla anguilla}). Recorded for the first time in 1982
+in North-West Germany \cite{fischer_teichwirt}, where it was most
+likely introduced through live-eel trade
 \cite{koops_anguillicola-infestations_1989, koie_swimbladder_1991},
 \textit{A. crassus} has spread rapidly through populations of its
 newly acquired host \cite{kirk_impact_2003}. At the present day it is
@@ -276,8 +277,8 @@ regarded as a model for invasive parasite introduction and spread
 populations. In its natural host in Asia infection prevalence and mean
 intensity of infection are lower than in Europe
 \cite{mnderle_occurrence_2006}, where high prevalence (above 70\%
-\cite{wrtz_distribution_1998}) and high infection intesities have been
-reported throughout the newly colonized area
+\cite{wrtz_distribution_1998}) and high infection intensities have been
+reported throughout the newly colonised area
 \cite{lefebvre_anguillicolosis:_2004}. The virulence of
 \textit{A. crassus} in this new host has been attributed to an
 inadequate immune response in \textit{An. anguilla}
@@ -295,12 +296,12 @@ The genus Anguillicola is placed in the nematode suborder Spirurina
 (clade III \textit{sensu} \cite{blaxter_molecular_1998})
 \cite{nadler_molecular_2007, wijov_evolutionary_2006}. The Spirurina
 are exclusively parasitic and include important human pathogens (the
-causative agents of filariases and ascariasis) as well as prominent
+causative agents of filariasis and ascariasis) as well as prominent
 veterinary parasites. Molecular phylogenetic analyses place
 Anguillicola in a clade of spirurine nematodes (Spirurina B of
 \cite{dl_py}) that have an freshwater or marine intermediate host, but
 infect a wide range of carnivorous definitive hosts. Spirurina B is
-sister to the main Spirurina C, including the agents of filariases and
+sister to the main Spirurina C, including the agents of filariasis and
 ascariasis), and thus \textit{A. crassus} may be used as an outgroup
 taxon to understand the evolution of parasitic phenotypes in these
 species.
@@ -352,7 +353,7 @@ study-accession number SRP010313 in the NCBI Sequence Read Archive
 (SRA; http://www.ncbi.nlm.nih.gov/Traces/sra) \cite{pmid22140104}.
 
 All samples were sequenced using the FLX Titanium chemistry, except
-for the Taiwanese female sample T2, which was sequenced using FLX
+for the Taiwanese female sample T1, which was sequenced using FLX
 standard chemistry, to generate between 99,000 and 209,000 raw
 reads. For the L2 larval library, which had a larger number of
 non-\textit{A. crassus}, non-\textit{Anguilla} reads, we confirmed
@@ -469,10 +470,10 @@ threshold of 10. In addition to the relative heterozygosity (number of
 homozygous sites/number of heterozygous sites) we used the R package
 Rhh \cite{pmid21565077} to calculate internal relatedness
 \cite{pmid11571049}, homozygosity by loci \cite{pmid17107491} and
-standardized heterozygosity \cite{coltman81j} from these data.
+standardised heterozygosity \cite{coltman81j} from these data.
 
 We confirmed the significance of heterozygote-heterozygote correlation
-by analyzing the mean and 95\% confidence intervals from 1000
+by analysing the mean and 95\% confidence intervals from 1000
 bootstrap replicates estimated for all measurements.
 
 \subsection*{Gene-expression analysis}
@@ -481,9 +482,9 @@ Read-counts were obtained from the bam-files generated also for
 genotyping using the R-package Rsamtoools \cite{rsamtools}. Counts to
 off target data and lowCA contigs were disregarded. Furthermore
 contigs with less than 32 reads over all libraries were excluded from
-analysis, to avoid inference based on too low overall experssion
+analysis, to avoid inference based on too low overall expression
 values. Because very low coverage from library E1 and L2 leading
-highly variable normalized data, we excluded these libraries from
+highly variable normalised data, we excluded these libraries from
 analysis.
 
 % R-package DESeq \cite{pmid20979621} to assess statistical
@@ -492,12 +493,12 @@ analysis.
 
 The statistic of Audic and Claverie \cite{pmid9331369} as implemented
 in ideg6 \cite{pmid12429865} was used to contrast single
-libries. Differential expression between libraries from different sex
-of worms was accepted for genes differeing between all female
+libraries. Differential expression between libraries from different sex
+of worms was accepted for genes differing between all female
 libraries E2, T1 and T2 versus the male (M) library ($p<$0.01) but not
 within any of the female libraries at the same threshold. Differential
 expression between libraries from European and Asian origin was
-accepted for genes differeing between libraries E2 versus T1 and T2
+accepted for genes differing between libraries E2 versus T1 and T2
 ($p<$0.01) but not between T1 versus T2.
 
 \subsection*{Over-representation analyses}
@@ -505,18 +506,18 @@ accepted for genes differeing between libraries E2 versus T1 and T2
 Prior to analysis of GO-term over-representation (based on dn/ds or
 expression values) we used the R-package annotationDbi
 \cite{AnnotationDbi} to obtain a full list of associations (also with
-higer-level terms) from Annot8r-annotations. We then used the
+higher-level terms) from Annot8r-annotations. We then used the
 R-package topGO \cite{topGO} to traverse the annotation-graph and
 analyse each node in the annotation for over-representation of the
 associated term in the focal gene-set compared to a appropriate
 universal gene-set (all contigs with dn/ds values or all contigs
-analysed for gene-exprssion) with the ``classic'' method and Fisher's
+analysed for gene-expression) with the ``classic'' method and Fisher's
 exact test. From the resulting tables we removed uninformative terms,
-for wich an nncestral term already was already in the table and no
-additional counts supported overrepresenation.
+for which an ancestral term already was already in the table and no
+additional counts supported overrepresentation.
 
 We used Mann-Whitney u-tests to test the influence of factors on dn/ds
-values, when multiple contrasts between groups (facotrs) were
+values, when multiple contrasts between groups (factors) were
 investigated we used Nemenyi-Damico-Wolfe-Dunn tests. For
 overrepresentation of one group (factor) in other groups (factors) we
 used Fisher's exact test.
@@ -796,7 +797,7 @@ TUGs and with uniprot proteins for
 \Sexpr{cn(nrow(contig.df[contig.df$Ac&!is.na(contig.df$nr.bit),]))}
 TUGs.
 
-We used annot8r \cite{schmid_annot8r:_2008} to assign gene ontology
+We used Annot8r \cite{schmid_annot8r:_2008} to assign gene ontology
 (GO) terms for \Sexpr{cn(nGO)} TUGs, Enzyme Commission (EC) numbers
 for \Sexpr{cn(nEC)} TUGs and Kyoto Encyclopedia of Genes and Genomes
 (KEGG) pathway annotations for \Sexpr{cn(nKEGG)} TUGs (Table
@@ -980,10 +981,10 @@ the worms.
 
 Internal relatedness \cite{pmid11571049}, homozygosity by loci
 \cite{pmid17107491} and standardised heterozygosity \cite{coltman81j}
-were all highlighting the Taiwanese worm from the wild population
-(sample T1) as the most and the European worm from Poland (sample E2)
-as the least heterozygous individual. The other worms had intermediate
-values between these two extremes.
+were all highlighting the Taiwanese worm from aquaculture (sample T1)
+as the most and the European worm from Poland (sample E2) as the least
+heterozygous individual. The other worms had intermediate values
+between these two extremes.
 
 We confirmed the genome-wide significance of these estimates using
 heterozygosity-heterozygosity correlation \cite{pmid21565077}. These
@@ -999,8 +1000,8 @@ inbreeding in populations of \textit{A. crassus}.
  \subsection*{Differential expression}
                 
 \SweaveInput{../gene_expression/gene_expression.Rnw}
-
 \SweaveInput{../gene_expression/overrepresentation_exp.Rnw}
+
 
 We also analysed gene-expression inferred from mapping. Of the
 \Sexpr{cn(length(raw.fasta))} reads \Sexpr{cn(n454.map)}
@@ -1031,17 +1032,17 @@ in the male library, oxidoreductases and collagen processing enzymes
 were overexpressed female libraries.
 
 Overrepresentation of of GO-terms differentially expressed between
-libraries from woms of European and Asian origin highlighted catalytic
+libraries from worms of European and Asian origin highlighted catalytic
 activity especially related to metabolism (Table 6b; Additional
 Figures 1). Acyltransferase contigs were all upregulated in the
 European libraries. However, the expression patterns for other contigs
-connected to metabolsim did not show concerted up or down-regulation
+connected to metabolism did not show concerted up or down-regulation
 (eg. for ``steroid biosynthetic process'' 2 contigs were downregulated
 in the European library, 3 contigs upregulated).
 
 Enrichment of signal-positives was not found in any category of
-overexpressed genes. Differntially expressed genes also showed no
-pattern of enrichement in conservation categories and no enrichment of
+overexpressed genes. Differentially expressed genes also showed no
+pattern of enrichment in conservation categories and no enrichment of
 \textit{C. elegans} orthologs with lethal/non-lethal RNAi-phenotypes.
 
 Significantly elevated dn/ds was found for contigs differentially
@@ -1090,18 +1091,18 @@ save.image("/home/ele/thesis/454/paper/paper.Rdata")
 We have generated a de novo transcriptome for \textit{A. crassus} an
 important invasive parasite that threatens wild stocks of the European
 eel \textit{An. anguilla}. These data enable a broad spectrum of
-molecular research on this ecologically and economically important
-parasite. As \textit{A. crassus} lives in close association with its
-host, we have used exhaustive filtering to attempt to remove all
-host-derived, and host-associated organism-derived contamination from
-the data. To do this we have also generated a transcriptome dataset
-from the definitive host \textit{An. japonica}. The non-nematode,
-non-eel data identified, particularly in the L2 sample, showed highest
-identity to flagellate protists, which may have been parasitising the
-eel (or the nematode). Encapsulated objects observed in eel swim
-bladder walls \cite{heitlinger_massive_2009} could be due solely to
-immune attrition of \textit{A. crassus} larvae or to other
-coinfections.
+molecular research on this ecologically important and evolutionary
+interesting parasite. As \textit{A. crassus} lives in close
+association with its host, we have used exhaustive filtering to
+attempt to remove all host-derived, and host-associated
+organism-derived contamination from the data. To do this we have also
+generated a transcriptome dataset from the definitive host
+\textit{An. japonica}. The non-nematode, non-eel data identified,
+particularly in the L2 sample, showed highest identity to flagellate
+protists, which may have been parasitising the eel (or the
+nematode). Encapsulated objects observed in eel swim bladder walls
+\cite{heitlinger_massive_2009} could be due solely to immune attrition
+of \textit{A. crassus} larvae or to other coinfections.
 
 A second examination of sequence origin was performed after assembly,
 employing higher stringency cutoffs.  Similar taxonomic screening was
@@ -1175,7 +1176,7 @@ those shared with other nematodes and the fewer shared with clade III
 implying a predisposition to parasitism outside of the Spirurina or
 even the convergent evolution of secreted molecules in other parasitic
 nematodes. However analysis of dn/ds (see below) across conservation
-categories favours the first hypothesis, as it identifies a higher
+categories favors the first hypothesis, as it identifies a higher
 amount of positive selection in TUGs novel to clade III and
 \textit{A. crassus} than to nematodes.
 
@@ -1254,7 +1255,7 @@ Genotyping of individual worms identified a set of
 information content for population-genetic studies. The low number of
 SNPs inferred with assured genotypes reflects both the additional
 variance in allele contribution introduced by the sampling process of
-transcirpts involved in the generation of transcriptomic data and the
+transcripts involved in the generation of transcriptomic data and the
 stringency of software more targeted at even higher throughput
 genotyping (VCFtools is rather designed for genomic data from the
 solexa platform \cite{pmid21653522x}).
@@ -1264,19 +1265,19 @@ adult worms examined in our study are in agreement with microsattelite
 data \cite{wielgoss_population_2008} showing reduced heterozygosity in
 European populations of \textit{A. crassus}. The polish female worm
 from our study can be regarded highly inbred, the worm from a wild
-\textit{An. japonica} in Taiwan highly outbread.
+\textit{An. japonica} in Taiwan highly outbred.
 
 We employed methods to developed for the comparison of cDNA-libraries
-to make inferrence about possible differental gene-expression
+to make inference about possible differential gene-expression
 according to experimental groups (origin of sequencing-libraries)
 \cite{pmid9331369}. Such approaches are widely used with
 pyrosequencing-data (e.g. \cite{pmid20470405}). For the statistically
-valid comparison of conditions however, the unit of replication whould
+valid comparison of conditions however, the unit of replication would
 be the individual library and approaches respecting this fact would be
 desirable. However, we were not able to use the R-packages DESeq
 \cite{pmid20979621} or edgeR \cite{pmid19910308} developed for count
 data from deep sequencing (but more targeted towards RNA-seq on the
-solexa-plattform) as both repetition and throughput of our present
+solexa-platform) as both repetition and throughput of our present
 experiment were too low. As a result the differentially expressed
 genes are by no means significant for the investigated conditions, but
 just for the specific cDNA-libraries. With these reservations we
@@ -1289,19 +1290,19 @@ proteins well known for their high expression in nematode sperm
 proteins in the male library.
 
 That collagen processing enzymes are overexpressed in female worms,
-filled with developing embyos and larvae, is in line with a
+filled with developing embryos and larvae, is in line with a
 complicated regulation and modulation of collagen in nematode larval
 development \cite{pmid10637627}.
 
-The overexpression acetyl-CoA acetyltransferase in European woms are
-interesting expecially because of the role of these enzymes in
+The overexpression acetyl-CoA acetyltransferase in European worms are
+interesting especially because of the role of these enzymes in
 fatty-acid $\beta$-oxidation in peroxisomes and mitochondria
 \cite{pmid4721607}. Together with a change in steroid metabolism and
 the enrichment of mitochondrially localized enzymes these suggest
 changes in energy metabolism of \textit{A. crassus} from different
 origins. Possible explanations would include a change to more or less
 aerobic processes in worms in Europe due to their bigger size and/or
-increased availablilty of nutrients.
+increased availability of nutrients.
 
 Contigs overexpressed in the female libraries showed elevated levels
 of dn/ds but genes overexpressed in males decreased levels of
@@ -1311,41 +1312,41 @@ libraries will also contain contigs related to larval development
 transcripts in turn are expected to be under purifying selection
 because of pleiotropic effects of genes in early development
 \cite{pmid15371532}. Also the second finding is in slight contrast to
-pubished results for male specific traits and transcripts are often
-showning hallmarks of positive selection
+published results for male specific traits and transcripts are often
+showing hallmarks of positive selection
 \cite{pmid15795858,pmid11404480}. . In \textit{Ancylostoma caninum}
-however, female-specific transcipts showed an enrichment fof
-``parasitism genes'' \cite{pmid20470405} and a possible expantion
+however, female-specific transcripts showed an enrichment of
+``parasitism genes'' \cite{pmid20470405} and a possible explanation
 would be a similar enrichment of positively selected parasitism
 related in our dataset. For males the decreased dn/ds can be explained
 by the by the high number of ribosomal proteins, which are all show
 very low levels of dn/ds (that these proteins are found differentially
-expressed remaines puzzling though), while single transcripts
-e.g. major sperm protein (exressed in the male library only) showed
+expressed remains puzzling though), while single transcripts
+e.g. major sperm protein (expressed in the male library only) showed
 elevated dn/ds but did not level the overall effect. But this also has
-a positve aspect: it is unlikely that correlation of differential
-expression with positive selection results from mapping artefacts, as
+a positive aspect: it is unlikely that correlation of differential
+expression with positive selection results from mapping artifacts, as
 all the ribosomal proteins identified overexpressed in males have very
 low dn/ds.
 
-Genes differentiall expressed according to worm-origin (in either
+Genes differential expressed according to worm-origin (in either
 direction) showed significantly elevated levels of dn/ds. This is
 interpretable as a correlation between sequence evolution and
 phenotypic modification in different host-environments or even
-correation between sequence evolution and evolution of
+correlation between sequence evolution and evolution of
 gene-expression. Thus, whether expression of these genes is modified
 in different hosts or evolved rapidly in a contemporary divergence
 between European and Asian populations of \textit{A. crassus}, is in
-the center of a future research programm building on the reference
-transcriptome presented here. For such an annalysis it is important to
+the center of a future research program building on the reference
+transcriptome presented here. For such an analysis it is important to
 disentangle the influence of the host and the nematode population in a
 co-inoculation experiment. Such a project will also use the individual
 worm as the level of replication for ``conditions'' (that is,
 worm-population and host-species) to allow rigid hypothesis
-testing. Based on the pilot evalutaion presented here differences in
+testing. Based on the pilot evaluation presented here differences in
 these factors are expected overlap with differences in male vs. female
 worms and the careful cross-examination of the above factors with
-worm-sex is adviced.
+worm-sex is advised.
 
 Population genetic approaches using the SNP-markers presented here
 directly or populations genomic approaches choosing to use the SNPS
@@ -1382,7 +1383,7 @@ throughout. EGH and MB interpreted results and prepared the
 manuscript. All authors have read and approved the final manuscript.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Acknowledgments}
+\section*{Acknowledgements}
 \ifthenelse{\boolean{publ}}{\small}{}
 
 This work has been made possible through a grant provided to EGH by
@@ -1529,7 +1530,7 @@ trim_mark <- trim_mark[,c(1,7)]
 trim_mark <- merge(pre.screen.tab,
                    trim_mark, by="row.names")
 
-trim_mark$life.st <- c("adult f", "adult f", "L2 lavae",
+trim_mark$life.st <- c("adult f", "adult f", "L2 larvae",
                        "adult m", "adult f", "adult f")
 
 trim_mark$source.p <- c("Europe R", "Europe P", "Europe R",
@@ -1561,7 +1562,7 @@ write.csv(trim_mark, "/home/ele/thesis/454/paper/table1.csv")
 
 trim_mark.tab <- xtable(t(trim_mark))
 print(trim_mark.tab, floating=FALSE, include.colnames=FALSE,
-      hline.after=c(0,1, nrow(trim_mark)))
+      hline.after=c(0,1, ncol(trim_mark)))
 @   
 
 \subsection*{Table 2 - Assembly classification and contig statistics}
@@ -1648,7 +1649,7 @@ Nematoda(novel.in.nematoda) and clade III (Spirurina;
 novel.in.spirurina) were assessed for occurrences of BLAST-hits at two
 different bitscore thresholds (50 = bit.50 and 80 = bit.80). TUGs
 without any hit at a given threshold were categorized as novel in
-\textit{A. crssus} (novel.in.Ac). Both novelty and conservation can be
+\textit{A. crassus} (novel.in.Ac). Both novelty and conservation can be
 derived from this (numbers for conservation would be the cumulative
 sum of lower-level novelty).
 
@@ -1674,7 +1675,7 @@ over-representation are given along with the number of positively
 selected contigs (Significant; dn/ds $>$ 0.5) and the number of
 contigs with this annotation for which a dn/ds was obtained
 (Annotated) and the description of the GO-term (Term). For a graph of
-incuced GO-terms see also Additional Figures 1.
+induced GO-terms see also Additional Figures 1.
 
 <<echo=FALSE, results=tex>>=
 
@@ -1684,12 +1685,13 @@ align(GO.over.dn.ds.tab) <- "llp{4.5cm}llll"
 
 print(GO.over.dn.ds.tab, tabular.environment="longtable",
       floating=FALSE,
-      hline.after=c(0, c(GO.over.sex.lines["MF"],
+      hline.after=c(0, c(GO.over.dn.ds.lines["MF"],
         GO.over.dn.ds.lines["MF"]+GO.over.dn.ds.lines["BP"],
         GO.over.dn.ds.lines["MF"]+GO.over.dn.ds.lines["BP"]+ GO.over.dn.ds.lines["CC"])),
       include.rownames=FALSE)
 @ 
 
+\newpage
 \subsection*{Table 5 - Measurements of multi-locus heterozygosity for
   single worms}
 
@@ -1701,8 +1703,8 @@ relatedness (int.rel; \cite{pmid11571049}), homozygosity by loci
 (ho.loci; \cite{pmid17107491}) and standardized heterozygosity
 (std.het; \cite{coltman81j}) are given with the number of SNPs
 informative for this library (inform.snp). All these measurements are
-pointing to sample T1 (Taiwanese worm from a wild population) as the
-most heterozygous and sample E2 (the European worm from Poland) as the
+pointing to sample T1 (Taiwanese worm from aquaculture) as the most
+heterozygous and sample E2 (the European worm from Poland) as the
 least heterozygous individual. Heterozygote-heterozygote correlation
 \cite{pmid21565077} confirmed the genome-wide significance of these
 markers.
@@ -1710,6 +1712,8 @@ markers.
 <<echo=FALSE, results=tex>>=
 print(xtable(het.table))
 @ 
+
+
 
 \subsection*{Table 6 - Over-representation of GO-terms differentially
   expressed}
@@ -1729,16 +1733,16 @@ a)\\
 
 <<echo=FALSE, results=tex>>=
 
-GO.over.sex.tab <- xtable(GO.over.sex)
+## GO.over.sex.tab <- xtable(GO.over.sex)
 
-align(GO.over.sex.tab) <- "llp{4.5cm}llll"
+## align(GO.over.sex.tab) <- "llp{4.5cm}llll"
 
-print(GO.over.sex.tab, tabular.environment="longtable",
-      floating=FALSE, 
-      hline.after=c(0, c(GO.over.sex.lines["MF"],
-        GO.over.sex.lines["MF"]+GO.over.sex.lines["BP"],
-        GO.over.sex.lines["MF"]+GO.over.sex.lines["BP"]+ GO.over.sex.lines["CC"])),
-        include.rownames=FALSE)
+## print(GO.over.sex.tab, tabular.environment="longtable",
+##       floating=FALSE, 
+##       hline.after=c(0, c(GO.over.sex.lines["MF"],
+##         GO.over.sex.lines["MF"]+GO.over.sex.lines["BP"],
+##         GO.over.sex.lines["MF"]+GO.over.sex.lines["BP"]+ GO.over.sex.lines["CC"])),
+##         include.rownames=FALSE)
 @ 
 
 \newpage
@@ -1747,22 +1751,17 @@ b)\\
 
 <<echo=FALSE, results=tex>>=
 
-GO.over.eel.tab <- xtable(GO.over.eel)
+## GO.over.eel.tab <- xtable(GO.over.eel)
 
-align(GO.over.eel.tab) <- "llp{4.5cm}llll"
+## align(GO.over.eel.tab) <- "llp{4.5cm}llll"
 
-print(GO.over.eel.tab, tabular.environment="longtable",
-      floating=FALSE, 
-      hline.after=c(0, c(GO.over.eel.lines["MF"],
-        GO.over.eel.lines["MF"]+GO.over.eel.lines["BP"],
-        GO.over.eel.lines["MF"]+GO.over.eel.lines["BP"]+ GO.over.eel.lines["CC"])),
-include.rownames=FALSE)
+## print(GO.over.eel.tab, tabular.environment="longtable",
+##       floating=FALSE, 
+##       hline.after=c(0, c(GO.over.eel.lines["MF"],
+##         GO.over.eel.lines["MF"]+GO.over.eel.lines["BP"],
+##         GO.over.eel.lines["MF"]+GO.over.eel.lines["BP"]+ GO.over.eel.lines["CC"])),
+## include.rownames=FALSE)
 
-@ 
-
-
-<<echo=FALSE, results=tex>>=
-print(xtable(het.table))
 @ 
 
 \normalsize
@@ -1788,20 +1787,20 @@ b lists only the metadata not including sequences.
 
 Additional table 2 lists high quality SNPs.
 
-Addtional tables 3 list congtigs differentially expressed between male
-and female worms (a) and European and Asian worms (b).
-
+Additional tables 3 list contigs differentially expressed between male
+and female worms (a) and European and Asian worms (b). Normalised
+counts and the logarithm of fold changes are given.
 
 \subsubsection*{Additional figures}
 Additional Figures 1: subgraphs of the GO-ontology categories induced
-by the top 10 terms identified as enriched in differetn sets of
-genes. Boxes indicate the 10 most significant terms. Box color
+by the top 10 terms identified as enriched in different sets of
+genes. Boxes indicate the 10 most significant terms. Box colour
 represents the relative significance, ranging from dark red (most
 significant) to light yellow (least significant). In each node the
-categoy-identifier, a (eventually truncated) description of the term,
+category-identifier, a (eventually truncated) description of the term,
 the significance for enrichment and the number of DE / total number of
 annotated gene is given. Black arrows indicate a is ``is-a''
-relationship. GO-ontolgy category and the set of genes analysed for
+relationship. GO-ontology category and the set of genes analysed for
 the enrichment are indicated in each figure.
 
 \end{bmcformat}

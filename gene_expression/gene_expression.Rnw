@@ -175,7 +175,7 @@ ID.sex.sig <- subset(ideg6,
 ID.sex.sig$LogFC <- apply(ID.sex.sig, 1, get.log.FC,
                           c1=c("normLib2", "normLib3", "normLib4"), c2="normLib5")
 
-ID.sex.sig.c <- ID.sex.sig$UNIQID
+ID.sex.sig.c <- as.character(ID.sex.sig$UNIQID)
 express.sex.sig <- ID.sex.sig[,c("normLib2", "normLib3", "normLib4", "normLib5", "LogFC")]
 rownames(express.sex.sig) <- ID.sex.sig.c
 ## heatmap(as.matrix(express.sex.sig))

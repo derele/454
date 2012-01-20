@@ -303,7 +303,7 @@ base.ontology.decode = list(
     "Y" = "low coverage", "S" = "low coverage", "W" = "low coverage",
     "K" = "low coverage", "M" = "low coverage", "B" = "low coverage",
     "D" = "low coverage", "H" = "low coverage", "V" = "low coverage",
-      "N" = "low coverage", "X" = "low coverage")
+      "N" = "low coverage", "X" = "low coverage"),
   "Z" = c("A" = "outside ORF",  "C" = "outside ORF",
     "G" = "outside ORF", "T" = "outside ORF" , "R" = "outside ORF",
     "Y" = "outside ORF", "S" = "outside ORF", "W" = "outside ORF",
@@ -312,13 +312,60 @@ base.ontology.decode = list(
     "N" = "outside ORF", "X" = "outside ORF")
   );
 
-contig.df$coding <- ifelse(!is.na(contig.df$mstrand) &
-                           as.logical(contig.df$mstrand),  
-                           ## revcom to get the sequence on the plus strand always
-                           ## sometimes, there are Ns after the end of orfs!!
-                           revcom (gsub("[ACGTRYSWKMBDHVNX]", "", contig.df$imp)),
-                           gsub("[ACGTRYSWKMBDHVNX]", "", contig.df$imp)
-                           )
+
+get.ontology <- function (contig.df.obj){
+  coding <- ifelse(!is.na(contig.df.obj$mstrand) &
+                   as.logical(contig.df.obj$mstrand),  
+                   ## revcom to get the sequence on the plus strand always
+                   ## sometimes, there are Ns after the end of orfs!!
+                   revcom (gsub("[ACGTRYSWKMBDHVNX]", "", contig.df.obj$imp)),
+                   gsub("[ACGTRYSWKMBDHVNX]", "", contig.df.obj$imp)
+                   )
+  codons <- lapply(coding, function (co){
+    if (nchar(co)==0) {co <- "NNN"}
+    if(nchar(co)%%3!=0) {
+      co <- paste(rep("NNN", times=ceiling(nchar(co)/3)), collapse="")
+    }
+    substring(co, seq(1, nchar(co), by=3), seq(3,nchar(co), by=3))})
+  ontology <- lapply(codons, function (x) { sapply (x, base.ontology.encode)})
+  ontology <- as.character(sapply(ontology, paste, collapse=""))
+   ## reverse back to be able to use normal snp cooridingates
+  ontology <- ifelse(as.logical(contig.df.obj$mstrand),
+                     strReverse(ontology),
+                     ontology)
+  E <- lapply(contig.df.obj$imp, function (x) {
+    ends <- strsplit(x, "[a-z]+")
+    if (length(ends)==2){return(c(gsub(".", "Z", ends)))}
+    if (length(ends)==1){return(c(gsub(".", "Z", ends[[1]]), ""))}
+    return(ends)
+  })
+  ontology <- unlist(lapply(1:length(ontology), function(i){
+    paste(E[[i]][[1]], ontology[[i]], E[[i]][[2]], sep="")}))
+}
+
+get.sites <- function (ontology, imputed){
+  s.sites <- sapply(1:length(ontology), function (i) {
+     split.ont <- unlist(strsplit(ontology[[i]], ""))
+     split.cod <- unlist(strsplit(imputed[[i]], ""))
+     decoded <- lapply(split.ont, function (a){
+       base.ontology.decode[[a]]})
+     reduced.decoded <- lapply(1:length(decoded), function (x) {
+       subset(decoded[[x]], names(decoded[[x]])!=toupper(split.cod[[x]]))})
+     s <- lapply(reduced.decoded, function (w) {
+       length(w[grepl("Syn", w)])/length(w[grepl("Syn|Non", w)])})
+     n <- lapply(reduced.decoded, function (w) {
+       length(w[grepl("Non", w)])/length(w[grepl("Syn|Non", w)])})
+     nsyn.sites <- sum(unlist(n), na.rm=TRUE)
+     syn.sites <- sum(unlist(s), na.rm=TRUE)
+     cbind(nsyn.sites, syn.sites)
+   })
+  data.frame(t(s.sites))
+}
+
+contig.df$ontology <- get.ontology(contig.df)
+## ugly fix non predicted
+contig.df[nchar(contig.df$ontology)!=nchar(contig.df$imp), "ontology"] <-
+  gsub(".", "Z", contig.df[nchar(contig.df$ontology)!=nchar(contig.df$imp), "imp"])
 
 ## get the coding region coverd >8x in snp calling
 imp.cov.pile <- imp.pile[imp.pile$imputed.coverage>7, ]
@@ -326,84 +373,47 @@ b <- by(imp.cov.pile, imp.cov.pile$contig,
         function (x) c(x[1,"base"], x[nrow(x), "base"]))
 cov.8.borders <- as.data.frame(do.call("rbind", b))
 names(cov.8.borders) <- c("cov.8.start", "cov.8.stop")
+contig.df <- merge(contig.df, cov.8.borders,
+                   by.x="contig", by.y="row.names", all.x=TRUE)
 
-cov.df <- merge(contig.df, cov.8.borders, by.x="contig", by.y="row.names")
+## get a coverage informed ontology:
+contig.df$cov.ontology <- apply(contig.df, 1, function (x) {
+  if(is.na(as.numeric(x["cov.8.start"]))){
+    return(gsub(".", "Y", x["ontology"]))}
+  bef <- substr(x["ontology"],
+                1, as.numeric(x["cov.8.start"])-1)
+  bef <- gsub(".", "Y", bef)
+  ont <- substr(x["ontology"],
+                as.numeric(x["cov.8.start"]),
+                as.numeric(x["cov.8.stop"]))
+  aft <- substr(x["ontology"],
+                as.numeric(x["cov.8.stop"])+1,
+                nchar(x["ontology"]))
+  aft <- gsub(".", "Y", aft)
+  paste(bef, ont, aft, sep="")
+})
 
-seq.cov.8 <- by(cov.df, cov.df$contig, function(x){
-  substring(x$imp, x$cov.8.start, x$cov.8.stop)})
-Sc <- as.data.frame(cbind(seq.cov.8))
+SITES <- get.sites(contig.df$ontology, contig.df$imp)
+names(SITES) <- c("nsyn.sites", "syn.sites")
 
-cov.df <- merge(cov.df, Sc, by.x="contig", by.y="row.names")
+COV.SITES <- get.sites(contig.df$cov.ontology, contig.df$imp)
+names(COV.SITES) <- c("cov8.nsyn.sites", "cov8.syn.sites")
 
-cov.df$coding.cov8 <- ifelse(!is.na(cov.df$mstrand) &
-                                as.logical(cov.df$mstrand),  
-                                ## revcom to get the sequence on the plus strand always
-                                ## sometimes, there are Ns after the end of orfs!!
-                                revcom (gsub("[ACGTRYSWKMBDHVNX]", "", cov.df$seq.cov.8)),
-                                gsub("[ACGTRYSWKMBDHVNX]", "", cov.df$seq.cov.8)
-                                )
-
-add.ontology.sites <- function (contig.df.obj, cod.col.name){
-  coding <- contig.df.obj[, cod.col.name]
-  codons <- lapply(coding, function (x){
-    substring(x,seq(1,nchar(x), by=3), seq(3,nchar(x), by=3))})
-  ontology <- lapply(codons, function (x) { sapply (x, base.ontology.encode)})
-  ontology <- as.character(sapply(ontology, paste, collapse=""))
-   ## reverse back to be able to use normal snp cooridingates
-  ontology <- ifelse(as.logical(contig.df.obj$mstrand),
-                     strReverse(ontology),
-                     ontology)
-   s.sites <- sapply(1:length(ontology), function (i) {
-     split.ont <- unlist(strsplit(ontology[[i]], ""))
-     split.cod <- unlist(strsplit(coding[[i]], ""))
-     decoded <- lapply(split.ont, function (a){
-       base.ontology.decode[[a]]})
-     reduced.decoded <- lapply(1:length(decoded), function (x) {
-       subset(decoded[[x]], names(decoded[[x]])!=toupper(split.cod[[x]]))})
-     s <- lapply(reduced.decoded, function (w) {
-       length(w[grepl("Syn", w)])/length(w[!is.na(w)])})
-     n <- lapply(reduced.decoded, function (w) {
-       length(w[grepl("Non", w)])/length(w[!is.na(w)])})
-     nsyn.sites <- sum(unlist(n), na.rm=TRUE)
-     syn.sites <- sum(unlist(s), na.rm=TRUE)
-     cbind(nsyn.sites, syn.sites)
-   })
-  s.sites <- t(s.sites)
-  c.df <- data.frame(cbind(ontology, s.sites))
-  names(c.df)[c(ncol(c.df)-1, ncol(c.df))] <- c("nsyn.sites", "syn.sites")
-  c.df$nsyn.sites <- as.numeric(as.character(c.df$nsyn.sites))
-  c.df$syn.sites <- as.numeric(as.character(c.df$syn.sites))
-  row.names(c.df) <- contig.df.obj$contig
-  return(c.df)
-}
-
-coding.df <- add.ontology.sites(contig.df[nchar(contig.df$coding)>2, ], "coding")
-coding.cov.df <- add.ontology.sites(cov.df[nchar(cov.df$coding.cov8)>2, ], "coding.cov8")
-names(coding.cov.df)[2:3] <-  c("cov8.nsyn.sites", "cov8.syn.sites")
-
-contig.df <- merge(contig.df, coding.df, by.x="contig", by.y="row.names", all.x=TRUE )
-contig.df <- merge(contig.df, coding.cov.df[,2:3], by.x="contig", by.y="row.names", all.x=TRUE )
+contig.df <- cbind(contig.df, SITES)
+contig.df <- cbind(contig.df, COV.SITES)
 
 VAR <- merge(VAR, contig.df[,c("contig", "ontology", "nsyn.sites", "syn.sites", "cov8.nsyn.sites", "cov8.syn.sites")] )
 
-add.effect.by.ontology <- function (VARobj){
-  orfbase <- (VARobj$base-VARobj$starts+1)
-  ontology <- as.character(VAR$ontology)
-  onto.codes <- sapply(1:nrow(VARobj), function (i) {
-    ifelse(as.logical(VARobj[i,]$inORF) &
-           orfbase[i]<nchar(ontology[i]) ,
-           unlist(strsplit(ontology[i], ""))[[orfbase[[i]]]], NA)})
 
-  effect <- sapply(1:length(onto.codes), function (i) {
-    base.ontology.decode[[onto.codes[[i]]]][[VARobj[i,]$to]]})
-  effect[unlist(lapply(effect, is.null))] <- "outside ORF"
-  effect <- unlist(effect)
-  VARobj <- cbind(VARobj, effect)
-  return(VARobj)
+get.effect <- function (ontology, base, to){
+  code <- unlist(strsplit(ontology, ""))[[base]]
+  base.ontology.decode[[code]][[to]]
 }
 
-VAR <- add.effect.by.ontology(VAR)
-
+VAR$effect <- apply(VAR, 1, function(x){
+  get.effect(x["ontology"], as.numeric(x["base"]), x["to"])
+})
+  
 get.dn.ds <- function(VARobj){
   (nrow(VARobj[grepl("Non*", VARobj$effect),])/
    sum(VARobj[!duplicated(VARobj$contig), "cov8.nsyn.sites"], na.rm=T))/
