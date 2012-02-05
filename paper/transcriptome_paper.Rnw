@@ -133,15 +133,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\author{Emanuel G Heitlinger\correspondingauthor$^{1,2}$%
+\author{Emanuel G Heitlinger\correspondingauthor$^{1,2}$% 
        \email{Emanuel G Heitlinger\correspondingauthor - emanuelheitlinger@gmail.com}%
-       Stephen Bridgett$^{3}$%
+       Stephen Bridgett$^{3}$% 
        \email{Stephen Bridgett- sbridget@staffmail.ed.ac.uk}%
-       Anna Montazam$^{3}$%
+       Anna Montazam$^{3}$% 
        \email{Anna Montazam- Anna.Montazam@ed.ac.uk}%
-       Horst Taraschewski$^1$%
+       Horst Taraschewski$^1$% 
        \email{Horst Taraschewski- dc20@rz.uni-karlsruhe.de}%
-       and Mark Blaxter$^2$%
+       and Mark Blaxter$^2$% 
        \email{Mark Blaxter - mark.blaxter@ed.ac.uk}%
      }%
       
@@ -183,12 +183,13 @@
   \paragraph*{Background:} \textit{Anguillicola crassus} is an
   ecologically and evolutionary interesting nematode. It has been
   introduced from Asia, where it parasitises the Japanese eel
-  \textit{Angilla japonica}, to Europe 30 years ago. Today it infects
-  stocks of the endangered, commercially exploited European eel
-  \textit{Anguilla anguilla}, permitting and necessitating research in
-  a newly established host-parasite system. Furthermore phylogenetics
-  places \textit{A. crassus} at a key position for the emergence of
-  parasitism, basal to one of the major clades of parasitic nematodes.
+  \textit{Anguilla japonica}, to Europe 30 years ago, parasitising the
+  endangered, commercially exploited European eel \textit{Anguilla
+    anguilla}. Phylogenetics places \textit{A. crassus} at a key
+  position for the emergence of parasitism, basal to one of the major
+  clades of parasitic nematodes, but differences in teh parasite's
+  pehnotype and host relations (natural versus novel host) are not
+  understood yet.
   \paragraph*{Results:} 
   After extensive screening of 756,363 raw pyrosequencing reads, we
   assembled 353,055 into 11,372 contigs spanning 6,575,121 bases and
@@ -254,9 +255,10 @@
  
 
 The nematode \textit{Anguillicola crassus} Kuwahara, Niimi et Itagaki,
-1974 \cite{kuwahara_Niimi_Itagaki_1974} is a parasite of freshwater
-eels of the genus \textit{Anguilla}, and adults localise to the swim
-bladder where they feed on blood. Larvae are transmitted via
+1974 is a native parasite of the Japanese eel \textit{Anguilla
+  japonica} \cite{kuwahara_Niimi_Itagaki_1974}. Adults localise to the
+swim bladder where they feed on blood
+\cite{polzer_identification_1993}. Larvae are transmitted via
 crustacean intermediate hosts
 \cite{de_charleroy_life_1990}. Originally endemic to East-Asian
 populations of the Japanese eel (\textit{Anguilla japonica}),
@@ -273,24 +275,19 @@ found in all \textit{An. anguilla} populations except those in Iceland
 regarded as a model for invasive parasite introduction and spread
 \cite{taraschewski_hosts_2007}.
 
-\textit{A. crassus} has a major impact on \textit{An. anguilla}
-populations. In its natural host in Asia infection prevalence and mean
-intensity of infection are lower than in Europe
-\cite{mnderle_occurrence_2006}, where high prevalence (above 70\%
-\cite{wrtz_distribution_1998}) and high infection intensities have been
-reported throughout the newly colonised area
-\cite{lefebvre_anguillicolosis:_2004}. The virulence of
-\textit{A. crassus} in this new host has been attributed to an
-inadequate immune response in \textit{An. anguilla}
-\cite{knopf_swimbladder_2006}. While the \textit{An. japonica} is
-capable of killing larvae of the parasite after vaccination
-\cite{knopf_vaccination_2008} or under high infection pressure
-\cite{heitlinger_massive_2009}, responses in \textit{An. anguilla}
-have hallmarks of pathology, including thickening of the swim bladder
-wall \cite{wurtz_tara_2000}.  Interestingly host also affects the
-adult size and life-history of the nematodes: in European eels the
-nematodes are bigger and develop and reproduce faster
-\cite{knopf_differences_2004}.
+In its colonised host prevalence and mean intensity of infection are
+higher than in \textit{An. japonica} \cite{mnderle_occurrence_2006,
+  lefebvre_anguillicolosis:_2004}, which is accompanied by a larger
+body mass of adult worms, an earlier onset of reproduction and a
+larger egg output \cite{knopf_differences_2004}. These modifications
+of the lifecycle as well as the virulence of \textit{A. crassus} in
+its new host have been attributed to an inadequate immune response in
+\textit{An. anguilla} \cite{knopf_swimbladder_2006}. Only
+\textit{An. japonica} is capable of killing histotropic larvae of the
+parasite after vaccination \cite{knopf_vaccination_2008} or under high
+infection pressure \cite{heitlinger_massive_2009}. Accordingly mainly
+\textit{An. anguilla} is affected by pathology, including thickening
+and inflammation of the swim bladder wall \cite{wurtz_tara_2000}.
 
 The genus Anguillicola is placed in the nematode suborder Spirurina
 (clade III \textit{sensu} \cite{blaxter_molecular_1998})
