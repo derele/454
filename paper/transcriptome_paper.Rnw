@@ -180,17 +180,16 @@
 
 \begin{abstract}
   % Do not use inserted blank lines (ie \\) until main body of text.
-  \paragraph*{Background:} \textit{Anguillicola crassus} is an
-  ecologically and evolutionary interesting nematode. It has been
+  \paragraph*{Background:} \textit{Anguillicola crassus} has been
   introduced from Asia, where it parasitises the Japanese eel
-  \textit{Anguilla japonica}, to Europe 30 years ago, parasitising the
-  endangered, commercially exploited European eel \textit{Anguilla
-    anguilla}. Phylogenetics places \textit{A. crassus} at a key
+  \textit{Anguilla japonica}, to Europe 30 years ago. Here it
+  parasitises the endangered, commercially exploited European eel
+  \textit{Anguilla anguilla}, but differences in the parasite's
+  phenotype and host relations (natural versus novel host) are not
+  understood yet. Phylogenetics places \textit{A. crassus} at a key
   position for the emergence of parasitism, basal to one of the major
-  clades of parasitic nematodes, but differences in teh parasite's
-  pehnotype and host relations (natural versus novel host) are not
-  understood yet.
-  \paragraph*{Results:} 
+  clades of parasitic nematodes.
+  \paragraph*{Results:}
   After extensive screening of 756,363 raw pyrosequencing reads, we
   assembled 353,055 into 11,372 contigs spanning 6,575,121 bases and
   additionally obtained 21,153 singletons and lower quality contigs
@@ -556,7 +555,7 @@ library(edgeR)
 library(ShortRead)
 library(biomaRt)
 
-library(BioIDMapper)
+## library(BioIDMapper)
 
 library(Rhh)
 library(Heatplus)

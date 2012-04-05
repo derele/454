@@ -393,6 +393,7 @@ contig.df$cov.ontology <- apply(contig.df, 1, function (x) {
   paste(bef, ont, aft, sep="")
 })
 
+
 SITES <- get.sites(contig.df$ontology, contig.df$imp)
 names(SITES) <- c("nsyn.sites", "syn.sites")
 

@@ -10,6 +10,13 @@ Kuwahara A, Niimi H, Itagaki H: \textbf{Studies on a nematode parasitic in the
   (Philometridea, Anguillicolidae)}}. \emph{Japanese Journal for Parasitology}
   1974, \textbf{23}(5):275--279.
 
+\bibitem{polzer_identification_1993}
+Polzer M, Taraschewski H: \textbf{Identification and characterization of the
+  proteolytic enzymes in the developmental stages of the eel-pathogenic
+  nematode Anguillicola crassus}. \emph{Parasitology Research} 1993,
+  \textbf{79}:24--7,
+  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/7682326]}.
+
 \bibitem{de_charleroy_life_1990}
 {De Charleroy} D, Grisez L, Thomas K, Belpaire C, Ollevier F: \textbf{The life
   cycle of Anguillicola crassus}. \emph{Diseases of Aquatic Organisms} 1990,
@@ -58,18 +65,18 @@ M\"{u}nderle M, Taraschewski G, Klar B, Chang CW, Shiao JC, Shen KN, He JT, Lin
   \textbf{71}(2):101--8,
   \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/16956057]}.
 
-\bibitem{wrtz_distribution_1998}
-W\"urtz J, Knopf K, Taraschewski H: \textbf{Distribution and prevalence of
-  Anguillicola crassus {(Nematoda)} in eels Anguilla anguilla of the rivers
-  Rhine and Naab, Germany}. \emph{Diseases of Aquatic Organisms} 1998,
-  \textbf{32}(2):137--43,
-  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/9676253]}.
-
 \bibitem{lefebvre_anguillicolosis:_2004}
 Lefebvre FS, Crivelli AJ: \textbf{Anguillicolosis: dynamics of the infection
   over two decades}. \emph{Diseases of Aquatic Organisms} 2004,
   \textbf{62}(3):227--32,
   \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/15672878]}.
+
+\bibitem{knopf_differences_2004}
+Knopf K, Mahnke M: \textbf{Differences in susceptibility of the European eel
+  {(Anguilla} anguilla) and the Japanese eel {(Anguilla} japonica) to the
+  swim-bladder nematode Anguillicola crassus}. \emph{Parasitology} 2004,
+  \textbf{129}(Pt 4):491--6,
+  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/15521638]}.
 
 \bibitem{knopf_swimbladder_2006}
 Knopf K: \textbf{The swimbladder nematode Anguillicola crassus in the European
@@ -96,13 +103,6 @@ W\"urtz J, Taraschewski H: \textbf{Histopathological changes in the swimbladder
   Anguillicola crassus}. \emph{Diseases of Aquatic Organisms} 2000,
   \textbf{39}(2):121--34,
   \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/10715817]}.
-
-\bibitem{knopf_differences_2004}
-Knopf K, Mahnke M: \textbf{Differences in susceptibility of the European eel
-  {(Anguilla} anguilla) and the Japanese eel {(Anguilla} japonica) to the
-  swim-bladder nematode Anguillicola crassus}. \emph{Parasitology} 2004,
-  \textbf{129}(Pt 4):491--6,
-  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/15521638]}.
 
 \bibitem{blaxter_molecular_1998}
 Blaxter M, {De Ley} P, Garey J, {X Liu} L, Scheldeman P, Vierstraete A,
@@ -508,13 +508,6 @@ Miyata T, Yasunaga T: \textbf{{{M}olecular evolution of m{R}{N}{A}: a method
   Evol.} 1980, \textbf{16}:23--36,
   \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/6449605]}.
 
-\bibitem{polzer_identification_1993}
-Polzer M, Taraschewski H: \textbf{Identification and characterization of the
-  proteolytic enzymes in the developmental stages of the eel-pathogenic
-  nematode Anguillicola crassus}. \emph{Parasitology Research} 1993,
-  \textbf{79}:24--7,
-  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/7682326]}.
-
 \bibitem{knopf_migratory_2008}
 Knopf K, {Madriles Helm} A, Lucius R, Bleiss W, Taraschewski H:
   \textbf{Migratory response of European eel {(Anguilla} anguilla) phagocytes
@@ -603,6 +596,23 @@ Eberhard WG: \textbf{{{E}volutionary conflicts of interest: are female sexual
 </bibl>
 
 <bibl id="B2">
+  <title><p>Identification and characterization of the proteolytic enzymes in
+  the developmental stages of the eel-pathogenic nematode Anguillicola
+  crassus</p></title>
+  <aug>
+    <au><snm>Polzer</snm><fnm>M.</fnm></au>
+    <au><snm>Taraschewski</snm><fnm>H.</fnm></au>
+  </aug>
+  <source>Parasitology Research</source>
+  <pubdate>1993</pubdate>
+  <volume>79</volume>
+  <issue>1</issue>
+  <fpage>24</fpage>
+  <lpage>-7</lpage>
+  <url>http://www.ncbi.nlm.nih.gov/pubmed/7682326</url>
+</bibl>
+
+<bibl id="B3">
   <title><p>The life cycle of Anguillicola crassus</p></title>
   <aug>
     <au><snm>{De Charleroy}</snm><fnm>D.</fnm></au>
@@ -619,7 +629,7 @@ Eberhard WG: \textbf{{{E}volutionary conflicts of interest: are female sexual
   <lpage>-84</lpage>
 </bibl>
 
-<bibl id="B3">
+<bibl id="B4">
   <title><p>Schwimblasenparasit {A}nguillicola bei Aalen</p></title>
   <aug>
     <au><snm>Neumann</snm><fnm>W.</fnm></au>
@@ -629,7 +639,7 @@ Eberhard WG: \textbf{{{E}volutionary conflicts of interest: are female sexual
   <fpage>322</fpage>
 </bibl>
 
-<bibl id="B4">
+<bibl id="B5">
   <title><p>Anguillicola-infestations in Germany and in German eel
   imports</p></title>
   <aug>
@@ -646,7 +656,7 @@ Eberhard WG: \textbf{{{E}volutionary conflicts of interest: are female sexual
 bstract</url>
 </bibl>
 
-<bibl id="B5">
+<bibl id="B6">
   <title><p>Swimbladder nematodes {(Anguillicola} spp.) and gill monogeneans
   {(Pseudodactylogyrus} spp.) parasitic on the European eel {(Anguilla}
   anguilla)</p></title>
@@ -662,7 +672,7 @@ bstract</url>
   <url>http://icesjms.oxfordjournals.org/cgi/content/abstract/47/3/391</url>
 </bibl>
 
-<bibl id="B6">
+<bibl id="B7">
   <title><p>The impact of {Anguillicola crassus} on {European} eels</p></title>
   <aug>
     <au><snm>Kirk</snm><fnm>R. S.</fnm></au>
@@ -676,7 +686,7 @@ bstract</url>
   <url>http://dx.doi.org/10.1111/j.1365-2400.2003.00355.x</url>
 </bibl>
 
-<bibl id="B7">
+<bibl id="B8">
   <title><p>Parasite communities of ecls Anguilla anguilla in freshwater and
   marine habitats in Iceland in comparison with other parasite communities of
   eels in Europe</p></title>
@@ -691,7 +701,7 @@ bstract</url>
   <fpage>141</fpage>
 </bibl>
 
-<bibl id="B8">
+<bibl id="B9">
   <title><p>Hosts and Parasites as Aliens</p></title>
   <aug>
     <au><snm>Taraschewski</snm><fnm>H.</fnm></au>
@@ -706,7 +716,7 @@ bstract</url>
 d=713884</url>
 </bibl>
 
-<bibl id="B9">
+<bibl id="B10">
   <title><p>Occurrence of Anguillicola crassus {(Nematoda:} Dracunculoidea) in
   Japanese eels Anguilla japonica from a river and an aquaculture unit in {SW}
   Taiwan</p></title>
@@ -730,23 +740,6 @@ d=713884</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/16956057</url>
 </bibl>
 
-<bibl id="B10">
-  <title><p>Distribution and prevalence of Anguillicola crassus {(Nematoda)} in
-  eels Anguilla anguilla of the rivers Rhine and Naab, Germany</p></title>
-  <aug>
-    <au><snm>W\"urtz</snm><fnm>J.</fnm></au>
-    <au><snm>Knopf</snm><fnm>K.</fnm></au>
-    <au><snm>Taraschewski</snm><fnm>H.</fnm></au>
-  </aug>
-  <source>Diseases of Aquatic Organisms</source>
-  <pubdate>1998</pubdate>
-  <volume>32</volume>
-  <issue>2</issue>
-  <fpage>137</fpage>
-  <lpage>-43</lpage>
-  <url>http://www.ncbi.nlm.nih.gov/pubmed/9676253</url>
-</bibl>
-
 <bibl id="B11">
   <title><p>Anguillicolosis: dynamics of the infection over two
   decades</p></title>
@@ -764,6 +757,23 @@ d=713884</url>
 </bibl>
 
 <bibl id="B12">
+  <title><p>Differences in susceptibility of the European eel {(Anguilla}
+  anguilla) and the Japanese eel {(Anguilla} japonica) to the swim-bladder
+  nematode Anguillicola crassus</p></title>
+  <aug>
+    <au><snm>Knopf</snm><fnm>K.</fnm></au>
+    <au><snm>Mahnke</snm><fnm>M.</fnm></au>
+  </aug>
+  <source>Parasitology</source>
+  <pubdate>2004</pubdate>
+  <volume>129</volume>
+  <issue>Pt 4</issue>
+  <fpage>491</fpage>
+  <lpage>-6</lpage>
+  <url>http://www.ncbi.nlm.nih.gov/pubmed/15521638</url>
+</bibl>
+
+<bibl id="B13">
   <title><p>The swimbladder nematode Anguillicola crassus in the European eel
   Anguilla anguilla and the Japanese eel Anguilla japonica: differences in
   susceptibility and immunity between a recently colonized host and the
@@ -780,7 +790,7 @@ d=713884</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/16768856</url>
 </bibl>
 
-<bibl id="B13">
+<bibl id="B14">
   <title><p>Vaccination of eels {(Anguilla} japonica and Anguilla anguilla)
   against Anguillicola crassus with irradiated L3</p></title>
   <aug>
@@ -796,7 +806,7 @@ d=713884</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/18302804</url>
 </bibl>
 
-<bibl id="B14">
+<bibl id="B15">
   <title><p>Massive encapsulation of larval {Anguillicoloides crassus} in the
   intestinal wall of Japanese eels</p></title>
   <aug>
@@ -814,7 +824,7 @@ d=713884</url>
   <url>http://www.parasitesandvectors.com/content/2/1/48</url>
 </bibl>
 
-<bibl id="B15">
+<bibl id="B16">
   <title><p>Histopathological changes in the swimbladder wall of the European
   eel Anguilla anguilla due to infections with Anguillicola crassus</p></title>
   <aug>
@@ -828,23 +838,6 @@ d=713884</url>
   <fpage>121</fpage>
   <lpage>-34</lpage>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/10715817</url>
-</bibl>
-
-<bibl id="B16">
-  <title><p>Differences in susceptibility of the European eel {(Anguilla}
-  anguilla) and the Japanese eel {(Anguilla} japonica) to the swim-bladder
-  nematode Anguillicola crassus</p></title>
-  <aug>
-    <au><snm>Knopf</snm><fnm>K.</fnm></au>
-    <au><snm>Mahnke</snm><fnm>M.</fnm></au>
-  </aug>
-  <source>Parasitology</source>
-  <pubdate>2004</pubdate>
-  <volume>129</volume>
-  <issue>Pt 4</issue>
-  <fpage>491</fpage>
-  <lpage>-6</lpage>
-  <url>http://www.ncbi.nlm.nih.gov/pubmed/15521638</url>
 </bibl>
 
 <bibl id="B17">
@@ -2093,23 +2086,6 @@ d=1279744</url>
 </bibl>
 
 <bibl id="B77">
-  <title><p>Identification and characterization of the proteolytic enzymes in
-  the developmental stages of the eel-pathogenic nematode Anguillicola
-  crassus</p></title>
-  <aug>
-    <au><snm>Polzer</snm><fnm>M.</fnm></au>
-    <au><snm>Taraschewski</snm><fnm>H.</fnm></au>
-  </aug>
-  <source>Parasitology Research</source>
-  <pubdate>1993</pubdate>
-  <volume>79</volume>
-  <issue>1</issue>
-  <fpage>24</fpage>
-  <lpage>-7</lpage>
-  <url>http://www.ncbi.nlm.nih.gov/pubmed/7682326</url>
-</bibl>
-
-<bibl id="B78">
   <title><p>Migratory response of European eel {(Anguilla} anguilla) phagocytes
   to the eel swimbladder nematode Anguillicola crassus</p></title>
   <aug>
@@ -2128,7 +2104,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/18311570</url>
 </bibl>
 
-<bibl id="B79">
+<bibl id="B78">
   <title><p>Formation of parasitic nodules in the swimbladder and intestinal
   walls of the eel Anguilla anguilla due to infections with larval stages of
   Anguillicola crassus</p></title>
@@ -2143,7 +2119,7 @@ d=1279744</url>
   <lpage>-170</lpage>
 </bibl>
 
-<bibl id="B80">
+<bibl id="B79">
   <title><p>{{T}he variant call format and {V}{C}{F}tools}</p></title>
   <aug>
     <au><cnm>{Danecek, P. and others}</cnm></au>
@@ -2156,7 +2132,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/21653522</url>
 </bibl>
 
-<bibl id="B81">
+<bibl id="B80">
   <title><p>Population structure of the parasitic nematode Anguillicola
   crassus, an invader of declining North Atlantic eel stocks</p></title>
   <aug>
@@ -2174,7 +2150,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/18727770</url>
 </bibl>
 
-<bibl id="B82">
+<bibl id="B81">
   <title><p>{{D}ifferential expression analysis for sequence count
   data}</p></title>
   <aug>
@@ -2188,7 +2164,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/20979621</url>
 </bibl>
 
-<bibl id="B83">
+<bibl id="B82">
   <title><p>{edge{R}: a {B}ioconductor package for differential expression
   analysis of digital gene expression data}</p></title>
   <aug>
@@ -2204,7 +2180,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/19910308</url>
 </bibl>
 
-<bibl id="B84">
+<bibl id="B83">
   <title><p>{{N}ematode sperm}</p></title>
   <aug>
     <au><snm>Scott</snm><fnm>A. L.</fnm></au>
@@ -2217,7 +2193,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/15275275</url>
 </bibl>
 
-<bibl id="B85">
+<bibl id="B84">
   <title><p>{{C}uticle collagen genes. {E}xpression in {C}aenorhabditis
   elegans}</p></title>
   <aug>
@@ -2231,7 +2207,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/10637627</url>
 </bibl>
 
-<bibl id="B86">
+<bibl id="B85">
   <title><p>{{T}he oxoacyl-coenzyme {A} thiolases of animal
   tissues}</p></title>
   <aug>
@@ -2245,7 +2221,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/4721607</url>
 </bibl>
 
-<bibl id="B87">
+<bibl id="B86">
   <title><p>{{S}exual and temporal dynamics of molecular evolution in {C}.
   elegans development}</p></title>
   <aug>
@@ -2260,7 +2236,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/15371532</url>
 </bibl>
 
-<bibl id="B88">
+<bibl id="B87">
   <title><p>{{E}volutionary conflicts of interest: are female sexual decisions
   different?}</p></title>
   <aug>
