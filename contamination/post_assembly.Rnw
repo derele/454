@@ -121,7 +121,7 @@ gc.cont.phylum <- ggplot(subset(contig.df, contig.df$kingdom.nr%in%"Metazoa" &
   geom_density() +
   facet_wrap( ~ phylum.nr)
 
-png("../figures/phylum_plots.png", width=2000, height=1000, res=144)
+pdf("../figures/phylum_plots.pdf", width=20, height=10)
 
 # Set up the page
 grid.newpage()

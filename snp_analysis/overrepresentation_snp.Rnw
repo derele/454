@@ -65,16 +65,51 @@ dn.ds.df$sigP <- as.factor(dn.ds.df$sigP)
 u.test <- wilcox.test(dn.ds ~ sigP, data=dn.ds.df, conf.int = TRUE)
 
 
+contig.df$novel.50 <- as.character(contig.df$novel.50)
+contig.df$novel.80 <- as.character(contig.df$novel.80)
+
+contig.df$novel.50 <- gsub("novel\\.in\\.(\\w)(.*)", "\\U\\1\\L\\2",
+                           contig.df$novel.50, perl=TRUE)
+
+contig.df$novel.80 <- gsub("novel\\.in\\.(\\w)(.*)", "\\U\\1\\L\\2",
+                           contig.df$novel.80, perl=TRUE)
+
 ## sort the conservation according to breath 
 contig.df$novel.50 <- factor(contig.df$novel.50,
-                             levels=c("conserved", "novel.in.metazoa",
-                               "novel.in.nematoda", "novel.in.clade3",
-                               "novel.in.Ac"))
+                             levels=c("conserved", "Metazoa",
+                               "Nematoda", "Clade3",
+                               "Ac"))
 
 contig.df$novel.80 <- factor(contig.df$novel.80,
-                             levels=c("conserved", "novel.in.metazoa",
-                               "novel.in.nematoda", "novel.in.clade3",
-                               "novel.in.Ac"))
+                             levels=c("conserved", "Metazoa",
+                               "Nematoda", "Clade3",
+                               "Ac"))
+
+dn.ds.df$novel.50 <- as.character(dn.ds.df$novel.50)
+dn.ds.df$novel.80 <- as.character(dn.ds.df$novel.80)
+
+dn.ds.df$novel.50 <- gsub("novel\\.in\\.(\\w)(.*)", "\\U\\1\\L\\2",
+                           dn.ds.df$novel.50, perl=TRUE)
+
+dn.ds.df$novel.80 <- gsub("novel\\.in\\.(\\w)(.*)", "\\U\\1\\L\\2",
+                           dn.ds.df$novel.80, perl=TRUE)
+
+## sort the conservation according to breath 
+dn.ds.df$novel.50 <- factor(dn.ds.df$novel.50,
+                             levels=c("conserved", "Metazoa",
+                               "Nematoda", "Clade3",
+                               "Ac"))
+
+dn.ds.df$novel.80 <- factor(dn.ds.df$novel.80,
+                             levels=c("conserved", "Metazoa",
+                               "Nematoda", "Clade3",
+                               "Ac"))
+
+
+
+
+
+
 
 @   
 
@@ -180,10 +215,10 @@ names(sigP.80) <- c("No.Sigp", "Sigp")
 sigP.80 <- transform(sigP.80, proportion=(Sigp/(Sigp+No.Sigp))*100)
 
 sigP.con.test.50 <- fisher.test(contig.df[contig.df$Ac, "novel.50"]%in%
-                                c("novel.in.Ac", "novel.in.nematoda"),
+                                c("Ac", "Nematoda"),
                                 grepl("Yes*", contig.df[contig.df$Ac, "sigP"]))
 sigP.con.test.80 <- fisher.test(contig.df[contig.df$Ac, "novel.80"]%in%
-                                c("novel.in.Ac", "novel.in.nematoda"),
+                                c("Ac", "Nematoda"),
                                 grepl("Yes*", contig.df[contig.df$Ac, "sigP"]))
 
 

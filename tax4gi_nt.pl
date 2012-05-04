@@ -10,15 +10,15 @@ use Data::Dumper;  # easy printing, sometimes only used during coding
 use Bio::Perl;
 use Bio::LITE::Taxonomy;
 use Bio::LITE::Taxonomy::NCBI;
-use Bio::LITE::Taxonomy::NCBI::Gi2taxid; # qw/new_dict/;
+use Bio::LITE::Taxonomy::NCBI::Gi2taxid;  ##qw/new_dict/;
 
 my $taxDB = Bio::LITE::Taxonomy::NCBI-> new (
                                               db=>"NCBI",
                                               names=>
-                                              "/home/ele/db/blastdb/taxonomy/names.dmp",
+                                              "/drobo/db/blastdb/taxonomy/names.dmp",
                                               nodes=>
-                                              "/home/ele/db/blastdb/taxonomy/nodes.dmp",
-                                              dict=>"/home/ele/db/blastdb/taxonomy/gi_taxid_nucl.bin"
+                                              "/drobo/db/blastdb/taxonomy/nodes.dmp",
+                                              dict=>"/drobo/db/blastdb/taxonomy/gi_taxid_nucl.bin"
                                              );
 
 while (<>) {

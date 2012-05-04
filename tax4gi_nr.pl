@@ -17,13 +17,13 @@ use Bio::LITE::Taxonomy::NCBI::Gi2taxid; # qw/new_dict/;
 
 
 my $taxDB = Bio::LITE::Taxonomy::NCBI-> new (
-                                              db=>"NCBI",
-                                              names=>
-                                              "/home/ele/db/blastdb/taxonomy/names.dmp",
-                                              nodes=>
-                                              "/home/ele/db/blastdb/taxonomy/nodes.dmp",
-                                              dict=>"/home/ele/db/blastdb/taxonomy/gi_taxid_prot.bin"
-                                             );
+                                             db=>"NCBI",
+                                             names=>
+                                             "/drobo/db/blastdb/taxonomy/names.dmp",
+                                             nodes=>
+                                             "/drobo/db/blastdb/taxonomy/nodes.dmp",
+                                             dict=>"/drobo/db/blastdb/taxonomy/gi_taxid_prot.bin"
+                                            );
 
 while (<>) {
   chomp($_);

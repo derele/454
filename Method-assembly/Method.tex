@@ -11,7 +11,7 @@
  
 
 \date{}
-\usepackage{/usr/local/lib64/R/share/texmf/tex/latex/Sweave}
+\usepackage{/home/ele/tools/R-devel/share/texmf/tex/latex/Sweave}
 \begin{document}
 % make the plots modest size
 \title{The transcriptome of A.crassus: Evaluating a method of combining assemblies}
@@ -100,8 +100,8 @@ reminder of this text deals with the exploratory analysis of how
 information from both estimates of the transcriptome are integrated
 into the final second-order assembly.
 
-% latex table generated in R 2.14.0 by xtable 1.6-0 package
-% Fri Jan 13 08:43:42 2012
+% latex table generated in R 2.16.0 by xtable 1.7-0 package
+% Wed Apr 25 10:16:28 2012
 \begin{table}[ht]
 \begin{center}
 \begin{tabular}{rrrr}
@@ -158,8 +158,8 @@ Finally the category of contigs considered most reliable contains all
 second-order contigs with contribution from both first-order
 assemblies (MN in table \ref{tab:categ}).
 
-% latex table generated in R 2.14.0 by xtable 1.6-0 package
-% Fri Jan 13 08:43:51 2012
+% latex table generated in R 2.16.0 by xtable 1.7-0 package
+% Wed Apr 25 10:16:37 2012
 \begin{table}[ht]
 \begin{center}
 \begin{tabular}{rlllll}
@@ -234,6 +234,7 @@ all contigs caused by the duplication due to the splitting of reads.
 \label{sec:eval-three-assembl}
 
 
+
 To further compare assemblies (Mira or Newbler first-order assemblies
 including or excluding their singletons) and the second-order assembly
 (including different contigs-categories and singletons) we evaluated
@@ -248,8 +249,6 @@ redundancy or artificially assembled data. If it increases without
 improving the reference-coverage the dataset is likely to contain more
 redundant or artificial information, a more parsimonious assembly
 should be preferred.
-
-
 
 The database-coverage for the two reference species can then be
 plotted against the size of the assembly-dataset to estimate the
@@ -347,6 +346,14 @@ second-order contigs (including those supported by only one assembler)
 plus the intersection of reported \texttt{Newbler}-singletons and
 \texttt{Mira} singletons.
 
+The proportion of proteins covered in \textit{C. elegans} by
+\textit{B. malayi} coding sequences was with
+26.85\% simimlar to our estimate for
+the fullest (FU) assembly. The proporiton of bases
+(25.46\%) and of proteins coverd to at
+least 80\% of their length (14.67\%)
+was however higher for the coding sequences from \textit{B. malayi}.
+
 \section{Measurments on second-order assembly}
 
 Based on the tracking of reads through the complicated assembly
@@ -373,21 +380,9 @@ second-order assembly.
 
 
 
-
-
 \subsection{Contig coverage}
 
 
-\begin{Schunk}
-\begin{Soutput}
-null device 
-          1 
-\end{Soutput}
-\begin{Soutput}
-null device 
-          1 
-\end{Soutput}
-\end{Schunk}
 
 As well defined coverage-information is not readyly avaiable from the
 output of this combined assembly aproach (although we followed
@@ -414,8 +409,8 @@ contig-data.csv. The example contigs are all from large
 contig-clusters (cluster.size), where interpretation of the assembly
 history is complicated, but not impossible:
 
-% latex table generated in R 2.14.0 by xtable 1.6-0 package
-% Fri Jan 13 08:45:09 2012
+% latex table generated in R 2.16.0 by xtable 1.7-0 package
+% Wed Apr 25 10:17:58 2012
 \begin{table}[ht]
 \begin{center}
 \begin{tabular}{rllll}
@@ -492,8 +487,8 @@ data by contig-category. For all downstream-analysis we removed the
 all well trusted MN-category-contigs no coverage and the contigs (and
 singletons) from other categories having no unique coverage.
 
-% latex table generated in R 2.14.0 by xtable 1.6-0 package
-% Fri Jan 13 08:45:09 2012
+% latex table generated in R 2.16.0 by xtable 1.7-0 package
+% Wed Apr 25 10:17:59 2012
 \begin{table}[ht]
 \begin{center}
 \begin{tabular}{rrrrrrr}

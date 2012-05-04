@@ -57,13 +57,13 @@ ce.names <- ce.names[!duplicated(ce.names$Ce.hit), ]
 ce.names <- merge(ce.names, rnai, by.x="Ce.hit", by.y="row.names", all.x=TRUE)
 
 ## there would be other ids in this:
-##ce.add.names <- names(read.sequences("/home/ele/db/blastdb/wormpep220/wormpep220_named.fasta"))
+##ce.add.names <- names(read.sequences("/drobo/db/blastdb/wormpep220/wormpep220_named.fasta"))
 
 contig.df <- merge(contig.df, ce.names, by="Ce.hit", all.x=TRUE, sort=FALSE)
 
 
 ## anntoation with nempep descriptions
-nempep.nuc <- read.sequences("/home/ele/db/blastdb/nembase4/nembase4_nuc.fasta")
+nempep.nuc <- read.sequences("/drobo/db/blastdb/nembase4/nembase4_nuc.fasta")
 nempep <- data.frame(Cluster.ID=substring(names(nempep.nuc), 1, 8))
 nempep$nempep.annot <- gsub("\\w{3}\\d{5}_1 Cluster: ", "",  names(nempep.nuc))
 nempep <- nempep[!duplicated(nempep$Cluster.ID),]

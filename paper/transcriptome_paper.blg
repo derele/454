@@ -1,46 +1,46 @@
 This is BibTeX, Version 0.99c (Web2C 7.5.6)
 The top-level auxiliary file: transcriptome_paper.aux
 The style file: bmc_article.bst
-Reallocated wiz_functions (elt_size=4) to 6000 items from 240518171576.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 472446405560.
 Database file #1: /home/ele/bibtex/master.bib
-You've used 87 entries,
+You've used 86 entries,
             3603 wiz_defined-function locations,
-            1267 strings with 29058 characters,
-and the built_in function-call counts, 242368 in all, are:
-= -- 22110
-> -- 1761
-< -- 643
-+ -- 1931
-- -- 558
-* -- 29134
-:= -- 40895
-add.period$ -- 175
-call.type$ -- 87
-change.case$ -- 573
+            1261 strings with 29614 characters,
+and the built_in function-call counts, 247615 in all, are:
+= -- 22510
+> -- 1907
+< -- 691
++ -- 2075
+- -- 607
+* -- 30036
+:= -- 41518
+add.period$ -- 172
+call.type$ -- 86
+change.case$ -- 619
 chr.to.int$ -- 0
-cite$ -- 87
-duplicate$ -- 15430
-empty$ -- 19225
-format.name$ -- 2296
-if$ -- 47333
+cite$ -- 86
+duplicate$ -- 16079
+empty$ -- 19553
+format.name$ -- 2492
+if$ -- 48266
 int.to.chr$ -- 0
-int.to.str$ -- 174
-missing$ -- 4876
-newline$ -- 1854
-num.names$ -- 175
-pop$ -- 3191
+int.to.str$ -- 172
+missing$ -- 4984
+newline$ -- 1892
+num.names$ -- 173
+pop$ -- 3201
 preamble$ -- 1
 purify$ -- 0
-quote$ -- 174
-skip$ -- 1481
+quote$ -- 172
+skip$ -- 1459
 stack$ -- 0
-substring$ -- 39214
-swap$ -- 3495
-text.length$ -- 167
+substring$ -- 39572
+swap$ -- 3579
+text.length$ -- 165
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 12
 warning$ -- 0
-while$ -- 1204
-width$ -- 89
-write$ -- 4023
+while$ -- 1246
+width$ -- 88
+write$ -- 4202

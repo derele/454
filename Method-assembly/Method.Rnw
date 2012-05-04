@@ -23,6 +23,7 @@ library(lattice)
 library(ggplot2)
 library(MASS)
 library(xtable)
+library(reshape)
 
 ## library(Design)
 library(limma)
@@ -570,10 +571,10 @@ for (w in names(BL)){
 CR <- melt(CR, id.vars=c("V1", "V2", "V3","V4","V5"))
 }
 
-Bm.all <- covred.common.blast("/home/ele/Data/454/assemblies/blasts/ALL.fasta_vs_Bm.blt", "/home/ele/db/blastdb/uniref100/uniref100_bm.fasta")
+Bm.all <- covred.common.blast("/home/ele/Data/454/assemblies/blasts/ALL.fasta_vs_Bm.blt", "/drobo/db/blastdb/uniref100/uniref100_bm.fasta")
 Bm.all <- cbind(Bm.all, db="B. malayi")
 
-Ce.all <- covred.common.blast("/home/ele/Data/454/assemblies/blasts/ALL.fasta_vs_Ce.blt", "/home/ele/db/blastdb/wormpep220/wormpep220.fasta")
+Ce.all <- covred.common.blast("/home/ele/Data/454/assemblies/blasts/ALL.fasta_vs_Ce.blt", "/drobo/db/blastdb/wormpep220/wormpep220.fasta")
 Ce.all <- cbind(Ce.all, db="C. elegans")
 
 ALL <- rbind(Ce.all, Bm.all)
@@ -630,9 +631,6 @@ text.prot <- ggplot(suj.sum, aes(x=bases, y=prot_cov, label=assembly)) +
              theme_bw() +
              opts(strip.text.y = theme_text(face="italic", angle=90))
 
-
-## italic strip does not work somehow !!!
-
 text.prot80 <- ggplot(suj.sum, aes(x=bases, y=prot_cov80p, label=assembly)) +
                geom_text(hjust=0, vjust=1.1, angle = 328, size=2) +
                geom_point() +
@@ -641,7 +639,13 @@ text.prot80 <- ggplot(suj.sum, aes(x=bases, y=prot_cov80p, label=assembly)) +
                scale_x_continuous("bases in assembly") +
                theme_bw() +
                opts(strip.text.y = theme_text(face="italic", angle=90))
+
+bm.covred <- read.delim("/home/ele/Data/454/assemblies/blasts/Bm_vs_Ce_blastmask_sujai.out", header=FALSE, sep="\t")[,c(3:5)]
+names(bm.covred) <- c("covered", "uncovered", "CovRed")
+
+bm.ce.sum <- suj.summary(bm.covred)
 @
+
 
 To further compare assemblies (Mira or Newbler first-order assemblies
 including or excluding their singletons) and the second-order assembly
@@ -657,8 +661,6 @@ redundancy or artificially assembled data. If it increases without
 improving the reference-coverage the dataset is likely to contain more
 redundant or artificial information, a more parsimonious assembly
 should be preferred.
-
-
 
 The database-coverage for the two reference species can then be
 plotted against the size of the assembly-dataset to estimate the
@@ -767,6 +769,14 @@ assemblers (labeled MN above). Given the performance of the singletons
 second-order contigs (including those supported by only one assembler)
 plus the intersection of reported \texttt{Newbler}-singletons and
 \texttt{Mira} singletons.
+
+The proportion of proteins covered in \textit{C. elegans} by
+\textit{B. malayi} coding sequences was with
+\Sexpr{round(bm.ce.sum["prot_cov"],2)}\% simimlar to our estimate for
+the fullest (FU) assembly. The proporiton of bases
+(\Sexpr{round(bm.ce.sum["base_cov"],2)}\%) and of proteins coverd to at
+least 80\% of their length (\Sexpr{round(bm.ce.sum["prot_cov80p"],2)}\%)
+was however higher for the coding sequences from \textit{B. malayi}.
 
 \section{Measurments on second-order assembly}
 
@@ -907,8 +917,6 @@ contig.df$sum.new.split[is.na(contig.df$sum.new.split)] <- 0
 contig.df$max.new.split[is.na(contig.df$max.new.split)] <- 0
 contig.df$cluster.id[is.na(contig.df$cluster.id)] <- 0
 @ 
-
-
 
 \subsection{Contig coverage}
 

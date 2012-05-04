@@ -96,7 +96,7 @@ TS.TV <- lapply (3:9,  function(width) {
 
 
 T <- melt(TS.TV, id=c("transitions", "transversions", "ratioTS.TV"))
-T <- rename(T, c(L2="size", L1="width"))
+T <- reshape::rename(T, c(L2="size", L1="width"))
 T$width <- T$width+2
 T$size <- T$size+2
 
@@ -437,7 +437,7 @@ names(D)[1:2] <- c("size", "width")
 D$width <- D$width+2
 D$size <- D$size+2
 T <- merge(D, T)
-T <- rename(T, replace=c(value="dn.ds"))
+T <- reshape::rename(T, replace=c(value="dn.ds"))
 
 dn.ds.parameter.plot <- ggplot(T, aes(dn.ds,
                                       transversions+transitions,
