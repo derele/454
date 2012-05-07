@@ -76,7 +76,6 @@
 \def\includegraphic{}
 \def\includegraphics{}
 
-
 \setlength{\topmargin}{0.0cm}
 \setlength{\textheight}{21.5cm}
 \setlength{\oddsidemargin}{0cm} 
@@ -103,12 +102,9 @@
 %Publication style settings
 %\newenvironment{bmcformat}{\fussy\setboolean{publ}{true}}{\fussy}
 
-
-
 % Begin ...
 \begin{document}
 \begin{bmcformat}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                          %%
@@ -116,8 +112,8 @@
 %%                                          %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \title{The transcriptome of \textit{Anguillicola crassus}: new
-    approaches to an alien parasite}
+  \title{The transcriptome of the invasive eel swimbladder nematode
+    parasite \textit{Anguillicola crassus}}
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                          %%
@@ -480,10 +476,10 @@ errors associated with homopolymeric nucleotide sequences [58], and
 the effect of exclusion of SNPs in, or close to, homopolymer regions
 was explored. When SNPs were discarded using different size thresholds
 for homopolymer runs and proximity thresholds, the ti/tv and in dn/ds
-ratios changed (Additional Figure 1). Based on this SNPs associated with a
-homopolymer-run as long as or longer than 4 bases inside a window of
-11 bases (5 to bases to the right, 5 to the left) around the SNP were
-discarded. There was a relationship between TUG dn/ds and TUG
+ratios changed (Additional Figure 1). Based on this SNPs associated
+with a homopolymer-run as long as or longer than 4 bases inside a
+window of 11 bases (5 to bases to the right, 5 to the left) around the
+SNP were discarded. There was a relationship between TUG dn/ds and TUG
 coverage, associated with the presence of sites with low abundance
 minority alleles (less than 7\% of the allele calls), suggesting that
 some of these may be errors. Removing low abundance minority allele
@@ -728,9 +724,9 @@ while those with evidence from only one assembler and the singletons
 are the low credibility assembly (lowCA). These datasets were the most
 parsimonious (having the smallest size) for their quality (covering
 the largest amount of sequence in reference transcriptomes). In the
-highCA parsimony and low redundancy was prioritized, while in the
+highCA parsimony and low redundancy was prioritised, while in the
 complete assembly (highCA plus lowCA) completeness was
-prioritized. The 40,187 sequences (contig consensuses and singletons)
+prioritised. The 40,187 sequences (contig consensuses and singletons)
 in the complete assembly are referred to as tentatively unique genes
 (TUGs).
 
@@ -795,22 +791,6 @@ dataset.
 
 \subsection*{Annotation}
 
-
-We predicted proteins for
-
-TUGs using prot4EST  (Table 2) and
-obtained the full open reading frame in
- TUGs,
-while while for
-the 5’ end
-and for  the
-3' end was complete. In  TUGs the
-based on protein prediction corrected sequence with the imputed ORF
-was slightly changed compared to the raw sequence.
-
-
-
-
 For
 \Sexpr{cn(nrow(contig.df[contig.df$Ac&contig.df$method!="no-prediction",]))}
 screened TUGs a protein was predicted using prot4EST
@@ -853,11 +833,6 @@ occurrence of GO terms in the annotation of the partial transcriptome
 of \textit{A. crassus} was more similar to that for the proteome of
 \textit{B. malayi} (0.95; Spearman correlation coefficient) than to
 the that of the proteome of \textit{C. elegans} (0.9).
-
-We compared our \textit{A. crassus} GO annotations for high-level
-GO-slim terms to the annotations (obtained the same way) for the
-complete proteome of the filarial nematode \textit{B. malayi} and the
-complete proteome of \textit{C. elegans} (Figure 2).
 
 Despite the lack of completeness at the 5' end suggested by peptide
 prediction, just over 3\% of the TUGs were predicted to be secreted
@@ -1027,15 +1002,15 @@ row.names=FALSE)
 write.csv(VARqp[, c("contig", "base", "from", "to",
 "nfrom", "nto", "perc", "inORF",
 "inFRAME", "effect")], "../paper/additional_table2.csv",
-row.names=FALSE)
+row.names=TRUE)
 
 names(express.sex.sig) <- c("E2", "T1", "T2", "M", "LogFC")
 write.csv(express.sex.sig, "../paper/additional_table3a.csv",
-row.names=FALSE)
+row.names=TRUE)
 
 names(express.eel.sig) <- c("E2", "T1", "T2", "LogFC")
 write.csv(express.eel.sig, "../paper/additional_table3b.csv",
-row.names=FALSE)
+row.names=TRUE)
 
 ## for summary statistics a non-Ac reduced dataset
 c.df <- contig.df[contig.df$Ac, ] #$
@@ -1104,7 +1079,7 @@ with the all-parasitic nematodes of Clade III may be due to
 phylogenetic distance obscuring relationships, particularly if the
 genes underpinning parasitism are, as would be expected, rapidly
 evolving. TUGs predicted to be part of gene families that arose in the
-last common ancestor of Nematoda or to be novel to A. crassus
+last common ancestor of Nematoda or to be novel to \textit{A. crassus}
 contained the highest proportion of genes predicted to have secretory
 signal peptides. This confirms observations made in a
 \textit{Nippostrongylus brasiliensis} \cite{harcus_signal_2004}, where
@@ -1166,7 +1141,6 @@ adaptive immunity developed against \textit{A. crassus}
 \cite{knopf_migratory_2008, knopf_vaccination_2008}, which is often
 only elicited against subtypes of larvae \cite{molnar_caps}.
 
-
 A set of 199 high-credibility SNPs with high information content for
 population genetic studies was identified by genotyping individual
 nematodes. The low number of SNPs inferred reflects both the variance
@@ -1179,7 +1153,6 @@ heterozygosity in European populations of \textit{A. crassus}
 \cite{wielgoss_population_2008}. The polish female nematode was the
 most highly inbred, while the nematode from the wild
 \textit{An. japonica} in Taiwan was the most highly outbred.
-
 
 While the experimental design was not ideal for identification of
 differential expression between conditions (due to low replication) we
@@ -1201,7 +1174,7 @@ overexpressed in European nematodes compared to the Asian
 one. Acetyl-CoA acetyltransferases act in fatty-acid-oxidation in
 peroxisomes and mitochondria \cite{pmid4721607}. Together with a
 change in steroid metabolism and the enrichment of mitochondrially
-localized enzymes these suggest changes in the energy metabolism of
+localised enzymes these suggest changes in the energy metabolism of
 \textit{A. crassus} from different origins. Possible explanations
 could include a change to more or less aerobic processes in nematodes
 in Europe due to their bigger size and/or increased availability of
@@ -1324,29 +1297,44 @@ analytic and informatic support.
 
 \subsection*{Figure 1 - Annotation of the Anguilicolla crassus transcriptome}
  
-Number of annotated TUGs in the transcriptome of \textit{A. crssus}
-for all TUGs (a) and for highCA derived contigs (b).  Annotations
-obtained through annot8r \cite{schmid_annot8r:_2008} for Gene Ontology
-(GO) categoriesf, Enzyme Commission (EC) numbers and Kyoto
-Encyclopedia of Genes and Genomes (KEGG) terms. For highCA contigs
-additional domain-based annotations obtained with InterProScan
+
+Number of annotated sequences in the transcriptome of
+\textit{A. crssus} for all TUGs (a) and for highCA derived contigs
+(b). Annotations with Gene Ontology (GO), Enzyme Commission (EC) and
+Kyoto Encyclopedia of Genes and Genomes (KEGG) terms were inferred for
+predicted proteins using annot8r (version 1.1.1)
+\cite{schmid_annot8r:_2008}. For highCA contigs additional
+domain-based annotations obtained with InterProScan
 \cite{pmid11590104} are also enumerated.
 
 \subsection*{Figure 2 - Comparing high level GO-slim annotations}
 
-Comparing \textit{A. crassus} to the model-nematodes
-\textit{C. elegans} and \textit{B. malayi}, for GO categories
+Comparing high level GO-slim annotations obtained through annot8r
+(version 1.1.1) \cite{schmid_annot8r:_2008} for \textit{A. crassus} to
+those for the model-nematodes \textit{C. elegans} and
+\textit{B. malayi} infered using the same pipeline. For GO categories
 molecular function, cellular compartment and biological process the
-number of terms in high level GO-slim categories is given as obtained
-through Annot8r \cite{schmid_annot8r:_2008}.
+number of terms in high level GO-slim categories is given. In the two
+parasitic nematodes a higher degree of congruence in annotation
+spectrum is observed (0.95; Spearman correlation coefficient) than in
+comarison to the complete proteome of C. elegans (0.90).
 
 \subsection*{Figure 3 - Enrichment of Signal-positives for categories
   of evolutionary conservations}
 
-Proportions of SignalP-predictions for each category of evolutionary
-conservation. Generally - across bit-score thresholds - TUGS novel in
-nematodes and in \textit{A. crassus} have the highest proportion of
-signal-positives.
+Categories of evolutionary conservation recorded using the taxonomy of
+BLAST-matches at two different bitscore thresholds (50 or 80) are
+compared for the occurence of signal peptide cleavage sites and signal
+anchor signatures, predicted using SignalP V4.0 \cite{pmid21959131}.
+Contigs were categorised as conserved, novel in the kingdom Metazoa,
+the phylum Nematoda or nematode clade III \textit{sensu}
+\cite{blaxter_molecular_1998} (Spirurina). TUGs without any hit at a
+given threshold were categorised as novel in \textit{A. crassus} (Ac).
+
+The highest proportions of genes predicted to have secretory signal
+peptides are observed in TUGs predicted to be part of gene families
+that arose in the last common ancestor of Nematoda or to be novel to
+\textit{A. crassus}.
 
 
 \newpage
@@ -1362,26 +1350,28 @@ signal-positives.
 \subsection*{Table 1 - Sampling, trimming and pre-assembly screening,
   library statistics}
 
-For libraries two sequencing libraries from European eels (E1 and E2)
-one from L2-larvae (L2), one from male (M) and two from Eels in Taiwan
-(T1 and T2) the following statistics are given. life.st = lifecycle
-stage: f for female m for male. source.p = source population: R for
-Rhine, P for Poland, C for cultured, W for wild. raw.reads = raw
-number of sequencing reads obtained. lowqal = number of reads
-discarded due to low quality or length in Seqclean
-\cite{tgicl_pertea}. AcrRNA = number of reads hitting
-\textit{A. crassus}-rRNA (screened). eelmRNA = number of reads hitting
-eel transcriptome-sequences (screened). eelrRNA = number of reads
-hitting eel-rRNA genes (screened). Cercozoa = number of reads hitting
-cercozoan rRNA (screened). valid = number of reads valid after
-screening (assembled). valid.span = number of bases valid (assembled).
-mapping.unique = number of reads mapping uniquely to the
-assembly. mapping.Ac = number of reads mapping to the part of the
-assembly considered \textit{A. crassus} origin (see post-assembly
-screening). mapping.MN = number of reads mapping to the highCA-derived
-part of the assembly (and also \textit{A. crassus} origin). over.32 =
-number of reads mapping to contigs with overall coverage of more than
-32 reads (considered in gene-expression analysis).
+Summary statistics for the two sequencing libraries of female adults
+and L2-larvae (L2) of \textit{A. crssus} from \textit{An. anguilla} in
+Europe (E1 and E2) and one male and two female nematodes from
+\textit{An. japonica} in Taiwan (T1 and T2). The number of raw
+sequencing reads and of reads discarded due to low quality or length
+in Seqclean \cite{tgicl_pertea} is given. Additionally the number of
+reads screened because of similarity to \textit{A. crassus}-rRNA, eel-
+mRNA and eel- rRNA is given. In the library obtained from L2 larvae
+hits to Cercozoan rRNA were found and discarded these are addtionally
+enumerated adn the number of reads regarded valid afterthis screening
+is enumerated and their span (in bases) is given.
+
+Libraries and sequencing read from those are then caracterised
+according to their mappin to the final assembly: The number of reads
+mapping (using ssaha2\cite{pmid11591649}) at all or mapping uniquely
+to the assembly, the number of reads mapping to the part of the
+assembly considered to be of \textit{A. crassus} origin (see
+post-assembly screening) and the number of reads mapping to the
+highCA-derived part of the assembly (and also of \textit{A. crassus}
+origin) are given. Finally the number of reads mapping to contigs with
+overall read counts of more than 32, as considered in gene-expression
+analysis, is given.
 
 <<echo=FALSE, results=tex>>=
 ## print(xtable(TRIM, display=rep("d", times=7)), floating=FALSE)
@@ -1391,11 +1381,11 @@ trim_mark <- trim_mark[,c(1,7)]
 trim_mark <- merge(pre.screen.tab,
                    trim_mark, by="row.names")
 
-trim_mark$life.st <- c("adult f", "adult f", "L2 larvae",
-                       "adult m", "adult f", "adult f")
+trim_mark$life.st <- c("adult female", "adult female", "L2 larvae",
+                       "adult male", "adult female", "adult female")
 
-trim_mark$source.p <- c("Europe R", "Europe P", "Europe R",
-                       "Asia C", "Asia C", "Asia W")
+trim_mark$source.p <- c("Europe Rhine", "Europe Poland", "Europe Rhine",
+                       "Asia cultured", "Asia cutured", "Asia wild")
 
 trim_mark[7,] <- c("Eel", "", "", "", "", length(eel.clean), sum(nchar(eel.clean)),
                    length(eel.all), length(eel.all)-length(eel.clean), "liver", "Taiwan")
@@ -1436,7 +1426,7 @@ names(trim_mark) <- c("sequencing library",
                       "reads mapping to contigs with count >32")
 trim_mark.tab <- xtable(t(trim_mark))
 
-align(trim_mark.tab) <- "p{4.5cm}llllll"
+align(trim_mark.tab) <- "p{4.5cm}p{2cm}p{2cm}p{2cm}p{2cm}p{2cm}p{2cm}"
 
 print(trim_mark.tab, floating=FALSE, include.colnames=FALSE,
       hline.after=c(0,1, ncol(trim_mark)), sanitize.text.function = identity)
@@ -1449,22 +1439,23 @@ Summary statistics for contigs from different assembly-categories
 given in columns as highCA = high credibility assembly; lowCA = low
 credibility assembly, combined = complete assembly.
 
-Rows indicate summary statistics: numbers of total contigs,
-fish.contigs = number of contigs hitting eel-mRNA or Chordata in
-NCBI-nr or NCBI-nt (screened out), xeno.contigs = number of contigs
-with best hit (NCBI-nr and NCBI-nt) to non-eukaryote (screened out),
-remaining.contigs = number of contigs remaining after this screening,
-remaining.span = total length of remaining contigs, non.u.cov =
-non-unique mean base coverage of contigs, cov = unique mean base
-coverage of contigs, p4e.``X'' = number protein predictions derived in
-p4e, where ``X'' describes the method of prediction (see Methods),
-full.3p = number of contigs complete at 3', full.5p = number of
-contigs complete at 5', GO = number of contigs with GO-annotation,
-KEGG = number of contigs with KEGG-annotation, EC = number of contigs
-with EC-annotation, nem.blast = number of contigs with BLAST-hit to
-nematode in nr, any.blast = number of contigs with BLAST-hit to
-nematode or non-nematode (eukaryote non chordate) sequence in NCBI-nr.
+Rows indicate numbers of total contigs, number of contigs screened due
+to similarity to eel- mRNA, non- eukaryote or Chordata sequences in
+NCBI-nr or NCBI-nt and of contigs remaining after this screening,
+additionally the total length of remaining contigs is given.
 
+The mean per base coverage of these contigs (as obtained from mapping
+of reads to contigs using ssaha2 \cite{pmid11591649}) is given without
+(non-unique), and with discarding of reads mapping to multiple
+locations.
+
+The number protein predictions derived with prot4Est
+\cite{wasmuth_prot4est:_2004} using BLAST similarities, ESTscan or the
+longest ORF is enumerated. The number of contigs considered complete
+and complete at 3' end and at 5' end is given. The number of contigs
+annotated with GO-terms, KEGG-pathways, EC-numbers, with BLAST-hit to
+nematode in nr and with BLAST-hit to nematode or non-nematode
+(eukaryote non chordate) sequence in NCBI-nr is given.
 
 <<echo=FALSE, results=tex>>=
 T2 <- as.data.frame.array(tapply(contig.df$contig, contig.df$category%in%"MN", length))
@@ -1545,16 +1536,16 @@ print(T2.tab)
 
 \subsection*{Table 3 - Evolutionary conservation and novelty}
 
-Recording the taxonomy of all best BLAST-matches at two different
-bitscore thresholds (50 or 80) contigs were categorized as conserved,
-novel in the kingdom Metazoa, the phylum Nematoda or nematode clade
-III \textit{sensu} \cite{blaxter_molecular_1998} (Spirurina). TUGs
-without any hit at a given threshold were categorized as novel in
-\textit{A. crassus} (Ac).  
+Recording the taxonomy of all BLAST-matches at two different bitscore
+thresholds (50 or 80) contigs were categorised as conserved, novel in
+the kingdom Metazoa, the phylum Nematoda or nematode clade III
+\textit{sensu} \cite{blaxter_molecular_1998} (Spirurina). TUGs without
+any hit at a given threshold were categorised as novel in
+\textit{A. crassus} (Ac).
 
-The nuber of all TUGs and highCA contigs respectively by conservation-
-category. Conservation would be defined as cumulative sum of
-lower-level novelty ().
+The number of all TUGs and highCA contigs respectively by
+conservation- category. Numbers for conservation would be obtained as
+the cumulative sum of lower taxonomy- level novelty.
 
 <<echo=FALSE, results=tex>>=
 nov.tab <- rbind(summary.factor(contig.df[contig.df$Ac, "novel.50"]), 
@@ -1570,15 +1561,22 @@ print(xtable(nov.tab), floating=FALSE)
 \subsection*{Table 4 - Over-representation of GO-terms in positively
   selected}
 
+The annotation graph for the GO- ontolgy was traversed using the
+R-package topGO \cite{topGO} and over- representation was analysed at
+each node term comparing the abundance of positively selected (dn/ds >
+0.5 genes) to an universal gene set of all contigs with dn/ds
+values. Terms for which an offspring term was already in the table and
+no additional counts supported overrepresentation were removed.
+
 Significantly (p<0.05) over-represented GO-terms in contigs putatively
-under positive selection. Horizontal lines separate categories of the
-GO-ontology. First category is molecular function, second biological
-process, last cellular compartment. P-values (p.value) for
-over-representation are given along with the number of positively
-selected contigs (Significant; dn/ds $>$ 0.5) and the number of
-contigs with this annotation for which a dn/ds was obtained
-(Annotated) and the description of the GO-term (Term). For a graph of
-induced GO-terms see also Additional Figures 4.
+under positive selection are tabulated. Horizontal lines separate
+categories of the GO-ontology. First category is molecular function,
+second biological process, last cellular compartment. P-values
+(p.value) for over-representation are given along with the number of
+positively selected contigs (Significant; dn/ds $>$ 0.5) and the
+number of universal contigs (Annotated) and the description of the
+GO-term (Term). For a graph representation of induced GO-terms see
+also Additional Figures 4.
 
 <<echo=FALSE, results=tex>>=
 
@@ -1598,28 +1596,41 @@ print(GO.over.dn.ds.tab, tabular.environment="longtable",
 \subsection*{Table 5 - Measurements of multi-locus heterozygosity for
   single worms}
 
-Genotyping for a set of \Sexpr{cn(nrow(Rh))} SNPs, different
-measurements were obtained to asses genome-wide
-heterozygosity. Measurements for relative heterozygosity (rel.het;
-number of homozygous sites/ number of heterozygous sites), internal
-relatedness (int.rel; \cite{pmid11571049}), homozygosity by loci
-(ho.loci; \cite{pmid17107491}) and standardized heterozygosity
-(std.het; \cite{coltman81j}) are given with the number of SNPs
-informative for this library (inform.snp). All these measurements are
-pointing to sample T1 (Taiwanese worm from aquaculture) as the most
-heterozygous and sample E2 (the European worm from Poland) as the
-least heterozygous individual. Heterozygote-heterozygote correlation
-\cite{pmid21565077} confirmed the genome-wide significance of these
-markers.
+Genotyping using Samtools \cite{journals/bioinformatics/LiHWFRHMAD09}
+and Vcftools \cite{pmid21653522} resulted in the identification of
+\Sexpr{cn(nrow(Rh))} SNPs infromative at the individual
+level. Different measurements were obtained to asses genome-wide
+heterozygosity using the R- package Rhh \cite{pmid21565077}:
+measurements for relative heterozygosity (number of homozygous sites/
+number of heterozygous sites), internal relatedness
+\cite{pmid11571049}, homozygosity by loci \cite{pmid17107491} and
+standardised heterozygosity \cite{coltman81j} are given with the
+number of SNPs informative for the respective library. All these
+measurements are pointing to sample T1 (Taiwanese worm from
+aquaculture) as the most heterozygous and sample E2 (the European worm
+from Poland) as the least heterozygous
+individual. Heterozygote-heterozygote correlation \cite{pmid21565077}
+confirmed the genome-wide significance of these markers.
 
 <<echo=FALSE, results=tex>>=
+
+names(het.table) <- c("relative heterozygosity", "internal relatedness",
+                      "homozygosity by loci", "standardised heterozygosity",
+                      "informative SNPs")
+
 print(xtable(het.table))
 @ 
 
-
-
-\subsection*{Table 6 - Over-representation of GO-terms differentially
+\subsection*{Table 6 - Over- representation of GO-terms differentially
   expressed}
+
+The annotation graph for the GO- ontolgy was traversed using the
+R-package topGO \cite{topGO} and over- representation was analysed at
+each node term comparing the abundance of differentially expressed
+genes to an universal gene set of all contigs tested for
+overexpression. Terms for which an offspring term was already in the
+table and no additional counts supported overrepresentation were
+removed.
 
 Significantly (p<0.05) over-represented GO-terms in contigs
 differentially expressed between male and female worms (a) or between
@@ -1627,10 +1638,10 @@ European and Asian origin (b). Horizontal lines separate categories of
 the GO-ontology. First category is molecular function, second
 biological process, last cellular compartment. P-values (p.value) for
 over-representation are given along with the number of differentially
-expressed contigs (Significant) and the number of contigs with this
-annotation analysed (Annotated) and the description of the GO-term
+expressed contigs (Significant) and the number of universal contigs
+with this annotation (Annotated) and the description of the GO-term
 (Term). For a graph of
-incuced GO-terms see also Addional Figures 1.\\
+incuced GO-terms see also Addional Figures 4.\\
 
 a)\\
 
@@ -1679,18 +1690,22 @@ b)\\
 
 \subsubsection*{Additional text}
 The additional text describes the assembly process and evaluation of
-assembly quality in further detail. This text also contains figures
-and tables.
+assembly quality in further detail. This text contains 6 figures and 4
+tables.
 
 \subsubsection*{Additional tables}
 
-Additional table 1: 
-All data computed on the contig level, including sequences (raw,
-coding, imputed, protein) additional table 1 b lists only the metadata
-not including sequences.
+Additional table 1 (a + b): All data computed on the contig level, (a)
+including sequences (raw, coding, imputed, protein), or (b) listing
+only the metadata.
 
-Additional table 2:
-High quality SNPs.
+Additional table 2: High quality SNPs. The contig, the base relative
+to the start of the contig (base), the reference base-call (from), the
+alternative base-call (to), the number of reads supporting the
+reference (nfrom) and the alternative (nto), the percentage of the
+alternate allele (perc), whether the SNP is in the region of an ORF
+(inORF), the position in the Frame (inFrame) and the effect of the SNP
+(effect; synonymous, non-synonymous or nonsense) are given.
 
 Additional tables 3: 
 Contigs differentially expressed between male and
@@ -1699,10 +1714,9 @@ and the natural logarithm of fold changes are given.
 
 \subsubsection*{Additional figures}
 
-Additional Figure 1: 
-When SNPs in or adjacent to homopolymeric
-regions are removed changes in ti/tv and dn/ds are observed: as the
-overall number of SNPs is reduced both ratios change to more plausible
+Additional Figure 1: When SNPs in or adjacent to homopolymeric regions
+are removed changes in ti/tv and dn/ds are observed: as the overall
+number of SNPs is reduced both ratios change to more plausible
 values. Note the reversed axis for dn/ds to plot these lower values to
 the right. For homopolymer length $>$ 3 a linear trend for the total
 number of SNPs and the two measurements is observed. A width of 11 for
@@ -1710,11 +1724,10 @@ the screening window provides most plausible values (suggesting
 specificity) while still incorporating a high number of SNPs
 (sensitivity).
 
-Additional Figure 2: 
-Overabundance of SNPs at codon-position two (a) and of non-synonymous
-SNPs (c) for low percentages of the minority allele. (b) Significant
-positive correlation of coverage and dn/ds before removing these SNPs
-at a threshold of 7\% ($p<$ 0.001, $R^2=$
+Additional Figure 2: Overabundance of SNPs at codon-position two (a)
+and of non-synonymous SNPs (c) for low percentages of the minority
+allele. (b) Significant positive correlation of coverage and dn/ds
+before removing these SNPs at a threshold of 7\% ($p<$ 0.001, $R^2=$
 \Sexpr{round(cov.lm.raw$adj.r.squared,3)#$}) and (d) absence of such a
 correlation afterwards ($R^2<$0.001,
 $p=$\Sexpr{round(cov.lm$coefficients[2,"Pr(>|t|)"],3)#$}).
