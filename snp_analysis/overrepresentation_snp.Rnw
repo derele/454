@@ -145,7 +145,8 @@ setwd("/home/ele/thesis/454/paper/")
 novel.dn.ds.50 <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.50) & !is.na(dn.ds)),
                          aes(novel.50, dn.ds)) +
   geom_boxplot() +
-  scale_y_log10("dn/ds") +
+## scale_y_log10("dn/ds") +
+  scale_y_continuous("dn/ds") +
   scale_x_discrete("") +
   opts(title="evolutionary conservation at bitsore threshold of 50") +
   theme_bw()
@@ -153,14 +154,15 @@ novel.dn.ds.50 <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.50) & !is
 novel.dn.ds.80 <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.80) & !is.na(dn.ds)),
                                 aes(novel.80, dn.ds)) +
   geom_boxplot() +
-  scale_y_log10("dn/ds") +
+## scale_y_log10("dn/ds") +
+  scale_y_continuous("dn/ds") +
   scale_x_discrete("") +
   opts(title="evolutionary conservation at bitsore threshold of 80") +
   theme_bw()
 
 # Set up the page
 
-pdf("../figures/Figure_5.pdf", width=14, height=6)
+pdf("../figures/Additional_Figure_3.pdf", width=14, height=6)
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(1, 2)))
 vplayout <- function(x, y)
@@ -254,7 +256,7 @@ sigP.80.p.MN <- ggplot(subset(contig.df, contig.df$AcMN & !is.na(novel.80) & !is
   opts(title="proportion of highCA contigs in SignalP category\nby evolutionary conservation categories at bitsore threshold of 80", plot.background = theme_blank()) + 
   theme_bw()
 
-pdf("../figures/Figure_6.pdf", width=15, height=15)
+pdf("../figures/Figure_3.pdf", width=15, height=15)
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(2, 2)))
 

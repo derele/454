@@ -130,7 +130,8 @@ Wijov\'{a} M, Moravec F, Hor\'{a}k A, Lukes J: \textbf{Evolutionary
 \bibitem{dl_py}
 Laetsch DR, Heitlinger EG, Taraschewski H, Nadler SA, Blaxter M: \textbf{The
   phylogenetics of Anguillicolidae (Nematoda: Anguillicolidea), swimbladder
-  parasites of eels}. \emph{BMC Evolutionary Biology} {under review}.
+  parasites of eels}. \emph{BMC Evolutionary Biology} 2012, \textbf{12}(60),
+  \urlprefix\url{[http://www.biomedcentral.com/1471-2148/12/60]}.
 
 \bibitem{wielgoss_population_2008}
 Wielgoss S, Taraschewski H, Meyer A, Wirth T: \textbf{Population structure of
@@ -156,6 +157,18 @@ Margulies M, Egholm M, Altman WE, Attiya S, Bader JS, Bemben LA, Berka J,
 Kumar S, Blaxter ML: \textbf{{{C}omparing de novo assemblers for 454
   transcriptome data}}. \emph{BMC Genomics} 2010, \textbf{11}:571,
   \urlprefix\url{[http://dx.doi.org/10.1186/1471-2164-11-571]}.
+
+\bibitem{pmid22140104}
+Sayers EW, Barrett T, Benson DA, Bolton E, Bryant SH, Canese K, Chetvernin V,
+  Church DM, Dicuccio M, Federhen S, Feolo M, Fingerman IM, Geer LY, Helmberg
+  W, Kapustin Y, Krasnov S, Landsman D, Lipman DJ, Lu Z, Madden TL, Madej T,
+  Maglott DR, Marchler-Bauer A, Miller V, Karsch-Mizrachi I, Ostell J,
+  Panchenko A, Phan L, Pruitt KD, Schuler GD, Sequeira E, Sherry ST, Shumway M,
+  Sirotkin K, Slotta D, Souvorov A, Starchenko G, Tatusova TA, Wagner L, Wang
+  Y, Wilbur WJ, Yaschenko E, Ye J: \textbf{{{D}atabase resources of the
+  {N}ational {C}enter for {B}iotechnology {I}nformation}}. \emph{Nucleic Acids
+  Res.} 2012, \textbf{40}:13--25,
+  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/22140104]}.
 
 \bibitem{PHRAP}
 Green P: \emph{PHRAP documentation.} 1994,
@@ -374,18 +387,6 @@ Leisch F: \textbf{Sweave: Dynamic Generation of Statistical Reports Using
 Falcon S: \textbf{Caching code chunks in dynamic documents}.
   \emph{Computational Statistics} 2009, \textbf{24}(2):255--261,
   \urlprefix\url{[http://www.springerlink.com/content/55411257n1473414]}.
-
-\bibitem{pmid22140104}
-Sayers EW, Barrett T, Benson DA, Bolton E, Bryant SH, Canese K, Chetvernin V,
-  Church DM, Dicuccio M, Federhen S, Feolo M, Fingerman IM, Geer LY, Helmberg
-  W, Kapustin Y, Krasnov S, Landsman D, Lipman DJ, Lu Z, Madden TL, Madej T,
-  Maglott DR, Marchler-Bauer A, Miller V, Karsch-Mizrachi I, Ostell J,
-  Panchenko A, Phan L, Pruitt KD, Schuler GD, Sequeira E, Sherry ST, Shumway M,
-  Sirotkin K, Slotta D, Souvorov A, Starchenko G, Tatusova TA, Wagner L, Wang
-  Y, Wilbur WJ, Yaschenko E, Ye J: \textbf{{{D}atabase resources of the
-  {N}ational {C}enter for {B}iotechnology {I}nformation}}. \emph{Nucleic Acids
-  Res.} 2012, \textbf{40}:13--25,
-  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/22140104]}.
 
 \bibitem{pmid12529635}
 Kamath RS, Fraser AG, Dong Y, Poulin G, Durbin R, Gotta M, Kanapin A, Le~Bot N,
@@ -919,7 +920,10 @@ d=1279744</url>
     <au><snm>Blaxter</snm><fnm>M.</fnm></au>
   </aug>
   <source>BMC Evolutionary Biology</source>
-  <pubdate>{under review}</pubdate>
+  <pubdate>2012</pubdate>
+  <volume>12</volume>
+  <issue>60</issue>
+  <url>http://www.biomedcentral.com/1471-2148/12/60</url>
 </bibl>
 
 <bibl id="B21">
@@ -1025,6 +1029,62 @@ d=1279744</url>
 </bibl>
 
 <bibl id="B24">
+  <title><p>{{D}atabase resources of the {N}ational {C}enter for
+  {B}iotechnology {I}nformation}</p></title>
+  <aug>
+    <au><snm>Sayers</snm><fnm>E. W.</fnm></au>
+    <au><snm>Barrett</snm><fnm>T.</fnm></au>
+    <au><snm>Benson</snm><fnm>D. A.</fnm></au>
+    <au><snm>Bolton</snm><fnm>E.</fnm></au>
+    <au><snm>Bryant</snm><fnm>S. H.</fnm></au>
+    <au><snm>Canese</snm><fnm>K.</fnm></au>
+    <au><snm>Chetvernin</snm><fnm>V.</fnm></au>
+    <au><snm>Church</snm><fnm>D. M.</fnm></au>
+    <au><snm>Dicuccio</snm><fnm>M.</fnm></au>
+    <au><snm>Federhen</snm><fnm>S.</fnm></au>
+    <au><snm>Feolo</snm><fnm>M.</fnm></au>
+    <au><snm>Fingerman</snm><fnm>I. M.</fnm></au>
+    <au><snm>Geer</snm><fnm>L. Y.</fnm></au>
+    <au><snm>Helmberg</snm><fnm>W.</fnm></au>
+    <au><snm>Kapustin</snm><fnm>Y.</fnm></au>
+    <au><snm>Krasnov</snm><fnm>S.</fnm></au>
+    <au><snm>Landsman</snm><fnm>D.</fnm></au>
+    <au><snm>Lipman</snm><fnm>D. J.</fnm></au>
+    <au><snm>Lu</snm><fnm>Z.</fnm></au>
+    <au><snm>Madden</snm><fnm>T. L.</fnm></au>
+    <au><snm>Madej</snm><fnm>T.</fnm></au>
+    <au><snm>Maglott</snm><fnm>D. R.</fnm></au>
+    <au><snm>Marchler Bauer</snm><fnm>A.</fnm></au>
+    <au><snm>Miller</snm><fnm>V.</fnm></au>
+    <au><snm>Karsch Mizrachi</snm><fnm>I.</fnm></au>
+    <au><snm>Ostell</snm><fnm>J.</fnm></au>
+    <au><snm>Panchenko</snm><fnm>A.</fnm></au>
+    <au><snm>Phan</snm><fnm>L.</fnm></au>
+    <au><snm>Pruitt</snm><fnm>K. D.</fnm></au>
+    <au><snm>Schuler</snm><fnm>G. D.</fnm></au>
+    <au><snm>Sequeira</snm><fnm>E.</fnm></au>
+    <au><snm>Sherry</snm><fnm>S. T.</fnm></au>
+    <au><snm>Shumway</snm><fnm>M.</fnm></au>
+    <au><snm>Sirotkin</snm><fnm>K.</fnm></au>
+    <au><snm>Slotta</snm><fnm>D.</fnm></au>
+    <au><snm>Souvorov</snm><fnm>A.</fnm></au>
+    <au><snm>Starchenko</snm><fnm>G.</fnm></au>
+    <au><snm>Tatusova</snm><fnm>T. A.</fnm></au>
+    <au><snm>Wagner</snm><fnm>L.</fnm></au>
+    <au><snm>Wang</snm><fnm>Y.</fnm></au>
+    <au><snm>Wilbur</snm><fnm>W. J.</fnm></au>
+    <au><snm>Yaschenko</snm><fnm>E.</fnm></au>
+    <au><snm>Ye</snm><fnm>J.</fnm></au>
+  </aug>
+  <source>Nucleic Acids Res.</source>
+  <pubdate>2012</pubdate>
+  <volume>40</volume>
+  <fpage>13</fpage>
+  <lpage>-25</lpage>
+  <url>http://www.ncbi.nlm.nih.gov/pubmed/22140104</url>
+</bibl>
+
+<bibl id="B25">
   <title><p>PHRAP documentation.</p></title>
   <aug>
     <au><snm>Green</snm><fnm>P.</fnm></au>
@@ -1033,7 +1093,7 @@ d=1279744</url>
   <url>http://www.phrap.org</url>
 </bibl>
 
-<bibl id="B25">
+<bibl id="B26">
   <title><p>{{T}{I}{G}{R} {G}ene {I}ndices clustering tools ({T}{G}{I}{C}{L}):
   a software system for fast clustering of large {E}{S}{T}
   datasets}</p></title>
@@ -1059,7 +1119,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/12651724</url>
 </bibl>
 
-<bibl id="B26">
+<bibl id="B27">
   <title><p>{{S}equencing, de novo annotation and analysis of the first
   {A}nguilla anguilla transcriptome: {E}eel{B}ase opens new perspectives for
   the study of the critically endangered {E}uropean eel}</p></title>
@@ -1080,7 +1140,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3012609</url>
 </bibl>
 
-<bibl id="B27">
+<bibl id="B28">
   <title><p>{{U}sing the mira{E}{S}{T} assembler for reliable and automated
   m{R}{N}{A} transcript assembly and {S}{N}{P} detection in sequenced
   {E}{S}{T}s}</p></title>
@@ -1101,7 +1161,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pmc/articles/PMC419793</url>
 </bibl>
 
-<bibl id="B28">
+<bibl id="B29">
   <title><p>{{C}{A}{P}3: {A} {D}{N}{A} sequence assembly program}</p></title>
   <aug>
     <au><snm>Huang</snm><fnm>X.</fnm></au>
@@ -1115,7 +1175,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pmc/articles/PMC310812</url>
 </bibl>
 
-<bibl id="B29">
+<bibl id="B30">
   <title><p>{N}{E}{M}{B}{A}{S}{E}: a resource for parasitic nematode
   {ESTs}</p></title>
   <aug>
@@ -1134,7 +1194,7 @@ d=1279744</url>
   <url>http://nar.oxfordjournals.org/cgi/content/abstract/32/suppl_1/D427</url>
 </bibl>
 
-<bibl id="B30">
+<bibl id="B31">
   <title><p>{{N}{E}{M}{B}{A}{S}{E}4: {T}he nematode transcriptome
   resource}</p></title>
   <aug>
@@ -1150,7 +1210,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/21550347</url>
 </bibl>
 
-<bibl id="B31">
+<bibl id="B32">
   <title><p>{prot4EST:} Translating Expressed Sequence Tags from neglected
   genomes</p></title>
   <aug>
@@ -1165,7 +1225,7 @@ d=1279744</url>
   <url>http://www.biomedcentral.com/1471-2105/5/187</url>
 </bibl>
 
-<bibl id="B32">
+<bibl id="B33">
   <title><p>{{T}he {U}niversal {P}rotein {R}esource ({U}ni{P}rot)
   2009}</p></title>
   <aug>
@@ -1315,7 +1375,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/18836194</url>
 </bibl>
 
-<bibl id="B33">
+<bibl id="B34">
   <title><p>{ESTScan:} a program for detecting, evaluating, and reconstructing
   potential coding regions in {EST} sequences.</p></title>
   <aug>
@@ -1330,7 +1390,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/10786296</url>
 </bibl>
 
-<bibl id="B34">
+<bibl id="B35">
   <title><p>annot8r: {GO,} {EC} and {KEGG} annotation of {EST}
   datasets</p></title>
   <aug>
@@ -1344,7 +1404,7 @@ d=1279744</url>
   <url>http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2324097</url>
 </bibl>
 
-<bibl id="B35">
+<bibl id="B36">
   <title><p>{{S}ignal{P} 4.0: discriminating signal peptides from transmembrane
   regions}</p></title>
   <aug>
@@ -1361,7 +1421,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/21959131</url>
 </bibl>
 
-<bibl id="B36">
+<bibl id="B37">
   <title><p>{{I}nter{P}ro{S}can--an integration platform for the
   signature-recognition methods in {I}nter{P}ro}</p></title>
   <aug>
@@ -1376,7 +1436,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/11590104</url>
 </bibl>
 
-<bibl id="B37">
+<bibl id="B38">
   <title><p>{{B}io{M}art: driving a paradigm change in biological data
   management}</p></title>
   <aug>
@@ -1389,7 +1449,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/22083790</url>
 </bibl>
 
-<bibl id="B38">
+<bibl id="B39">
   <title><p>{{M}apping identifiers for the integration of genomic datasets with
   the {R}/{B}ioconductor package bioma{R}t}</p></title>
   <aug>
@@ -1406,7 +1466,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/19617889</url>
 </bibl>
 
-<bibl id="B39">
+<bibl id="B40">
   <title><p>{{S}{S}{A}{H}{A}: a fast search method for large {D}{N}{A}
   databases}</p></title>
   <aug>
@@ -1422,7 +1482,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pmc/articles/PMC311141</url>
 </bibl>
 
-<bibl id="B40">
+<bibl id="B41">
   <title><p>The Sequence Alignment/Map format and SAMtools.</p></title>
   <aug>
     <au><snm>Li</snm><fnm>H.</fnm></au>
@@ -1444,7 +1504,7 @@ d=1279744</url>
   <url>http://dx.doi.org/10.1093/bioinformatics/btp352</url>
 </bibl>
 
-<bibl id="B41">
+<bibl id="B42">
   <title><p>{{V}ar{S}can: variant detection in massively parallel sequencing of
   individual and pooled samples}</p></title>
   <aug>
@@ -1466,7 +1526,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/19542151</url>
 </bibl>
 
-<bibl id="B42">
+<bibl id="B43">
   <title><p>{{U}sing {G}{O}stats to test gene lists for {G}{O} term
   association}</p></title>
   <aug>
@@ -1481,7 +1541,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/17098774</url>
 </bibl>
 
-<bibl id="B43">
+<bibl id="B44">
   <title><p>{{T}he variant call format and {V}{C}{F}tools}</p></title>
   <aug>
     <au><cnm>{Danecek, P. and Auton,†A. and Abecasis, G. and Albers CA. and
@@ -1497,7 +1557,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/21653522</url>
 </bibl>
 
-<bibl id="B44">
+<bibl id="B45">
   <title><p>{{R}hh: an {R} extension for estimating multilocus heterozygosity
   and heterozygosity-heterozygosity correlation}</p></title>
   <aug>
@@ -1513,7 +1573,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/21565077</url>
 </bibl>
 
-<bibl id="B45">
+<bibl id="B46">
   <title><p>{{T}he influence of parental relatedness on reproductive
   success}</p></title>
   <aug>
@@ -1533,7 +1593,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/11571049</url>
 </bibl>
 
-<bibl id="B46">
+<bibl id="B47">
   <title><p>{{W}hat should we weigh to estimate heterozygosity, alleles or
   loci?}</p></title>
   <aug>
@@ -1549,7 +1609,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/17107491</url>
 </bibl>
 
-<bibl id="B47">
+<bibl id="B48">
   <title><p>Parasite-mediated selection against inbred Soay sheep in a
   free-living, island population</p></title>
   <aug>
@@ -1566,7 +1626,7 @@ d=1279744</url>
   <url>http://www.jstor.org/stable/2640828</url>
 </bibl>
 
-<bibl id="B48">
+<bibl id="B49">
   <title><p>{R}samtools: Import aligned BAM file format sequences into R /
   Bioconductor</p></title>
   <aug>
@@ -1577,7 +1637,7 @@ d=1279744</url>
   <note>R package version 1.4.3</note>
 </bibl>
 
-<bibl id="B49">
+<bibl id="B50">
   <title><p>{{T}he significance of digital gene expression
   profiles}</p></title>
   <aug>
@@ -1592,7 +1652,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/9331369</url>
 </bibl>
 
-<bibl id="B50">
+<bibl id="B51">
   <title><p>{{I}{D}{E}{G}6: a web tool for detection of differentially
   expressed genes in multiple tag sampling experiments}</p></title>
   <aug>
@@ -1609,7 +1669,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/12429865</url>
 </bibl>
 
-<bibl id="B51">
+<bibl id="B52">
   <title><p>AnnotationDbi: Annotation Database Interface</p></title>
   <aug>
     <au><snm>Pages</snm><fnm>H</fnm></au>
@@ -1620,7 +1680,7 @@ d=1279744</url>
   <note>R package version 1.16.10</note>
 </bibl>
 
-<bibl id="B52">
+<bibl id="B53">
   <title><p>topGO: topGO: Enrichment analysis for Gene Ontology</p></title>
   <aug>
     <au><snm>Alexa</snm><fnm>A</fnm></au>
@@ -1630,7 +1690,7 @@ d=1279744</url>
   <note>R package version 2.6.0</note>
 </bibl>
 
-<bibl id="B53">
+<bibl id="B54">
   <title><p>R: A language and environment for statistical computing</p></title>
   <aug>
     <au><cnm>{R Development Core Team}</cnm></au>
@@ -1640,7 +1700,7 @@ d=1279744</url>
   <url>http://www.R-project.org</url>
 </bibl>
 
-<bibl id="B54">
+<bibl id="B55">
   <title><p>ggplot2: elegant graphics for data analysis</p></title>
   <aug>
     <au><snm>Wickham</snm><fnm>H</fnm></au>
@@ -1650,7 +1710,7 @@ d=1279744</url>
   <url>http://had.co.nz/ggplot2/book</url>
 </bibl>
 
-<bibl id="B55">
+<bibl id="B56">
   <title><p>{{V}enn{D}iagram: a package for the generation of
   highly-customizable {V}enn and {E}uler diagrams in {R}}</p></title>
   <aug>
@@ -1664,7 +1724,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/21269502</url>
 </bibl>
 
-<bibl id="B56">
+<bibl id="B57">
   <title><p>Sweave: Dynamic Generation of Statistical Reports Using Literate
   Data Analysis</p></title>
   <aug>
@@ -1680,7 +1740,7 @@ d=1279744</url>
   <note>ISBN 3-7908-1517-9</note>
 </bibl>
 
-<bibl id="B57">
+<bibl id="B58">
   <title><p>Caching code chunks in dynamic documents</p></title>
   <aug>
     <au><snm>Falcon</snm><fnm>S</fnm></au>
@@ -1692,62 +1752,6 @@ d=1279744</url>
   <fpage>255</fpage>
   <lpage>261</lpage>
   <url>http://www.springerlink.com/content/55411257n1473414</url>
-</bibl>
-
-<bibl id="B58">
-  <title><p>{{D}atabase resources of the {N}ational {C}enter for
-  {B}iotechnology {I}nformation}</p></title>
-  <aug>
-    <au><snm>Sayers</snm><fnm>E. W.</fnm></au>
-    <au><snm>Barrett</snm><fnm>T.</fnm></au>
-    <au><snm>Benson</snm><fnm>D. A.</fnm></au>
-    <au><snm>Bolton</snm><fnm>E.</fnm></au>
-    <au><snm>Bryant</snm><fnm>S. H.</fnm></au>
-    <au><snm>Canese</snm><fnm>K.</fnm></au>
-    <au><snm>Chetvernin</snm><fnm>V.</fnm></au>
-    <au><snm>Church</snm><fnm>D. M.</fnm></au>
-    <au><snm>Dicuccio</snm><fnm>M.</fnm></au>
-    <au><snm>Federhen</snm><fnm>S.</fnm></au>
-    <au><snm>Feolo</snm><fnm>M.</fnm></au>
-    <au><snm>Fingerman</snm><fnm>I. M.</fnm></au>
-    <au><snm>Geer</snm><fnm>L. Y.</fnm></au>
-    <au><snm>Helmberg</snm><fnm>W.</fnm></au>
-    <au><snm>Kapustin</snm><fnm>Y.</fnm></au>
-    <au><snm>Krasnov</snm><fnm>S.</fnm></au>
-    <au><snm>Landsman</snm><fnm>D.</fnm></au>
-    <au><snm>Lipman</snm><fnm>D. J.</fnm></au>
-    <au><snm>Lu</snm><fnm>Z.</fnm></au>
-    <au><snm>Madden</snm><fnm>T. L.</fnm></au>
-    <au><snm>Madej</snm><fnm>T.</fnm></au>
-    <au><snm>Maglott</snm><fnm>D. R.</fnm></au>
-    <au><snm>Marchler Bauer</snm><fnm>A.</fnm></au>
-    <au><snm>Miller</snm><fnm>V.</fnm></au>
-    <au><snm>Karsch Mizrachi</snm><fnm>I.</fnm></au>
-    <au><snm>Ostell</snm><fnm>J.</fnm></au>
-    <au><snm>Panchenko</snm><fnm>A.</fnm></au>
-    <au><snm>Phan</snm><fnm>L.</fnm></au>
-    <au><snm>Pruitt</snm><fnm>K. D.</fnm></au>
-    <au><snm>Schuler</snm><fnm>G. D.</fnm></au>
-    <au><snm>Sequeira</snm><fnm>E.</fnm></au>
-    <au><snm>Sherry</snm><fnm>S. T.</fnm></au>
-    <au><snm>Shumway</snm><fnm>M.</fnm></au>
-    <au><snm>Sirotkin</snm><fnm>K.</fnm></au>
-    <au><snm>Slotta</snm><fnm>D.</fnm></au>
-    <au><snm>Souvorov</snm><fnm>A.</fnm></au>
-    <au><snm>Starchenko</snm><fnm>G.</fnm></au>
-    <au><snm>Tatusova</snm><fnm>T. A.</fnm></au>
-    <au><snm>Wagner</snm><fnm>L.</fnm></au>
-    <au><snm>Wang</snm><fnm>Y.</fnm></au>
-    <au><snm>Wilbur</snm><fnm>W. J.</fnm></au>
-    <au><snm>Yaschenko</snm><fnm>E.</fnm></au>
-    <au><snm>Ye</snm><fnm>J.</fnm></au>
-  </aug>
-  <source>Nucleic Acids Res.</source>
-  <pubdate>2012</pubdate>
-  <volume>40</volume>
-  <fpage>13</fpage>
-  <lpage>-25</lpage>
-  <url>http://www.ncbi.nlm.nih.gov/pubmed/22140104</url>
 </bibl>
 
 <bibl id="B59">

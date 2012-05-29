@@ -5,37 +5,37 @@ Reallocated wiz_functions (elt_size=4) to 6000 items from 472446405560.
 Database file #1: /home/ele/bibtex/master.bib
 You've used 86 entries,
             3603 wiz_defined-function locations,
-            1261 strings with 29614 characters,
-and the built_in function-call counts, 247615 in all, are:
-= -- 22510
+            1262 strings with 29646 characters,
+and the built_in function-call counts, 247593 in all, are:
+= -- 22503
 > -- 1907
 < -- 691
 + -- 2075
 - -- 607
-* -- 30036
-:= -- 41518
+* -- 30055
+:= -- 41516
 add.period$ -- 172
 call.type$ -- 86
 change.case$ -- 619
 chr.to.int$ -- 0
 cite$ -- 86
-duplicate$ -- 16079
-empty$ -- 19553
+duplicate$ -- 16076
+empty$ -- 19548
 format.name$ -- 2492
-if$ -- 48266
+if$ -- 48255
 int.to.chr$ -- 0
 int.to.str$ -- 172
-missing$ -- 4984
-newline$ -- 1892
+missing$ -- 4985
+newline$ -- 1895
 num.names$ -- 173
-pop$ -- 3201
+pop$ -- 3193
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 172
-skip$ -- 1459
+skip$ -- 1455
 stack$ -- 0
-substring$ -- 39572
-swap$ -- 3579
+substring$ -- 39552
+swap$ -- 3589
 text.length$ -- 165
 text.prefix$ -- 0
 top$ -- 0
@@ -43,4 +43,4 @@ type$ -- 12
 warning$ -- 0
 while$ -- 1246
 width$ -- 88
-write$ -- 4202
+write$ -- 4207
