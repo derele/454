@@ -13,7 +13,7 @@ read.var <- function (path) {
   VAR$nfrom <- as.numeric(as.character(VAR$nfrom))
   VAR <- subset(VAR, VAR$nfrom>1)
   VAR <- VAR[1:12]
-### remove snps looking like multiple allele
+### remove SNPs looking like multiple allele
   combined <- paste(VAR$contig, VAR$base)
   VAR <- VAR[! combined %in% combined[duplicated(combined)],]
   return(VAR)
@@ -42,7 +42,7 @@ VAR[, "mstrand"] <- as.logical(VAR[, "mstrand"])
 
 VAR$inORF <- as.factor(VAR$base>VAR$starts & VAR$base<VAR$end)
 
-## Exclude all snps in contigs without prediction: 
+## Exclude all SNPs in contigs without prediction: 
 VAR <- VAR[!is.na(VAR$inORF),]
 
 frame <- sapply(1:nrow(VAR), function (i){
@@ -109,13 +109,13 @@ trans.vers.parameter.plot <- ggplot(T, aes(ratioTS.TV,
   geom_point(size=4 ) +
   geom_smooth(aes(group = size<4), se=FALSE, method="lm") +
   scale_x_continuous("ratio transistions/transversions (ti/tv)", legend=FALSE) +
-  scale_y_continuous("total numter of snps found", legend=FALSE,
+  scale_y_continuous("total number of SNPs found", legend=FALSE,
                      breaks=3:10*1000,  limits=c(2500, 11000)) +
-  scale_color_discrete("width of screening\nwindow around snp", legend=FALSE) +
+  scale_color_discrete("width of screening\nwindow around SNP", legend=FALSE) +
   scale_shape_discrete("homopolymer length\nthreshold for exclusion", legend=FALSE) +
   theme_bw()
 
-##  opts(title="Effect of parameters for homopolymer\nexclusion on the number of snps found and transversion/transition ratio")
+##  opts(title="Effect of parameters for homopolymer\nexclusion on the number of SNPs found and transversion/transition ratio")
 
 ## ## BASE ONTOLOGY
 ## #
@@ -445,15 +445,15 @@ dn.ds.parameter.plot <- ggplot(T, aes(dn.ds,
                                       color=as.factor(width*2+1))) +
   geom_point(size=4) +
   geom_smooth(aes(group = size<4), se=FALSE, method="lm") +
-  scale_x_reverse("ratio non-synonymous/synonymous snps (dn/ds)") +
+  scale_x_reverse("ratio non-synonymous/synonymous SNPs (dn/ds)") +
   scale_y_continuous("", breaks=3:10*1000, labels=rep("",8), limits=c(2500, 11000)) +
-  scale_color_discrete("width of screening\nwindow around snp") +
+  scale_color_discrete("width of screening\nwindow around SNP") +
   scale_shape_discrete("homopolymer length\nthreshold for exclusion") +
   theme_bw()
 
                                ## opts(title="Effect of parameters for
                                ## homopolymer\nexclusion on the number
-                               ## of snps found and\nratio of non-synonymous/synonymous snps")
+                               ## of SNPs found and\nratio of non-synonymous/synonymous SNPs")
 
 #### Decided on the SNP sequence quality-screening
 VARq <- (VAR[!find.homopolymers(VAR),])
@@ -468,7 +468,7 @@ position.perc.plot <- ggplot(VARq.plot[!is.na(VARq.plot$inFRAME),], aes(x = perc
   scale_x_continuous("percent of minority allele", 
                      breaks= seq(0, 52, by=2),
                      labels = c(seq(0, 48, by=2), ">50", "")) +
-  scale_y_continuous("number of snps found") +
+  scale_y_continuous("number of SNPs found") +
   scale_fill_discrete("position in frame") +
   theme_bw()
 
@@ -479,8 +479,8 @@ effect.perc.plot <- ggplot(VARq.plot[!is.na(VARq.plot$effect),], aes(x = perc, f
   scale_x_continuous("percent of minority allele",
                      breaks= seq(0, 52, by=2),
                      labels = c(seq(0, 48, by=2), ">50", "")) +
-  scale_y_continuous("number of snps found") +
-  scale_fill_discrete("effect of snp") +
+  scale_y_continuous("number of SNPs found") +
+  scale_fill_discrete("effect of SNP") +
   theme_bw()
 
 
@@ -490,24 +490,24 @@ VARq.plot$fromto[VARq.plot$fromto>100] <- 101
 position.cov.plot <- ggplot(VARq.plot[!is.na(VARq.plot$inFRAME),], aes(x = fromto, fill = inFRAME)) +
   stat_bin(binwidth=1, color="black", breaks=seq(0, 105, by=5),
            position=position_dodge(width=(2.8))) +
-  scale_x_continuous("coverage at snp positon",
+  scale_x_continuous("coverage at SNP positon",
                      breaks = seq(0, 105, by=5),
                      labels = c(seq(0, 95, by=5), ">100", "")) +
-  scale_y_continuous("number of snps found") +
+  scale_y_continuous("number of SNPs found") +
   scale_fill_discrete("position in frame") +
   theme_bw()
 
 effect.cov.plot <- ggplot(VARq.plot[!is.na(VARq.plot$effect),], aes(x = fromto, fill = effect)) +
   stat_bin(binwidth=1, color="black", breaks=seq(0, 105, by=5),
            position=position_dodge(width=(2.8))) +
-  scale_x_continuous("coverage at snp positon",
+  scale_x_continuous("coverage at SNP positon",
                      breaks = seq(0, 105, by=5),
                      labels = c(seq(0, 95, by=5), ">100", "")) +
-  scale_y_continuous("number of snps found") +
-  scale_fill_discrete("effect of snp") +
+  scale_y_continuous("number of SNPs found") +
+  scale_fill_discrete("effect of SNP") +
   theme_bw()
 
-#### discard snps with <7% minority allel
+#### DISCARD SNPs with <7% minority allel
 VARqp <- VARq[VARq$perc>7, ]
 
 ## Without screening the percentage
@@ -528,10 +528,12 @@ sy.per <- as.data.frame(rbind(table(VARq$contig, VARq$effect)))
 
 contig.df.wo <- merge(contig.df.wo, sy.per, by.x="contig", by.y="row.names", all.x=TRUE)
 
+labre <- c(100, 200, 400, 800, 1200)
+
 dn.ds.coverage.plot.wo <- ggplot(contig.df.wo, aes(x = dn.ds, y= imputed.coverage)) +
   geom_point() +
-  scale_y_log10("coverage of TUG") +
-  scale_x_continuous("ratio non-synonymous/synonymous snps (dn/ds)", breaks=1:8/2, limits=c(0,4)) + 
+  scale_y_log10("coverage of TUG", label=labre, breaks=labre) +
+  scale_x_continuous("ratio non-synonymous/synonymous SNPs (dn/ds)", breaks=1:8/2, limits=c(0,4)) + 
   stat_smooth(method="lm") +
   theme_bw()
 
@@ -539,10 +541,9 @@ cov.lm.raw <- summary(lm(dn.ds ~ imputed.coverage, data=contig.df.wo))
 
 dn.ds.total.snps.plot.wo <- ggplot(contig.df.wo, aes(y=transversions+transitions, x=dn.ds)) +
   geom_point() +
-  scale_y_continuous("total number of snps in contig") +
+  scale_y_continuous("total number of SNPs in contig") +
   stat_smooth(method="lm") +
   theme_bw()
-
 
 ## With screening the percentage
 
@@ -565,8 +566,8 @@ contig.df <- merge(contig.df, sy.per, by.x="contig", by.y="row.names", all.x=TRU
 
 dn.ds.coverage.plot <- ggplot(contig.df, aes(x = dn.ds, y= imputed.coverage)) +
   geom_point() +
-  scale_y_log10("coverage of TUG") +
-  scale_x_continuous("ratio non-synonymous/synonymous snps (dn/ds)", breaks=1:8/2, limits=c(0,4)) +
+  scale_y_log10("coverage of TUG", label=labre, breaks=labre) +
+  scale_x_continuous("ratio non-synonymous/synonymous SNPs (dn/ds)", breaks=1:8/2, limits=c(0,4)) +
   stat_smooth(method="lm") +
   theme_bw()
 
@@ -574,7 +575,7 @@ cov.lm <- summary(lm(dn.ds ~ imputed.coverage, data=contig.df))
 
 dn.ds.total.snps.plot <- ggplot(contig.df, aes(y=transversions+transitions, x=dn.ds)) +
   geom_point() +
-  scale_y_continuous("total number of snps in contig") +
+  scale_y_continuous("total number of SNPs in contig") +
   stat_smooth(method="lm") +
   theme_bw()
 
@@ -611,7 +612,7 @@ grid.text("b", x=unit(0.46,"npc"), y=unit(0.98,"npc"))
 
 dev.off() 
 
-pdf("../figures/Additional_Figure_2.pdf", width=25, height=15)
+pdf("../figures/Additional_Figure_2.pdf", width=15, height=8)
 # Set up the page
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(2, 2)))
@@ -631,10 +632,7 @@ grid.text("d", x=unit(0.51,"npc"), y=unit(0.52,"npc"))
 
 dev.off() 
 
-ggsave("../figures/dens_dn_ds.pdf", dens.dn.ds)
-
-@ 
-
+## ggsave("../figures/dens_dn_ds.pdf", dens.dn.ds)
 
 <<snps.again, echo=FALSE, cache=TRUE>>=
 

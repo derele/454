@@ -42,18 +42,18 @@ rRNA.lib.bases <- ggplot(R, aes(lib, ..count.., fill=dbhit, weight=length)) +
 @ 
 
 <<plot.rRNA, echo=FALSE, results=hide>>=
-pdf("../figures/rRNA_plots.pdf", width=10, height=10)
+## pdf("../figures/rRNA_plots.pdf", width=10, height=10)
 
-# Set up the page
-grid.newpage()
-pushViewport(viewport(layout = grid.layout(2, 1)))
-vplayout <- function(x, y)
-    viewport(layout.pos.row = x, layout.pos.col = y)
+## # Set up the page
+## grid.newpage()
+## pushViewport(viewport(layout = grid.layout(2, 1)))
+## vplayout <- function(x, y)
+##     viewport(layout.pos.row = x, layout.pos.col = y)
 
-# Make each plot, in the correct location
-print(rRNA.lib.reads, vp = vplayout(1, 1 ))
-print(rRNA.lib.bases, vp = vplayout(2, 1 ))
-dev.off() 
+## # Make each plot, in the correct location
+## print(rRNA.lib.reads, vp = vplayout(1, 1 ))
+## print(rRNA.lib.bases, vp = vplayout(2, 1 ))
+## dev.off() 
 
 @ 
 

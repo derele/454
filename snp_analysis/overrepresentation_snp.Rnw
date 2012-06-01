@@ -106,28 +106,23 @@ dn.ds.df$novel.80 <- factor(dn.ds.df$novel.80,
                                "Ac"))
 
 
-
-
-
-
-
 @   
 
 <<nn.dn.ds, echo=FALSE, results=hide>>=
 
-sigP.box <- ggplot(dn.ds.df, aes(dn.ds.df$sigP, dn.ds.df$dn.ds)) + 
-  geom_boxplot() + 
-  scale_y_log10("dn/ds") +
-  scale_x_discrete("", 
-                   breaks=levels(dn.ds.df$sigP),
-                   labels=c("No signal peptide",
-                     "Signal peptide")) +
-  opts(title = "SignalP  prediction",
-       axis.title.x = theme_text(size = 15), 
-       axis.text.x = theme_text(size = 15)) +
-  theme_bw()
+## sigP.box <- ggplot(dn.ds.df, aes(dn.ds.df$sigP, dn.ds.df$dn.ds)) + 
+##   geom_boxplot() + 
+##   scale_y_log10("dn/ds") +
+##   scale_x_discrete("", 
+##                    breaks=levels(dn.ds.df$sigP),
+##                    labels=c("No signal peptide",
+##                      "Signal peptide")) +
+##   opts(title = "SignalP  prediction",
+##        axis.title.x = theme_text(size = 15), 
+##        axis.text.x = theme_text(size = 15)) +
+##   theme_bw()
 
-ggsave("../figures/sigp_dn_ds.pdf", sigP.box)
+## ggsave("../figures/sigp_dn_ds.pdf", sigP.box)
 @ 
 
 <<novel.dn.ds, echo=FALSE, results=hide>>=
@@ -141,13 +136,18 @@ for(o in 1:3){
 }
 setwd("/home/ele/thesis/454/paper/")
 
-  
+library(grDevices)
+
+good.lab <- c("conserved", "Metazoa", "Nematoda", "Spirurina",
+              expression(italic("A. crassus")))
+
 novel.dn.ds.50 <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.50) & !is.na(dn.ds)),
                          aes(novel.50, dn.ds)) +
   geom_boxplot() +
 ## scale_y_log10("dn/ds") +
   scale_y_continuous("dn/ds") +
-  scale_x_discrete("") +
+  scale_x_discrete("", labels=good.lab,
+                   breaks=levels(contig.df$novel.50)) +
   opts(title="evolutionary conservation at bitsore threshold of 50") +
   theme_bw()
 
@@ -156,13 +156,14 @@ novel.dn.ds.80 <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.80) & !is
   geom_boxplot() +
 ## scale_y_log10("dn/ds") +
   scale_y_continuous("dn/ds") +
-  scale_x_discrete("") +
+  scale_x_discrete("", labels=good.lab,
+                   breaks=levels(contig.df$novel.80)) +
   opts(title="evolutionary conservation at bitsore threshold of 80") +
   theme_bw()
 
 # Set up the page
 
-pdf("../figures/Additional_Figure_3.pdf", width=14, height=6)
+pdf("../figures/Additional_Figure_3.pdf", width=10, height=5)
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(1, 2)))
 vplayout <- function(x, y)
@@ -226,44 +227,52 @@ sigP.con.test.80 <- fisher.test(contig.df[contig.df$Ac, "novel.80"]%in%
 
 sigP.50.p <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.50) & !is.na(sigP)),
               aes(novel.50, fill=sigP)) +
-       geom_bar(position="fill") + coord_polar(theta="y") +
+  geom_bar(position="fill", color="black") + coord_polar(theta="y") +
   scale_y_continuous("") +
-  scale_x_discrete("") +
-  opts(title="proportion of TUGs in SignalP category\nby evolutionary conservation categories at bitsore threshold of 50", plot.background = theme_blank()) +
-  theme_bw()
+  scale_x_discrete("", labels=good.lab,
+                   breaks=levels(contig.df$novel.50)) +
+  scale_fill_manual(values=c("white", "darkblue","red")) +
+  theme_bw() + 
+  opts(title="proportion of TUGs in SignalP category\nby evolutionary conservation categories at bitsore threshold of 50", plot.background = theme_blank(), legend.position=c(.9, .9)) 
 
 sigP.80.p <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.80) & !is.na(sigP)),
               aes(novel.80, fill=sigP)) +
-  geom_bar(position="fill") + coord_polar(theta="y") +
+  geom_bar(position="fill", color="black") + coord_polar(theta="y") +
   scale_y_continuous("") +
-  scale_x_discrete("") +
+  scale_fill_manual(values=c("white", "darkblue","red"), guide="none") +
+  scale_x_discrete("", labels=good.lab,
+                   breaks=levels(contig.df$novel.50)) +
   opts(title="proportion of TUGs in SignalP category\nby evolutionary conservation categories at bitsore threshold of 80", plot.background = theme_blank()) + 
   theme_bw()
 
 sigP.50.p.MN <- ggplot(subset(contig.df, contig.df$AcMN & !is.na(novel.50) & !is.na(sigP)),
               aes(novel.50, fill=sigP)) +
-       geom_bar(position="fill") + coord_polar(theta="y") +
+  geom_bar(position="fill", color="black") + coord_polar(theta="y") +
   scale_y_continuous("") +
-  scale_x_discrete("") +
+  scale_x_discrete("", labels=good.lab,
+                   breaks=levels(contig.df$novel.50)) +
+  scale_fill_manual(values=c("white", "darkblue","red"), guide="none") +
   opts(title="proportion of highCA contigs in SignalP category\nby evolutionary conservation categories at bitsore threshold of 50", plot.background = theme_blank()) +
   theme_bw()
 
 sigP.80.p.MN <- ggplot(subset(contig.df, contig.df$AcMN & !is.na(novel.80) & !is.na(sigP)),
               aes(novel.80, fill=sigP)) +
-  geom_bar(position="fill") + coord_polar(theta="y") +
+  geom_bar(position="fill", color="black") + coord_polar(theta="y") +
   scale_y_continuous("") +
-  scale_x_discrete("") +
+  scale_x_discrete("", labels=good.lab,
+                   breaks=levels(contig.df$novel.50)) +
+  scale_fill_manual(values=c("white", "darkblue","red"), guide="none") +
   opts(title="proportion of highCA contigs in SignalP category\nby evolutionary conservation categories at bitsore threshold of 80", plot.background = theme_blank()) + 
   theme_bw()
 
-pdf("../figures/Figure_3.pdf", width=15, height=15)
+pdf("../figures/Figure_3.pdf", width=13, height=13)
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(2, 2)))
 
-vp1 <- viewport(width = 0.54, height = 0.54, x = 0.25, y = 0.24)
-vp2 <- viewport(width = 0.54, height = 0.54, x = 0.25, y = 0.72)
-vp3 <- viewport(width = 0.54, height = 0.54, x = 0.74, y = 0.24)
-vp4 <- viewport(width = 0.54, height = 0.54, x = 0.74, y = 0.72) 
+vp1 <- viewport(width = 0.54, height = 0.5, x = 0.25, y = 0.24)
+vp2 <- viewport(width = 0.54, height = 0.5, x = 0.25, y = 0.72)
+vp3 <- viewport(width = 0.54, height = 0.5, x = 0.74, y = 0.24)
+vp4 <- viewport(width = 0.54, height = 0.5, x = 0.74, y = 0.72) 
 
 print(sigP.50.p, vp = vp1)
 print(sigP.80.p, vp = vp2)
@@ -272,8 +281,8 @@ print(sigP.80.p.MN, vp = vp4)
 
 grid.text("a", x=unit(0.01,"npc"), y=unit(0.99,"npc")) 
 grid.text("b", x=unit(0.51,"npc"), y=unit(0.99,"npc")) 
-grid.text("c", x=unit(0.01,"npc"), y=unit(0.52,"npc")) 
-grid.text("d", x=unit(0.51,"npc"), y=unit(0.52,"npc")) 
+grid.text("c", x=unit(0.01,"npc"), y=unit(0.48,"npc")) 
+grid.text("d", x=unit(0.51,"npc"), y=unit(0.48,"npc")) 
 
 dev.off() 
 

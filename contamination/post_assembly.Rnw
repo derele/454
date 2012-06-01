@@ -121,18 +121,18 @@ gc.cont.phylum <- ggplot(subset(contig.df, contig.df$kingdom.nr%in%"Metazoa" &
   geom_density() +
   facet_wrap( ~ phylum.nr)
 
-pdf("../figures/phylum_plots.pdf", width=20, height=10)
+## pdf("../figures/phylum_plots.pdf", width=20, height=10)
 
-# Set up the page
-grid.newpage()
-pushViewport(viewport(layout = grid.layout(1, 2)))
-vplayout <- function(x, y)
-    viewport(layout.pos.row = x, layout.pos.col = y)
+## # Set up the page
+## grid.newpage()
+## pushViewport(viewport(layout = grid.layout(1, 2)))
+## vplayout <- function(x, y)
+##     viewport(layout.pos.row = x, layout.pos.col = y)
 
-# Make each plot, in the correct location
-print(phyl.plot.nt, vp = vplayout(1, 1 ))
-print(phyl.plot.nr, vp = vplayout(1, 2 ))
-dev.off() 
+## # Make each plot, in the correct location
+## print(phyl.plot.nt, vp = vplayout(1, 1 ))
+## print(phyl.plot.nr, vp = vplayout(1, 2 ))
+## dev.off() 
 
 
 @ 

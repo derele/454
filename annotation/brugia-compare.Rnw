@@ -33,9 +33,9 @@ names(totals) <- c("species", "ontology","total")
 
 slim <- merge(slim, totals, all.x=TRUE)
 
-GO.bm.com <- ggplot(slim, aes(x=description, fill=species,
+GO.bm.com <- ggplot(slim, aes(x=description, fill=species, 
                               weight=(value/total)*100)) +
-  geom_bar(position="dodge") +
+  geom_bar(position="dodge", color="black") +
   scale_x_discrete(breaks=slim$description,
                    label=gsub("^\n", "",
                      gsub("and\nnucleic\nacid\nmetabolic\nprocess",
@@ -43,8 +43,9 @@ GO.bm.com <- ggplot(slim, aes(x=description, fill=species,
                           gsub(" ", "\n", slim$description)))) +
   scale_y_continuous("percent of occurrences in species and ontology category")+
   facet_wrap(~ontology, ncol=1, scales="free") +
+  scale_fill_manual(values=c("darkblue","red","yellow")) + 
   theme_bw() +
-  opts(legend.text = theme_text(face='italic'))  
+  opts(legend.text = theme_text(face='italic'), legend.position=c(.1, 0.9))  
 
 ggsave("/home/ele/thesis/454/figures/Figure_2.pdf", GO.bm.com, width=16, height=16)
 
