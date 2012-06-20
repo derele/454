@@ -182,6 +182,11 @@ Pertea G, Huang X, Liang F, Antonescu V, Sultana R, Karamycheva S, Lee Y, White
   \textbf{19}:651--652,
   \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/12651724]}.
 
+\bibitem{pmid2231712}
+Altschul SF, Gish W, Miller W, Myers EW, Lipman DJ: \textbf{{{B}asic local
+  alignment search tool}}. \emph{J. Mol. Biol.} 1990, \textbf{215}:403--410,
+  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/2231712]}.
+
 \bibitem{pmid21080939}
 Coppe A, Pujolar JM, Maes GE, Larsen PF, Hansen MM, Bernatchez L, Zane L,
   Bortoluzzi S: \textbf{{{S}equencing, de novo annotation and analysis of the
@@ -250,6 +255,21 @@ Iseli C, Jongeneel CV, Bucher P: \textbf{{ESTScan:} a program for detecting,
   evaluating, and reconstructing potential coding regions in {EST} sequences.}
   \emph{Proc Int Conf Intell Syst Mol Biol} 1999, :138--148,
   \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/10786296]}.
+
+\bibitem{ghedin_draft_2007}
+Ghedin E, Wang S, Spiro D, Caler E, Zhao Q, Crabtree J, Allen JE, Delcher AL,
+  Guiliano DB, Miranda-Saavedra D, Angiuoli SV, Creasy T, Amedeo P, Haas B,
+  El-Sayed NM, Wortman JR, Feldblyum T, Tallon L, Schatz M, Shumway M, Koo H,
+  Salzberg SL, Schobel S, Pertea M, Pop M, White O, Barton GJ, Carlow CK,
+  Crawford MJ, Daub J, Dimmic MW, Estes CF, Foster JM, Ganatra M, Gregory WF,
+  Johnson NM, Jin J, Komuniecki R, Korf I, Kumar S, Laney S, Li BW, Li W,
+  Lindblom TH, Lustigman S, Ma D, Maina CV, Martin DM, McCarter JP, McReynolds
+  L, Mitreva M, Nutman TB, Parkinson J, Peregrin-Alvarez JM, Poole C, Ren Q,
+  Saunders L, Sluder AE, Smith K, Stanke M, Unnasch TR, Ware J, Wei AD, Weil G,
+  Williams DJ, Zhang Y, Williams SA, Fraser-Liggett C, Slatko B, Blaxter ML,
+  Scott AL: \textbf{{{D}raft genome of the filarial nematode parasite {B}rugia
+  malayi}}. \emph{Science} 2007, \textbf{317}:1756--1760.
+  [Http://www.ncbi.nlm.nih.gov/pubmed/17885136].
 
 \bibitem{schmid_annot8r:_2008}
 Schmid R, M B: \textbf{annot8r: {GO,} {EC} and {KEGG} annotation of {EST}
@@ -446,6 +466,12 @@ Kunstner A, Wolf JB, Backstrom N, Whitney O, Balakrishnan CN, Day L, Edwards
   sequencing reveals patterns of substitution and selection across 10 bird
   species}}. \emph{Mol. Ecol.} 2010, \textbf{19 Suppl 1}:266--276,
   \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/20331785]}.
+
+\bibitem{pmid9851916}
+{The C elegans Sequencing Consortium}: \textbf{{{G}enome sequence of the
+  nematode {C}. elegans: a platform for investigating biology}}. \emph{Science}
+  1998, \textbf{282}:2012--2018,
+  \urlprefix\url{[http://www.ncbi.nlm.nih.gov/pubmed/9851916]}.
 
 \bibitem{parkinson_transcriptomic_2004}
 Parkinson J, Mitreva M, Whitton C, Thomson M, Daub J, Martin J, Schmid R, Hall
@@ -1120,6 +1146,23 @@ d=1279744</url>
 </bibl>
 
 <bibl id="B27">
+  <title><p>{{B}asic local alignment search tool}</p></title>
+  <aug>
+    <au><snm>Altschul</snm><fnm>S. F.</fnm></au>
+    <au><snm>Gish</snm><fnm>W.</fnm></au>
+    <au><snm>Miller</snm><fnm>W.</fnm></au>
+    <au><snm>Myers</snm><fnm>E. W.</fnm></au>
+    <au><snm>Lipman</snm><fnm>D. J.</fnm></au>
+  </aug>
+  <source>J. Mol. Biol.</source>
+  <pubdate>1990</pubdate>
+  <volume>215</volume>
+  <fpage>403</fpage>
+  <lpage>-410</lpage>
+  <url>http://www.ncbi.nlm.nih.gov/pubmed/2231712</url>
+</bibl>
+
+<bibl id="B28">
   <title><p>{{S}equencing, de novo annotation and analysis of the first
   {A}nguilla anguilla transcriptome: {E}eel{B}ase opens new perspectives for
   the study of the critically endangered {E}uropean eel}</p></title>
@@ -1140,7 +1183,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3012609</url>
 </bibl>
 
-<bibl id="B28">
+<bibl id="B29">
   <title><p>{{U}sing the mira{E}{S}{T} assembler for reliable and automated
   m{R}{N}{A} transcript assembly and {S}{N}{P} detection in sequenced
   {E}{S}{T}s}</p></title>
@@ -1161,7 +1204,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pmc/articles/PMC419793</url>
 </bibl>
 
-<bibl id="B29">
+<bibl id="B30">
   <title><p>{{C}{A}{P}3: {A} {D}{N}{A} sequence assembly program}</p></title>
   <aug>
     <au><snm>Huang</snm><fnm>X.</fnm></au>
@@ -1175,7 +1218,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pmc/articles/PMC310812</url>
 </bibl>
 
-<bibl id="B30">
+<bibl id="B31">
   <title><p>{N}{E}{M}{B}{A}{S}{E}: a resource for parasitic nematode
   {ESTs}</p></title>
   <aug>
@@ -1194,7 +1237,7 @@ d=1279744</url>
   <url>http://nar.oxfordjournals.org/cgi/content/abstract/32/suppl_1/D427</url>
 </bibl>
 
-<bibl id="B31">
+<bibl id="B32">
   <title><p>{{N}{E}{M}{B}{A}{S}{E}4: {T}he nematode transcriptome
   resource}</p></title>
   <aug>
@@ -1210,7 +1253,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/21550347</url>
 </bibl>
 
-<bibl id="B32">
+<bibl id="B33">
   <title><p>{prot4EST:} Translating Expressed Sequence Tags from neglected
   genomes</p></title>
   <aug>
@@ -1225,7 +1268,7 @@ d=1279744</url>
   <url>http://www.biomedcentral.com/1471-2105/5/187</url>
 </bibl>
 
-<bibl id="B33">
+<bibl id="B34">
   <title><p>{{T}he {U}niversal {P}rotein {R}esource ({U}ni{P}rot)
   2009}</p></title>
   <aug>
@@ -1375,7 +1418,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/18836194</url>
 </bibl>
 
-<bibl id="B34">
+<bibl id="B35">
   <title><p>{ESTScan:} a program for detecting, evaluating, and reconstructing
   potential coding regions in {EST} sequences.</p></title>
   <aug>
@@ -1390,7 +1433,91 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/10786296</url>
 </bibl>
 
-<bibl id="B35">
+<bibl id="B36">
+  <title><p>{{D}raft genome of the filarial nematode parasite {B}rugia
+  malayi}</p></title>
+  <aug>
+    <au><snm>Ghedin</snm><fnm>E.</fnm></au>
+    <au><snm>Wang</snm><fnm>S.</fnm></au>
+    <au><snm>Spiro</snm><fnm>D.</fnm></au>
+    <au><snm>Caler</snm><fnm>E.</fnm></au>
+    <au><snm>Zhao</snm><fnm>Q.</fnm></au>
+    <au><snm>Crabtree</snm><fnm>J.</fnm></au>
+    <au><snm>Allen</snm><fnm>J. E.</fnm></au>
+    <au><snm>Delcher</snm><fnm>A. L.</fnm></au>
+    <au><snm>Guiliano</snm><fnm>D. B.</fnm></au>
+    <au><snm>Miranda Saavedra</snm><fnm>D.</fnm></au>
+    <au><snm>Angiuoli</snm><fnm>S. V.</fnm></au>
+    <au><snm>Creasy</snm><fnm>T.</fnm></au>
+    <au><snm>Amedeo</snm><fnm>P.</fnm></au>
+    <au><snm>Haas</snm><fnm>B.</fnm></au>
+    <au><snm>El Sayed</snm><fnm>N. M.</fnm></au>
+    <au><snm>Wortman</snm><fnm>J. R.</fnm></au>
+    <au><snm>Feldblyum</snm><fnm>T.</fnm></au>
+    <au><snm>Tallon</snm><fnm>L.</fnm></au>
+    <au><snm>Schatz</snm><fnm>M.</fnm></au>
+    <au><snm>Shumway</snm><fnm>M.</fnm></au>
+    <au><snm>Koo</snm><fnm>H.</fnm></au>
+    <au><snm>Salzberg</snm><fnm>S. L.</fnm></au>
+    <au><snm>Schobel</snm><fnm>S.</fnm></au>
+    <au><snm>Pertea</snm><fnm>M.</fnm></au>
+    <au><snm>Pop</snm><fnm>M.</fnm></au>
+    <au><snm>White</snm><fnm>O.</fnm></au>
+    <au><snm>Barton</snm><fnm>G. J.</fnm></au>
+    <au><snm>Carlow</snm><fnm>C. K.</fnm></au>
+    <au><snm>Crawford</snm><fnm>M. J.</fnm></au>
+    <au><snm>Daub</snm><fnm>J.</fnm></au>
+    <au><snm>Dimmic</snm><fnm>M. W.</fnm></au>
+    <au><snm>Estes</snm><fnm>C. F.</fnm></au>
+    <au><snm>Foster</snm><fnm>J. M.</fnm></au>
+    <au><snm>Ganatra</snm><fnm>M.</fnm></au>
+    <au><snm>Gregory</snm><fnm>W. F.</fnm></au>
+    <au><snm>Johnson</snm><fnm>N. M.</fnm></au>
+    <au><snm>Jin</snm><fnm>J.</fnm></au>
+    <au><snm>Komuniecki</snm><fnm>R.</fnm></au>
+    <au><snm>Korf</snm><fnm>I.</fnm></au>
+    <au><snm>Kumar</snm><fnm>S.</fnm></au>
+    <au><snm>Laney</snm><fnm>S.</fnm></au>
+    <au><snm>Li</snm><fnm>B. W.</fnm></au>
+    <au><snm>Li</snm><fnm>W.</fnm></au>
+    <au><snm>Lindblom</snm><fnm>T. H.</fnm></au>
+    <au><snm>Lustigman</snm><fnm>S.</fnm></au>
+    <au><snm>Ma</snm><fnm>D.</fnm></au>
+    <au><snm>Maina</snm><fnm>C. V.</fnm></au>
+    <au><snm>Martin</snm><fnm>D. M.</fnm></au>
+    <au><snm>McCarter</snm><fnm>J. P.</fnm></au>
+    <au><snm>McReynolds</snm><fnm>L.</fnm></au>
+    <au><snm>Mitreva</snm><fnm>M.</fnm></au>
+    <au><snm>Nutman</snm><fnm>T. B.</fnm></au>
+    <au><snm>Parkinson</snm><fnm>J.</fnm></au>
+    <au><snm>Peregrin Alvarez</snm><fnm>J. M.</fnm></au>
+    <au><snm>Poole</snm><fnm>C.</fnm></au>
+    <au><snm>Ren</snm><fnm>Q.</fnm></au>
+    <au><snm>Saunders</snm><fnm>L.</fnm></au>
+    <au><snm>Sluder</snm><fnm>A. E.</fnm></au>
+    <au><snm>Smith</snm><fnm>K.</fnm></au>
+    <au><snm>Stanke</snm><fnm>M.</fnm></au>
+    <au><snm>Unnasch</snm><fnm>T. R.</fnm></au>
+    <au><snm>Ware</snm><fnm>J.</fnm></au>
+    <au><snm>Wei</snm><fnm>A. D.</fnm></au>
+    <au><snm>Weil</snm><fnm>G.</fnm></au>
+    <au><snm>Williams</snm><fnm>D. J.</fnm></au>
+    <au><snm>Zhang</snm><fnm>Y.</fnm></au>
+    <au><snm>Williams</snm><fnm>S. A.</fnm></au>
+    <au><snm>Fraser Liggett</snm><fnm>C.</fnm></au>
+    <au><snm>Slatko</snm><fnm>B.</fnm></au>
+    <au><snm>Blaxter</snm><fnm>M. L.</fnm></au>
+    <au><snm>Scott</snm><fnm>A. L.</fnm></au>
+  </aug>
+  <source>Science</source>
+  <pubdate>2007</pubdate>
+  <volume>317</volume>
+  <fpage>1756</fpage>
+  <lpage>-1760</lpage>
+  <note>http://www.ncbi.nlm.nih.gov/pubmed/17885136</note>
+</bibl>
+
+<bibl id="B37">
   <title><p>annot8r: {GO,} {EC} and {KEGG} annotation of {EST}
   datasets</p></title>
   <aug>
@@ -1404,7 +1531,7 @@ d=1279744</url>
   <url>http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2324097</url>
 </bibl>
 
-<bibl id="B36">
+<bibl id="B38">
   <title><p>{{S}ignal{P} 4.0: discriminating signal peptides from transmembrane
   regions}</p></title>
   <aug>
@@ -1421,7 +1548,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/21959131</url>
 </bibl>
 
-<bibl id="B37">
+<bibl id="B39">
   <title><p>{{I}nter{P}ro{S}can--an integration platform for the
   signature-recognition methods in {I}nter{P}ro}</p></title>
   <aug>
@@ -1436,7 +1563,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/11590104</url>
 </bibl>
 
-<bibl id="B38">
+<bibl id="B40">
   <title><p>{{B}io{M}art: driving a paradigm change in biological data
   management}</p></title>
   <aug>
@@ -1449,7 +1576,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/22083790</url>
 </bibl>
 
-<bibl id="B39">
+<bibl id="B41">
   <title><p>{{M}apping identifiers for the integration of genomic datasets with
   the {R}/{B}ioconductor package bioma{R}t}</p></title>
   <aug>
@@ -1466,7 +1593,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/19617889</url>
 </bibl>
 
-<bibl id="B40">
+<bibl id="B42">
   <title><p>{{S}{S}{A}{H}{A}: a fast search method for large {D}{N}{A}
   databases}</p></title>
   <aug>
@@ -1482,7 +1609,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pmc/articles/PMC311141</url>
 </bibl>
 
-<bibl id="B41">
+<bibl id="B43">
   <title><p>The Sequence Alignment/Map format and SAMtools.</p></title>
   <aug>
     <au><snm>Li</snm><fnm>H.</fnm></au>
@@ -1504,7 +1631,7 @@ d=1279744</url>
   <url>http://dx.doi.org/10.1093/bioinformatics/btp352</url>
 </bibl>
 
-<bibl id="B42">
+<bibl id="B44">
   <title><p>{{V}ar{S}can: variant detection in massively parallel sequencing of
   individual and pooled samples}</p></title>
   <aug>
@@ -1526,7 +1653,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/19542151</url>
 </bibl>
 
-<bibl id="B43">
+<bibl id="B45">
   <title><p>{{U}sing {G}{O}stats to test gene lists for {G}{O} term
   association}</p></title>
   <aug>
@@ -1541,7 +1668,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/17098774</url>
 </bibl>
 
-<bibl id="B44">
+<bibl id="B46">
   <title><p>{{T}he variant call format and {V}{C}{F}tools}</p></title>
   <aug>
     <au><cnm>{Danecek, P. and Auton,†A. and Abecasis, G. and Albers CA. and
@@ -1557,7 +1684,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/21653522</url>
 </bibl>
 
-<bibl id="B45">
+<bibl id="B47">
   <title><p>{{R}hh: an {R} extension for estimating multilocus heterozygosity
   and heterozygosity-heterozygosity correlation}</p></title>
   <aug>
@@ -1573,7 +1700,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/21565077</url>
 </bibl>
 
-<bibl id="B46">
+<bibl id="B48">
   <title><p>{{T}he influence of parental relatedness on reproductive
   success}</p></title>
   <aug>
@@ -1593,7 +1720,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/11571049</url>
 </bibl>
 
-<bibl id="B47">
+<bibl id="B49">
   <title><p>{{W}hat should we weigh to estimate heterozygosity, alleles or
   loci?}</p></title>
   <aug>
@@ -1609,7 +1736,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/17107491</url>
 </bibl>
 
-<bibl id="B48">
+<bibl id="B50">
   <title><p>Parasite-mediated selection against inbred Soay sheep in a
   free-living, island population</p></title>
   <aug>
@@ -1626,7 +1753,7 @@ d=1279744</url>
   <url>http://www.jstor.org/stable/2640828</url>
 </bibl>
 
-<bibl id="B49">
+<bibl id="B51">
   <title><p>{R}samtools: Import aligned BAM file format sequences into R /
   Bioconductor</p></title>
   <aug>
@@ -1637,7 +1764,7 @@ d=1279744</url>
   <note>R package version 1.4.3</note>
 </bibl>
 
-<bibl id="B50">
+<bibl id="B52">
   <title><p>{{T}he significance of digital gene expression
   profiles}</p></title>
   <aug>
@@ -1652,7 +1779,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/9331369</url>
 </bibl>
 
-<bibl id="B51">
+<bibl id="B53">
   <title><p>{{I}{D}{E}{G}6: a web tool for detection of differentially
   expressed genes in multiple tag sampling experiments}</p></title>
   <aug>
@@ -1669,7 +1796,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/12429865</url>
 </bibl>
 
-<bibl id="B52">
+<bibl id="B54">
   <title><p>AnnotationDbi: Annotation Database Interface</p></title>
   <aug>
     <au><snm>Pages</snm><fnm>H</fnm></au>
@@ -1680,7 +1807,7 @@ d=1279744</url>
   <note>R package version 1.16.10</note>
 </bibl>
 
-<bibl id="B53">
+<bibl id="B55">
   <title><p>topGO: topGO: Enrichment analysis for Gene Ontology</p></title>
   <aug>
     <au><snm>Alexa</snm><fnm>A</fnm></au>
@@ -1690,7 +1817,7 @@ d=1279744</url>
   <note>R package version 2.6.0</note>
 </bibl>
 
-<bibl id="B54">
+<bibl id="B56">
   <title><p>R: A language and environment for statistical computing</p></title>
   <aug>
     <au><cnm>{R Development Core Team}</cnm></au>
@@ -1700,7 +1827,7 @@ d=1279744</url>
   <url>http://www.R-project.org</url>
 </bibl>
 
-<bibl id="B55">
+<bibl id="B57">
   <title><p>ggplot2: elegant graphics for data analysis</p></title>
   <aug>
     <au><snm>Wickham</snm><fnm>H</fnm></au>
@@ -1710,7 +1837,7 @@ d=1279744</url>
   <url>http://had.co.nz/ggplot2/book</url>
 </bibl>
 
-<bibl id="B56">
+<bibl id="B58">
   <title><p>{{V}enn{D}iagram: a package for the generation of
   highly-customizable {V}enn and {E}uler diagrams in {R}}</p></title>
   <aug>
@@ -1724,7 +1851,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/21269502</url>
 </bibl>
 
-<bibl id="B57">
+<bibl id="B59">
   <title><p>Sweave: Dynamic Generation of Statistical Reports Using Literate
   Data Analysis</p></title>
   <aug>
@@ -1740,7 +1867,7 @@ d=1279744</url>
   <note>ISBN 3-7908-1517-9</note>
 </bibl>
 
-<bibl id="B58">
+<bibl id="B60">
   <title><p>Caching code chunks in dynamic documents</p></title>
   <aug>
     <au><snm>Falcon</snm><fnm>S</fnm></au>
@@ -1754,7 +1881,7 @@ d=1279744</url>
   <url>http://www.springerlink.com/content/55411257n1473414</url>
 </bibl>
 
-<bibl id="B59">
+<bibl id="B61">
   <title><p>{{S}ystematic functional analysis of the {C}aenorhabditis elegans
   genome using {R}{N}{A}i}</p></title>
   <aug>
@@ -1781,7 +1908,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/12529635</url>
 </bibl>
 
-<bibl id="B60">
+<bibl id="B62">
   <title><p>{{W}orm{B}ase: a comprehensive resource for nematode
   research}</p></title>
   <aug>
@@ -1827,7 +1954,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/19910365</url>
 </bibl>
 
-<bibl id="B61">
+<bibl id="B63">
   <title><p>{{A} garter snake transcriptome: pyrosequencing, de novo assembly,
   and sex-specific differences}</p></title>
   <aug>
@@ -1847,7 +1974,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/21138572</url>
 </bibl>
 
-<bibl id="B62">
+<bibl id="B64">
   <title><p>{{D}iscovery and evaluation of candidate sex-determining genes and
   xenobiotics in the gonads of lake sturgeon ({A}cipenser
   fulvescens)}</p></title>
@@ -1864,7 +1991,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/20386959</url>
 </bibl>
 
-<bibl id="B63">
+<bibl id="B65">
   <title><p>{{N}ext generation transcriptomes for next generation genomes using
   est2assembly}</p></title>
   <aug>
@@ -1880,7 +2007,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/20034392</url>
 </bibl>
 
-<bibl id="B64">
+<bibl id="B66">
   <title><p>{{S}eparation of sequences from host-pathogen interface using
   triplet nucleotide frequencies}</p></title>
   <aug>
@@ -1897,7 +2024,7 @@ d=1279744</url>
   <url>http://dx.doi.org/10.1016/j.fgb.2006.11.010</url>
 </bibl>
 
-<bibl id="B65">
+<bibl id="B67">
   <title><p>{{A} {D}e {N}ovo {E}xpression {P}rofiling of {A}nopheles funestus,
   {M}alaria {V}ector in {A}frica, {U}sing 454 {P}yrosequencing}</p></title>
   <aug>
@@ -1920,7 +2047,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/21364769</url>
 </bibl>
 
-<bibl id="B66">
+<bibl id="B68">
   <title><p>{{C}omparative genomics based on massive parallel transcriptome
   sequencing reveals patterns of substitution and selection across 10 bird
   species}</p></title>
@@ -1947,7 +2074,21 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/20331785</url>
 </bibl>
 
-<bibl id="B67">
+<bibl id="B69">
+  <title><p>{{G}enome sequence of the nematode {C}. elegans: a platform for
+  investigating biology}</p></title>
+  <aug>
+    <au><cnm>{The C. elegans Sequencing Consortium}</cnm></au>
+  </aug>
+  <source>Science</source>
+  <pubdate>1998</pubdate>
+  <volume>282</volume>
+  <fpage>2012</fpage>
+  <lpage>-2018</lpage>
+  <url>http://www.ncbi.nlm.nih.gov/pubmed/9851916</url>
+</bibl>
+
+<bibl id="B70">
   <title><p>A transcriptomic analysis of the phylum Nematoda</p></title>
   <aug>
     <au><snm>Parkinson</snm><fnm>J.</fnm></au>
@@ -1972,7 +2113,7 @@ d=1279744</url>
   <url>http://dx.doi.org/10.1038/ng1472</url>
 </bibl>
 
-<bibl id="B68">
+<bibl id="B71">
   <title><p>On the Extent and Origins of Genic Novelty in the Phylum
   Nematoda</p></title>
   <aug>
@@ -1989,7 +2130,7 @@ d=1279744</url>
   <url>http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=2432500</url>
 </bibl>
 
-<bibl id="B69">
+<bibl id="B72">
   <title><p>{PartiGene--constructing} partial genomes</p></title>
   <aug>
     <au><snm>Parkinson</snm><fnm>J.</fnm></au>
@@ -2009,7 +2150,7 @@ d=1279744</url>
 </url>
 </bibl>
 
-<bibl id="B70">
+<bibl id="B73">
   <title><p>Signal sequence analysis of expressed sequence tags from the
   nematode Nippostrongylus brasiliensis and the evolution of secreted proteins
   in parasites</p></title>
@@ -2030,7 +2171,7 @@ d=1279744</url>
   <url>http://genomebiology.com/2004/5/6/R39</url>
 </bibl>
 
-<bibl id="B71">
+<bibl id="B74">
   <title><p>{{S}ystematic exploration of error sources in pyrosequencing
   flowgram data}</p></title>
   <aug>
@@ -2046,7 +2187,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/21685085</url>
 </bibl>
 
-<bibl id="B72">
+<bibl id="B75">
   <title><p>{{C}ompletely phased genome sequencing through chromosome
   sorting}</p></title>
   <aug>
@@ -2062,7 +2203,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/21169219</url>
 </bibl>
 
-<bibl id="B73">
+<bibl id="B76">
   <title><p>{Rapid, low-input, low-bias construction of shotgun fragment
   libraries by high-density in vitro transposition}</p></title>
   <aug>
@@ -2086,7 +2227,7 @@ d=1279744</url>
   <url>http://genomebiology.com/content/11/12/R119</url>
 </bibl>
 
-<bibl id="B74">
+<bibl id="B77">
   <title><p>{{T}he population genetics of d{N}/d{S}}</p></title>
   <aug>
     <au><snm>Kryazhimskiy</snm><fnm>S.</fnm></au>
@@ -2099,7 +2240,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/19081788</url>
 </bibl>
 
-<bibl id="B75">
+<bibl id="B78">
   <title><p>{{H}igh-throughput gene and {S}{N}{P} discovery in {E}ucalyptus
   grandis, an uncharacterized genome}</p></title>
   <aug>
@@ -2118,7 +2259,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/18590545</url>
 </bibl>
 
-<bibl id="B76">
+<bibl id="B79">
   <title><p>{{P}opulation-level transcriptome sequencing of nonmodel organisms
   {E}rynnis propertius and {P}apilio zelicaon}</p></title>
   <aug>
@@ -2136,7 +2277,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/20478048</url>
 </bibl>
 
-<bibl id="B77">
+<bibl id="B80">
   <title><p>{{E}volutionary expressed sequence tag analysis of {D}rosophila
   female reproductive tracts identifies genes subjected to positive
   selection}</p></title>
@@ -2154,7 +2295,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/15579698</url>
 </bibl>
 
-<bibl id="B78">
+<bibl id="B81">
   <title><p>{{C}haracterizing {A}ncylostoma caninum transcriptome and exploring
   nematode parasitic adaptation}</p></title>
   <aug>
@@ -2172,7 +2313,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/20470405</url>
 </bibl>
 
-<bibl id="B79">
+<bibl id="B82">
   <title><p>Migratory response of European eel {(Anguilla} anguilla) phagocytes
   to the eel swimbladder nematode Anguillicola crassus</p></title>
   <aug>
@@ -2191,7 +2332,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/18311570</url>
 </bibl>
 
-<bibl id="B80">
+<bibl id="B83">
   <title><p>Formation of parasitic nodules in the swimbladder and intestinal
   walls of the eel Anguilla anguilla due to infections with larval stages of
   Anguillicola crassus</p></title>
@@ -2206,7 +2347,7 @@ d=1279744</url>
   <lpage>-170</lpage>
 </bibl>
 
-<bibl id="B81">
+<bibl id="B84">
   <title><p>{{T}he variant call format and {V}{C}{F}tools}</p></title>
   <aug>
     <au><cnm>{Danecek, P. and others}</cnm></au>
@@ -2219,7 +2360,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/21653522</url>
 </bibl>
 
-<bibl id="B82">
+<bibl id="B85">
   <title><p>{{C}uticle collagen genes. {E}xpression in {C}aenorhabditis
   elegans}</p></title>
   <aug>
@@ -2233,7 +2374,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/10637627</url>
 </bibl>
 
-<bibl id="B83">
+<bibl id="B86">
   <title><p>{{T}he oxoacyl-coenzyme {A} thiolases of animal
   tissues}</p></title>
   <aug>
@@ -2247,7 +2388,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/4721607</url>
 </bibl>
 
-<bibl id="B84">
+<bibl id="B87">
   <title><p>{{S}exual and temporal dynamics of molecular evolution in {C}.
   elegans development}</p></title>
   <aug>
@@ -2262,7 +2403,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/15371532</url>
 </bibl>
 
-<bibl id="B85">
+<bibl id="B88">
   <title><p>{{E}volutionary conflicts of interest: are female sexual decisions
   different?}</p></title>
   <aug>
@@ -2276,7 +2417,7 @@ d=1279744</url>
   <url>http://www.ncbi.nlm.nih.gov/pubmed/15795858</url>
 </bibl>
 
-<bibl id="B86">
+<bibl id="B89">
   <title><p>{{E}volutionary {E}{S}{T} analysis identifies rapidly evolving male
   reproductive proteins in {D}rosophila}</p></title>
   <aug>

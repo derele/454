@@ -2,6 +2,8 @@
 
 <<snp, echo=FALSE, results=hide, cache=TRUE>>=
 
+library(reshape)
+
 read.var <- function (path) {
   VAR <- read.delim(path, header=FALSE, as.is=TRUE)
   names(VAR) <- c("contig", "base", "from", "to", "nfrom", "nto", "perc", "sfrom", "sto", "qfrom", "qto", "pval")
@@ -95,25 +97,27 @@ TS.TV <- lapply (3:9,  function(width) {
 })
 
 
-T <- melt(TS.TV, id=c("transitions", "transversions", "ratioTS.TV"))
-T <- reshape::rename(T, c(L2="size", L1="width"))
-T$width <- T$width+2
-T$size <- T$size+2
+Tu <- melt(TS.TV, id=c("transitions", "transversions", "ratioTS.TV"))
+Tu <- reshape::rename(Tu, c(L2="size", L1="width"))
+Tu$width <- Tu$width+2
+Tu$size <- Tu$size+2
 
 ## How the ratio of transv-transs changes of parameterspace in homopolymer exclusion
 
-trans.vers.parameter.plot <- ggplot(T, aes(ratioTS.TV,
-                                           transversions+transitions,
-                                           shape=as.factor(size),
-                                           color=as.factor((width*2)+1))) +
+trans.vers.parameter.plot <- ggplot(Tu, aes(ratioTS.TV,
+                                            transversions+transitions,
+                                            shape=as.factor(size),
+                                            color=as.factor((width*2)+1))) +
   geom_point(size=4 ) +
   geom_smooth(aes(group = size<4), se=FALSE, method="lm") +
-  scale_x_continuous("ratio transistions/transversions (ti/tv)", legend=FALSE) +
-  scale_y_continuous("total number of SNPs found", legend=FALSE,
+  scale_x_continuous("ratio transistions/transversions (ti/tv)") +
+  scale_y_continuous("total number of SNPs found", 
                      breaks=3:10*1000,  limits=c(2500, 11000)) +
-  scale_color_discrete("width of screening\nwindow around SNP", legend=FALSE) +
-  scale_shape_discrete("homopolymer length\nthreshold for exclusion", legend=FALSE) +
+  scale_color_discrete("width of screening\nwindow around SNP") +
+  scale_shape_discrete("homopolymer length\nthreshold for exclusion") +
+  guides(colour = FALSE, shape=FALSE, scale_x=FALSE, scale_y=FALSE) +
   theme_bw()
+  
 
 ##  opts(title="Effect of parameters for homopolymer\nexclusion on the number of SNPs found and transversion/transition ratio")
 
@@ -414,7 +418,9 @@ get.effect <- function (ontology, base, to){
 VAR$effect <- apply(VAR, 1, function(x){
   get.effect(x["ontology"], as.numeric(x["base"]), x["to"])
 })
-  
+
+## save.image("/home/ele/thesis/454/paper/debug.Rdata")
+
 get.dn.ds <- function(VARobj){
   (nrow(VARobj[grepl("Non*", VARobj$effect),])/
    sum(VARobj[!duplicated(VARobj$contig), "cov8.nsyn.sites"], na.rm=T))/
@@ -436,13 +442,13 @@ D <- melt(O.DN.DS)
 names(D)[1:2] <- c("size", "width")
 D$width <- D$width+2
 D$size <- D$size+2
-T <- merge(D, T)
-T <- reshape::rename(T, replace=c(value="dn.ds"))
+Tu <- merge(D, Tu)
+Tu <- reshape::rename(Tu, replace=c(value="dn.ds"))
 
-dn.ds.parameter.plot <- ggplot(T, aes(dn.ds,
-                                      transversions+transitions,
-                                      shape=as.factor(size),
-                                      color=as.factor(width*2+1))) +
+dn.ds.parameter.plot <- ggplot(Tu, aes(dn.ds,
+                                       transversions+transitions,
+                                       shape=as.factor(size),
+                                       color=as.factor(width*2+1))) +
   geom_point(size=4) +
   geom_smooth(aes(group = size<4), se=FALSE, method="lm") +
   scale_x_reverse("ratio non-synonymous/synonymous SNPs (dn/ds)") +

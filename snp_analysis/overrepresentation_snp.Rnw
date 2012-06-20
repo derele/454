@@ -148,7 +148,7 @@ novel.dn.ds.50 <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.50) & !is
   scale_y_continuous("dn/ds") +
   scale_x_discrete("", labels=good.lab,
                    breaks=levels(contig.df$novel.50)) +
-  opts(title="evolutionary conservation at bitsore threshold of 50") +
+  opts(title="evolutionary conservation at bitscore threshold of 50") +
   theme_bw()
 
 novel.dn.ds.80 <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.80) & !is.na(dn.ds)),
@@ -158,7 +158,7 @@ novel.dn.ds.80 <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.80) & !is
   scale_y_continuous("dn/ds") +
   scale_x_discrete("", labels=good.lab,
                    breaks=levels(contig.df$novel.80)) +
-  opts(title="evolutionary conservation at bitsore threshold of 80") +
+  opts(title="evolutionary conservation at bitscore threshold of 80") +
   theme_bw()
 
 # Set up the page
@@ -233,7 +233,7 @@ sigP.50.p <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.50) & !is.na(s
                    breaks=levels(contig.df$novel.50)) +
   scale_fill_manual(values=c("white", "darkblue","red")) +
   theme_bw() + 
-  opts(title="proportion of TUGs in SignalP category\nby evolutionary conservation categories at bitsore threshold of 50", plot.background = theme_blank(), legend.position=c(.9, .9)) 
+  opts(title="proportion of TUGs in SignalP category\nby evolutionary conservation categories at bitscore threshold of 50", plot.background = theme_blank(), legend.position=c(.9, .9)) 
 
 sigP.80.p <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.80) & !is.na(sigP)),
               aes(novel.80, fill=sigP)) +
@@ -242,7 +242,7 @@ sigP.80.p <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.80) & !is.na(s
   scale_fill_manual(values=c("white", "darkblue","red"), guide="none") +
   scale_x_discrete("", labels=good.lab,
                    breaks=levels(contig.df$novel.50)) +
-  opts(title="proportion of TUGs in SignalP category\nby evolutionary conservation categories at bitsore threshold of 80", plot.background = theme_blank()) + 
+  opts(title="proportion of TUGs in SignalP category\nby evolutionary conservation categories at bitscore threshold of 80", plot.background = theme_blank()) + 
   theme_bw()
 
 sigP.50.p.MN <- ggplot(subset(contig.df, contig.df$AcMN & !is.na(novel.50) & !is.na(sigP)),
@@ -252,7 +252,7 @@ sigP.50.p.MN <- ggplot(subset(contig.df, contig.df$AcMN & !is.na(novel.50) & !is
   scale_x_discrete("", labels=good.lab,
                    breaks=levels(contig.df$novel.50)) +
   scale_fill_manual(values=c("white", "darkblue","red"), guide="none") +
-  opts(title="proportion of highCA contigs in SignalP category\nby evolutionary conservation categories at bitsore threshold of 50", plot.background = theme_blank()) +
+  opts(title="proportion of highCA contigs in SignalP category\nby evolutionary conservation categories at bitscore threshold of 50", plot.background = theme_blank()) +
   theme_bw()
 
 sigP.80.p.MN <- ggplot(subset(contig.df, contig.df$AcMN & !is.na(novel.80) & !is.na(sigP)),
@@ -262,7 +262,7 @@ sigP.80.p.MN <- ggplot(subset(contig.df, contig.df$AcMN & !is.na(novel.80) & !is
   scale_x_discrete("", labels=good.lab,
                    breaks=levels(contig.df$novel.50)) +
   scale_fill_manual(values=c("white", "darkblue","red"), guide="none") +
-  opts(title="proportion of highCA contigs in SignalP category\nby evolutionary conservation categories at bitsore threshold of 80", plot.background = theme_blank()) + 
+  opts(title="proportion of highCA contigs in SignalP category\nby evolutionary conservation categories at bitscore threshold of 80", plot.background = theme_blank()) + 
   theme_bw()
 
 pdf("../figures/Figure_3.pdf", width=13, height=13)

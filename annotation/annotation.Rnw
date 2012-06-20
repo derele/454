@@ -128,7 +128,9 @@ nallannotations <- length(Allannotations)
 annotationVenn <- venn.diagram(list(GO   = match(GOannotations, Allannotations),
                                        EC   = match(ECannotations, Allannotations),
                                        KEGG = match(KEGGannotations, Allannotations)),
-                                  filename = NULL)
+                               reverse=TRUE,
+                               rotation=3,
+                               filename = NULL)
 
 GOannotations.MN <- unique(GO.annot$pept_id[GO.annot$pept_id%in%contig.df[contig.df$AcMN,"contig"]])
 nGO.MN <- length(GOannotations.MN)
@@ -146,9 +148,9 @@ nIPR <- length(IPRannotations)
 Allannotations.MN <- unique(c(GOannotations.MN, ECannotations.MN, KEGGannotations.MN, IPRannotations))
 
 annotationVennMN <- venn.diagram(list(GO   = match(GOannotations.MN, Allannotations.MN),
-                  EC   = match(ECannotations.MN, Allannotations.MN),
-                  KEGG = match(KEGGannotations.MN, Allannotations.MN),
-                  IPR = match(IPRannotations, Allannotations.MN)),
+                                      EC   = match(ECannotations.MN, Allannotations.MN),
+                                      KEGG = match(KEGGannotations.MN, Allannotations.MN),
+                                      IPR = match(IPRannotations, Allannotations.MN)),
                                  filename = NULL)
 
 not.annot <- nrow(contig.df[contig.df$Ac & !contig.df$contig%in%Allannotations,])
@@ -172,7 +174,6 @@ grid.text(not.annot.MN, x=unit(0.07,"npc"), y=unit(0.1,"npc"), gp=gpar(fontfamil
 grid.draw(annotationVennMN)
 pop.viewport()
 dev.off()            
-
 
 all.identifier <- length(contig.df[contig.df$Ac & contig.df$contig%in%GOannotations &
                                    contig.df$contig%in%ECannotations &
