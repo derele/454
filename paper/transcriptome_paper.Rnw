@@ -275,12 +275,11 @@ In \textit{An. anguilla}, both prevalence and mean intensity of
 infection by \textit{A. crassus} are higher than in \textit{
   An. japonica} \cite{mnderle_occurrence_2006,
   lefebvre_anguillicolosis:_2004}. In \textit{An.  anguilla}
-infections, the adult nematodes are larger, and have an earlier onset
-of reproduction and a greater egg output
-\cite{knopf_differences_2004}. \textit{An. anguilla} induces increased
-pathology, including thickening and inflammation of the swim bladder
-wall \cite{wurtz_tara_2000}. It has been suggested that the life
-history modifications and changed virulence observed in
+infections, the adult nematodes are larger, have an earlier onset of
+reproduction, a greater egg output \cite{knopf_differences_2004} and
+induce increased pathology, including thickening and inflammation of
+the swim bladder wall \cite{wurtz_tara_2000}. It has been suggested
+that the life history modifications and changed virulence observed in
 \textit{A. crassus} in the new host are due to an inadequate immune
 response in \textit{An. anguilla}
 \cite{knopf_swimbladder_2006}. \textit{An. japonica} is capable of
@@ -319,8 +318,8 @@ differences in gene expression and genetic distinction between
 invading European and endemic Asian \textit{A. crassus} exposed to the
 two host species.
 
-Recent advances in sequencing technology (often termed Next Generation
-Sequencing; NGS), provide the opportunity for rapid and cost-effective
+Recent advances in sequencing technology (often termed next generation
+sequencing), provide the opportunity for rapid and cost-effective
 generation of genome-scale data. The Roche 454 platform
 \cite{pmid16056220} is particularly suited to transcriptomics of
 previously unstudied species \cite{pmid20950480}. Here we describe the
@@ -337,19 +336,18 @@ diversity within the nematode.
 \textit{A. crassus} from \textit{An. japonica} were sampled from
 Kao-Ping river and an adjacent aquaculture in Taiwan as described in
 \cite{heitlinger_massive_2009}. Nematodes from \textit{An. anguilla}
-were sampled from Sniardwy Lake, Poland (53.751959N, 21.730957E) and
-from the Linkenheimer Altrhein, Germany (49.0262N, 8.310556E). After
-determination of the sex of adult nematodes, they were stored in
-RNA-later (Quiagen, Hilden, Germany) until extraction of RNA. RNA was
-extracted from individual adult male and female nematodes and from a
-population of second stage larvae (L2) (Table 1). For host
-contamination screening a liver sample from an uninfected
-\textit{An. japonica} was also processed. RNA was reverse transcribed
-and amplified into cDNA using the MINT-cDNA synthesis kit (Evrogen,
-Moscow, Russia). Emulsion PCR and library preparation were performed
-for each cDNA library according to the manufacturer's protocols
-(Roche/454 Life Sciences), and sequenced on a Roche 454 Genome
-Sequencer.
+were sampled from Sniardwy Lake, Poland and from the Linkenheimer
+Altrhein, Germany. After determination of the sex of adult nematodes,
+they were stored in RNA-later (Quiagen, Hilden, Germany) until
+extraction of RNA. RNA was extracted from individual adult male and
+female nematodes and from a population of second stage larvae (L2)
+(Table 1). For host contamination screening a liver sample from an
+uninfected \textit{An. japonica} was also processed. RNA was reverse
+transcribed and amplified into cDNA using the MINT-cDNA synthesis kit
+(Evrogen, Moscow, Russia). Emulsion PCR and library preparation were
+performed for each cDNA library according to the manufacturer's
+protocols (Roche/454 Life Sciences), and sequenced on a Roche 454
+Genome Sequencer.
 
 Raw sequencing reads are archived under study-accession number
 SRP010313 in the NCBI Sequence Read Archive (SRA;
@@ -382,7 +380,7 @@ of ribosomal RNA (rRNA) sequences from eel species derived from our
 Roche 454 data and EMBL-Bank; and (c) a database of rRNA sequences
 identified in our \textit{A. crassus} data by comparing the reads to
 known nematode rRNAs from EMBL-Bank. This last database notably also
-contained cenobiont rRNA sequences. Reads with matches to one of these
+contained cobiont rRNA sequences. Reads with matches to one of these
 databases over more than 80\% of their length and with greater than
 95\% identity were removed from the dataset. Screening and trimming
 information was written back into sff-format using sfffile (Roche
@@ -479,7 +477,7 @@ was explored. When SNPs were discarded using different size thresholds
 for homopolymer runs and proximity thresholds, the ti/tv and in dn/ds
 ratios changed (Additional Figure 1). Based on this SNPs associated
 with a homopolymer run longer than 3 bases within a window of 11 bases
-(5 to bases to the right, 5 to the left) around the SNP were
+(5 bases to the right, 5 to the left) around the SNP were
 discarded. There was a relationship between TUG dn/ds and TUG
 coverage, associated with the presence of sites with low abundance
 minority alleles (less than 7\% of the allele calls), suggesting that
@@ -1017,7 +1015,7 @@ definitive host \textit{An. japonica} as part of this filtering
 process. In addition to eel-derived transcripts, we also removed data
 apparently derived from protists, particularly cercozoans, that may
 have been co-parasites of the eels sampled. Similar taxonomic
-screening of NGS transcrioptome data has been shown to be important
+screening of transcrioptome data has been shown to be important
 previously \cite{pmid21138572}, particularly in rejection of
 hypotheses of horizontal gene transfer into the focal species
 \cite{pmid20386959}. We were not able to use base frequency- and codon
@@ -1109,7 +1107,7 @@ been suggested as threshold for assuming positive selection
 under positive selection, thirteen peptidases were under positive
 selection (out of 43 annotated), and the GO term peptidases was
 significantly overrepresented in the set of positively selected
-TUGs. Those thirteen peptidases are deeply conserved, as they have
+TUGs. Those thirteen peptidases are deeply conserved, as twelve had
 unique orthologue pairs in \textit{B. malayi} and
 \textit{C. elgans}. Peptidases have previously been proposed to have
 acquired prominent roles in host-parasite interactions. An
@@ -1232,9 +1230,10 @@ GenePool Genomics Facility is core funded by The School of Biological
 Sciences, University of Edinburgh, the Darwin Trust of Edinburgh, the
 UK Natural Environment Research Council (award reference R8/H10/56)
 and the UK Medical Research Council (award award reference
-G0900740). We are grateful to Karim Gharbi for oversight of the
-project within the GenePool. Timoth\'ee Cezard, Sujai Kumar and Graham
-Thomas gave essential analytic and informatic support.
+G0900740). We are grateful Yun-San Han for his help collecting samples
+in Taiwan and to Karim Gharbi for oversight of the project within the
+GenePool. Timoth\'ee Cezard, Sujai Kumar and Graham Thomas gave
+essential analytic and informatic support.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                  The Bibliography                       %%
@@ -1329,6 +1328,7 @@ that arose in the last common ancestor of Nematoda or to be novel to
 \subsection*{Table 1 - Sampling, trimming and pre-assembly screening,
   library statistics}
 
+
 <<echo=FALSE, results=tex>>=
 ## print(xtable(TRIM, display=rep("d", times=7)), floating=FALSE)
 trim_mark <- transform(TRIM, lowqal = short+lowq+dust+shortq)[1:6, ]
@@ -1343,12 +1343,14 @@ trim_mark$life.st <- c("adult female", "adult female", "L2 larvae",
 trim_mark$source.p <- c("Europe Rhine", "Europe Poland", "Europe Rhine",
                        "Asia cultured", "Asia cutured", "Asia wild")
 
+trim_mark$geolocation <- c("49.0262N; 8.310556E", "53.751959N; 21.730957E", "49.0262N; 8.310556E",
+                           "22.6418N; 120.4440E", "22.6418N; 120.4440E", "22.5074N; 120.4220E")
+
 trim_mark[7,] <- c("Eel", "", "", "", "", length(eel.clean), sum(nchar(eel.clean)),
-                   length(eel.all), length(eel.all)-length(eel.clean), "liver", "Taiwan")
+                   length(eel.all), length(eel.all)-length(eel.clean), "liver", "Taiwan", "")
 
-trim_mark <- trim_mark[, c(1, 10, 11,  8, 9, 2, 4, 5, 3, 6, 7 )]
-names(trim_mark)[c(1, 4)] <- c("library", "raw.reads")
-
+trim_mark <- trim_mark[, c(1, 10, 11, 12, 8, 9, 2, 4, 5, 3, 6, 7 )]
+names(trim_mark)[c(1, 5)] <- c("library", "raw.reads")
 
 trim_mark <- merge(trim_mark, colSums(all.counts), by.x="library", by.y="row.names")
 names(trim_mark)[length(trim_mark)] <- "mapping.unique"
@@ -1368,6 +1370,7 @@ names(trim_mark)[length(trim_mark)] <- "over.32"
 names(trim_mark) <- c("sequencing library",
                       "lifecycle stage",
                       "source population",
+                      "geolocation", 
                       "raw reads",
                       "low quality reads",
                       "\\textit{A. crassus} rRNA reads",
@@ -1381,8 +1384,8 @@ names(trim_mark) <- c("sequencing library",
                       "reads mapping highCA contigs",
                       "reads mapping to contigs with count >32")
 
-trim_mark[,4:15] <- lapply(trim_mark[,4:15], as.numeric)
-total.trim <- colSums(trim_mark[,4:15])
+trim_mark[,5:16] <- lapply(trim_mark[,5:16], as.numeric)
+total.trim <- colSums(trim_mark[,5:16])
 total.trim <- c("total","","", total.trim)
 
 trim_mark <- t(trim_mark)

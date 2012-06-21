@@ -330,12 +330,12 @@ reported from a given assembly.
 \end{figure}
 
 While, the splitting of reads in the Newbler assembly can give useful
-information on possible isoforms, the number of contigs
-\texttt{Newbler} split one read into (in some cases more than 100
-contigs) seems inflated (see additional figure \ref{fig:newdist}). This
-emphasises the need for further processing of the contigs. The maximum
-number of read splits in a contig and its usefulness in estimating
-contig quality will be discussed later in greater detail.
+information on possible isoforms, the number of contigs Newbler split
+one read into (in some cases more than 100 contigs) seems inflated
+(see additional figure \ref{fig:newdist}). This emphasises the need
+for further processing of the contigs. The maximum number of read
+splits in a contig and its usefulness in estimating contig quality
+will be discussed later in greater detail.
 
 \subsection{The Mira assembly and the second-order assembly}
 \label{sec:assembly-sec}
@@ -351,7 +351,7 @@ included. Below, we explore how information from both estimates of the
 transcriptome were integrated into the final second-order assembly.
 
 % latex table generated in R 2.16.0 by xtable 1.7-0 package
-% Fri Jun  1 16:20:08 2012
+% Thu Jun 21 10:52:41 2012
 \begin{table}[ht]
 \begin{center}
 \begin{tabular}{rlll}
@@ -369,7 +369,7 @@ Max length & 6300 & 6352 & 6377 \\
   Span of singletons & 7022901/31670649 & 17833358 & 6108621/13291587 \\ 
    \hline
 \end{tabular}
-\caption[Basic statistics for the first-order assemblies and the second-order assembly]{Basic statistics for the first-order assemblies and the second-order assembly (for which only the most reliable category of contigs is shown. For Newbler the number of singletnons is given as defined above as ``unused reads'' and as reported Singletons for the second-order assembly singletons are the intersection of these with the Mira singletons.}
+\caption[Basic statistics for the first-order assemblies and the second-order assembly]{Basic statistics for the first-order assemblies and the second-order assembly (for which only the most reliable category of contigs is shown. For Newbler the number of singletons is given as defined above as ``unused reads'' and as reported. Singletons for the second-order assembly are the intersection of these with the Mira singletons.}
 \label{tab:pc}
 \end{center}
 \end{table}
@@ -388,7 +388,7 @@ weighted median contig size (N50).
 
 Three main categories of assembled sequence data can be distinguished
 in the second-order assembly, each one with different reliability and
-purpose in downstream applications:
+utility in downstream applications:
 
 The first category of data obtained are the singletons of the final
 second-order assembly. It comprises raw sequencing reads that neither
@@ -411,7 +411,7 @@ whether they entered the assembly via both or only via one first-order
 assembly.
 
 % latex table generated in R 2.16.0 by xtable 1.7-0 package
-% Fri Jun  1 16:20:14 2012
+% Thu Jun 21 10:52:47 2012
 \begin{table}[ht]
 \begin{center}
 \begin{tabular}{p{2.5cm}llcll}
@@ -585,10 +585,10 @@ contigs.
 Given this evaluation we defined the ``minimal adequate assembly'' as
 the subset of contigs of the second-order assembly supported by both
 assemblers (labeled MN above). Given the performance of the singletons
-\texttt{Newbler} reported, we defined the ``fullest assembly'' as all
+Newbler reported, we defined the ``fullest assembly'' as all
 second-order contigs (including those supported by only one assembler)
-plus the intersection of reported \texttt{Newbler} singletons and
-\texttt{Mira} singletons.
+plus the intersection of reported Newbler singletons and Mira
+singletons.
 
 The proportion of proteins covered in \textit{C. elegans} by
 \textit{B. malayi} coding sequences was with
@@ -657,7 +657,7 @@ example contigs are all from large contig clusters (cluster.size),
 where interpretation of the assembly history is more complex:
 
 % latex table generated in R 2.16.0 by xtable 1.7-0 package
-% Fri Jun  1 16:20:55 2012
+% Thu Jun 21 10:56:58 2012
 \begin{table}[ht]
 \begin{center}
 \begin{tabular}{rllll}
@@ -690,19 +690,19 @@ contigs. It consists of only one contig from each first-order assembly
 of moderate size: 16 from Newbler (reads\_through\_newbler), and 26
 from Mira (reads\_through\_mira). 8 of the 16 reads Newbler used were
 also assembled to a differnt Newbler contig (num.new.split). That each
-of the 8 reads was only appearing in one other Newbler contig is
-evident as the number of split events is 16 (sum.new.split) and the
-maximal number of splits for one read is 2 (max.new.split). 13
-(num.SndO.pair) same-read-pairs from the two different first-order
-assemblies were merged in this second-order contig, leaving 3 (16-13)
-reads in Newbler contigs and 13 (26-13) reads in Mira contigs, which
-all could potentially have ended up in other contigs. The contig is in
-a cluster (CL62), which contains 24 contigs (cluster.size). The
-complete graph structure linking these 24 contigs cannot be
-reconstructed from this contig summary data. The summary data makes
-clear the sources of links for cluster-affiliation: In the case of
-Contig1047 from 3 and 13 unlinked read-paires from both first-order
-assemblies and 8 split reads from Newbler first-order contigs.
+of the 8 reads only appeared in one other Newbler contig is evident as
+the number of split events is 16 (sum.new.split) and the maximal
+number of splits for one read is 2 (max.new.split). 13 (num.SndO.pair)
+same-read-pairs from the two different first-order assemblies were
+merged in this second-order contig, leaving 3 (16-13) reads in Newbler
+contigs and 13 (26-13) reads in Mira contigs, which all could
+potentially have ended up in other contigs. The contig is in a cluster
+(CL62), which contains 24 contigs (cluster.size). The complete graph
+structure linking these 24 contigs cannot be reconstructed from this
+contig summary data. The summary data makes clear the sources of links
+for cluster-affiliation: In the case of Contig1047 from 3 and 13
+unlinked read-paires from both first-order assemblies and 8 split
+reads from Newbler first-order contigs.
 
 A comprehensive interpretation of the other example contigs depicted
 is left to the reader. It should just be remarked, that in case of
@@ -732,7 +732,7 @@ contigs (and singletons) from other categories having no unique
 coverage.
 
 % latex table generated in R 2.16.0 by xtable 1.7-0 package
-% Fri Jun  1 16:20:55 2012
+% Thu Jun 21 10:56:58 2012
 \begin{table}[ht]
 \begin{center}
 \begin{tabular}{rrrrrrr}

@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.9.20)  20 JUN 2012 16:34
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.9.20)  21 JUN 2012 11:23
 entering extended mode
  %&-line parsing enabled.
 **\nonstopmode \input{/home/ele/thesis/454/paper/transcriptome_paper.tex}
@@ -663,7 +663,42 @@ Underfull \hbox (badness 6927) in paragraph at lines 1207--1207
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1213--1213
+Overfull \hbox (1.8907pt too wide) in paragraph at lines 1208--1208
+\T1/aer/m/n/10 8.310556E| 
+ []
+
+
+Overfull \hbox (10.36067pt too wide) in paragraph at lines 1208--1208
+[]\T1/aer/m/n/10 53.751959N;
+ []
+
+
+Overfull \hbox (6.8907pt too wide) in paragraph at lines 1208--1208
+\T1/aer/m/n/10 21.730957E| 
+ []
+
+
+Overfull \hbox (1.8907pt too wide) in paragraph at lines 1208--1208
+\T1/aer/m/n/10 8.310556E| 
+ []
+
+
+Overfull \hbox (1.8907pt too wide) in paragraph at lines 1208--1208
+\T1/aer/m/n/10 120.4440E| 
+ []
+
+
+Overfull \hbox (1.8907pt too wide) in paragraph at lines 1208--1208
+\T1/aer/m/n/10 120.4440E| 
+ []
+
+
+Overfull \hbox (1.8907pt too wide) in paragraph at lines 1208--1208
+\T1/aer/m/n/10 120.4220E| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1214--1214
 []\T1/aer/m/n/10 Cercozoa reads
  []
 
@@ -673,302 +708,302 @@ Overfull \hbox (2.32088pt too wide) in paragraph at lines 1215--1216
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1216--1216
+Underfull \hbox (badness 10000) in paragraph at lines 1217--1217
 []\T1/aer/m/n/10 reads map-ping
  []
 
 
-Overfull \hbox (24.86804pt too wide) in paragraph at lines 1202--1222
+Overfull \hbox (24.86804pt too wide) in paragraph at lines 1202--1223
 []  
  []
 
 [24] [25] [26]
-Overfull \hbox (6.8269pt too wide) in paragraph at lines 1283--1283
+Overfull \hbox (6.8269pt too wide) in paragraph at lines 1284--1284
 []|\T1/aer/m/n/10 Number
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1283--1283
+Underfull \hbox (badness 10000) in paragraph at lines 1284--1284
 \T1/aer/m/n/10 an-no-
  []
 
 
-Overfull \hbox (6.8269pt too wide) in paragraph at lines 1283--1283
+Overfull \hbox (6.8269pt too wide) in paragraph at lines 1284--1284
 []|\T1/aer/m/n/10 Number
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1283--1283
+Underfull \hbox (badness 10000) in paragraph at lines 1284--1284
 \T1/aer/m/n/10 dn/ds
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1285--1285
+Underfull \hbox (badness 10000) in paragraph at lines 1286--1286
 []|\T1/aer/m/n/10 molecular
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1287--1287
+Underfull \hbox (badness 10000) in paragraph at lines 1288--1288
 []|\T1/aer/m/n/10 ribonucleoprotein com-plex
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1291--1291
+Underfull \hbox (badness 10000) in paragraph at lines 1292--1292
 []|\T1/aer/m/n/10 biological
  []
 
 
-Underfull \hbox (badness 1342) in paragraph at lines 1305--1305
+Underfull \hbox (badness 1342) in paragraph at lines 1306--1306
 []|\T1/aer/m/n/10 neuromuscular pro-cess con-
  []
 
 
-Underfull \hbox (badness 6725) in paragraph at lines 1314--1314
+Underfull \hbox (badness 6725) in paragraph at lines 1315--1315
 []|\T1/aer/m/n/10 positive reg-u-la-tion of or-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1322--1322
+Underfull \hbox (badness 10000) in paragraph at lines 1323--1323
 []|\T1/aer/m/n/10 cellular
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1322--1322
+Underfull \hbox (badness 10000) in paragraph at lines 1323--1323
 \T1/aer/m/n/10 com-part-
  []
 
 [27] [28]
-Underfull \hbox (badness 1577) in paragraph at lines 1342--1342
+Underfull \hbox (badness 1577) in paragraph at lines 1343--1343
 []\T1/aer/m/n/10 relative het-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1342--1342
+Underfull \hbox (badness 10000) in paragraph at lines 1343--1343
 []\T1/aer/m/n/10 internal
  []
 
 
-Overfull \hbox (2.27391pt too wide) in paragraph at lines 1342--1342
+Overfull \hbox (2.27391pt too wide) in paragraph at lines 1343--1343
 []\T1/aer/m/n/10 homozygosity
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1342--1342
+Underfull \hbox (badness 10000) in paragraph at lines 1343--1343
 []\T1/aer/m/n/10 standardised
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1342--1342
+Underfull \hbox (badness 10000) in paragraph at lines 1343--1343
 \T1/aer/m/n/10 het-erozy-gos-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1342--1343
+Underfull \hbox (badness 10000) in paragraph at lines 1343--1344
 []\T1/aer/m/n/10 informative
  []
 
 [29]
-Overfull \hbox (6.8269pt too wide) in paragraph at lines 1361--1361
+Overfull \hbox (6.8269pt too wide) in paragraph at lines 1362--1362
 []|\T1/aer/m/n/10 Number
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1361--1361
+Underfull \hbox (badness 10000) in paragraph at lines 1362--1362
 \T1/aer/m/n/10 an-no-
  []
 
 
-Overfull \hbox (6.8269pt too wide) in paragraph at lines 1361--1361
+Overfull \hbox (6.8269pt too wide) in paragraph at lines 1362--1362
 []|\T1/aer/m/n/10 Number
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1361--1361
+Underfull \hbox (badness 10000) in paragraph at lines 1362--1362
 \T1/aer/m/n/10 sig-nif-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1363--1363
+Underfull \hbox (badness 10000) in paragraph at lines 1364--1364
 []|\T1/aer/m/n/10 molecular
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1365--1365
+Underfull \hbox (badness 10000) in paragraph at lines 1366--1366
 []|\T1/aer/m/n/10 procollagen-proline 4-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1367--1367
+Underfull \hbox (badness 10000) in paragraph at lines 1368--1368
 []|\T1/aer/m/n/10 biological
  []
 
 
-Underfull \hbox (badness 1609) in paragraph at lines 1369--1369
+Underfull \hbox (badness 1609) in paragraph at lines 1370--1370
 []|\T1/aer/m/n/10 cellular ni-tro-gen com-pound
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1374--1374
+Underfull \hbox (badness 10000) in paragraph at lines 1375--1375
 []|\T1/aer/m/n/10 nucleobase-containing com-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1394--1394
+Underfull \hbox (badness 10000) in paragraph at lines 1395--1395
 []|\T1/aer/m/n/10 peptidyl-proline hy-drox-y-la-
  []
 
 
-Underfull \hbox (badness 2573) in paragraph at lines 1395--1395
+Underfull \hbox (badness 2573) in paragraph at lines 1396--1396
 []|\T1/aer/m/n/10 positive reg-u-la-tion of hor-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1405--1405
+Underfull \hbox (badness 10000) in paragraph at lines 1406--1406
 []|\T1/aer/m/n/10 ribonucleoprotein com-plex
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1408--1408
+Underfull \hbox (badness 10000) in paragraph at lines 1409--1409
 []|\T1/aer/m/n/10 cellular pro-tein metabolic
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1410--1410
+Underfull \hbox (badness 10000) in paragraph at lines 1411--1411
 []|\T1/aer/m/n/10 cellular
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1410--1410
+Underfull \hbox (badness 10000) in paragraph at lines 1411--1411
 \T1/aer/m/n/10 com-part-
  []
 
 
-Underfull \hbox (badness 1590) in paragraph at lines 1412--1412
+Underfull \hbox (badness 1590) in paragraph at lines 1413--1413
 []|\T1/aer/m/n/10 intracellular non-membrane-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1414--1414
+Underfull \hbox (badness 10000) in paragraph at lines 1415--1415
 []|\T1/aer/m/n/10 intracellular membrane-
  []
 
 [30] [31] [32]
-Overfull \hbox (6.8269pt too wide) in paragraph at lines 1440--1440
+Overfull \hbox (6.8269pt too wide) in paragraph at lines 1441--1441
 []|\T1/aer/m/n/10 Number
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1440--1440
+Underfull \hbox (badness 10000) in paragraph at lines 1441--1441
 \T1/aer/m/n/10 an-no-
  []
 
 
-Overfull \hbox (6.8269pt too wide) in paragraph at lines 1440--1440
+Overfull \hbox (6.8269pt too wide) in paragraph at lines 1441--1441
 []|\T1/aer/m/n/10 Number
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1440--1440
+Underfull \hbox (badness 10000) in paragraph at lines 1441--1441
 \T1/aer/m/n/10 sig-nif-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1442--1442
+Underfull \hbox (badness 10000) in paragraph at lines 1443--1443
 []|\T1/aer/m/n/10 molecular
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1446--1446
+Underfull \hbox (badness 10000) in paragraph at lines 1447--1447
 []|\T1/aer/m/n/10 acetyl-CoA C-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1454--1454
+Underfull \hbox (badness 10000) in paragraph at lines 1455--1455
 []|\T1/aer/m/n/10 biological
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1468--1468
+Underfull \hbox (badness 10000) in paragraph at lines 1469--1469
 []|\T1/aer/m/n/10 carboxylic acid metabolic
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1470--1470
+Underfull \hbox (badness 10000) in paragraph at lines 1471--1471
 []|\T1/aer/m/n/10 regulation of nucleobase-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1470--1470
+Underfull \hbox (badness 10000) in paragraph at lines 1471--1471
 \T1/aer/m/n/10 containing com-pound
  []
 
 
-Underfull \hbox (badness 3189) in paragraph at lines 1471--1471
+Underfull \hbox (badness 3189) in paragraph at lines 1472--1472
 []|\T1/aer/m/n/10 regulation of tran-scrip-tion,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1475--1475
+Underfull \hbox (badness 10000) in paragraph at lines 1476--1476
 []|\T1/aer/m/n/10 monocarboxylic acid
  []
 
 
-Underfull \hbox (badness 1270) in paragraph at lines 1478--1478
+Underfull \hbox (badness 1270) in paragraph at lines 1479--1479
 []|\T1/aer/m/n/10 multicellular or-gan-is-mal re-
  []
 
 
-Underfull \hbox (badness 2744) in paragraph at lines 1483--1483
+Underfull \hbox (badness 2744) in paragraph at lines 1484--1484
 []|\T1/aer/m/n/10 regulation of the force of
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 1486--1486
+Underfull \hbox (badness 1221) in paragraph at lines 1487--1487
 []|\T1/aer/m/n/10 response to tu-mor necro-sis
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1490--1490
+Underfull \hbox (badness 10000) in paragraph at lines 1491--1491
 []|\T1/aer/m/n/10 regulation of choles-terol
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1491--1491
+Underfull \hbox (badness 10000) in paragraph at lines 1492--1492
 []|\T1/aer/m/n/10 positive reg-u-la-tion of
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1491--1491
+Underfull \hbox (badness 10000) in paragraph at lines 1492--1492
 \T1/aer/m/n/10 sequence-specific DNA
  []
 
 
-Underfull \hbox (badness 1019) in paragraph at lines 1491--1491
+Underfull \hbox (badness 1019) in paragraph at lines 1492--1492
 \T1/aer/m/n/10 bind-ing tran-scrip-tion fac-tor
  []
 
 
-Underfull \hbox (badness 4036) in paragraph at lines 1495--1495
+Underfull \hbox (badness 4036) in paragraph at lines 1496--1496
 []|\T1/aer/m/n/10 homeostasis of num-ber of
  []
 
 
-Underfull \hbox (badness 6428) in paragraph at lines 1499--1499
+Underfull \hbox (badness 6428) in paragraph at lines 1500--1500
 []|\T1/aer/m/n/10 regulation of tran-scrip-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1500--1500
+Underfull \hbox (badness 10000) in paragraph at lines 1501--1501
 []|\T1/aer/m/n/10 transcription, DNA-
  []
 
 [33]
-Underfull \hbox (badness 10000) in paragraph at lines 1503--1503
+Underfull \hbox (badness 10000) in paragraph at lines 1504--1504
 []|\T1/aer/m/n/10 cellular
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1503--1503
+Underfull \hbox (badness 10000) in paragraph at lines 1504--1504
 \T1/aer/m/n/10 com-part-
  []
 
@@ -998,7 +1033,7 @@ onts/type1/bluesky/cm/cmssbx10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cms
 si10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy6.pfb></usr/share/texmf/f
 onts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmti10
 .pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmti9.pfb>
-Output written on transcriptome_paper.pdf (35 pages, 233998 bytes).
+Output written on transcriptome_paper.pdf (35 pages, 234218 bytes).
 PDF statistics:
  191 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
