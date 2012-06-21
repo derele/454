@@ -191,7 +191,7 @@
   \textit{A. crassus} from Roche 454 pyrosequencing data. Raw reads
   (756,363 total) from nematodes from \textit{An. japonica} and
   \textit{An. anguilla} hosts were filtered for likely host
-  contaminats and ribosomal RNAs. The remaining 353,055 reads were
+  contaminants and ribosomal RNAs. The remaining 353,055 reads were
   assembled into 11,372 contigs of a high confidence assembly
   (spanning 6.6 Mb) and an additional 21,153 singletons and contigs of
   a lower confidence assembly (spanning an additional 6.2 Mb). Roughly
@@ -264,7 +264,7 @@ geographic and host ranges to Europe and the European eel,
 first time in Europe in North-West Germany in 1982
 \cite{fischer_teichwirt}, where it was most likely introduced through
 the live-eel trade \cite{koops_anguillicola-infestations_1989,
-  koie_swimbladder_1991}, \textit{A. crassus} has subsequently spread
+  koie_swimbladder_1991}. \textit{A. crassus} has subsequently spread
 rapidly through populations of its newly acquired host
 \cite{kirk_impact_2003}, and has been found in all
 \textit{An. anguilla} populations except those in Iceland
@@ -305,7 +305,7 @@ these species.
 
 The differences in the biology of \textit{A. crassus} in
 \textit{An. japonica} (coevolved) and \textit{An. anguilla} (recently
-captured) eel hosts likely results from differential interactions
+captured) eel hosts is likely to result from differential interactions
 between host genetics and parasite genetics. While genetic differences
 between the host species are expected, it is not known what part, if
 any, genetic differentiation between the invading European and endemic
@@ -320,7 +320,7 @@ invading European and endemic Asian \textit{A. crassus} exposed to the
 two host species.
 
 Recent advances in sequencing technology (often termed next generation
-sequencing), provide the opportunity for rapid and cost-effective
+sequencing) provide the opportunity for rapid and cost-effective
 generation of genome-scale data. The Roche 454 platform
 \cite{pmid16056220} is particularly suited to transcriptomics of
 previously unstudied species \cite{pmid20950480}. Here we describe the
@@ -348,7 +348,7 @@ transcribed and amplified into cDNA using the MINT-cDNA synthesis kit
 (Evrogen, Moscow, Russia). Emulsion PCR and library preparation were
 performed for each cDNA library according to the manufacturer's
 protocols (Roche/454 Life Sciences), and sequenced on a Roche 454
-Genome Sequencer.
+Genome Sequencer FLX.
 
 Raw sequencing reads are archived under study-accession number
 SRP010313 in the NCBI Sequence Read Archive (SRA;
@@ -406,11 +406,11 @@ comparing it (using BLAST) to the three databases defined above, and
 also to NEMBASE4, a nematode transcriptome database derived from whole
 genome sequencing and EST assemblies
 \cite{parkinson_nembase:resource_2004, pmid21550347}. For each contig,
-the highest-scoring match was recorded as long as it spanned more than
-50\% of the contig. We also compared the contigs to the NCBI
-non-redundant nucleotide (NCBI-nt) and protein (NCBI-nr) databases,
-recording the taxonomy of all best matches with expect values better
-than 1e-05. Sequences with a best hit to non-Metazoans or to Chordata
+the highest-scoring match was recorded, if it spanned more than 50\%
+of the contig. We also compared the contigs to the NCBI non-redundant
+nucleotide (NCBI-nt) and protein (NCBI-nr) databases, recording the
+taxonomy of all best matches with expect values better than
+1e-05. Sequences with a best hit to non-Metazoans or to Chordata
 within Metazoa were excluded from further analysis.
 
 %% nrow(contig.df[!contig.df$Ac &
@@ -1021,8 +1021,8 @@ have been co-parasites of the eels sampled. Similar taxonomic
 screening of transcrioptome data has been shown to be important
 previously \cite{pmid21138572}, particularly in rejection of
 hypotheses of horizontal gene transfer into the focal species
-\cite{pmid20386959}. We were not able to use base frequency- and codon
-usage-based screening to identify contaminant data \cite{pmid20034392,
+\cite{pmid20386959}. We were not able to use base frequency and codon
+usage based screening to identify contaminant data \cite{pmid20034392,
   pmid17218127} because contaminant sequences in our data derived from
 multiple genomes.
 
@@ -1232,9 +1232,9 @@ Volkswagen Foundation, "F\"{o}rderinitiative Evolutionsbiologie". The
 GenePool Genomics Facility is core funded by The School of Biological
 Sciences, University of Edinburgh, the Darwin Trust of Edinburgh, the
 UK Natural Environment Research Council (award reference R8/H10/56)
-and the UK Medical Research Council (award award reference
-G0900740). We are grateful Yun-San Han for his help collecting samples
-in Taiwan and to Karim Gharbi for oversight of the project within the
+and the UK Medical Research Council (award reference G0900740). We are
+grateful to Yun-San Han for his help collecting samples in Taiwan and
+to Karim Gharbi for overseeing the project within the
 GenePool. Timoth\'ee Cezard, Sujai Kumar and Graham Thomas gave
 essential analytic and informatic support.
 
