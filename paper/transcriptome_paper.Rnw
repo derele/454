@@ -129,7 +129,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\author{Emanuel Heitlinger\correspondingauthor$^{1,2}$% 
+\author{Emanuel Heitlinger\correspondingauthor$^{1,2,4}$% 
        \email{Emanuel Heitlinger\correspondingauthor - emanuelheitlinger@gmail.com}%
        Stephen Bridgett$^{3}$% 
        \email{Stephen Bridgett- sbridget@staffmail.ed.ac.uk}%
@@ -150,10 +150,11 @@
 
       \address{%
         \iid(1)Department of Ecology and Parasitology, Zoological
-        Institute 1, University of Karlsruhe,%
+        Institute, Karlsruhe Institute of Technology,%
         Kornblumenstrasse 13, Karlsruhe, Germany\\
-        \iid(2)Institute of Evolutionary Biology, The Ashworth Laboratories, The University of Edinburgh, The King's Buildings, Edinburgh EH9 3JT, UK
-        \iid(3)The GenePool Genomics Facility, The Ashworth Laboratories, The University of Edinburgh, The King's Buildings, Edinburgh EH9 3JT, UK
+        \iid(2)Institute of Evolutionary Biology, The Ashworth Laboratories, The University of Edinburgh, The King's Buildings, Edinburgh EH9 3JT, UK\\
+        \iid(3)The GenePool Genomics Facility, The Ashworth Laboratories, The University of Edinburgh, The King's Buildings, Edinburgh EH9 3JT, UK\\
+        \iid(4) present address: Department for Molecular Parasitology, Institute for Biology, Humboldt University Berlin, Philippstrasse 13, Haus 14, Berlin, Germany
       }%
 
 \maketitle
@@ -977,7 +978,9 @@ write.sequence(MN.pep.fasta, "/home/ele/thesis/454/MN.pep.fasta")
 
 ## for a more readable version of contig.df
 readable <- !names(contig.df)%in%c("seq", "imp", "ontology", "coding", "Ac.pep")
-write.csv(contig.df, "../paper/A.crassus_transcriptome_contig_data.csv",
+needed <- !names(contig.df)%in%c("ontology", "cov.ontology")
+
+write.csv(contig.df[,needed], "../paper/A.crassus_transcriptome_contig_data.csv",
 row.names=FALSE)
 
 write.csv(VARqp[, c("contig", "base", "from", "to",
