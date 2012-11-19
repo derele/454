@@ -989,12 +989,24 @@ write.csv(VARqp[, c("contig", "base", "from", "to",
 row.names=FALSE)
 
 names(express.sex.sig) <- c("E2", "T1", "T2", "M", "LogFC")
+express.sex.sig <- merge(express.sex.sig,
+                         contig.df[, c("contig", "nempep.annot")], by.x=0, by.y="contig")
+express.sex.sig <- express.sex.sig[order(express.sex.sig$LogFC), ]
 write.csv(express.sex.sig, "../paper/A.crassus_transcriptome_sexDE.csv",
 row.names=TRUE)
 
+top10.sex <- express.sex.sig[c(1:5, (nrow(express.sex.sig)-4):nrow(express.sex.sig)),
+                         "Row.names"]
+
 names(express.eel.sig) <- c("E2", "T1", "T2", "LogFC")
+express.eel.sig <- merge(express.eel.sig,
+                         contig.df[, c("contig", "nempep.annot")], by.x=0, by.y="contig")
+express.eel.sig <- express.eel.sig[order(express.eel.sig$LogFC), ]
 write.csv(express.eel.sig, "../paper/A.crassus_transcriptome_originDE.csv",
 row.names=TRUE)
+
+top10.eel <- express.eel.sig[c(1:5, (nrow(express.eel.sig)-4):nrow(express.eel.sig)),
+                         "Row.names"]
 
 ## for summary statistics a non-Ac reduced dataset
 c.df <- contig.df[contig.df$Ac, ] #$

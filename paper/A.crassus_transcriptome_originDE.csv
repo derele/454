@@ -1,79 +1,79 @@
-"","E2","T1","T2","LogFC"
-"Contig101",25.5,16,9.8,0.681451140796754
-"Contig102",7.6,20.7,23.2,-1.0606188922289
-"Contig119",22.9,2.8,3.6,1.96798610075451
-"Contig13084",25.5,4.2,5.8,1.62924053973028
-"Contig137",24.4,14.1,12,0.625794998530454
-"Contig15",54.3,27.8,29.4,0.641117509114083
-"Contig159",25.8,5.2,9.8,1.23547147138531
-"Contig184",17.9,6.1,4.9,1.18005262060828
-"Contig200",20.3,0.9,0.9,3.11598140170557
-"Contig206",21.1,4.7,4.5,1.52321673698697
-"Contig218",0.9,7.1,7.1,-2.0654552997051
-"Contig233",10.3,3.3,1.3,1.49923477230049
-"Contig265",45.5,24.1,18.3,0.763711144278938
-"Contig267",10.9,2.8,3.6,1.22561197942942
-"Contig27",41.1,17.4,16,0.90059940207948
-"Contig310",11.7,2.4,0.9,1.95881355389122
-"Contig331",10.6,0.9,3.1,1.66770682055808
-"Contig336",9.1,1.9,3.6,1.19667350184432
-"Contig358",7.9,1.4,3.1,1.25593254325665
-"Contig3588",66.4,81.1,76.7,-0.17248417136944
-"Contig383",0,4.7,2.7,-Inf
-"Contig39",32.3,16.5,19.6,0.581921545449721
-"Contig392",7.3,2.4,1.8,1.24593700342497
-"Contig395",8.5,0.9,0.4,2.57084907958872
-"Contig3958",0,6.1,9.4,-Inf
-"Contig4",12.6,1.9,3.1,1.61740608208328
-"Contig401",10.6,2.4,1.3,1.74566836202779
-"Contig4445",1.2,9.4,4.9,-1.78479079991196
-"Contig4696",67.8,11.8,13.4,1.68286538098892
-"Contig484",13.8,3.8,0.9,1.77025326400709
-"Contig491",25.8,10.8,15.6,0.670157662335247
-"Contig5164",0,16,14.7,-Inf
-"Contig53",1.5,10.4,9.4,-1.88706964903238
-"Contig5320",46.4,1.9,0,3.88859275361976
-"Contig5394",8.8,15.6,16.5,-0.600957128091864
-"Contig5462",24.1,14.1,13.4,0.561173016384029
-"Contig548",8.2,3.3,3.1,0.940983344464526
-"Contig5642",34.7,90,80.2,-0.897087348626515
-"Contig5655",16.2,26.9,25.4,-0.478837948272593
-"Contig5657",8.2,1.9,2.7,1.2712250313351
-"Contig5661",43.2,19.8,21.4,0.740549419454529
-"Contig5679",7.9,2.4,1.8,1.3249254147436
-"Contig5691",10.9,3.8,4.9,0.918586944134505
-"Contig5696",10.3,3.8,4.9,0.861968050134998
-"Contig5699",9.1,16,21.8,-0.730887508542792
-"Contig573",0.9,5.2,5.3,-1.76358859226136
-"Contig5733",6.8,18.9,13.4,-0.864997437486604
-"Contig5737",14.7,3.8,6.7,1.02961941718116
-"Contig574",2.3,8,10.3,-1.38084475635233
-"Contig580",8.8,3.8,3.1,0.936377490440892
-"Contig5802",5.9,1.9,1.8,1.15976671182144
-"Contig5812",9.1,1.4,4.9,1.06087196068526
-"Contig5818",2.3,7.1,6.7,-1.09861228866811
-"Contig5827",10.3,5.2,3.1,0.909035560992983
-"Contig5837",30.8,16.1,15.6,0.664345189656239
-"Contig5871",14.1,4.2,8.5,0.797719984479522
-"Contig5909",10.9,2.8,1.8,1.55585366629999
-"Contig5919",7.9,1.9,1.3,1.59685913022724
-"Contig5940",14.4,3.3,3.1,1.50407739677627
-"Contig5943",19.1,7.1,4,1.23589040729424
-"Contig6016",8.5,1.9,2.7,1.30715704056117
-"Contig6090",9.1,4.2,4,0.797287439812542
-"Contig610",7.6,0.9,0.9,2.13350876295011
-"Contig6138",32.9,5.2,6.2,1.75300648293082
-"Contig6150",9.4,1.4,2.7,1.52286989612564
-"Contig6170",8.2,15.1,18.7,-0.72317946765882
-"Contig6173",11.7,2.8,6.2,0.955511445027436
-"Contig620",47.6,23.6,26.7,0.637974864691626
-"Contig6223",28.2,8,11.1,1.08278082345143
-"Contig636",7.3,0.9,2.7,1.40008768325223
-"Contig6384",4.7,14.6,13.8,-1.1056794558912
-"Contig6551",11.2,0.5,2.2,2.11580918585071
-"Contig6759",0,75.4,82.5,-Inf
-"Contig6980",0.3,4.7,4.5,-2.73002910782099
-"Contig716",8.2,2.8,0.4,1.63413052502447
-"Contig7788",0.6,4.2,4,-1.92181259747625
-"Contig86",6.2,16,14.3,-0.893451239904332
-"Contig97",37,11.3,10.3,1.23137177851405
+"","Row.names","E2","T1","T2","LogFC","nempep.annot"
+"21","Contig383",0,4.7,2.7,-Inf,"ALC00652_1 no annotation"
+"25","Contig3958",0,6.1,9.4,-Inf,"ASC02016_1 CE37429 WBGene00012875 status:Confirmed TR:Q5ZEQ6 protein_id:CAH60766.1 87"
+"32","Contig5164",0,16,14.7,-Inf,"Galactoside-binding lectin family protein; n=1; Brugia malayi|Rep: Galactoside-binding lectin family protein - Brugia malayi (Filarial nematode worm) 392"
+"73","Contig6759",0,75.4,82.5,-Inf,"Cytochrome c oxidase subunit 2; n=1; Toxocara canis|Rep: Cytochrome c oxidase subunit 2 - Toxocara canis (Canine roundworm) 439"
+"74","Contig6980",0.3,4.7,4.5,-2.73002910782099,"Transthyretin-like family protein; n=1; Brugia malayi|Rep: Transthyretin-like family protein - Brugia malayi (Filarial nematode worm) 93"
+"11","Contig218",0.9,7.1,7.1,-2.0654552997051,"Putative uncharacterized protein; n=1; Caenorhabditis briggsae|Rep: Putative uncharacterized protein - Caenorhabditis briggsae 124"
+"76","Contig7788",0.6,4.2,4,-1.92181259747625,"40S ribosomal protein S17, putative; n=1; Brugia malayi|Rep: 40S ribosomal protein S17, putative - Brugia malayi (Filarial nematode worm) 216"
+"33","Contig53",1.5,10.4,9.4,-1.88706964903238,"CBR-PQN-22 protein; n=1; Caenorhabditis briggsae|Rep: CBR-PQN-22 protein - Caenorhabditis briggsae 208"
+"28","Contig4445",1.2,9.4,4.9,-1.78479079991196,"Oxidoreductase, short chain dehydrogenase/reductase family protein; n=1; Brugia malayi|Rep: Oxidoreductase, short chain dehydrogenase/reductase family protein - Brugia malayi (Filarial nematode worm) 201"
+"46","Contig573",0.9,5.2,5.3,-1.76358859226136,"Oxidoreductase, short chain dehydrogenase/reductase family protein; n=1; Brugia malayi|Rep: Oxidoreductase, short chain dehydrogenase/reductase family protein - Brugia malayi (Filarial nematode worm) 372"
+"49","Contig574",2.3,8,10.3,-1.38084475635233,"Superoxide dismutase [Cu-Zn]; n=1; Haemonchus contortus|Rep: Superoxide dismutase [Cu-Zn] - Haemonchus contortus (Barber pole worm) 290"
+"71","Contig6384",4.7,14.6,13.8,-1.1056794558912,"Glutathione S-transferase-1; n=1; Meloidogyne incognita|Rep: Glutathione S-transferase-1 - Meloidogyne incognita (Southern root-knot nematode) 200"
+"53","Contig5818",2.3,7.1,6.7,-1.09861228866811,NA
+"2","Contig102",7.6,20.7,23.2,-1.0606188922289,"Ubiquitin carboxyl-terminal hydrolase; n=1; Brugia malayi|Rep: Ubiquitin carboxyl-terminal hydrolase - Brugia malayi (Filarial nematode worm) 338"
+"38","Contig5642",34.7,90,80.2,-0.897087348626515,"Myosin heavy chain, putative; n=1; Brugia malayi|Rep: Myosin heavy chain, putative - Brugia malayi (Filarial nematode worm) 399"
+"77","Contig86",6.2,16,14.3,-0.893451239904332,"Phosphatidyl-ethanolamine-binding protein; n=1; Dirofilaria immitis|Rep: Phosphatidyl-ethanolamine-binding protein - Dirofilaria immitis (Canine heartworm) 310"
+"47","Contig5733",6.8,18.9,13.4,-0.864997437486604,"DVC02344_1 CE31545 WBGene00018928 status:Confirmed TR:Q9BKP1 protein_id:AAK29836.2 445"
+"45","Contig5699",9.1,16,21.8,-0.730887508542792,"CRC01601_1 CE32183 WBGene00000224 locus:atg-1 Sugar (and other) transporters status:Confirmed TR:Q9XVU3 protein_id:CAB02316.2 744"
+"66","Contig6170",8.2,15.1,18.7,-0.72317946765882,"Translationally controlled tumor protein, putative; n=1; Brugia malayi|Rep: Translationally controlled tumor protein, putative - Brugia malayi (Filarial nematode worm) 325"
+"35","Contig5394",8.8,15.6,16.5,-0.600957128091864,"Putative uncharacterized protein; n=1; Brugia malayi|Rep: Putative uncharacterized protein - Brugia malayi (Filarial nematode worm) 373"
+"39","Contig5655",16.2,26.9,25.4,-0.478837948272593,"ACC09950_1 CE25612 WBGene00000547 locus:clp-7 status:Confirmed TR:Q9N4B1 protein_id:AAF36080.1 823"
+"20","Contig3588",66.4,81.1,76.7,-0.17248417136944,"Elongation factor 1 gamma, conserved domain containing protein; n=1; Brugia malayi|Rep: Elongation factor 1 gamma, conserved domain containing protein - Brugia malayi (Filarial nematode worm) 352"
+"36","Contig5462",24.1,14.1,13.4,0.561173016384029,"Inorganic pyrophosphatase; n=1; Ascaris suum|Rep: Inorganic pyrophosphatase - Ascaris suum (Pig roundworm) (Ascaris lumbricoides) 636"
+"22","Contig39",32.3,16.5,19.6,0.581921545449721,"Fructose-bisphosphate aldolase; n=2; Onchocerca volvulus|Rep: Fructose-bisphosphate aldolase - Onchocerca volvulus 260"
+"5","Contig137",24.4,14.1,12,0.625794998530454,"Domain found in Dishevelled, Egl-10, and Pleckstrin family protein; n=1; Brugia malayi|Rep: Domain found in Dishevelled, Egl-10, and Pleckstrin family protein - Brugia malayi (Filarial nematode worm) 365"
+"68","Contig620",47.6,23.6,26.7,0.637974864691626,"Tropomyosin; n=1; Heligmosomoides polygyrus|Rep: Tropomyosin - Heligmosomoides polygyrus 423"
+"6","Contig15",54.3,27.8,29.4,0.641117509114083,"Putative uncharacterized protein; n=1; Caenorhabditis briggsae|Rep: Putative uncharacterized protein - Caenorhabditis briggsae 169"
+"55","Contig5837",30.8,16.1,15.6,0.664345189656239,"Putative uncharacterized protein ctg-1; n=1; Caenorhabditis elegans|Rep: Putative uncharacterized protein ctg-1 - Caenorhabditis elegans 505"
+"31","Contig491",25.8,10.8,15.6,0.670157662335247,"Putative uncharacterized protein; n=1; Brugia malayi|Rep: Putative uncharacterized protein - Brugia malayi (Filarial nematode worm) 412"
+"1","Contig101",25.5,16,9.8,0.681451140796754,"Putative uncharacterized protein; n=1; Caenorhabditis briggsae|Rep: Putative uncharacterized protein - Caenorhabditis briggsae 724"
+"41","Contig5661",43.2,19.8,21.4,0.740549419454529,"Putative uncharacterized protein; n=1; Dictyocaulus viviparus|Rep: Putative uncharacterized protein - Dictyocaulus viviparus (Bovine lungworm) 652"
+"13","Contig265",45.5,24.1,18.3,0.763711144278938,"ADP/ATP translocase; n=1; Ascaris suum|Rep: ADP/ATP translocase - Ascaris suum (Pig roundworm) (Ascaris lumbricoides) 500"
+"62","Contig6090",9.1,4.2,4,0.797287439812542,"Failed axon connections protein, putative; n=1; Brugia malayi|Rep: Failed axon connections protein, putative - Brugia malayi (Filarial nematode worm) 375"
+"56","Contig5871",14.1,4.2,8.5,0.797719984479522,"Leucine Rich Repeat family protein; n=1; Brugia malayi|Rep: Leucine Rich Repeat family protein - Brugia malayi (Filarial nematode worm) 177"
+"44","Contig5696",10.3,3.8,4.9,0.861968050134998,"Nucleolar protein K01G5.5, putative; n=1; Brugia malayi|Rep: Nucleolar protein K01G5.5, putative - Brugia malayi (Filarial nematode worm) 559"
+"15","Contig27",41.1,17.4,16,0.90059940207948,"CBR-TAG-320 protein; n=1; Caenorhabditis briggsae|Rep: CBR-TAG-320 protein - Caenorhabditis briggsae 747"
+"54","Contig5827",10.3,5.2,3.1,0.909035560992983,"2-amino-3-ketobutyrate coenzyme A ligase, mitochondrial, putative; n=1; Brugia malayi|Rep: 2-amino-3-ketobutyrate coenzyme A ligase, mitochondrial, putative - Brugia malayi (Filarial nematode worm) 554"
+"43","Contig5691",10.9,3.8,4.9,0.918586944134505,"CAMP-dependent protein kinase; n=1; Onchocerca volvulus|Rep: CAMP-dependent protein kinase - Onchocerca volvulus 577"
+"50","Contig580",8.8,3.8,3.1,0.936377490440892,"40S ribosomal protein S7, putative; n=1; Brugia malayi|Rep: 40S ribosomal protein S7, putative - Brugia malayi (Filarial nematode worm) 311"
+"37","Contig548",8.2,3.3,3.1,0.940983344464526,"CBR-SPC-1 protein; n=1; Caenorhabditis briggsae|Rep: CBR-SPC-1 protein - Caenorhabditis briggsae 751"
+"67","Contig6173",11.7,2.8,6.2,0.955511445027436,"ASC15537_1 CE35547 WBGene00018605 status:Confirmed TR:Q9GPA1 protein_id:AAF99955.3 110"
+"48","Contig5737",14.7,3.8,6.7,1.02961941718116,"Putative uncharacterized protein; n=1; Caenorhabditis briggsae|Rep: Putative uncharacterized protein - Caenorhabditis briggsae 682"
+"52","Contig5812",9.1,1.4,4.9,1.06087196068526,"DnaJ chaperonine, putative; n=1; Brugia malayi|Rep: DnaJ chaperonine, putative - Brugia malayi (Filarial nematode worm) 370"
+"69","Contig6223",28.2,8,11.1,1.08278082345143,"Eukaryotic translation initiation factor 5A-2, putative; n=1; Brugia malayi|Rep: Eukaryotic translation initiation factor 5A-2, putative - Brugia malayi (Filarial nematode worm) 337"
+"51","Contig5802",5.9,1.9,1.8,1.15976671182144,"Glycosyl hydrolase family 85 protein; n=1; Brugia malayi|Rep: Glycosyl hydrolase family 85 protein - Brugia malayi (Filarial nematode worm) 191"
+"8","Contig184",17.9,6.1,4.9,1.18005262060828,"Hypotetical protein, conserved; n=1; Brugia malayi|Rep: Hypotetical protein, conserved - Brugia malayi (Filarial nematode worm) 254"
+"18","Contig336",9.1,1.9,3.6,1.19667350184432,"Beta-tubulin isotype I; n=4; Ancylostomatidae|Rep: Beta-tubulin isotype I - Ancylostoma duodenale 842"
+"14","Contig267",10.9,2.8,3.6,1.22561197942942,"RNA recognition motif; n=1; Brugia malayi|Rep: RNA recognition motif - Brugia malayi (Filarial nematode worm) 147"
+"78","Contig97",37,11.3,10.3,1.23137177851405,"Putative uncharacterized protein; n=1; Brugia malayi|Rep: Putative uncharacterized protein - Brugia malayi (Filarial nematode worm) 136"
+"7","Contig159",25.8,5.2,9.8,1.23547147138531,NA
+"60","Contig5943",19.1,7.1,4,1.23589040729424,"SF2, putative; n=1; Brugia malayi|Rep: SF2, putative - Brugia malayi (Filarial nematode worm) 348"
+"23","Contig392",7.3,2.4,1.8,1.24593700342497,"CBR-GLOD-4 protein; n=1; Caenorhabditis briggsae|Rep: CBR-GLOD-4 protein - Caenorhabditis briggsae 223"
+"19","Contig358",7.9,1.4,3.1,1.25593254325665,"CHD4 protein, putative; n=1; Brugia malayi|Rep: CHD4 protein, putative - Brugia malayi (Filarial nematode worm) 354"
+"40","Contig5657",8.2,1.9,2.7,1.2712250313351,"Putative uncharacterized protein; n=1; Caenorhabditis elegans|Rep: Putative uncharacterized protein - Caenorhabditis elegans 206"
+"61","Contig6016",8.5,1.9,2.7,1.30715704056117,"WBC00165_1 CE16194 WBGene00004302 locus:ran-1 GTP-binding protein status:Confirmed SW:O17915 protein_id:CAB07240.1 394"
+"42","Contig5679",7.9,2.4,1.8,1.3249254147436,"Zyg-9 protein, putative; n=1; Brugia malayi|Rep: Zyg-9 protein, putative - Brugia malayi (Filarial nematode worm) 107"
+"70","Contig636",7.3,0.9,2.7,1.40008768325223,"Proteasome subunit beta type; n=1; Brugia malayi|Rep: Proteasome subunit beta type - Brugia malayi (Filarial nematode worm) 275"
+"12","Contig233",10.3,3.3,1.3,1.49923477230049,NA
+"59","Contig5940",14.4,3.3,3.1,1.50407739677627,"Putative uncharacterized protein; n=1; Caenorhabditis elegans|Rep: Putative uncharacterized protein - Caenorhabditis elegans 305"
+"65","Contig6150",9.4,1.4,2.7,1.52286989612564,"ASC09969_1 CE39954 WBGene00000984 locus:dhs-21 Mouse adipocyte P27 protein like status:Confirmed SW:Q21929 protein_id:CAA99897.2 240"
+"10","Contig206",21.1,4.7,4.5,1.52321673698697,"Chitinase-like protein C25A8.4 precursor; n=1; Caenorhabditis elegans|Rep: Chitinase-like protein C25A8.4 precursor - Caenorhabditis elegans 217"
+"57","Contig5909",10.9,2.8,1.8,1.55585366629999,"TLC00144_1 CE20820 WBGene00018491 lactate dehydrogenase status:Confirmed TR:Q9UAV5 protein_id:AAD14720.1 397"
+"58","Contig5919",7.9,1.9,1.3,1.59685913022724,NA
+"26","Contig4",12.6,1.9,3.1,1.61740608208328,NA
+"4","Contig13084",25.5,4.2,5.8,1.62924053973028,"ASC04716_1 no annotation"
+"75","Contig716",8.2,2.8,0.4,1.63413052502447,"MIC01350_1 CE29979 WBGene00019275 transferase status:Confirmed TR:Q9UAY9 protein_id:AAL38961.1 283"
+"17","Contig331",10.6,0.9,3.1,1.66770682055808,"Putative uncharacterized protein; n=1; Caenorhabditis briggsae|Rep: Putative uncharacterized protein - Caenorhabditis briggsae 408"
+"29","Contig4696",67.8,11.8,13.4,1.68286538098892,"Immunosuppressive ovarian message protein; n=1; Ascaris suum|Rep: Immunosuppressive ovarian message protein - Ascaris suum (Pig roundworm) (Ascaris lumbricoides) 207"
+"27","Contig401",10.6,2.4,1.3,1.74566836202779,NA
+"64","Contig6138",32.9,5.2,6.2,1.75300648293082,"Oxidoreductase, short chain dehydrogenase/reductase family protein; n=1; Brugia malayi|Rep: Oxidoreductase, short chain dehydrogenase/reductase family protein - Brugia malayi (Filarial nematode worm) 303"
+"30","Contig484",13.8,3.8,0.9,1.77025326400709,"CBR-RME-2 protein; n=1; Caenorhabditis briggsae|Rep: CBR-RME-2 protein - Caenorhabditis briggsae 1172"
+"16","Contig310",11.7,2.4,0.9,1.95881355389122,NA
+"3","Contig119",22.9,2.8,3.6,1.96798610075451,"Gex interacting protein protein 7, isoform b; n=1; Caenorhabditis elegans|Rep: Gex interacting protein protein 7, isoform b - Caenorhabditis elegans 824"
+"72","Contig6551",11.2,0.5,2.2,2.11580918585071,"Inhibitor of Apoptosis domain containing protein; n=1; Brugia malayi|Rep: Inhibitor of Apoptosis domain containing protein - Brugia malayi (Filarial nematode worm) 122"
+"63","Contig610",7.6,0.9,0.9,2.13350876295011,"CBR-EIF-3.I protein; n=1; Caenorhabditis briggsae|Rep: CBR-EIF-3.I protein - Caenorhabditis briggsae 620"
+"24","Contig395",8.5,0.9,0.4,2.57084907958872,"PPC13346_1 CE33766 WBGene00008148 alpha-mannosidase status:Partially_confirmed TR:Q18679 protein_id:CAA93106.2 220"
+"9","Contig200",20.3,0.9,0.9,3.11598140170557,"Putative uncharacterized protein; n=1; Caenorhabditis briggsae|Rep: Putative uncharacterized protein - Caenorhabditis briggsae 75"
+"34","Contig5320",46.4,1.9,0,3.88859275361976,"CBR-COL-104 protein; n=1; Caenorhabditis briggsae|Rep: CBR-COL-104 protein - Caenorhabditis briggsae 258"

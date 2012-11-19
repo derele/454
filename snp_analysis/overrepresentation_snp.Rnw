@@ -60,6 +60,12 @@ GO.over.dn.ds <- GO.over.dn.ds[!GO.over.dn.ds$GO.ID%in%GO.table.uninf(GO.over.dn
 
 GO.over.dn.ds.lines <- table(sapply(GO.over.dn.ds$GO.ID, function (x) Ontology(x)))
 
+
+peptidases <- as.character(all.a.mapping[all.a.mapping$go_term%in%"GO:0008233" &
+                                         all.a.mapping$pept_id%in%big05,
+                                         "pept_id"])
+
+
 dn.ds.df$sigP <- as.factor(dn.ds.df$sigP)
 ## this for the easy nn-data
 u.test <- wilcox.test(dn.ds ~ sigP, data=dn.ds.df, conf.int = TRUE)
