@@ -988,6 +988,18 @@ write.csv(VARqp[, c("contig", "base", "from", "to",
 "inFRAME", "effect")], "../paper/A.crassus_transcriptome_screened_SNPs.csv",
 row.names=FALSE)
 
+write.single.genes.rev <- function(genes, folder) {
+  sapply(genes,
+         function (x) {
+           s <- fullest.assembly[x]
+           if (contig.df[contig.df$contig%in%x, "mstrand"]){
+             s <- revcom(fullest.assembly[x])}
+           write.sequence(s, paste(folder, x, ".fasta", sep=""))
+         })
+}
+
+write.single.genes.rev(peptidases, "../snp_analysis/peptidases/")
+
 names(express.sex.sig) <- c("E2", "T1", "T2", "M", "LogFC")
 express.sex.sig <- merge(express.sex.sig,
                          contig.df[, c("contig", "nempep.annot")], by.x=0, by.y="contig")
@@ -998,6 +1010,8 @@ row.names=TRUE)
 top10.sex <- express.sex.sig[c(1:5, (nrow(express.sex.sig)-4):nrow(express.sex.sig)),
                          "Row.names"]
 
+write.single.genes.rev(top10.sex, "../gene_expression/top10_sex/")
+
 names(express.eel.sig) <- c("E2", "T1", "T2", "LogFC")
 express.eel.sig <- merge(express.eel.sig,
                          contig.df[, c("contig", "nempep.annot")], by.x=0, by.y="contig")
@@ -1007,6 +1021,8 @@ row.names=TRUE)
 
 top10.eel <- express.eel.sig[c(1:5, (nrow(express.eel.sig)-4):nrow(express.eel.sig)),
                          "Row.names"]
+
+write.single.genes.rev(top10.eel, "../gene_expression/top10_eel/")
 
 ## for summary statistics a non-Ac reduced dataset
 c.df <- contig.df[contig.df$Ac, ] #$

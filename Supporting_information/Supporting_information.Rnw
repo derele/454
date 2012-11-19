@@ -1315,10 +1315,10 @@ assembly (lowCA).
 
 <<save, echo=FALSE>>=
 ## save what is needed downstream
-save(file="Assembly.Rdata", list=c("contig.df", "con.pile", "con.pile.uniq", "per.con", "per.con.uniq", "raw.fasta", "nBases"))
 fullest.assembly <- c(contigs ,
                       super.frass.fasta)[names(c(contigs, super.frass.fasta))%in%
                                          contig.df$contig] 
+save(file="Assembly.Rdata", list=c("contig.df", "con.pile", "con.pile.uniq", "per.con", "per.con.uniq", "raw.fasta", "nBases", "fullest.assembly"))
 
 write.sequence(fullest.assembly, "/home/ele/thesis/454/fullest_assembly.fasta")
 save.image(file="Assembly_image.Rdata")
