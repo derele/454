@@ -992,7 +992,7 @@ write.single.genes.rev <- function(genes, folder) {
   sapply(genes,
          function (x) {
            s <- fullest.assembly[x]
-           if (contig.df[contig.df$contig%in%x, "mstrand"]){
+           if (as.logical(as.character(contig.df[contig.df$contig%in%x, "mstrand"]))){
              s <- revcom(fullest.assembly[x])}
            write.sequence(s, paste(folder, x, ".fasta", sep=""))
          })
