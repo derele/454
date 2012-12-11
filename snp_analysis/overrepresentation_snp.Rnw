@@ -233,52 +233,56 @@ sigP.con.test.80 <- fisher.test(contig.df[contig.df$Ac, "novel.80"]%in%
 
 sigP.50.p <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.50) & !is.na(sigP)),
               aes(novel.50, fill=sigP)) +
-  geom_bar(position="fill", color="black") + coord_polar(theta="y") +
-  scale_y_continuous("") +
+  geom_bar(position="fill", color="black") +
+  scale_y_continuous("", lim=c(0.9,1)) +
   scale_x_discrete("", labels=good.lab,
                    breaks=levels(contig.df$novel.50)) +
-  scale_fill_manual(values=c("white", "darkblue","red")) +
-  theme_bw() + 
-  opts(title="proportion of TUGs in SignalP category\nby evolutionary conservation categories at bitscore threshold of 50", plot.background = theme_blank(), legend.position=c(.9, .9)) 
+  scale_fill_manual(breaks=c("Yes-TM", "Yes-noTM"), values=c("white", "darkblue","red")) +
+  labs(title="proportion of TUGs in SignalP category\nby evolutionary conservation categories at bitscore threshold of 50") +
+  theme_bw() +
+  theme(plot.background = element_blank(), legend.position=c(.2, .2))
 
 sigP.80.p <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.80) & !is.na(sigP)),
               aes(novel.80, fill=sigP)) +
-  geom_bar(position="fill", color="black") + coord_polar(theta="y") +
-  scale_y_continuous("") +
+  geom_bar(position="fill", color="black") + 
+  scale_y_continuous("", lim=c(0.9,1)) +
   scale_fill_manual(values=c("white", "darkblue","red"), guide="none") +
   scale_x_discrete("", labels=good.lab,
                    breaks=levels(contig.df$novel.50)) +
-  opts(title="proportion of TUGs in SignalP category\nby evolutionary conservation categories at bitscore threshold of 80", plot.background = theme_blank()) + 
-  theme_bw()
+  labs(title="proportion of TUGs in SignalP category\nby evolutionary conservation categories at bitscore threshold of 80") +
+  theme_bw() +
+  theme(plot.background = element_blank())
 
 sigP.50.p.MN <- ggplot(subset(contig.df, contig.df$AcMN & !is.na(novel.50) & !is.na(sigP)),
               aes(novel.50, fill=sigP)) +
-  geom_bar(position="fill", color="black") + coord_polar(theta="y") +
-  scale_y_continuous("") +
+  geom_bar(position="fill", color="black") + 
+  scale_y_continuous("", lim=c(0.9,1)) +
   scale_x_discrete("", labels=good.lab,
                    breaks=levels(contig.df$novel.50)) +
   scale_fill_manual(values=c("white", "darkblue","red"), guide="none") +
-  opts(title="proportion of highCA contigs in SignalP category\nby evolutionary conservation categories at bitscore threshold of 50", plot.background = theme_blank()) +
-  theme_bw()
+  labs(title="proportion of highCA contigs in SignalP category\nby evolutionary conservation categories at bitscore threshold of 50") +
+  theme_bw()+
+  theme(plot.background = element_blank())
 
 sigP.80.p.MN <- ggplot(subset(contig.df, contig.df$AcMN & !is.na(novel.80) & !is.na(sigP)),
               aes(novel.80, fill=sigP)) +
-  geom_bar(position="fill", color="black") + coord_polar(theta="y") +
-  scale_y_continuous("") +
+  geom_bar(position="fill", color="black") + 
+  scale_y_continuous("", lim=c(0.9,1)) +
   scale_x_discrete("", labels=good.lab,
                    breaks=levels(contig.df$novel.50)) +
   scale_fill_manual(values=c("white", "darkblue","red"), guide="none") +
-  opts(title="proportion of highCA contigs in SignalP category\nby evolutionary conservation categories at bitscore threshold of 80", plot.background = theme_blank()) + 
-  theme_bw()
+  labs(title="proportion of highCA contigs in SignalP category\nby evolutionary conservation categories at bitscore threshold of 80") +
+  theme_bw() +
+  theme(plot.background = element_blank())
 
 pdf("../figures/Figure_3.pdf", width=13, height=13)
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(2, 2)))
 
-vp1 <- viewport(width = 0.54, height = 0.5, x = 0.25, y = 0.24)
-vp2 <- viewport(width = 0.54, height = 0.5, x = 0.25, y = 0.72)
-vp3 <- viewport(width = 0.54, height = 0.5, x = 0.74, y = 0.24)
-vp4 <- viewport(width = 0.54, height = 0.5, x = 0.74, y = 0.72) 
+vp1 <- viewport(width = 0.5, height = 0.47, x = 0.25, y = 0.24)
+vp2 <- viewport(width = 0.5, height = 0.47, x = 0.25, y = 0.72)
+vp3 <- viewport(width = 0.5, height = 0.47, x = 0.74, y = 0.24)
+vp4 <- viewport(width = 0.5, height = 0.47, x = 0.74, y = 0.72) 
 
 print(sigP.50.p, vp = vp1)
 print(sigP.80.p, vp = vp2)
