@@ -526,15 +526,15 @@ no differences between T1 and T2.
 The R package annotationDbi \cite{AnnotationDbi} was used to obtain a
 full list of associations (along with higher-level terms) from annot8r
 annotations prior to analysis of GO term overrepresentation in gene
-sets selected on the basis of dn/ds or expression values. The
-R package topGO \cite{topGO} was used to traverse the annotation graph
+sets selected on the basis of dn/ds or expression values. The R
+package topGO \cite{topGO} was used to traverse the annotation graph
 and analyse each node term for overrepresentation in the focal gene
 set compared to an appropriate universal gene set (all contigs with
 dn/ds values or all contigs analysed for gene expression) with the
 ``classic'' method and Fisher's exact test. Terms for which an
 offspring term was already in the table and no additional counts
 supported overrepresentation were removed. Mann-Whitney u-tests were
-used to test the inuence of factors on dn/ds values. To investigate
+used to test the influence of factors on dn/ds values. To investigate
 multiple contrasts between groups (factors) Nemenyi-Damico-Wolfe-Dunn
 tests were used, and for overrepresentation of one group (factor) in
 other groups (factors) Fisher's exact test was used.
@@ -571,60 +571,37 @@ were replete with host blood. To assist in downstream filtering of
 host from nematode reads, we also sampled RNA from the liver of an
 uninfected Taiwanese \textit{An. japonica}.
 
- \subsection*{Sequencing, trimming and pre-assembly screening}
 
 
 
 
 
-
-
-A total of 756,363 raw sequencing reads
-were generated for \textit{A. crassus} (Table 1). These were trimmed
-for base call quality, and filtered by length to give
-585,949 high-quality reads (spanning
-169,863,104 bases). From \textit{An. japonica}
-liver RNA 159,370 raw reads were generated, and
-135,072 retained after basic quality
-screening. These eel reads were assembled into
-10,639 contigs. The \textit{A. crassus} reads
-were screened for contamination by host sequence by comparison to our
-assembled \textit{An. japonica} 454 transcriptome and publicly
-accessible \textit{An. anguilla} sequence data, and
-30,071 reads removed. By comparison
-to \textit{A. crassus} small subunit ribosomal RNA (sequenced
-previously) and large subunit ribosomal RNA (assembled from our reads
-in preliminary analyses), 181,783
-were tagged and removed. The L2 library proved to have contributions
-for other cobionts of the eel, and
-5,286 reads were removed
-because they matched closely to cercozoan (likely parasite) ribosomal
-RNA genes.
 
 \subsection*{Assembly and post-assembly screening}
 
 
-The remaining 353,055 reads (spanning
-100,491,819 bases) were assembled using the combined assembler
-strategy \cite{pmid20950480}, employing Roche 454 gsAssembler (also
-known as Newbler; version 2.6) and MIRA (version 3.21)
-\cite{miraEST}. In this coassembly, 13,851 contigs were
-supported by both assembly algorithms, 3,745 contigs were
-supported by only one of the assembly algorithms and 22,591
-singletons were not assembled by either program (Table 2). Contigs
-supported by both assemblers were longer than those supported by only
-one assembler, and were more likely to have a significant similarity
-to previously sequenced protein coding genes than contigs assembled by
-only one of the algorithms, or the remaining unassembled
-singletons. These constitute the highCA, while those with evidence
-from only one assembler and the singletons are the lowCA. These
-datasets were the most parsimonious (having the smallest size) for
-their quality (covering the largest amount of sequence in reference
-transcriptomes). In the highCA parsimony and low redundancy was
-prioritised, while in the complete assembly (highCA plus lowCA
-including singletons) completeness was prioritised. The 40,187
-sequences (contig consensuses and singletons) in the complete assembly
-are referred to as tentatively unique genes (TUGs).
+353,055 screened (see supporting infromation and
+table 1) sequencing reads (spanning 100,491,819 bases) were
+assembled using the combined assembler strategy \cite{pmid20950480},
+employing Roche 454 gsAssembler (also known as Newbler; version 2.6)
+and MIRA (version 3.21) \cite{miraEST}. In this coassembly,
+13,851 contigs were supported by both assembly algorithms,
+3,745 contigs were supported by only one of the assembly
+algorithms and 22,591 singletons were not assembled by
+either program (Table 2). Contigs supported by both assemblers were
+longer than those supported by only one assembler, and were more
+likely to have a significant similarity to previously sequenced
+protein coding genes than contigs assembled by only one of the
+algorithms, or the remaining unassembled singletons. These constitute
+the highCA, while those with evidence from only one assembler and the
+singletons are the lowCA. These datasets were the most parsimonious
+(having the smallest size) for their quality (covering the largest
+amount of sequence in reference transcriptomes). In the highCA
+parsimony and low redundancy was prioritised, while in the complete
+assembly (highCA plus lowCA including singletons) completeness was
+prioritised. The 40,187 sequences (contig consensuses and singletons)
+in the complete assembly are referred to as tentatively unique genes
+(TUGs).
 
 
 
@@ -867,118 +844,14 @@ elevated levels of dn/ds (Fisher's exact test p=0.041), but contrast
 male overexpressed genes showed decreased levels of dn/ds (Fisher's
 exact test p=0.014).
 
-\begin{Schunk}
-\begin{Soutput}
-$Contig110
-NULL
-
-$Contig166
-NULL
-
-$Contig18
-NULL
-
-$Contig245
-NULL
-
-$Contig5363
-NULL
-
-$Contig5671
-NULL
-
-$Contig5672
-NULL
-
-$Contig5715
-NULL
-
-$Contig5774
-NULL
-
-$Contig5803
-NULL
-
-$Contig6295
-NULL
-
-$Contig6311
-NULL
-
-$Contig6799
-NULL
-\end{Soutput}
-\begin{Soutput}
-$Contig3218
-NULL
-
-$Contig644
-NULL
-
-$Contig106
-NULL
-
-$Contig1551
-NULL
-
-$Contig220
-NULL
-
-$Contig5929
-NULL
-
-$Contig6089
-NULL
-
-$Contig7271
-NULL
-
-$Contig76
-NULL
-
-$Contig86
-NULL
-\end{Soutput}
-\begin{Soutput}
-$Contig383
-NULL
-
-$Contig3958
-NULL
-
-$Contig5164
-NULL
-
-$Contig6759
-NULL
-
-$Contig6980
-NULL
-
-$Contig6551
-NULL
-
-$Contig610
-NULL
-
-$Contig395
-NULL
-
-$Contig200
-NULL
-
-$Contig5320
-NULL
-\end{Soutput}
-\end{Schunk}
 
 \section*{Discussion}
 
 We have generated a \textit{de novo} transcriptome for
-\textit{A. crassus}, an important invasive parasite that threatens wild
-stocks of the European eel \textit{An. anguilla}. These data will
+\textit{A. crassus}, an important invasive parasite that threatens
+wild stocks of the European eel \textit{An. anguilla}. These data will
 enable a broad spectrum of molecular research on this ecologically
-important and evolutionarily interesting parasite. 
+important and evolutionarily interesting parasite.
 
 As \textit{A. crassus} lives in close association with its host, we
 used exhaustive filtering to remove all host-derived, and
@@ -1170,7 +1043,7 @@ co-inoculation experiments.
 The \textit{A. crassus} transcriptome provides a basis for a new era
 of molecular research on this ecologically important species. It will
 aid not only analysis of the invasive biology of this parasite,
-assisting in identifying the origins of invading opopulations as well
+assisting in identifying the origins of invading populations as well
 as the adaptations that may be being selected in the new European
 host, but also in the investigation of the acquisition of parasitism
 in the great clade of animal parasites, Spirurina. In particular,
@@ -1303,26 +1176,26 @@ that arose in the last common ancestor of Nematoda or to be novel to
 
 
 % latex table generated in R 2.16.0 by xtable 1.7-0 package
-% Tue Nov 20 11:08:16 2012
+% Tue Dec 11 14:28:29 2012
 \begin{tabular}{p{3.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}}
    \hline
 sequencing library & E1 & E2 & L2 & M & T1 & T2 & total \\ 
    \hline
 lifecycle stage & adult female & adult female & L2 larvae & adult male & adult female & adult female &  \\ 
   source population & Europe Rhine & Europe Poland & Europe Rhine & Asia cultured & Asia cutured & Asia wild &  \\ 
-  geolocation & 49.0262N; 8.310556E & 53.751959N; 21.730957E & 49.0262N; 8.310556E & 22.6418N; 120.4440E & 22.6418N; 120.4440E & 22.5074N; 120.4220E & 756363 \\ 
-  raw reads & 209325 & 111746 & 112718 & 106726 &  99482 & 116366 & 170414 \\ 
-  low quality reads & 92744 & 10903 & 15653 & 15484 &  7947 & 27683 & 181783 \\ 
-  \textit{A. crassus} rRNA reads & 76403 & 11213 & 30654 & 31351 & 24929 &  7233 & 30071 \\ 
-  eel-host mRNA reads &  4835 &  3613 &  1220 &  1187 &  7475 & 11741 & 15754 \\ 
-  eel-host rRNA reads & 13112 &    69 &  1603 &   418 &   514 &    38 & 5286 \\ 
-  Cercozoa reads (rRNA) &    0 &    0 & 5286 &    0 &    0 &    0 & 353055 \\ 
-  valid reads & 22231 & 85948 & 58302 & 58286 & 58617 & 69671 & 100491819 \\ 
-  span of valid reads (in bases) &  7167338 & 24046225 & 16661548 & 17424408 & 14443123 & 20749177 & 252388 \\ 
-  reads mapping (uniquely) & 12023 & 65398 & 39690 & 36782 & 42529 & 55966 & 201773 \\ 
-  reads mapping to \textit{A. crassus} contigs &  8359 & 61073 & 12917 & 31673 & 37306 & 50445 & 152298 \\ 
-  reads mapping highCA contigs &  5883 & 48009 &  8475 & 18998 & 28970 & 41963 & 94177 \\ 
-  reads mapping to contigs with count >32 &  3595 & 34115 &  1602 & 10543 & 21413 & 22909 & total \\ 
+  geolocation & 49.0262N; 8.310556E & 53.751959N; 21.730957E & 49.0262N; 8.310556E & 22.6418N; 120.4440E & 22.6418N; 120.4440E & 22.5074N; 120.4220E &  \\ 
+  raw reads & 209325 & 111746 & 112718 & 106726 &  99482 & 116366 & 756363 \\ 
+  low quality reads & 92744 & 10903 & 15653 & 15484 &  7947 & 27683 & 170414 \\ 
+  \textit{A. crassus} rRNA reads & 76403 & 11213 & 30654 & 31351 & 24929 &  7233 & 181783 \\ 
+  eel-host mRNA reads &  4835 &  3613 &  1220 &  1187 &  7475 & 11741 & 30071 \\ 
+  eel-host rRNA reads & 13112 &    69 &  1603 &   418 &   514 &    38 & 15754 \\ 
+  Cercozoa reads (rRNA) &    0 &    0 & 5286 &    0 &    0 &    0 & 5286 \\ 
+  valid reads & 22231 & 85948 & 58302 & 58286 & 58617 & 69671 & 353055 \\ 
+  span of valid reads (in bases) &  7167338 & 24046225 & 16661548 & 17424408 & 14443123 & 20749177 & 100491819 \\ 
+  reads mapping (uniquely) & 12023 & 65398 & 39690 & 36782 & 42529 & 55966 & 252388 \\ 
+  reads mapping to \textit{A. crassus} contigs &  8359 & 61073 & 12917 & 31673 & 37306 & 50445 & 201773 \\ 
+  reads mapping highCA contigs &  5883 & 48009 &  8475 & 18998 & 28970 & 41963 & 152298 \\ 
+  reads mapping to contigs with count >32 &  3595 & 34115 &  1602 & 10543 & 21413 & 22909 & 94177 \\ 
    \hline
 \end{tabular}
 \newpage
@@ -1330,7 +1203,7 @@ lifecycle stage & adult female & adult female & L2 larvae & adult male & adult f
 \subsection*{Table 2 - Assembly classification and contig statistics}
 
 % latex table generated in R 2.16.0 by xtable 1.7-0 package
-% Tue Nov 20 11:08:17 2012
+% Tue Dec 11 14:28:30 2012
 \begin{table}[ht]
 \begin{center}
 \begin{tabular}{rllr}
@@ -1367,7 +1240,7 @@ total contigs & 13851 & 26336 & 40187 \\
 \subsection*{Table 3 - Evolutionary conservation and novelty}
 
 % latex table generated in R 2.16.0 by xtable 1.7-0 package
-% Tue Nov 20 11:08:17 2012
+% Tue Dec 11 14:28:30 2012
 \begin{tabular}{llrrrrr}
   \hline
 contig set & cutoff & conserved & Metazoa & Nematoda & Clade3 & Ac \\ 
@@ -1384,7 +1257,7 @@ all TUGs & 50 & 5604 & 1715 & 2173 & 1485 & 21548 \\
   selected \textit{A. crassus} TUGs}
 
 % latex table generated in R 2.16.0 by xtable 1.7-0 package
-% Tue Nov 20 11:08:17 2012
+% Tue Dec 11 14:28:30 2012
 \begin{longtable}{p{1.7cm}lp{4.5cm}p{1cm}p{1cm}ll}
  category & GO.ID & Term & Number annotated & Number dn/ds $>$ 0.5 & Expected & p.value \\ 
   \hline
@@ -1440,7 +1313,7 @@ cellular compartment & GO:0030532 & small nuclear ribonucleoprotein complex &   
   single worms}
 
 % latex table generated in R 2.16.0 by xtable 1.7-0 package
-% Tue Nov 20 11:08:17 2012
+% Tue Dec 11 14:28:30 2012
 \begin{table}[ht]
 \begin{center}
 \begin{tabular}{p{2.5cm}p{2cm}p{2cm}p{2cm}p{2cm}p{2cm}}
@@ -1462,7 +1335,7 @@ T2 & 0.45 & -0.73 & 0.59 & 1.00 & 121 \\
   expressed between male and female \textit{A. crassus}}
 
 % latex table generated in R 2.16.0 by xtable 1.7-0 package
-% Tue Nov 20 11:08:17 2012
+% Tue Dec 11 14:28:30 2012
 \begin{longtable}{p{1.7cm}lp{4.5cm}p{1cm}p{1cm}ll}
  category & GO.ID & Term & Number annotated & Number significant & Expected & p.value \\ 
   \hline
@@ -1542,7 +1415,7 @@ cellular compartment & GO:0005634 & nucleus & 163 &  38 & 25.71 & 0.00010 \\
   expressed between Taiwanese and European \textit{A. crassus}}
 
 % latex table generated in R 2.16.0 by xtable 1.7-0 package
-% Tue Nov 20 11:08:17 2012
+% Tue Dec 11 14:28:30 2012
 \begin{longtable}{p{1.7cm}lp{4.5cm}p{1cm}p{1cm}ll}
  category & GO.ID & Term & Number annotated & Number significant & Expected & p.value \\ 
   \hline
@@ -1632,8 +1505,8 @@ cellular compartment & GO:0031967 & organelle envelope &  47 &  12 & 5.49 & 0.00
 \textbf{Supporting\_information.pdf}: This document contains the 3
 additional figures referenced in the main text and an additional text
 describing the assembly process and evaluation of assembly quality in
-further detail. This text contains additional 6 figures (additional
-figures 4-9) and 3 tables.
+further detail. This text contains additional 7 figures (additional
+figures 4-10) and 3 tables.
 
 \subsubsection*{Additional data}
 
@@ -1659,7 +1532,7 @@ given.
 expressed between male and female worms. Normalised counts and the
 natural logarithm of fold changes are given.
 
-\subsubsection*{Additional figure 10 (a-i)}
+\subsubsection*{Additional figure 11 (a-i)}
 \textbf{Subgraphs of GO induced by the top 10 terms identified as
   enriched in different sets of genes}: Subgraphs of the GO ontology
 categories induced by the top 10 terms identified as enriched in

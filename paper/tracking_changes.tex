@@ -52,6 +52,7 @@
 \usepackage{multirow}
 \usepackage{longtable}
 \usepackage{rotating}
+\usepackage[normalem]{ulem}
 %\usepackage[applemac]{inputenc} %applemac support if unicode package fails
 %\usepackage[latin1]{inputenc} %UNIX support if unicode package fails
 \urlstyle{rm}
@@ -103,6 +104,7 @@
 %\newenvironment{bmcformat}{\fussy\setboolean{publ}{true}}{\fussy}
 
 % Begin ...
+\usepackage{/home/ele/tools/R-devel/share/texmf/tex/latex/Sweave}
 \begin{document}
 \begin{bmcformat}
 
@@ -555,36 +557,8 @@ present manuscript from data can be downloaded from datadryad.org
 %%
 \section*{Results}
 
-<<load.libs, echo=FALSE, results=hide>>=
-library(VennDiagram)
-library(xtable)
-library(reshape)
-library(ggplot2)
-library(plyr)
-
-library(AnnotationDbi)
-library(topGO)
-
-library(limma)
-library(XML)
-library(coin)
-library(multcomp)
-
-library(DESeq)
-library(edgeR)
-library(ShortRead)
-library(biomaRt)
-
-## library(BioIDMapper)
-
-library(Rhh)
-library(Heatplus)
-
-source("/home/ele/thesis/454/common_R_functions.R")
-@ 
 
 \subsection*{Sampling \textit{A. crassus}}
-
 
 One female \textit{A. crassus} and one male \textit{A. crassus} were
 sampled from an \textit{An. japonica} aquaculture with high infection
@@ -597,131 +571,55 @@ were replete with host blood. To assist in downstream filtering of
 host from nematode reads, we also sampled RNA from the liver of an
 uninfected Taiwanese \textit{An. japonica}.
 
+ \subsection*{\sout{Sequencing, trimming and pre-assembly screening}}
 
-<<trim, echo=FALSE, results=hide, cache=TRUE>>=
-trimdat <- readLines("/home/ele/Data/454/trimmed/trimming.stats")
-trimfile <-  grep("Trimming sff file *", trimdat, value=TRUE)
-trimfile <- sapply(strsplit(trimfile, " |,"), function (x) basename(x[4]))
-lib <- gsub(".sff'", "", trimfile)
-
-raw_reads<- grep("Sequences analyzed:.*", trimdat, value=TRUE)
-raw_reads <- as.numeric(gsub("Sequences analyzed: *", "", raw_reads))
-short <- grep("by 'short':.*", trimdat, value=TRUE)
-short <- as.numeric(gsub(" *by 'short': *", "", short))
-lowq <- grep("by 'low_qual':.*", trimdat, value=TRUE)
-lowq <- as.numeric(gsub(" *by 'low_qual': *", "", lowq))
-dust <- grep("by 'dust':.*", trimdat, value=TRUE)
-dust <- as.numeric(gsub(" *by 'dust': *", "", dust))
-shortq <- grep("by 'shortq':.*", trimdat, value=TRUE)
-shortq <- as.numeric(gsub(" *by 'shortq': *", "", shortq))
-valid <- raw_reads-(short+lowq+dust+shortq)
-
-TRIM <- data.frame(row.names=lib, raw_reads, short, lowq, dust, shortq, valid)
-TRIM["total",] <- colSums(TRIM)
-
-## subsitute the publication style library abrevations
-rownames(TRIM) <- gsub("179F", "T1", rownames(TRIM))
-rownames(TRIM) <- gsub("10F", "T2", rownames(TRIM))
-rownames(TRIM) <- gsub("KS4F", "E1", rownames(TRIM))
-rownames(TRIM) <- gsub("UW07F", "E2", rownames(TRIM))
-rownames(TRIM) <- gsub("L2R3", "L2", rownames(TRIM))
-rownames(TRIM) <- gsub("M175", "M", rownames(TRIM))
-
-@ 
-
-<<read.libs, echo=FALSE, results=hide, cache=TRUE>>=
-
-RE <- list()
-for (l in (c("10F", "179F", "M175", "L2R3", "KS4F", "UW07F"))){
-   command <- paste("/home/ele/tools/Newbler2.6/bin/sffinfo -s /home/ele/Data/454/trimmed/",
-                    l, ".sff.trimmed.sff;", sep="")
-   connect <- pipe(command)
-   RE[l] <- list(read.sequences(connect))
-   closeAllConnections()
-}
-names <- gsub(" .*$", "", unlist(lapply(RE, names)))
-lib <- melt(RE)
-
-## subsitute the publication style library abrevations
-lib$L1 <- gsub("179F", "T1", lib$L1)
-lib$L1 <- gsub("10F", "T2", lib$L1)
-lib$L1 <- gsub("KS4F", "E1", lib$L1)
-lib$L1 <- gsub("UW07F", "E2", lib$L1)
-lib$L1 <- gsub("L2R3", "L2", lib$L1)
-lib$L1 <- gsub("M175", "M", lib$L1)
-
-RE <- cbind(read=names, lib)
-names(RE)[2:3] <- c("seq", "lib")
-RE$seq <- as.character(RE$seq)
-RE$length <- nchar(RE$seq)
-
-eel.all <- read.sequences(pipe("/home/ele/tools/Newbler2.6/bin/sffinfo -s /home/ele/Data/454/Li68_assembly/sff/Li68.sff"))
-
-eel.clean <- read.sequences(pipe("/home/ele/tools/Newbler2.6/bin/sffinfo -s /home/ele/Data/454/Li68_assembly/sff/Li68.sff.trimmed.sff"))
-
-eel.rRNA.contigs <- read.sequences("/home/ele/Data/454/Li68_assembly/Aj_liver_rRNA.fasta")
-
-eel.contigs <- read.sequences("/home/ele/Data/454/Li68_assembly/Aj_liver.fasta")
-
-@ 
-
-\SweaveInput{../contamination/pre_assembly.Rnw}
+\sout{
+ A total of 756,363 raw sequencing reads were generated for
+ \textit{A. crassus} (Table 1). These were trimmed for base call
+ quality, and filtered by length to give 585,949 high-quality reads
+ (spanning 169,863,104 bases). From \textit{An. japonica} liver RNA
+ 159,370 raw reads were generated, and 135,072 retained after basic
+ quality screening. These eel reads were assembled into 10,639
+ contigs. The \textit{A. crassus} reads were screened for
+ contamination by host sequence by comparison to our assembled
+ \textit{An. japonica} 454 transcriptome and publicly accessible
+ \textit{An. anguilla} sequence data, and 30,071 reads removed. By
+ comparison to \textit{A. crassus} small subunit ribosomal RNA
+ (sequenced previously) and large subunit ribosomal RNA (assembled
+ from our reads in preliminary analyses), 181,783 were tagged and
+ removed. The L2 library proved to have contributions for other
+ cobionts of the eel, and 5,286 reads were removed because they
+ matched closely to cercozoan (likely parasite) ribosomal RNA genes.
+} \textbf{Moved to Supporting information}
 
 \subsection*{Assembly and post-assembly screening}
 
-<<load.meth, echo=FALSE>>=
-load("../Supporting_information/Assembly.Rdata")
+\textbf{353,055 screened (see supporting infromation) sequencing
+  reads} (spanning 100,491,819 bases) were assembled using the
+combined assembler strategy \cite{pmid20950480}, employing Roche 454
+gsAssembler (also known as Newbler; version 2.6) and MIRA (version
+3.21) \cite{miraEST}. In this coassembly, 13,851 contigs were
+supported by both assembly algorithms, 3,745 contigs were supported by
+only one of the assembly algorithms and 22,591 singletons were not
+assembled by either program (Table 2). Contigs supported by both
+assemblers were longer than those supported by only one assembler, and
+were more likely to have a significant similarity to previously
+sequenced protein coding genes than contigs assembled by only one of
+the algorithms, or the remaining unassembled singletons. These
+constitute the highCA, while those with evidence from only one
+assembler and the singletons are the lowCA. These datasets were the
+most parsimonious (having the smallest size) for their quality
+(covering the largest amount of sequence in reference
+transcriptomes). In the highCA parsimony and low redundancy was
+prioritised, while in the complete assembly (highCA plus lowCA
+including singletons) completeness was prioritised. The 40,187
+sequences (contig consensuses and singletons) in the complete assembly
+are referred to as tentatively unique genes (TUGs).
 
-nMN <- nrow(contig.df[contig.df$category%in%"MN",])
 
-nbad.c <- nrow(contig.df[contig.df$category%in%
-                         c("M_n","N_n","N_1","M_1"),])
-
-nSing <- nrow(contig.df[contig.df$category%in%0,])
-@
-
-\Sexpr{cn(length(raw.fasta))} screened (see supporting infromation and
-table 1) sequencing reads (spanning \Sexpr{cn(nBases)} bases) were
-assembled using the combined assembler strategy \cite{pmid20950480},
-employing Roche 454 gsAssembler (also known as Newbler; version 2.6)
-and MIRA (version 3.21) \cite{miraEST}. In this coassembly,
-\Sexpr{cn(nMN)} contigs were supported by both assembly algorithms,
-\Sexpr{cn(nbad.c)} contigs were supported by only one of the assembly
-algorithms and \Sexpr{cn(nSing)} singletons were not assembled by
-either program (Table 2). Contigs supported by both assemblers were
-longer than those supported by only one assembler, and were more
-likely to have a significant similarity to previously sequenced
-protein coding genes than contigs assembled by only one of the
-algorithms, or the remaining unassembled singletons. These constitute
-the highCA, while those with evidence from only one assembler and the
-singletons are the lowCA. These datasets were the most parsimonious
-(having the smallest size) for their quality (covering the largest
-amount of sequence in reference transcriptomes). In the highCA
-parsimony and low redundancy was prioritised, while in the complete
-assembly (highCA plus lowCA including singletons) completeness was
-prioritised. The 40,187 sequences (contig consensuses and singletons)
-in the complete assembly are referred to as tentatively unique genes
-(TUGs).
-
-<<mean.cov, echo=FALSE, cache=TRUE>>=
-
-cov.mn <- tapply(con.pile$coverage,
-                 con.pile$contig%in%contig.df[contig.df$category=="MN", "contig"],
-                 mean)
-                            
-cov.mn.u <- tapply(con.pile.uniq$uniq_coverage,
-                   con.pile.uniq$contig%in%contig.df[contig.df$category=="MN", "contig"],
-                   mean)
-
-cov.nu.total <- mean(con.pile$coverage)
-cov.u.total <- mean(con.pile.uniq$uniq_coverage)
-
-@ 
-
-\SweaveInput{../contamination/post_assembly.Rnw}
 
 We screened the complete assembly for remaining host contamination,
-and identified \Sexpr{cn(n.fish)} TUGs that had significant, higher
+and identified 3,441 TUGs that had significant, higher
 similarity to eel (and/or chordate; EMBLBank Chordata proteins) than
 to nematode sequences \cite{pmid21550347}. Given the identification of
 cercozoan ribosomal RNAs in the L2 library, we also screened the
@@ -735,7 +633,7 @@ Bacillariophyta (diatoms, mainly Phaeodactylaceae, 41 hits),
 Phaeophyceae (brown algae, mainly Ectocarpaceae, 180 hits),
 Stramenopiles (Albuginaceae, 63 hits), Kinetoplasitda
 (Trypanosomatidae, 26 hits) and Heterolobosea (Vahlkampfidae, 38
-hits). Additionally \Sexpr{cn(other.king[["Fungi"]])} TUGs had best,
+hits). Additionally 298 TUGs had best,
 significant matches to genes from fungi (e.g Ajellomycetaceae, 53
 hits) and 585 TUGs had best, significant matches to genes from
 plants. Outside the Eukaryota there were significant best matches to
@@ -745,54 +643,63 @@ to \textit{Wolbachia} or related Bacteria known as symbionts of
 nematodes and arthropods. All TUGs with highest similarity to
 sequences deriving from taxa outside Metazoa were excluded. The final,
 screened \textit{A. crassus} assembly has
-\Sexpr{cn(nrow(contig.df[contig.df$Ac,]))#$} TUGs, spanning
-\Sexpr{cn(sum(nchar(as.character(contig.df[contig.df$Ac,"seq"]))))#$}
-bases (of which \Sexpr{cn(nrow(contig.df[contig.df$AcMN,]))#$} are
+32,525 TUGs, spanning
+12,733,095
+bases (of which 11,372 are
 highCA-derived, and span
-\Sexpr{cn(sum(nchar(as.character(contig.df[contig.df$AcMN,"seq"]))))#$}
+6,575,121
 bases). All analyses reported below are based on this filtered
 dataset.
 
-\SweaveInput{../conservation/conservation.Rnw}
-\SweaveInput{../protein_prediction/imputed_from_p4EST.Rnw}
-\SweaveInput{../snp_analysis/snp_analysis.Rnw}
-\SweaveInput{../snp_analysis/snp_by_population.Rnw}
-\SweaveInput{../annotation/annotation.Rnw}
-\SweaveInput{../annotation/read_signalp.Rnw}
-\SweaveInput{../annotation/brugia-compare.Rnw}
-\SweaveInput{../snp_analysis/overrepresentation_snp.Rnw}
+
+%% read P4EST output processed with
+%% coordinates_from_p4e.pl
+
+%% SNP calling from VARSCAN output
+
+
+%%% annotation.Rnw --- 
+
+%% Author: emanuelheitlinger@gmail.com
+
+
+
+
+
+
+
 
 \subsection*{Annotation}
 
 For
-\Sexpr{cn(nrow(contig.df[contig.df$Ac&contig.df$method!="no-prediction",]))}
+32,418
 of the \textit{A. crassus} TUGs a protein was predicted using prot4EST
 \cite{wasmuth_prot4est:_2004} (Table 2). An apparently full-length
 open reading frame (ORF) was identified in
-\Sexpr{cn(nrow(contig.df[contig.df$Ac&imputed$full.length,]))} TUGs,
-while for \Sexpr{cn(nrow(contig.df[contig.df$Ac&!imputed$full.5p,]))}
+353 TUGs,
+while for 29,877
 the 5' ends and for
-\Sexpr{cn(nrow(contig.df[contig.df$Ac&!imputed$full.3p,]))} the 3'
-ends were missing. In \Sexpr{cn(same.same[["FALSE"]])} TUGs the
+24,277 the 3'
+ends were missing. In 13,383 TUGs the
 corrected sequence with the imputed ORF was slightly changed compared
 to the raw sequence by insertions or deletions necessary to obtain a
 continuous reading frame. Using BLAST we determined that
-\Sexpr{cn(nrow(contig.df[contig.df$Ac&!is.na(contig.df$Ce.hit),]))}
+9,556
 had significant similarity to \textit{C. elegans} proteins,
-\Sexpr{cn(nrow(contig.df[contig.df$Ac&!is.na(contig.df$Bm.hit),]))}
+9,664
 TUGs matched \textit{B. malayi} proteins, and
-\Sexpr{cn(nrow(contig.df[contig.df$Ac&!is.na(contig.df$nempep.hit),]))}
+11,620
 TUGs had matches in NEMPEP4 \cite{parkinson_nembase:resource_2004,
   pmid21550347}. Comparison to the UniProt reference identified
-\Sexpr{cn(nrow(contig.df[contig.df$Ac&!is.na(contig.df$nr.bit),]))}
+11,115
 TUGs with significant similarities. We used annot8r
-\cite{schmid_annot8r:_2008} to assign GO terms to \Sexpr{cn(nGO)}
-TUGs, EC numbers for \Sexpr{cn(nEC)} TUGs and KEGG pathway annotations
-for \Sexpr{cn(nKEGG)} TUGs (Table 2). Additionally \Sexpr{cn(nIPR)}
+\cite{schmid_annot8r:_2008} to assign GO terms to 6,511
+TUGs, EC numbers for 2,460 TUGs and KEGG pathway annotations
+for 3,846 TUGs (Table 2). Additionally 5,125
 highCA contigs were annotated with GO terms through InterProScan
-\cite{pmid11590104}. Nearly one third (\Sexpr{cn(nallannotations)}) of
+\cite{pmid11590104}. Nearly one third (6,989) of
 the \textit{A. crassus} TUGs were annotated with at least one
-identifier, and \Sexpr{cn(all.identifier)} had GO, EC and KEGG
+identifier, and 1,831 had GO, EC and KEGG
 annotations (Figure 1).
 
 We compared our \textit{A. crassus} GO annotations for high-level
@@ -806,8 +713,8 @@ the that of the proteome of \textit{C. elegans} (0.9).
 
 Despite the lack of completeness at the 5' end suggested by peptide
 prediction, just over 3\% of the TUGs were predicted to be secreted
-(\Sexpr{cn(nsigP)} with signal peptide cleavage sites and
-\Sexpr{cn(nsigPtm)} signal peptides with a transmembrane
+(920 with signal peptide cleavage sites and
+65 signal peptides with a transmembrane
 signature). Again these predictions are more similar to predictions
 using the same methods for the proteome of \textit{B. malayi} (742
 signal peptide cleavage sites and 41 with transmembrane anchor) than
@@ -845,7 +752,7 @@ kingdoms (94.59\%; p<0.001, Fisher's exact test).
   polymorphisms}
 
 Single nucleotide polymorphisms (SNPs) were called using VARScan
-\cite{pmid19542151} on the \Sexpr{cn(nCov8bases)} bases of TUGs that
+\cite{pmid19542151} on the 1,100,522 bases of TUGs that
 had coverage of more than 8-fold available. SNPs predicted to have
 more than 2 alleles, or that mapped to an undetermined (N) base were
 excluded, as were SNP likely to be due to base calling errors close to
@@ -875,19 +782,19 @@ rates of evolution than cytosolic proteins in a number of nematode
 species. \textit{A. crassus} TUGs predicted to contain signal peptide
 cleavage sites showed a non-significant trend towards higher dn/ds
 values than TUGs without signal peptide cleavage sites (p =
-\Sexpr{round(u.test[["p.value"]],3)}; two sided
+0.22; two sided
 Mann-Whitney-test). Orthologs of \textit{C. elegans} transcripts with
 lethal RNAi phenotype are expected to evolve under stronger selective
 constraints and the values of dn/ds showed a non-significant trend
 towards lower values in TUGs with orthologs with a lethal phenotype
 compared to a non-lethal phenotypes
-(p=\Sexpr{round(u.rnai$p.value,3)#$}, two-sided U-test).\\
+(p=0.815, two-sided U-test).\\
 
 The genotypes of single adult nematodes were called using Samtools
 \cite{journals/bioinformatics/LiHWFRHMAD09} and Vcftools
-\cite{pmid21653522}, and \Sexpr{cn(nrow(Rh))} informative sites (where
+\cite{pmid21653522}, and 199 informative sites (where
 two alleles were found in at least one assured genotype at least in
-one of the nematodes) were identified in \Sexpr{cn(geno.contigs)}
+one of the nematodes) were identified in 152
 contigs. Internal relatedness \cite{pmid11571049}, homozygosity by
 loci \cite{pmid17107491} and standardised heterozygosity
 \cite{coltman81j} all identified the Taiwanese nematode from
@@ -895,7 +802,7 @@ aquaculture (sample T1) as the most heterozygous and the European
 nematode from Poland (sample E2) as the least heterozygous
 individuals.
 
-The genome-wide representativeness of these \Sexpr{cn(nrow(Rh))} SNP
+The genome-wide representativeness of these 199 SNP
 markers for the whole genome in population genetic studies was
 confirmed using heterozygosity-heterozygosity correlation
 \cite{pmid21565077}: mean internal relatedness = 0.78, lower bound of
@@ -905,15 +812,17 @@ heterozygosity = 0.87, cil= 0.632.
 
  \subsection*{Differential gene expression}
                 
-\SweaveInput{../gene_expression/gene_expression.Rnw}
-\SweaveInput{../gene_expression/overrepresentation_exp.Rnw}
+
+
+
+
 
 Gene expression was inferred by the unique mapping of 252,388
 (71.49\%) of the raw reads to the fullest assembly (including the all
 assembled contigs as a "filter"; total contigs/all TUGs in Table
 2). In analysis, non-\textit{A. crassus} contigs, and all contigs with
 fewer than 32 reads overall were excluded. Thus
-\Sexpr{cn(nrow(ideg6))} TUGs were analysed for differential expression
+658 TUGs were analysed for differential expression
 using ideg6 for normalisation and the statistic of Audic and Claverie
 \cite{pmid9331369} for detection of differences. Of these TUGs, 54
 showed expression predominantly in the male library, 56 TUGs were more
@@ -947,73 +856,14 @@ elevated levels of dn/ds (Fisher's exact test p=0.041), but contrast
 male overexpressed genes showed decreased levels of dn/ds (Fisher's
 exact test p=0.014).
 
-<<save, echo=FALSE, results=hide>>=
-## write the MN.peptide sequence for iprscan prediction
-MN.pep.fasta <- as.character(contig.df[contig.df$AcMN, "Ac.pep"])
-names(MN.pep.fasta) <- as.character(contig.df[contig.df$AcMN, "contig"])
-write.sequence(MN.pep.fasta, "/home/ele/thesis/454/MN.pep.fasta")
-
-## for a more readable version of contig.df
-readable <- !names(contig.df)%in%c("seq", "imp", "ontology", "coding", "Ac.pep")
-needed <- !names(contig.df)%in%c("ontology", "cov.ontology")
-
-write.csv(contig.df[,needed], "../paper/A.crassus_transcriptome_contig_data.csv",
-row.names=FALSE)
-
-write.csv(VARqp[, c("contig", "base", "from", "to",
-"nfrom", "nto", "perc", "inORF",
-"inFRAME", "effect")], "../paper/A.crassus_transcriptome_screened_SNPs.csv",
-row.names=FALSE)
-
-write.single.genes.rev <- function(genes, folder) {
-  sapply(genes,
-         function (x) {
-           s <- fullest.assembly[x]
-           if (as.logical(as.character(contig.df[contig.df$contig%in%x, "mstrand"]))){
-             s <- revcom(fullest.assembly[x])}
-           write.sequence(s, paste(folder, x, ".fasta", sep=""))
-         })
-}
-
-write.single.genes.rev(peptidases, "../snp_analysis/peptidases/")
-
-names(express.sex.sig) <- c("E2", "T1", "T2", "M", "LogFC")
-express.sex.sig <- merge(express.sex.sig,
-                         contig.df[, c("contig", "nempep.annot")], by.x=0, by.y="contig")
-express.sex.sig <- express.sex.sig[order(express.sex.sig$LogFC), ]
-write.csv(express.sex.sig, "../paper/A.crassus_transcriptome_sexDE.csv",
-row.names=TRUE)
-
-top10.sex <- express.sex.sig[c(1:5, (nrow(express.sex.sig)-4):nrow(express.sex.sig)),
-                         "Row.names"]
-
-write.single.genes.rev(top10.sex, "../gene_expression/top10_sex/")
-
-names(express.eel.sig) <- c("E2", "T1", "T2", "LogFC")
-express.eel.sig <- merge(express.eel.sig,
-                         contig.df[, c("contig", "nempep.annot")], by.x=0, by.y="contig")
-express.eel.sig <- express.eel.sig[order(express.eel.sig$LogFC), ]
-write.csv(express.eel.sig, "../paper/A.crassus_transcriptome_originDE.csv",
-row.names=TRUE)
-
-top10.eel <- express.eel.sig[c(1:5, (nrow(express.eel.sig)-4):nrow(express.eel.sig)),
-                         "Row.names"]
-
-write.single.genes.rev(top10.eel, "../gene_expression/top10_eel/")
-
-## for summary statistics a non-Ac reduced dataset
-c.df <- contig.df[contig.df$Ac, ] #$
-
-save.image("/home/ele/thesis/454/paper/paper.Rdata")
-@ 
 
 \section*{Discussion}
 
 We have generated a \textit{de novo} transcriptome for
-\textit{A. crassus}, an important invasive parasite that threatens
-wild stocks of the European eel \textit{An. anguilla}. These data will
+\textit{A. crassus}, an important invasive parasite that threatens wild
+stocks of the European eel \textit{An. anguilla}. These data will
 enable a broad spectrum of molecular research on this ecologically
-important and evolutionarily interesting parasite.
+important and evolutionarily interesting parasite. 
 
 As \textit{A. crassus} lives in close association with its host, we
 used exhaustive filtering to remove all host-derived, and
@@ -1094,7 +944,6 @@ decreased with removal of SNPs adjacent to homopolymer regions from
 is not unproblematic \cite{pmid19081788}, the assumption of negative
 (purifying) selection on most protein coding genes makes lower mean
 values seem more plausible.
-
 
 We applied a threshold value for the minority allele of 7\% for
 exclusion of SNPs, as approximately 10 haploid equivalents were
@@ -1184,7 +1033,8 @@ expressed remains puzzling. Some male-overexpressed TUGs, such as that
 encoding major sperm protein, showed elevated dn/ds. It is unlikely
 that correlation of differential expression with positive selection
 results from mapping artifacts, as all the ribosomal protein encoding
-TUGs identified overexpressed in males have very low dn/ds.\\
+TUGs identified overexpressed in males have
+very low dn/ds.\\
 
 Genes differentially expressed according to the geographic origin of
 the nematodes showed significantly elevated levels of dn/ds. We
@@ -1336,279 +1186,324 @@ that arose in the last common ancestor of Nematoda or to be novel to
   library statistics}
 
 
-<<echo=FALSE, results=tex>>=
-## print(xtable(TRIM, display=rep("d", times=7)), floating=FALSE)
-trim_mark <- transform(TRIM, lowqal = short+lowq+dust+shortq)[1:6, ]
-trim_mark <- trim_mark[,c(1,7)]
-
-trim_mark <- merge(pre.screen.tab,
-                   trim_mark, by="row.names")
-
-trim_mark$life.st <- c("adult female", "adult female", "L2 larvae",
-                       "adult male", "adult female", "adult female")
-
-trim_mark$source.p <- c("Europe Rhine", "Europe Poland", "Europe Rhine",
-                       "Asia cultured", "Asia cutured", "Asia wild")
-
-trim_mark$geolocation <- c("49.0262N; 8.310556E", "53.751959N; 21.730957E", "49.0262N; 8.310556E",
-                           "22.6418N; 120.4440E", "22.6418N; 120.4440E", "22.5074N; 120.4220E")
-
-trim_mark[7,] <- c("Eel", "", "", "", "", length(eel.clean), sum(nchar(eel.clean)),
-                   length(eel.all), length(eel.all)-length(eel.clean), "liver", "Taiwan", "")
-
-trim_mark <- trim_mark[, c(1, 10, 11, 12, 8, 9, 2, 4, 5, 3, 6, 7 )]
-names(trim_mark)[c(1, 5)] <- c("library", "raw.reads")
-
-trim_mark <- merge(trim_mark, colSums(all.counts), by.x="library", by.y="row.names")
-names(trim_mark)[length(trim_mark)] <- "mapping.unique"
-
-sum.Ac <- colSums(all.counts[rownames(all.counts)%in%contig.df[contig.df$Ac, "contig"], ])
-trim_mark <- merge(trim_mark, sum.Ac, by.x="library", by.y="row.names")
-names(trim_mark)[length(trim_mark)] <- "mapping.Ac"
-
-sum.Ac.MN <- colSums(all.counts[rownames(all.counts)%in%contig.df[contig.df$AcMN, "contig"], ])
-trim_mark <- merge(trim_mark, sum.Ac.MN, by.x="library", by.y="row.names")
-names(trim_mark)[length(trim_mark)] <- "mapping.MN"
-
-sum.o.32 <- colSums(counts[rownames(counts)%in%contig.df[contig.df$AcMN, "contig"], ])
-trim_mark <- merge(trim_mark, sum.o.32, by.x="library", by.y="row.names")
-names(trim_mark)[length(trim_mark)] <- "over.32"
-
-names(trim_mark) <- c("sequencing library",
-                      "lifecycle stage",
-                      "source population",
-                      "geolocation", 
-                      "raw reads",
-                      "low quality reads",
-                      "\\textit{A. crassus} rRNA reads",
-                      "eel-host mRNA reads",
-                      "eel-host rRNA reads",
-                      "Cercozoa reads (rRNA)",
-                      "valid reads",
-                      "span of valid reads (in bases)",
-                      "reads mapping (uniquely)",
-                      "reads mapping to \\textit{A. crassus} contigs",
-                      "reads mapping highCA contigs",
-                      "reads mapping to contigs with count >32")
-
-trim_mark[,5:16] <- lapply(trim_mark[,5:16], as.numeric)
-total.trim <- colSums(trim_mark[,5:16])
-total.trim <- c("total","", "","", total.trim)
-
-trim_mark <- t(trim_mark)
-trim_mark <- cbind(trim_mark, total.trim)
-trim_mark.tab <- xtable(trim_mark)
-
-align(trim_mark.tab) <- "p{3.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}"
-
-print(trim_mark.tab, floating=FALSE, include.colnames=FALSE,
-      hline.after=c(0,1, nrow(trim_mark)), sanitize.text.function = identity)
-@
-
+% latex table generated in R 2.16.0 by xtable 1.7-0 package
+% Tue Dec 11 09:29:24 2012
+\begin{tabular}{p{3.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}}
+   \hline
+sequencing library & E1 & E2 & L2 & M & T1 & T2 & total \\ 
+   \hline
+lifecycle stage & adult female & adult female & L2 larvae & adult male & adult female & adult female &  \\ 
+  source population & Europe Rhine & Europe Poland & Europe Rhine & Asia cultured & Asia cutured & Asia wild &  \\ 
+  geolocation & 49.0262N; 8.310556E & 53.751959N; 21.730957E & 49.0262N; 8.310556E & 22.6418N; 120.4440E & 22.6418N; 120.4440E & 22.5074N; 120.4220E &  \\ 
+  raw reads & 209325 & 111746 & 112718 & 106726 &  99482 & 116366 & 756363 \\ 
+  low quality reads & 92744 & 10903 & 15653 & 15484 &  7947 & 27683 & 170414 \\ 
+  \textit{A. crassus} rRNA reads & 76403 & 11213 & 30654 & 31351 & 24929 &  7233 & 181783 \\ 
+  eel-host mRNA reads &  4835 &  3613 &  1220 &  1187 &  7475 & 11741 & 30071 \\ 
+  eel-host rRNA reads & 13112 &    69 &  1603 &   418 &   514 &    38 & 15754 \\ 
+  Cercozoa reads (rRNA) &    0 &    0 & 5286 &    0 &    0 &    0 & 5286 \\ 
+  valid reads & 22231 & 85948 & 58302 & 58286 & 58617 & 69671 & 353055 \\ 
+  span of valid reads (in bases) &  7167338 & 24046225 & 16661548 & 17424408 & 14443123 & 20749177 & 100491819 \\ 
+  reads mapping (uniquely) & 12023 & 65398 & 39690 & 36782 & 42529 & 55966 & 252388 \\ 
+  reads mapping to \textit{A. crassus} contigs &  8359 & 61073 & 12917 & 31673 & 37306 & 50445 & 201773 \\ 
+  reads mapping highCA contigs &  5883 & 48009 &  8475 & 18998 & 28970 & 41963 & 152298 \\ 
+  reads mapping to contigs with count >32 &  3595 & 34115 &  1602 & 10543 & 21413 & 22909 & 94177 \\ 
+   \hline
+\end{tabular}
 \newpage
+
+\textbf{Last column corrected}
+
 
 \subsection*{Table 2 - Assembly classification and contig statistics}
 
-<<echo=FALSE, results=tex>>=
-T2 <- as.data.frame.array(tapply(contig.df$contig, contig.df$category%in%"MN", length))
-rownames(T2) <- c("lowCA", "highCA")
-names(T2) <- "total.contigs"
-
-T2$rRNA.contigs <- table(contig.df$category%in%"MN", contig.df$contamination%in%"AcrRNA" &
-                         !(contig.df$phylum.nr%in%c("Chordata") |
-                          contig.df$phylum.nt%in%c("Chordata")))[, 2]
-
-T2$fish.contigs <- table(contig.df$category%in%"MN",
-                         contig.df$contamination%in%c("eelmRNA", "eelrRNA" ) |
-                         contig.df$phylum.nr%in%c("Chordata") |
-                         contig.df$phylum.nt%in%c("Chordata"))[, 2]
-
-T2$xeno.contigs <- table(contig.df$category%in%"MN",
-                         !(contig.df$contamination%in%c("eelmRNA", "eelrRNA", "AcrRNA") |
-                           contig.df$phylum.nr%in%c("Chordata") |
-                           contig.df$phylum.nt%in%c("Chordata")) & 
-                         !(contig.df$kingdom.nt%in%c("Metazoa", "No_hit") &
-                           contig.df$kingdom.nr%in%c("Metazoa", "No_hit")))[,2]
- 
-T2$remaining.contigs <- table(contig.df$category%in%"MN", contig.df$Ac)[, 2]
-T2$remaining.span <- tapply(contig.df[contig.df$Ac, ]$seq,
-                            contig.df[contig.df$Ac,]$category%in%"MN",
-                            function (x) sum(nchar(as.character(x))))
-T2$non.u.cov <- cov.mn
-T2$cov <- cov.mn.u
-
-T2$p4e <- table(c.df$category%in%"MN", gsub("p4e->", "", c.df$method))
-T2$full.3p <- table(c.df$category%in%"MN", c.df$full.3p)[,2]
-T2$full.5p <- table(c.df$category%in%"MN", c.df$full.5p)[,2]
-T2$full.l <- table(c.df$category%in%"MN", c.df$full.length)[,2]
-
-T2$GO <-  table(c.df$category%in%"MN", c.df$contig%in%GO.annot$pept_id)[, 2]
-T2$EC <-  table(c.df$category%in%"MN", c.df$contig%in%EC.annot$pept_id)[, 2]
-T2$KEGG <-  table(c.df$category%in%"MN", c.df$contig%in%KEGG.annot$pept_id)[, 2]
-T2$IPR <-  table(c.df$category%in%"MN", c.df$contig%in%IPR.annot$pept_id)[, 2]
-T2[1, "IPR"] <- "n/d"
-
-T2$nem.blast <- table(c.df$category%in%"MN", c.df$phylum.nr%in%"Nematoda")[, 2]
-
-T2$any.blast <- table(c.df$category%in%"MN", c.df$phylum.nr%in%"No_hit")[,1]
-
-T2 <- as.data.frame(t(T2))
-T2$"all TUGs" <- as.numeric(as.character(T2$lowCA))+as.numeric(as.character(T2$highCA))
-
-T2["non.u.cov", "all TUGs"] <- cov.nu.total
-T2["cov", "all TUGs"] <- cov.u.total
-
-dig <- t(matrix(c(rep(0,24), rep(c(0, 3 , 3, 3), 2), rep(0,52)), nrow=4))
-
-rownames(T2) <- c("total contigs",
-                  "contigs hitting rRNA",
-                  "contigs hitting eel-mRNA or Chordata",
-                  "non-eukaryote contigs",
-                  "contigs remaining",
-                  "total span of remaining contigs (in bases)",
-                  "non-unique mean base coverage of contigs",
-                  "unique mean base coverage of contigs",
-                  "protein predictions by BLAST similarity", 
-                  "protein predictions by ESTscan",
-                  "protein predictions by longest ORF",
-                  "contigs without protein prediction",
-                  "contigs with complete 3\' end",
-                  "contig with complete 5\' end",
-                  "full length contigs",
-                  "contigs with GO- annotation",
-                  "contigs with EC- annotation",
-                  "contigs with KEGG- annotation",
-                  "contigs with InerProScan- annotation",
-                  "contigs with BLAST hit to nematode",
-                  "contigs with any BLAST hit")
-
-T2.tab <- xtable(T2[,c(2,1,3)], digits=dig)
-
-print(T2.tab)
-
-@ 
-
+% latex table generated in R 2.16.0 by xtable 1.7-0 package
+% Tue Dec 11 09:29:25 2012
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{rllr}
+  \hline
+ & highCA & lowCA & all TUGs \\ 
+  \hline
+total contigs & 13851 & 26336 & 40187 \\ 
+  contigs hitting rRNA &  59 & 829 & 888 \\ 
+  contigs hitting eel-mRNA or Chordata & 1022 & 2419 & 3441 \\ 
+  non-eukaryote contigs & 1398 & 1935 & 3333 \\ 
+  contigs remaining & 11372 & 21153 & 32525 \\ 
+  total span of remaining contigs (in bases) & 6575121 & 6157974 & 12733095 \\ 
+  non-unique mean base coverage of contigs & 10.97923 & 14.66512 & 12.840 \\ 
+  unique mean base coverage of contigs & 6.838352 & 2.443292 & 4.624 \\ 
+  protein predictions by BLAST similarity & 5664 & 4357 & 10021 \\ 
+  protein predictions by ESTscan & 3597 & 8324 & 11921 \\ 
+  protein predictions by longest ORF & 2085 & 8352 & 10437 \\ 
+  contigs without protein prediction &   14 &   93 & 107 \\ 
+  contigs with complete 3' end & 2714 & 5909 & 8623 \\ 
+  contig with complete 5' end & 1270 & 1484 & 2754 \\ 
+  full length contigs & 185 & 104 & 289 \\ 
+  contigs with GO- annotation & 3875 & 2636 & 6511 \\ 
+  contigs with EC- annotation & 1493 &  967 & 2460 \\ 
+  contigs with KEGG- annotation & 2237 & 1609 & 3846 \\ 
+  contigs with InerProScan- annotation & 7557 & n/d &  \\ 
+  contigs with BLAST hit to nematode & 5821 & 4869 & 10690 \\ 
+  contigs with any BLAST hit & 6008 & 5107 & 11115 \\ 
+   \hline
+\end{tabular}
+\end{center}
+\end{table}
 \newpage
 
 \subsection*{Table 3 - Evolutionary conservation and novelty}
 
-<<echo=FALSE, results=tex>>=
-nov.tab <- rbind(summary.factor(contig.df[contig.df$Ac, "novel.50"]), 
-                 summary.factor(contig.df[contig.df$Ac, "novel.80"]))
-nov.tab.MN <- rbind(summary.factor(contig.df[contig.df$AcMN, "novel.50"]), 
-                 summary.factor(contig.df[contig.df$AcMN, "novel.80"]))
-nov.tab <- as.data.frame(rbind(nov.tab, nov.tab.MN))
-
-nov.tab$"contig set" <- c("all TUGs", "all TUGs", "highCA", "highCA")
-nov.tab$cutoff <- c("50", "80", "50", "80")
-
-
-print(xtable(nov.tab[, c(6, 7, 1:5)]), floating=FALSE, include.rownames=FALSE)
-
-@ 
-
+% latex table generated in R 2.16.0 by xtable 1.7-0 package
+% Tue Dec 11 09:29:25 2012
+\begin{tabular}{llrrrrr}
+  \hline
+contig set & cutoff & conserved & Metazoa & Nematoda & Clade3 & Ac \\ 
+  \hline
+all TUGs & 50 & 5604 & 1715 & 2173 & 1485 & 21548 \\ 
+  all TUGs & 80 & 3506 & 1383 & 2015 & 1525 & 24096 \\ 
+  highCA & 50 & 3479 & 876 & 1010 & 601 & 5406 \\ 
+  highCA & 80 & 2457 & 833 & 1084 & 716 & 6282 \\ 
+   \hline
+\end{tabular}
 \newpage
 
 \subsection*{Table 4 - Overrepresentation of GO terms in positively
   selected \textit{A. crassus} TUGs}
 
-<<echo=FALSE, results=tex>>=
-
-GO.over.dn.ds$category <- ""
-GO.over.dn.ds[c(1, GO.over.dn.ds.lines["MF"]+1, 
-                GO.over.dn.ds.lines["MF"]+GO.over.dn.ds.lines["BP"]+1),
-              "category"] <- c("molecular function", "biological process", "cellular compartment")
-GO.over.dn.ds <- GO.over.dn.ds[, c(ncol(GO.over.dn.ds), 1:ncol(GO.over.dn.ds)-1)]
-
-names(GO.over.dn.ds)[4] <- "Number annotated"
-names(GO.over.dn.ds)[5] <- "Number dn/ds > 0.5"
-
-GO.over.dn.ds.tab <- xtable(GO.over.dn.ds)
-align(GO.over.dn.ds.tab) <- "p{1.7cm}p{1.7cm}lp{4.5cm}p{1cm}p{1cm}ll"
-
-print(GO.over.dn.ds.tab, tabular.environment="longtable",
-      floating=FALSE,
-      hline.after=c(0, c(GO.over.dn.ds.lines["MF"],
-        GO.over.dn.ds.lines["MF"]+GO.over.dn.ds.lines["BP"],
-        GO.over.dn.ds.lines["MF"]+GO.over.dn.ds.lines["BP"]+ GO.over.dn.ds.lines["CC"])),
-      include.rownames=FALSE)
-@ 
-
+% latex table generated in R 2.16.0 by xtable 1.7-0 package
+% Tue Dec 11 09:29:25 2012
+\begin{longtable}{p{1.7cm}lp{4.5cm}p{1cm}p{1cm}ll}
+ category & GO.ID & Term & Number annotated & Number dn/ds $>$ 0.5 & Expected & p.value \\ 
+  \hline
+molecular function & GO:0008233 & peptidase activity &  43 &  13 & 6.08 & 0.0034 \\ 
+   & GO:0015179 & L-amino acid transmembrane transporter activity &   2 &   2 & 0.28 & 0.0198 \\ 
+   & GO:0043021 & ribonucleoprotein complex binding &   6 &   3 & 0.85 & 0.0396 \\ 
+   & GO:0070011 & peptidase activity, acting on L-amino acid peptides &  35 &   9 & 4.95 & 0.0442 \\ 
+   & GO:0004175 & endopeptidase activity &  25 &   7 & 3.54 & 0.0488 \\ 
+   \hline
+biological process & GO:0042594 & response to starvation &  15 &   7 & 2.13 & 0.0022 \\ 
+   & GO:0009083 & branched chain family amino acid catabolic process &   3 &   3 & 0.43 & 0.0027 \\ 
+   & GO:0006914 & autophagy &  12 &   6 & 1.70 & 0.0031 \\ 
+   & GO:0009063 & cellular amino acid catabolic process &  10 &   5 & 1.42 & 0.0071 \\ 
+   & GO:0009267 & cellular response to starvation &   7 &   4 & 0.99 & 0.0093 \\ 
+   & GO:0006520 & cellular amino acid metabolic process &  44 &  12 & 6.24 & 0.0128 \\ 
+   & GO:0006915 & apoptotic process &  78 &  18 & 11.06 & 0.0147 \\ 
+   & GO:0009308 & amine metabolic process &  57 &  14 & 8.08 & 0.0189 \\ 
+   & GO:0005997 & xylulose metabolic process &   2 &   2 & 0.28 & 0.0199 \\ 
+   & GO:0006739 & NADP metabolic process &   2 &   2 & 0.28 & 0.0199 \\ 
+   & GO:0007616 & long-term memory &   2 &   2 & 0.28 & 0.0199 \\ 
+   & GO:0009744 & response to sucrose stimulus &   2 &   2 & 0.28 & 0.0199 \\ 
+   & GO:0010172 & embryonic body morphogenesis &   2 &   2 & 0.28 & 0.0199 \\ 
+   & GO:0015807 & L-amino acid transport &   2 &   2 & 0.28 & 0.0199 \\ 
+   & GO:0050885 & neuromuscular process controlling balance &   2 &   2 & 0.28 & 0.0199 \\ 
+   & GO:0007281 & germ cell development &  17 &   6 & 2.41 & 0.0226 \\ 
+   & GO:0090068 & positive regulation of cell cycle process &  17 &   6 & 2.41 & 0.0226 \\ 
+   & GO:0042981 & regulation of apoptotic process &  64 &  15 & 9.07 & 0.0232 \\ 
+   & GO:0051329 & interphase of mitotic cell cycle &  23 &   7 & 3.26 & 0.0320 \\ 
+   & GO:0044106 & cellular amine metabolic process &  55 &  13 & 7.80 & 0.0325 \\ 
+   & GO:0031571 & mitotic cell cycle G1/S transition DNA damage checkpoint &  14 &   5 & 1.98 & 0.0355 \\ 
+   & GO:0010564 & regulation of cell cycle process &  34 &   9 & 4.82 & 0.0377 \\ 
+   & GO:0006401 & RNA catabolic process &   6 &   3 & 0.85 & 0.0398 \\ 
+   & GO:0010638 & positive regulation of organelle organization &   6 &   3 & 0.85 & 0.0398 \\ 
+   & GO:0009056 & catabolic process & 149 &  28 & 21.12 & 0.0398 \\ 
+   & GO:0008219 & cell death &  93 &  19 & 13.18 & 0.0441 \\ 
+   & GO:0007154 & cell communication & 144 &  27 & 20.41 & 0.0455 \\ 
+   & GO:0051726 & regulation of cell cycle &  52 &  12 & 7.37 & 0.0474 \\ 
+   & GO:0030330 & DNA damage response, signal transduction by p53 class mediator &  15 &   5 & 2.13 & 0.0475 \\ 
+   & GO:0033238 & regulation of cellular amine metabolic process &  15 &   5 & 2.13 & 0.0475 \\ 
+   \hline
+cellular compartment & GO:0030532 & small nuclear ribonucleoprotein complex &   7 &   4 & 0.99 & 0.0093 \\ 
+   & GO:0005739 & mitochondrion & 137 &  28 & 19.38 & 0.0113 \\ 
+   & GO:0005682 & U5 snRNP &   2 &   2 & 0.28 & 0.0198 \\ 
+   & GO:0015030 & Cajal body &   2 &   2 & 0.28 & 0.0198 \\ 
+   & GO:0046540 & U4/U6 x U5 tri-snRNP complex &   2 &   2 & 0.28 & 0.0198 \\ 
+   & GO:0016607 & nuclear speck &   6 &   3 & 0.85 & 0.0396 \\ 
+   \hline
+\hline
+\end{longtable}
 \newpage
 
 \subsection*{Table 5 - Measurements of multi-locus heterozygosity for
   single worms}
 
-<<echo=FALSE, results=tex>>=
-
-names(het.table) <- c("relative heterozygosity", "internal relatedness",
-                      "homozygosity by loci", "standardised heterozygosity",
-                      "informative SNPs")
-
-het.table.tab <- xtable(het.table, digits=c(1, 2, 2, 2, 2, 0))
-align(het.table.tab) <- "p{2.5cm}p{2cm}p{2cm}p{2cm}p{2cm}p{2cm}"
-
-print(het.table.tab)
-@ 
-
+% latex table generated in R 2.16.0 by xtable 1.7-0 package
+% Tue Dec 11 09:29:25 2012
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{p{2.5cm}p{2cm}p{2cm}p{2cm}p{2cm}p{2cm}}
+  \hline
+ & relative heterozygosity & internal relatedness & homozygosity by loci & standardised heterozygosity & informative SNPs \\ 
+  \hline
+T2 & 0.45 & -0.73 & 0.59 & 1.00 & 121 \\ 
+  T1 & 0.93 & -0.95 & 0.34 & 1.62 & 136 \\ 
+  M & 0.37 & -0.73 & 0.66 & 0.84 & 92 \\ 
+  E1 & 0.38 & -0.83 & 0.60 & 0.91 & 65 \\ 
+  E2 & 0.18 & -0.35 & 0.82 & 0.50 & 140 \\ 
+   \hline
+\end{tabular}
+\end{center}
+\end{table}
 \newpage
 
 \subsection*{Table 6 - Overrepresentation of GO-terms differentially
   expressed between male and female \textit{A. crassus}}
 
-<<echo=FALSE, results=tex>>=
-
-GO.over.sex$category <- ""
-GO.over.sex[c(1, GO.over.sex.lines["MF"]+1, 
-                GO.over.sex.lines["MF"]+GO.over.sex.lines["BP"]+1),
-              "category"] <- c("molecular function", "biological process", "cellular compartment")
-GO.over.sex <- GO.over.sex[, c(ncol(GO.over.sex), 1:ncol(GO.over.sex)-1)]
-
-names(GO.over.sex)[4] <- "Number annotated"
-names(GO.over.sex)[5] <- "Number significant"
-
-GO.over.sex.tab <- xtable(GO.over.sex)
-
-align(GO.over.sex.tab) <- "p{1.7cm}p{1.7cm}lp{4.5cm}p{1cm}p{1cm}ll"
-
-print(GO.over.sex.tab, tabular.environment="longtable",
-      floating=FALSE, 
-      hline.after=c(0, c(GO.over.sex.lines["MF"],
-        GO.over.sex.lines["MF"]+GO.over.sex.lines["BP"],
-        GO.over.sex.lines["MF"]+GO.over.sex.lines["BP"]+ GO.over.sex.lines["CC"])),
-        include.rownames=FALSE)
-@ 
-
+% latex table generated in R 2.16.0 by xtable 1.7-0 package
+% Tue Dec 11 09:29:25 2012
+\begin{longtable}{p{1.7cm}lp{4.5cm}p{1cm}p{1cm}ll}
+ category & GO.ID & Term & Number annotated & Number significant & Expected & p.value \\ 
+  \hline
+molecular function & GO:0005198 & structural molecule activity &  52 &  18 & 8.39 & 0.00024 \\ 
+   & GO:0016706 & oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxyge... &   3 &   3 & 0.48 & 0.00400 \\ 
+   & GO:0004656 & procollagen-proline 4-dioxygenase activity &   2 &   2 & 0.32 & 0.02562 \\ 
+   \hline
+biological process & GO:0034621 & cellular macromolecular complex subunit organization &  73 &  22 & 11.42 & 0.00024 \\ 
+   & GO:0034641 & cellular nitrogen compound metabolic process & 161 &  37 & 25.19 & 0.00024 \\ 
+   & GO:0048731 & system development & 150 &  35 & 23.47 & 0.00035 \\ 
+   & GO:0071822 & protein complex subunit organization &  71 &  21 & 11.11 & 0.00050 \\ 
+   & GO:0043933 & macromolecular complex subunit organization &  82 &  23 & 12.83 & 0.00057 \\ 
+   & GO:0032774 & RNA biosynthetic process &  72 &  21 & 11.26 & 0.00063 \\ 
+   & GO:0000022 & mitotic spindle elongation &  20 &   9 & 3.13 & 0.00122 \\ 
+   & GO:0006139 & nucleobase-containing compound metabolic process & 141 &  32 & 22.06 & 0.00189 \\ 
+   & GO:0071841 & cellular component organization or biogenesis at cellular level & 140 &  31 & 21.90 & 0.00418 \\ 
+   & GO:0050789 & regulation of biological process & 201 &  40 & 31.44 & 0.00474 \\ 
+   & GO:0071842 & cellular component organization at cellular level & 136 &  30 & 21.28 & 0.00575 \\ 
+   & GO:0090304 & nucleic acid metabolic process & 107 &  25 & 16.74 & 0.00673 \\ 
+   & GO:0040007 & growth & 139 &  30 & 21.75 & 0.00867 \\ 
+   & GO:0016070 & RNA metabolic process &  98 &  23 & 15.33 & 0.00988 \\ 
+   & GO:0007275 & multicellular organismal development & 222 &  42 & 34.73 & 0.01108 \\ 
+   & GO:0009791 & post-embryonic development & 117 &  26 & 18.30 & 0.01201 \\ 
+   & GO:0034976 & response to endoplasmic reticulum stress &   7 &   4 & 1.10 & 0.01306 \\ 
+   & GO:0042157 & lipoprotein metabolic process &   7 &   4 & 1.10 & 0.01306 \\ 
+   & GO:0040010 & positive regulation of growth rate &  62 &  16 & 9.70 & 0.01505 \\ 
+   & GO:0018996 & molting cycle, collagen and cuticulin-based cuticle &  23 &   8 & 3.60 & 0.01557 \\ 
+   & GO:0042274 & ribosomal small subunit biogenesis &  11 &   5 & 1.72 & 0.01706 \\ 
+   & GO:0048856 & anatomical structure development & 219 &  41 & 34.26 & 0.01880 \\ 
+   & GO:0022414 & reproductive process & 109 &  24 & 17.05 & 0.02003 \\ 
+   & GO:0032501 & multicellular organismal process & 242 &  44 & 37.86 & 0.02062 \\ 
+   & GO:0065007 & biological regulation & 220 &  41 & 34.42 & 0.02114 \\ 
+   & GO:0071840 & cellular component organization or biogenesis & 172 &  34 & 26.91 & 0.02135 \\ 
+   & GO:0009416 & response to light stimulus &   8 &   4 & 1.25 & 0.02310 \\ 
+   & GO:0008543 & fibroblast growth factor receptor signaling pathway &   2 &   2 & 0.31 & 0.02407 \\ 
+   & GO:0018401 & peptidyl-proline hydroxylation to 4-hydroxy-L-proline &   2 &   2 & 0.31 & 0.02407 \\ 
+   & GO:0046887 & positive regulation of hormone secretion &   2 &   2 & 0.31 & 0.02407 \\ 
+   & GO:0071570 & cement gland development &   2 &   2 & 0.31 & 0.02407 \\ 
+   & GO:0016043 & cellular component organization & 168 &  33 & 26.28 & 0.02835 \\ 
+   & GO:0009792 & embryo development ending in birth or egg hatching & 124 &  26 & 19.40 & 0.02873 \\ 
+   & GO:0009152 & purine ribonucleotide biosynthetic process &   5 &   3 & 0.78 & 0.02876 \\ 
+   & GO:0000279 & M phase &  45 &  12 & 7.04 & 0.02921 \\ 
+   & GO:0002164 & larval development & 107 &  23 & 16.74 & 0.03246 \\ 
+   & GO:0070727 & cellular macromolecule localization &  31 &   9 & 4.85 & 0.03530 \\ 
+   & GO:0042254 & ribosome biogenesis &  22 &   7 & 3.44 & 0.03929 \\ 
+   & GO:0048518 & positive regulation of biological process & 127 &  26 & 19.87 & 0.04015 \\ 
+   & GO:0022613 & ribonucleoprotein complex biogenesis &  27 &   8 & 4.22 & 0.04202 \\ 
+   & GO:0007010 & cytoskeleton organization &  58 &  14 & 9.07 & 0.04305 \\ 
+   & GO:0000003 & reproduction & 141 &  28 & 22.06 & 0.04750 \\ 
+   & GO:0044267 & cellular protein metabolic process & 135 &  27 & 21.12 & 0.04864 \\ 
+   \hline
+cellular compartment & GO:0005634 & nucleus & 163 &  38 & 25.71 & 0.00010 \\ 
+   & GO:0030529 & ribonucleoprotein complex &  64 &  20 & 10.09 & 0.00034 \\ 
+   & GO:0043232 & intracellular non-membrane-bounded organelle & 116 &  28 & 18.30 & 0.00187 \\ 
+   & GO:0044444 & cytoplasmic part & 260 &  48 & 41.01 & 0.00194 \\ 
+   & GO:0043231 & intracellular membrane-bounded organelle & 253 &  47 & 39.91 & 0.00294 \\ 
+   & GO:0005829 & cytosol & 151 &  33 & 23.82 & 0.00359 \\ 
+   & GO:0031981 & nuclear lumen &  68 &  18 & 10.73 & 0.00725 \\ 
+   & GO:0005618 & cell wall &  18 &   7 & 2.84 & 0.01279 \\ 
+   & GO:0043229 & intracellular organelle & 272 &  48 & 42.90 & 0.01372 \\ 
+   & GO:0070013 & intracellular organelle lumen &  94 &  22 & 14.83 & 0.01377 \\ 
+   & GO:0044446 & intracellular organelle part & 195 &  38 & 30.76 & 0.01470 \\ 
+   & GO:0009536 & plastid &  28 &   9 & 4.42 & 0.01871 \\ 
+   & GO:0045169 & fusome &   2 &   2 & 0.32 & 0.02446 \\ 
+   & GO:0070732 & spindle envelope &   2 &   2 & 0.32 & 0.02446 \\ 
+   & GO:0022627 & cytosolic small ribosomal subunit &  16 &   6 & 2.52 & 0.02606 \\ 
+   & GO:0005791 & rough endoplasmic reticulum &   5 &   3 & 0.79 & 0.02939 \\ 
+   & GO:0009507 & chloroplast &  26 &   8 & 4.10 & 0.03508 \\ 
+   & GO:0005773 & vacuole &  46 &  12 & 7.26 & 0.03660 \\ 
+   & GO:0005811 & lipid particle &  31 &   9 & 4.89 & 0.03690 \\ 
+   \hline
+\hline
+\end{longtable}
 \newpage
 
 \subsection*{Table 7 - Overrepresentation of GO-terms differentially
   expressed between Taiwanese and European \textit{A. crassus}}
 
-<<echo=FALSE, results=tex>>=
-
-GO.over.eel$category <- ""
-GO.over.eel[c(1, GO.over.eel.lines["MF"]+1, 
-                GO.over.eel.lines["MF"]+GO.over.eel.lines["BP"]+1),
-              "category"] <- c("molecular function", "biological process", "cellular compartment")
-GO.over.eel <- GO.over.eel[, c(ncol(GO.over.eel), 1:ncol(GO.over.eel)-1)]
-
-names(GO.over.eel)[4] <- "Number annotated"
-names(GO.over.eel)[5] <- "Number significant"
-
-
-GO.over.eel.tab <- xtable(GO.over.eel)
-
-align(GO.over.eel.tab) <- "p{1.7cm}p{1.7cm}lp{4.5cm}p{1cm}p{1cm}ll"
-
-print(GO.over.eel.tab, tabular.environment="longtable",
-      floating=FALSE, 
-      hline.after=c(0, c(GO.over.eel.lines["MF"],
-        GO.over.eel.lines["MF"]+GO.over.eel.lines["BP"],
-        GO.over.eel.lines["MF"]+GO.over.eel.lines["BP"]+ GO.over.eel.lines["CC"])),
-include.rownames=FALSE)
-
-@ 
-
+% latex table generated in R 2.16.0 by xtable 1.7-0 package
+% Tue Dec 11 09:29:25 2012
+\begin{longtable}{p{1.7cm}lp{4.5cm}p{1cm}p{1cm}ll}
+ category & GO.ID & Term & Number annotated & Number significant & Expected & p.value \\ 
+  \hline
+molecular function & GO:0016453 & C-acetyltransferase activity &   3 &   3 & 0.37 & 0.0018 \\ 
+   & GO:0003824 & catalytic activity & 158 &  27 & 19.50 & 0.0079 \\ 
+   & GO:0016746 & transferase activity, transferring acyl groups &   8 &   4 & 0.99 & 0.0097 \\ 
+   & GO:0003682 & chromatin binding &   2 &   2 & 0.25 & 0.0149 \\ 
+   & GO:0003985 & acetyl-CoA C-acetyltransferase activity &   2 &   2 & 0.25 & 0.0149 \\ 
+   & GO:0008061 & chitin binding &   2 &   2 & 0.25 & 0.0149 \\ 
+   & GO:0003713 & transcription coactivator activity &   6 &   3 & 0.74 & 0.0268 \\ 
+   & GO:0005543 & phospholipid binding &   6 &   3 & 0.74 & 0.0268 \\ 
+   & GO:0004090 & carbonyl reductase (NADPH) activity &   3 &   2 & 0.37 & 0.0412 \\ 
+   & GO:0008289 & lipid binding &  12 &   4 & 1.48 & 0.0473 \\ 
+   & GO:0016853 & isomerase activity &  12 &   4 & 1.48 & 0.0473 \\ 
+   \hline
+biological process & GO:0016126 & sterol biosynthetic process &   5 &   4 & 0.60 & 0.00081 \\ 
+   & GO:0044281 & small molecule metabolic process & 107 &  22 & 12.80 & 0.00105 \\ 
+   & GO:0048732 & gland development &   9 &   5 & 1.08 & 0.00169 \\ 
+   & GO:0006694 & steroid biosynthetic process &  10 &   5 & 1.20 & 0.00307 \\ 
+   & GO:0006338 & chromatin remodeling &   4 &   3 & 0.48 & 0.00586 \\ 
+   & GO:0006695 & cholesterol biosynthetic process &   4 &   3 & 0.48 & 0.00586 \\ 
+   & GO:0042180 & cellular ketone metabolic process &  57 &  13 & 6.82 & 0.00800 \\ 
+   & GO:0023051 & regulation of signaling &  29 &   8 & 3.47 & 0.01318 \\ 
+   & GO:0001822 & kidney development &   2 &   2 & 0.24 & 0.01399 \\ 
+   & GO:0006611 & protein export from nucleus &   2 &   2 & 0.24 & 0.01399 \\ 
+   & GO:0009953 & dorsal/ventral pattern formation &   2 &   2 & 0.24 & 0.01399 \\ 
+   & GO:0048581 & negative regulation of post-embryonic development &   2 &   2 & 0.24 & 0.01399 \\ 
+   & GO:0051124 & synaptic growth at neuromuscular junction &   2 &   2 & 0.24 & 0.01399 \\ 
+   & GO:0070050 & neuron homeostasis &   2 &   2 & 0.24 & 0.01399 \\ 
+   & GO:0019752 & carboxylic acid metabolic process &  54 &  12 & 6.46 & 0.01417 \\ 
+   & GO:0008152 & metabolic process & 268 &  37 & 32.06 & 0.01595 \\ 
+   & GO:0019219 & regulation of nucleobase-containing compound metabolic process &  42 &  10 & 5.02 & 0.01617 \\ 
+   & GO:0006355 & regulation of transcription, DNA-dependent &  30 &   8 & 3.59 & 0.01637 \\ 
+   & GO:0010033 & response to organic substance &  62 &  13 & 7.42 & 0.01729 \\ 
+   & GO:0019953 & sexual reproduction &  44 &  10 & 5.26 & 0.02265 \\ 
+   & GO:0048747 & muscle fiber development &   6 &   3 & 0.72 & 0.02461 \\ 
+   & GO:0032787 & monocarboxylic acid metabolic process &  21 &   6 & 2.51 & 0.02763 \\ 
+   & GO:0051171 & regulation of nitrogen compound metabolic process &  52 &  11 & 6.22 & 0.02827 \\ 
+   & GO:0048545 & response to steroid hormone stimulus &  16 &   5 & 1.91 & 0.03065 \\ 
+   & GO:0048609 & multicellular organismal reproductive process &  60 &  12 & 7.18 & 0.03331 \\ 
+   & GO:0009966 & regulation of signal transduction &  22 &   6 & 2.63 & 0.03462 \\ 
+   & GO:0031325 & positive regulation of cellular metabolic process &  28 &   7 & 3.35 & 0.03565 \\ 
+   & GO:0009308 & amine metabolic process &  41 &   9 & 4.90 & 0.03874 \\ 
+   & GO:0002026 & regulation of the force of heart contraction &   3 &   2 & 0.36 & 0.03877 \\ 
+   & GO:0007595 & lactation &   3 &   2 & 0.36 & 0.03877 \\ 
+   & GO:0030518 & intracellular steroid hormone receptor signaling pathway &   3 &   2 & 0.36 & 0.03877 \\ 
+   & GO:0034612 & response to tumor necrosis factor &   3 &   2 & 0.36 & 0.03877 \\ 
+   & GO:0035071 & salivary gland cell autophagic cell death &   3 &   2 & 0.36 & 0.03877 \\ 
+   & GO:0035220 & wing disc development &   3 &   2 & 0.36 & 0.03877 \\ 
+   & GO:0043628 & ncRNA 3'-end processing &   3 &   2 & 0.36 & 0.03877 \\ 
+   & GO:0045540 & regulation of cholesterol biosynthetic process &   3 &   2 & 0.36 & 0.03877 \\ 
+   & GO:0051091 & positive regulation of sequence-specific DNA binding transcription factor activity &   3 &   2 & 0.36 & 0.03877 \\ 
+   & GO:0051289 & protein homotetramerization &   3 &   2 & 0.36 & 0.03877 \\ 
+   & GO:0002165 & instar larval or pupal development &   7 &   3 & 0.84 & 0.03951 \\ 
+   & GO:0007589 & body fluid secretion &   7 &   3 & 0.84 & 0.03951 \\ 
+   & GO:0048872 & homeostasis of number of cells &   7 &   3 & 0.84 & 0.03951 \\ 
+   & GO:0060047 & heart contraction &   7 &   3 & 0.84 & 0.03951 \\ 
+   & GO:0065008 & regulation of biological quality &  83 &  15 & 9.93 & 0.04013 \\ 
+   & GO:0006066 & alcohol metabolic process &  35 &   8 & 4.19 & 0.04124 \\ 
+   & GO:0050794 & regulation of cellular process & 154 &  24 & 18.42 & 0.04125 \\ 
+   & GO:0006357 & regulation of transcription from RNA polymerase II promoter &  12 &   4 & 1.44 & 0.04276 \\ 
+   & GO:0006351 & transcription, DNA-dependent &  42 &   9 & 5.02 & 0.04489 \\ 
+   & GO:0007276 & gamete generation &  42 &   9 & 5.02 & 0.04489 \\ 
+   & GO:0005975 & carbohydrate metabolic process &  36 &   8 & 4.31 & 0.04827 \\ 
+   \hline
+cellular compartment & GO:0031967 & organelle envelope &  47 &  12 & 5.49 & 0.0031 \\ 
+   & GO:0005740 & mitochondrial envelope &  29 &   8 & 3.38 & 0.0112 \\ 
+   & GO:0005643 & nuclear pore &   2 &   2 & 0.23 & 0.0133 \\ 
+   & GO:0005739 & mitochondrion &  93 &  17 & 10.85 & 0.0173 \\ 
+   & GO:0031966 & mitochondrial membrane &  28 &   7 & 3.27 & 0.0312 \\ 
+   & GO:0005902 & microvillus &   3 &   2 & 0.35 & 0.0369 \\ 
+   \hline
+\hline
+\end{longtable}
 \normalsize
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1624,8 +1519,8 @@ include.rownames=FALSE)
 \textbf{Supporting\_information.pdf}: This document contains the 3
 additional figures referenced in the main text and an additional text
 describing the assembly process and evaluation of assembly quality in
-further detail. This text contains additional 7 figures (additional
-figures 4-10) and 3 tables.
+further detail. \textbf{This text contains additional 7 figures
+  (additional figures 4-10) and 3 tables.}
 
 \subsubsection*{Additional data}
 

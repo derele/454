@@ -145,6 +145,124 @@ IPRannotations <- unique(as.character(IPR.annot[!IPR.annot$V4%in%"Seg",
                                                 "pept_id"]))
 nIPR <- length(IPRannotations)
 
+##################
+## compare GO anntotation through annot8r to annotations through
+IPR.GO.list <- by(IPR.annot, IPR.annot$pept_id, function (x){
+  f <- gsub(".*(GO:\\d{7}).*", "\\1", unique(x$V14))
+  as.list(f[nchar(f)>0])
+})
+
+IPR.GO.list <- IPR.GO.list[lapply(IPR.GO.list, length)>0]
+
+IPR.GO.df <- data.frame(contig = rep(names(IPR.GO.list), sapply(IPR.GO.list, length)),
+                        GO = unlist(IPR.GO.list))
+
+## only the most detailled level of annotation
+IPR.GO.list.det <- by(IPR.GO.df, IPR.GO.df$contig, function (x) x$GO)
+
+## making the full "all annotation" 
+IPR.goframeData <- as.data.frame(cbind(frame.go_id=as.character(IPR.GO.df$GO),
+                                       frame.Evidence="IEA",
+                                       frame.gene_id=as.character(IPR.GO.df$contig)))
+
+IPR.goFrame <- GOFrame(IPR.goframeData, organism="Angillicola crassus")
+
+## produce a full GO-mapping
+IPR.goAllFrame <- GOAllFrame(IPR.goFrame)
+IPR.all.GO <- as.data.frame(cbind(gene_id=IPR.goAllFrame@data$gene_id,
+                                         go=IPR.goAllFrame@data$go_id))
+
+IPR.all.GO.list <- by(IPR.all.GO, IPR.all.GO$gene_id, function(x) x$go)
+IPR.all.GO.list <- lapply(IPR.all.GO.list, function(x) x[!x%in%c("GO:0003674",
+                                                                 "GO:0008150",
+                                                                 "GO:0005575")])
+
+## GO anntoation from Similarity
+a <- GO.annot[GO.annot$pept_id%in%contig.df[contig.df$category%in%"MN", "contig"],
+              c("pept_id", "go_term")]
+
+## A version of the GO list containing only the hightes detail annotation
+GO.list.det <- by(a, a$pept_id, function(x) x$go_term)
+
+## produce a AnnotationDbi object 
+gfD <- as.data.frame(cbind(frame.go_id=as.character(a$go_term),
+                           frame.Evidence="IEA",
+                           frame.gene_id=as.character(a$pept_id)))
+goF <- GOFrame(gfD, organism="Anguillicola crassus")
+
+## produce an full GO-mapping
+goAllF <- GOAllFrame(goF)
+all.GO <- as.data.frame(cbind(pept_id=goAllF@data$gene_id,
+                              go_term=goAllF@data$go_id))
+
+all.GO.list <- by(all.GO, all.GO$pept_id, function(x) x$go_term)
+## remove the roots
+all.GO.list <- lapply(all.GO.list, function(x) x[!x%in%c("GO:0003674",
+                                                         "GO:0008150",
+                                                         "GO:0005575")])
+## Compare 
+S.in.D <- lapply(names(all.GO.list), function(x)
+                 any(all.GO.list[[x]]%in%IPR.all.GO.list[[x]]))
+names(S.in.D) <- names(all.GO.list)
+S.in.D <- melt(S.in.D)
+S.in.D <- rename(S.in.D, c(value="S.in.D"))
+
+D.in.S <- lapply(names(IPR.all.GO.list), function(x)
+                 any(IPR.all.GO.list[[x]]%in%all.GO.list[[x]]))
+names(D.in.S) <- names(IPR.all.GO.list)
+D.in.S <- melt(D.in.S)
+D.in.S <- rename(D.in.S, c(value="D.in.S"))
+
+both.have <- intersect(names(D.in.S), names(S.in.D))
+
+S.in.Ddet <- lapply(names(all.GO.list), function(x)
+                    any(all.GO.list[[x]]%in%IPR.GO.list.det[[x]]))
+names(S.in.Ddet) <- names(all.GO.list)
+S.in.Ddet <- melt(S.in.Ddet)
+S.in.Ddet <- rename(S.in.Ddet, c(value="S.in.Ddet"))
+
+D.in.Sdet <- lapply(names(IPR.all.GO.list), function(x)
+                    any(IPR.all.GO.list[[x]]%in%GO.list.det[[x]]))
+names(D.in.Sdet) <- names(IPR.all.GO.list)
+D.in.Sdet <- melt(D.in.Sdet)
+D.in.Sdet <- rename(D.in.Sdet, c(value="D.in.Sdet"))
+
+GO.scrut <- merge(S.in.D, D.in.S, by="L1", all=TRUE)
+
+GO.scrut <- merge(GO.scrut, S.in.Ddet, by="L1", all=TRUE)
+GO.scrut <- merge(GO.scrut, D.in.Sdet, by="L1", all=TRUE)
+
+GO.scrut$S.in.D[is.na(GO.scrut$S.in.D)] <- "missing"
+GO.scrut$D.in.S[is.na(GO.scrut$D.in.S)] <- "missing"
+GO.scrut$S.in.Ddet[is.na(GO.scrut$S.in.Ddet)] <- "missing"
+GO.scrut$D.in.Sdet[is.na(GO.scrut$D.in.Sdet)] <- "missing"
+
+GO.scrut$match <- as.factor(GO.scrut$S.in.Ddet):
+  as.factor(GO.scrut$D.in.Sdet)
+
+## drop unused levels
+GO.scrut$match <- factor(GO.scrut$match, levels=unique(as.character(GO.scrut$match)))
+
+GO.scrut$match <- gsub("TRUE:TRUE", "complete\nagreement", GO.scrut$match)
+GO.scrut$match <- gsub("FALSE:TRUE", "domain annotation\nmore detailed", GO.scrut$match)
+GO.scrut$match <- gsub("TRUE:FALSE", "similarity annotation\nmore detailed", GO.scrut$match)
+
+GO.scrut$match <- gsub("FALSE:missing", "similarity\nassignment only", GO.scrut$match)
+GO.scrut$match <- gsub("missing:FALSE", "domain\nassignment only", GO.scrut$match)
+
+GO.scrut$match <- gsub("FALSE:FALSE", "disagreement below root", GO.scrut$match)
+
+GO.scrut[GO.scrut$match%in%"disagreement below root",]$match <-
+  ifelse(GO.scrut[GO.scrut$match%in%"disagreement below root", "S.in.D"],
+         "lower level\ndisagreement", "first level\ndisagreement")
+
+
+## pdf("../Supporting_information/GO_pie.pdf")
+## pie(table(GO.scrut$match), col=rainbow(nlevels(as.factor(GO.scrut$match))),
+##     clockwise = TRUE)
+## dev.off()
+
+#######################
 Allannotations.MN <- unique(c(GOannotations.MN, ECannotations.MN, KEGGannotations.MN, IPRannotations))
 
 annotationVennMN <- venn.diagram(list(GO   = match(GOannotations.MN, Allannotations.MN),
