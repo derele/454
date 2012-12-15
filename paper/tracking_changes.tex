@@ -545,12 +545,14 @@ other groups (factors) Fisher's exact test was used.
 The bulk of analysis (unless otherwise described) presented was
 carried out in R \cite{R_project} using custom scripts. For
 visualisation we used the R packages ggplot2 \cite{ggplot-book} and
-VennDiagram \cite{pmid21269502}. We used a method provided in the
-R packages Sweave \cite{lmucs-papers:Leisch:2002} and Weaver
-\cite{weaver} for ``reproducible research'' combining R and \LaTeX
-code in a single file. All code and data files needed to compile the
-present manuscript from data can be downloaded from datadryad.org
-(exact url after acceptance, as needed prior to data submission).
+VennDiagram \cite{pmid21269502}. 
+
+\sout{We used a method provided in the R packages Sweave}
+\cite{lmucs-papers:Leisch:2002} \sout{and Weaver} \cite{weaver} \sout{for
+``reproducible research'' combining R and \LaTeX code in a single
+file. All code and data files needed to compile the present manuscript
+from data can be downloaded from datadryad.org (exact url after
+acceptance, as needed prior to data submission).}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Results and Discussion %%
@@ -594,14 +596,18 @@ uninfected Taiwanese \textit{An. japonica}.
 
 \subsection*{Assembly and post-assembly screening}
 
-\textbf{353,055 screened (see supporting infromation) sequencing
-  reads} (spanning 100,491,819 bases) were assembled using the
-combined assembler strategy \cite{pmid20950480}, employing Roche 454
-gsAssembler (also known as Newbler; version 2.6) and MIRA (version
-3.21) \cite{miraEST}. In this coassembly, 13,851 contigs were
-supported by both assembly algorithms, 3,745 contigs were supported by
-only one of the assembly algorithms and 22,591 singletons were not
-assembled by either program (Table 2). Contigs supported by both
+\textbf{A total of 756,363 raw sequencing reads were generated for
+  A. crassus (Table 1). These were rigorously filtered (see supporting
+  infromation) and 353,055 remaining reads (spanning 100,491,819
+  bases) were assembled using the combined} assembler strategy
+\cite{pmid20950480}, employing Roche 454 gsAssembler (also known as
+Newbler; version 2.6) and MIRA (version 3.21)
+\cite{miraEST}. \textbf{This coassembly will be included in future
+  versions of nembase (nembase5) and is available at
+  http://afterparty.bio.ed.ac.uk/study/show/1440745. It comprised}
+13,851 contigs supported by both assembly algorithms, 3,745 contigs
+supported by only one of the assembly algorithms and 22,591 singletons
+not assembled by either program (Table 2). Contigs supported by both
 assemblers were longer than those supported by only one assembler, and
 were more likely to have a significant similarity to previously
 sequenced protein coding genes than contigs assembled by only one of

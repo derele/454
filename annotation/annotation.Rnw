@@ -61,7 +61,6 @@ ce.names <- merge(ce.names, rnai, by.x="Ce.hit", by.y="row.names", all.x=TRUE)
 
 contig.df <- merge(contig.df, ce.names, by="Ce.hit", all.x=TRUE, sort=FALSE)
 
-
 ## anntoation with nempep descriptions
 nempep.nuc <- read.sequences("/drobo/db/blastdb/nembase4/nembase4_nuc.fasta")
 nempep <- data.frame(Cluster.ID=substring(names(nempep.nuc), 1, 8))

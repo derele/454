@@ -1162,29 +1162,30 @@ assembly (lowCA).
 \subsection{Scrutinising the GO annotation}
 \label{sec:scrut-GO}
 
-GO-annotations based on similarity searches are often considered not
-reliable for species diverged from the model-species in which they
-were developed. To investigate the validity of GO-terms assigned by
+GO-annotations based on similarity searches are often considered
+unreliable for species diverged from the model-species in which they
+were developed. To investigate the validity of GO terms assigned by
 BLAST similarity we compared the annot8r derived terms with
 domain-based (Interpro-Scan) annotations. We classified contigs and
-their annotations as "in complete agreement" if the lowest level term
-(the highest number of terms away from the roots ``biological
-process'' or ``molecular function'') was the same for the two methods.
-A contig was classified as having a ``more detailed'' annotation if
-the respective method yielded an agreeing term at a lower (offspring)
-level compared the other. Finally there were contigs for which only
-one method yielded an annotation.
+their annotations as ``in complete agreement'' if the lowest level
+term (the highest number of terms away from the roots ``biological
+process or molecular function'') was the same for the two methods. A
+contig was classified as having a ``more detailed'' annotation if the
+respective method yielded a term agreeing at a lower (offspring) level
+compared to the other. Finally there were contigs for which only one
+method yielded an annotation.
 
-This comparison revealed a high agreement between annotation based on
+This comparison revealed high agreement between annotation based on
 sequence similarity and on domain architecture, where annotations from
-both sources were present. Half of our contigs, however, are annotated
-based on similarity alone. It can not be excluded that these
+both sources were present. Half of our contigs, however, were
+annotated based on similarity alone. It cannot be excluded that these
 annotations have additional bias not observed in contigs with
 annotations from both sources. Therefore we did not rely on single
 detailed GO assignments, but rather searched for overall patterns
 through enrichment analyses. These analyses make it more feasible to
-detect a signal at higher levels of annotations, thus alleviating the
-quality-problems of more detailed annotations.
+detect a signal at higher levels of annotation, thus alleviating the
+quality problems of more detailed annotations.
+
 
 \begin{figure}
   \centering
@@ -1195,11 +1196,9 @@ quality-problems of more detailed annotations.
   methods. If a lower level term was derived for any of the methods
   the ``more detailed'' classification was used. Contigs with
   disagreeing annotations were grouped into ``lower level
-  disagreement'' or ``first level disagreement'' according annotations
-  at the first level below the root term.}
+  disagreement'' or ``first level disagreement'' according to
+  annotations at the first (most general) level below the root term.}
 \end{figure}
-
-
 
 <<save, echo=FALSE>>=
 ## save what is needed downstream

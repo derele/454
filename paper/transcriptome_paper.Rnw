@@ -543,12 +543,8 @@ other groups (factors) Fisher's exact test was used.
 The bulk of analysis (unless otherwise described) presented was
 carried out in R \cite{R_project} using custom scripts. For
 visualisation we used the R packages ggplot2 \cite{ggplot-book} and
-VennDiagram \cite{pmid21269502}. We used a method provided in the
-R packages Sweave \cite{lmucs-papers:Leisch:2002} and Weaver
-\cite{weaver} for ``reproducible research'' combining R and \LaTeX
-code in a single file. All code and data files needed to compile the
-present manuscript from data can be downloaded from datadryad.org
-(exact url after acceptance, as needed prior to data submission).
+VennDiagram \cite{pmid21269502}.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Results and Discussion %%
@@ -680,14 +676,17 @@ nbad.c <- nrow(contig.df[contig.df$category%in%
 nSing <- nrow(contig.df[contig.df$category%in%0,])
 @
 
-\Sexpr{cn(length(raw.fasta))} screened (see supporting infromation and
-table 1) sequencing reads (spanning \Sexpr{cn(nBases)} bases) were
+A total of 756,363 raw sequencing reads were generated for A. crassus
+(Table 1). These were rigorously filtered (see supporting infromation)
+and 353,055 remaining reads (spanning 100,491,819 bases) were
 assembled using the combined assembler strategy \cite{pmid20950480},
 employing Roche 454 gsAssembler (also known as Newbler; version 2.6)
-and MIRA (version 3.21) \cite{miraEST}. In this coassembly,
-\Sexpr{cn(nMN)} contigs were supported by both assembly algorithms,
-\Sexpr{cn(nbad.c)} contigs were supported by only one of the assembly
-algorithms and \Sexpr{cn(nSing)} singletons were not assembled by
+and MIRA (version 3.21) \cite{miraEST}. This coassembly will be
+included in future versions of nembase (nembase5) and is available at
+http://afterparty.bio.ed.ac.uk/study/show/1440745. It comprised
+\Sexpr{cn(nMN)} contigs supported by both assembly algorithms,
+\Sexpr{cn(nbad.c)} contigs supported by only one of the assembly
+algorithms and \Sexpr{cn(nSing)} singletons that not assembled by
 either program (Table 2). Contigs supported by both assemblers were
 longer than those supported by only one assembler, and were more
 likely to have a significant similarity to previously sequenced
@@ -1348,7 +1347,7 @@ trim_mark$life.st <- c("adult female", "adult female", "L2 larvae",
                        "adult male", "adult female", "adult female")
 
 trim_mark$source.p <- c("Europe Rhine", "Europe Poland", "Europe Rhine",
-                       "Asia cultured", "Asia cutured", "Asia wild")
+                       "Asia cultured", "Asia cultured", "Asia wild")
 
 trim_mark$geolocation <- c("49.0262N; 8.310556E", "53.751959N; 21.730957E", "49.0262N; 8.310556E",
                            "22.6418N; 120.4440E", "22.6418N; 120.4440E", "22.5074N; 120.4220E")

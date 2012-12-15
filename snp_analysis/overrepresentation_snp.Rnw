@@ -232,20 +232,20 @@ sigP.con.test.80 <- fisher.test(contig.df[contig.df$Ac, "novel.80"]%in%
 
 
 sigP.50.p <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.50) & !is.na(sigP)),
-              aes(novel.50, fill=sigP)) +
+              aes(novel.50, fill=sigP,  order = -as.numeric(as.factor(sigP)))) +
   geom_bar(position="fill", color="black") +
-  scale_y_continuous("", lim=c(0.9,1)) +
+  scale_y_continuous("", lim=c(0,0.05)) +
   scale_x_discrete("", labels=good.lab,
                    breaks=levels(contig.df$novel.50)) +
   scale_fill_manual(breaks=c("Yes-TM", "Yes-noTM"), values=c("white", "darkblue","red")) +
   labs(title="proportion of TUGs in SignalP category\nby evolutionary conservation categories at bitscore threshold of 50") +
   theme_bw() +
-  theme(plot.background = element_blank(), legend.position=c(.2, .2))
+  theme(plot.background = element_blank(), legend.position=c(.9, .9))
 
 sigP.80.p <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.80) & !is.na(sigP)),
-              aes(novel.80, fill=sigP)) +
+              aes(novel.80, fill=sigP, order = -as.numeric(as.factor(sigP)))) +
   geom_bar(position="fill", color="black") + 
-  scale_y_continuous("", lim=c(0.9,1)) +
+  scale_y_continuous("", lim=c(0,0.05)) +
   scale_fill_manual(values=c("white", "darkblue","red"), guide="none") +
   scale_x_discrete("", labels=good.lab,
                    breaks=levels(contig.df$novel.50)) +
@@ -254,9 +254,9 @@ sigP.80.p <- ggplot(subset(contig.df, contig.df$Ac & !is.na(novel.80) & !is.na(s
   theme(plot.background = element_blank())
 
 sigP.50.p.MN <- ggplot(subset(contig.df, contig.df$AcMN & !is.na(novel.50) & !is.na(sigP)),
-              aes(novel.50, fill=sigP)) +
+              aes(novel.50, fill=sigP,  order = -as.numeric(as.factor(sigP)))) +
   geom_bar(position="fill", color="black") + 
-  scale_y_continuous("", lim=c(0.9,1)) +
+  scale_y_continuous("", lim=c(0,0.05)) +
   scale_x_discrete("", labels=good.lab,
                    breaks=levels(contig.df$novel.50)) +
   scale_fill_manual(values=c("white", "darkblue","red"), guide="none") +
@@ -265,9 +265,9 @@ sigP.50.p.MN <- ggplot(subset(contig.df, contig.df$AcMN & !is.na(novel.50) & !is
   theme(plot.background = element_blank())
 
 sigP.80.p.MN <- ggplot(subset(contig.df, contig.df$AcMN & !is.na(novel.80) & !is.na(sigP)),
-              aes(novel.80, fill=sigP)) +
+                       aes(novel.80, fill=sigP,  order = -as.numeric(as.factor(sigP)))) +
   geom_bar(position="fill", color="black") + 
-  scale_y_continuous("", lim=c(0.9,1)) +
+  scale_y_continuous("", lim=c(0,0.05)) +
   scale_x_discrete("", labels=good.lab,
                    breaks=levels(contig.df$novel.50)) +
   scale_fill_manual(values=c("white", "darkblue","red"), guide="none") +
