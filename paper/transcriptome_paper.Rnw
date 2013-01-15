@@ -676,13 +676,14 @@ nbad.c <- nrow(contig.df[contig.df$category%in%
 nSing <- nrow(contig.df[contig.df$category%in%0,])
 @
 
-A total of 756,363 raw sequencing reads were generated for A. crassus
-(Table 1). These were rigorously filtered (see supporting infromation)
-and 353,055 remaining reads (spanning 100,491,819 bases) were
-assembled using the combined assembler strategy \cite{pmid20950480},
-employing Roche 454 gsAssembler (also known as Newbler; version 2.6)
-and MIRA (version 3.21) \cite{miraEST}. This coassembly will be
-included in future versions of nembase (nembase5) and is available at
+A total of 756,363 raw sequencing reads were generated for
+\textit{A. crassus} (Table 1). These were rigorously filtered (see
+supporting infromation) and 353,055 remaining reads (spanning
+100,491,819 bases) were assembled using the combined assembler
+strategy \cite{pmid20950480}, employing Roche 454 gsAssembler (also
+known as Newbler; version 2.6) and MIRA (version 3.21)
+\cite{miraEST}. This coassembly will be included in future versions of
+nembase (nembase5) and is available at
 http://afterparty.bio.ed.ac.uk/study/show/1440745. It comprised
 \Sexpr{cn(nMN)} contigs supported by both assembly algorithms,
 \Sexpr{cn(nbad.c)} contigs supported by only one of the assembly
